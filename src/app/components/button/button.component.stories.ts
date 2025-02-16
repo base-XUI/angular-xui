@@ -1,9 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { ButtonComponent } from './button.component';
+import { moduleMetadata } from '@storybook/angular';
 
 const meta: Meta<ButtonComponent> = {
   title: 'Components/Button',
   component: ButtonComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [ButtonComponent],
+    }),
+  ],
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -18,6 +24,12 @@ const meta: Meta<ButtonComponent> = {
       control: 'boolean'
     },
     label: {
+      control: 'text'
+    },
+    iconLeft: {
+      control: 'text'
+    },
+    iconRight: {
       control: 'text'
     }
   }
@@ -77,5 +89,36 @@ export const Disabled: Story = {
     label: 'Disabled Button',
     size: 'medium',
     disabled: true
+  }
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    variant: 'primary',
+    label: 'Button with Left Icon',
+    size: 'medium',
+    iconLeft: '👈',
+    disabled: false
+  }
+};
+
+export const WithRightIcon: Story = {
+  args: {
+    variant: 'primary',
+    label: 'Button with Right Icon',
+    size: 'medium',
+    iconRight: '👉',
+    disabled: false
+  }
+};
+
+export const WithBothIcons: Story = {
+  args: {
+    variant: 'primary',
+    label: 'Button with Both Icons',
+    size: 'medium',
+    iconLeft: '👈',
+    iconRight: '👉',
+    disabled: false
   }
 }; 

@@ -35,7 +35,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-691c3ff3c586330ec10f57b3e079c87b9b3e7915fb13fa280ba41b46b7b3041f164965fd8f1eaf2bf1cf5dc171db584aae49f22bb61198fed900f2c809efaf8a",
+            "id": "component-AppComponent-e53c104195b9d20d0d2457916ca49787c8708799cbe13fddceb67d358a95cd1a666627d240997d18f61712b6221a1b60940d8376c8c7254303bd5d7bd440e243",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -62,7 +62,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 11
+                    "line": 13
                 }
             ],
             "methodsClass": [],
@@ -70,16 +70,20 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": false,
+            "standalone": true,
             "imports": [
                 {
                     "name": "RouterOutlet"
+                },
+                {
+                    "name": "ButtonComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\n\n@Component({\n  selector: 'app-root',\n  imports: [RouterOutlet],\n  templateUrl: './app.component.html',\n  styleUrl: './app.component.scss'\n})\nexport class AppComponent {\n  title = 'angular-xui';\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { ButtonComponent } from './components/button/button.component';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterOutlet, ButtonComponent],\n  templateUrl: './app.component.html',\n  styleUrl: './app.component.scss'\n})\nexport class AppComponent {\n  title = 'angular-xui';\n}\n",
             "styleUrl": "./app.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -223,7 +227,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-96175eca82c322b5b33694de5a63d811a8e90fdd6d4ea09ff4a6cae3459a0e9abb7123bd399c8a245b4a6757bb146daf1406152823842ec20e48d9043722a745-1",
+            "id": "component-ButtonComponent-819627e8bc03d289817d2b8e44b6f491cfb2299fa72435bcd4ee7b8cde83ec0205a540f703145b5475b7f304f520b9d18390eedc509640fb449493b12d4856f4-1",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -231,13 +235,10 @@
             "outputs": [],
             "providers": [],
             "selector": "app-button",
-            "styleUrls": [
-                "./button.component.scss"
-            ],
+            "styleUrls": [],
             "styles": [],
-            "templateUrl": [
-                "./button.component.html"
-            ],
+            "template": "<button [class]=\"classes\" [disabled]=\"disabled\">\n  {{ label }}\n</button>\n",
+            "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
@@ -246,7 +247,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 18,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -255,7 +256,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 15,
                     "type": "string",
                     "decorators": []
                 },
@@ -264,7 +265,7 @@
                     "defaultValue": "'medium'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 17,
                     "type": "\"small\" | \"medium\" | \"large\"",
                     "decorators": []
                 },
@@ -273,7 +274,7 @@
                     "defaultValue": "'primary'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 16,
                     "type": "\"primary\" | \"secondary\" | \"outline\"",
                     "decorators": []
                 }
@@ -295,14 +296,9 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent {\n  @Input() label: string = '';\n  @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() disabled: boolean = false;\n\n  get classes(): string {\n    const baseClasses = 'rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';\n    const sizeClasses = {\n      small: 'px-3 py-1.5 text-sm',\n      medium: 'px-4 py-2 text-base',\n      large: 'px-6 py-3 text-lg'\n    };\n    const variantClasses = {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',\n      outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500'\n    };\n    const disabledClasses = this.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';\n\n    return `${baseClasses} ${sizeClasses[this.size]} ${variantClasses[this.variant]} ${disabledClasses}`;\n  }\n} ",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <button [class]=\"classes\" [disabled]=\"disabled\">\n      {{ label }}\n    </button>\n  `\n})\nexport class ButtonComponent {\n  @Input() label: string = '';\n  @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() disabled: boolean = false;\n\n  get classes(): string {\n    const baseClasses = 'rounded-md font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';\n    \n    const sizeClasses = {\n      small: 'px-3 py-1.5 text-sm',\n      medium: 'px-4 py-2 text-base',\n      large: 'px-6 py-3 text-lg'\n    };\n\n    const variantClasses = {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',\n      outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 focus:ring-blue-500'\n    };\n\n    const disabledClasses = this.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';\n\n    return `${baseClasses} ${sizeClasses[this.size]} ${variantClasses[this.variant]} ${disabledClasses}`;\n  }\n} ",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "// This file can be empty since we're using Tailwind classes\n// But we need it to exist for Angular's build process ",
-                    "styleUrl": "./button.component.scss"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
             "accessors": {
@@ -312,14 +308,13 @@
                         "name": "classes",
                         "type": "string",
                         "returnType": "string",
-                        "line": 17
+                        "line": 20
                     }
                 }
             },
             "isDuplicate": true,
             "duplicateId": 1,
-            "duplicateName": "ButtonComponent-1",
-            "templateData": "<button [class]=\"classes\" [disabled]=\"disabled\">\n  {{ label }}\n</button> "
+            "duplicateName": "ButtonComponent-1"
         },
         {
             "name": "HeaderComponent",
