@@ -14,7 +14,7 @@ const meta: Meta<ButtonComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline']
+      options: ['primary', 'secondary', 'outline', 'danger']
     },
     size: {
       control: 'select',
@@ -22,9 +22,6 @@ const meta: Meta<ButtonComponent> = {
     },
     disabled: {
       control: 'boolean'
-    },
-    label: {
-      control: 'text'
     },
     iconLeft: {
       control: 'text'
@@ -41,84 +38,154 @@ type Story = StoryObj<ButtonComponent>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    label: 'Primary Button',
-    size: 'medium',
-    disabled: false
-  }
+    size: 'medium'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size">
+        Click Me
+      </app-button>
+    `
+  })
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    label: 'Secondary Button',
-    size: 'medium',
-    disabled: false
-  }
+    size: 'medium'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size">
+        Click Me
+      </app-button>
+    `
+  })
 };
 
 export const Outline: Story = {
   args: {
     variant: 'outline',
-    label: 'Outline Button',
-    size: 'medium',
-    disabled: false
-  }
+    size: 'medium'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size">
+        Click Me
+      </app-button>
+    `
+  })
+};
+
+export const Danger: Story = {
+  args: {
+    variant: 'danger',
+    size: 'medium'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size">
+        Click Me
+      </app-button>
+    `
+  })
 };
 
 export const Small: Story = {
   args: {
     variant: 'primary',
-    label: 'Small Button',
-    size: 'small',
-    disabled: false
-  }
+    size: 'small'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size">
+        Small Button
+      </app-button>
+    `
+  })
 };
 
 export const Large: Story = {
   args: {
     variant: 'primary',
-    label: 'Large Button',
-    size: 'large',
-    disabled: false
-  }
+    size: 'large'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size">
+        Large Button
+      </app-button>
+    `
+  })
 };
 
 export const Disabled: Story = {
   args: {
     variant: 'primary',
-    label: 'Disabled Button',
     size: 'medium',
     disabled: true
-  }
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size" [disabled]="disabled">
+        Disabled Button
+      </app-button>
+    `
+  })
 };
 
 export const WithLeftIcon: Story = {
   args: {
     variant: 'primary',
-    label: 'Button with Left Icon',
     size: 'medium',
-    iconLeft: '👈',
-    disabled: false
-  }
+    iconLeft: '👈'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size" [iconLeft]="iconLeft">
+        Button with Left Icon
+      </app-button>
+    `
+  })
 };
 
 export const WithRightIcon: Story = {
   args: {
     variant: 'primary',
-    label: 'Button with Right Icon',
     size: 'medium',
-    iconRight: '👉',
-    disabled: false
-  }
+    iconRight: '👉'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size" [iconRight]="iconRight">
+        Button with Right Icon
+      </app-button>
+    `
+  })
 };
 
 export const WithBothIcons: Story = {
   args: {
     variant: 'primary',
-    label: 'Button with Both Icons',
     size: 'medium',
     iconLeft: '👈',
-    iconRight: '👉',
-    disabled: false
-  }
+    iconRight: '👉'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight">
+        Button with Both Icons
+      </app-button>
+    `
+  })
 }; 
