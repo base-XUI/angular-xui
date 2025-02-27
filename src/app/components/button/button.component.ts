@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { cva } from 'class-variance-authority';
 
@@ -27,7 +27,7 @@ const buttonVariants = cva('px-4 py-2 rounded-md', {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <button [class]="buttonClasses" [disabled]="disabled">
+    <button [class]="buttonClasses" [disabled]="disabled" (click)="handleClick()">
       <span class="flex items-center gap-2">
         <span *ngIf="iconLeft" class="icon-left">{{ iconLeft }}</span>
         <ng-content></ng-content>
@@ -42,8 +42,13 @@ export class ButtonComponent {
   @Input() disabled: boolean = false;
   @Input() iconLeft?: string;
   @Input() iconRight?: string;
+  @Output() clicked = new EventEmitter<void>();
 
   get buttonClasses(): string {
     return buttonVariants({ variant: this.variant, size: this.size });
   }
-} 
+
+  handleClick() {
+    this.clicked.emit();
+  }
+}

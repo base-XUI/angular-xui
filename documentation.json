@@ -312,7 +312,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-5505c64b4fa1409cfd35c62ce4fe179385dba3d676b4df2192b96fafe8841753da1dad75b12bba1217ff541dff1bff0c5ab455aa6637f52ae429bdefd614c99a-1",
+            "id": "component-ButtonComponent-ab34b1f397ce6733c3cea5b62475312126f8cd9934fdb8a36b175ddb22bf5b5e2bd2ff7d9d6bf0b59a9987a660e3f4d0033faa881f8b3b998f9d93c8c8e77f81-1",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -322,7 +322,7 @@
             "selector": "app-button",
             "styleUrls": [],
             "styles": [],
-            "template": "<button [class]=\"buttonClasses\" [disabled]=\"disabled\">\n  <span class=\"flex items-center gap-2\">\n    <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n    <ng-content></ng-content>\n    <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n  </span>\n</button>\n",
+            "template": "<button [class]=\"buttonClasses\" [disabled]=\"disabled\" (click)=\"handleClick()\">\n  <span class=\"flex items-center gap-2\">\n    <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n    <ng-content></ng-content>\n    <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n  </span>\n</button>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -371,9 +371,29 @@
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "clicked",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "EventEmitter"
+                }
+            ],
             "propertiesClass": [],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -388,7 +408,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { cva } from 'class-variance-authority';\n\nconst buttonVariants = cva('px-4 py-2 rounded-md', {\n  variants: {\n    variant: {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700',\n      outline: 'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',\n      danger: 'bg-red-600 text-white hover:bg-red-700',\n    },\n    size: {\n      small: 'text-sm',\n      medium: 'text-base',\n      large: 'text-lg',\n    },\n  },\n  defaultVariants: {\n    variant: 'primary',\n    size: 'medium',\n  },\n});\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <button [class]=\"buttonClasses\" [disabled]=\"disabled\">\n      <span class=\"flex items-center gap-2\">\n        <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n        <ng-content></ng-content>\n        <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n      </span>\n    </button>\n  `\n})\nexport class ButtonComponent {\n  @Input() variant: 'primary' | 'secondary' | 'outline' | 'danger' = 'primary';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() disabled: boolean = false;\n  @Input() iconLeft?: string;\n  @Input() iconRight?: string;\n\n  get buttonClasses(): string {\n    return buttonVariants({ variant: this.variant, size: this.size });\n  }\n} ",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { cva } from 'class-variance-authority';\n\nconst buttonVariants = cva('px-4 py-2 rounded-md', {\n  variants: {\n    variant: {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700',\n      outline: 'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',\n      danger: 'bg-red-600 text-white hover:bg-red-700',\n    },\n    size: {\n      small: 'text-sm',\n      medium: 'text-base',\n      large: 'text-lg',\n    },\n  },\n  defaultVariants: {\n    variant: 'primary',\n    size: 'medium',\n  },\n});\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <button [class]=\"buttonClasses\" [disabled]=\"disabled\" (click)=\"handleClick()\">\n      <span class=\"flex items-center gap-2\">\n        <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n        <ng-content></ng-content>\n        <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n      </span>\n    </button>\n  `\n})\nexport class ButtonComponent {\n  @Input() variant: 'primary' | 'secondary' | 'outline' | 'danger' = 'primary';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() disabled: boolean = false;\n  @Input() iconLeft?: string;\n  @Input() iconRight?: string;\n  @Output() clicked = new EventEmitter<void>();\n\n  get buttonClasses(): string {\n    return buttonVariants({ variant: this.variant, size: this.size });\n  }\n\n  handleClick() {\n    this.clicked.emit();\n  }\n}",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -400,7 +420,7 @@
                         "name": "buttonClasses",
                         "type": "string",
                         "returnType": "string",
-                        "line": 46
+                        "line": 47
                     }
                 }
             },
@@ -1901,7 +1921,7 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
