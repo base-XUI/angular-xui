@@ -98,11 +98,10 @@ export class TooltipComponent {
   }
 
   private updatePosition(): void {
-    const element = this.elementRef.nativeElement;
-    const tooltip = element.querySelector('[class*="absolute"]');
+    const element = this.elementRef.nativeElement as HTMLElement;
+    const tooltip = element.querySelector('[class*="absolute"]') as HTMLElement;
     if (!tooltip) return;
 
-    const elementRect = element.getBoundingClientRect();
     const tooltipRect = tooltip.getBoundingClientRect();
 
     // Adjust position if tooltip is outside viewport

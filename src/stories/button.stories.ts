@@ -13,8 +13,8 @@ const meta: Meta<ButtonComponent> = {
       control: 'color',
     },
   },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
+  // Use `fn` to spy on the buttonClick arg, which will appear in the actions panel once invoked
+  args: { buttonClick: fn() },
 };
 
 export default meta;

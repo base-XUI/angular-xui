@@ -178,7 +178,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-d7bf0323e6da130e2609e2af0117b4a8d7cd874132206af50bf43dfc37044485fe50f2867ea76525730dd195b9b95a43802a12dadc6ad5cd7bf2faa07f19f0da",
+            "id": "component-ButtonComponent-22f323dde6e48e9fae46213931b39943e485298f0fa365644a89c5cb2ae3d2460a92402740258bd287d0b901aab8c1e0b9f7046f2f9c2da14490dbc1e115726f",
             "file": "src/stories/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -190,7 +190,7 @@
                 "./button.css"
             ],
             "styles": [],
-            "template": " <button  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>",
+            "template": " <button  type=\"button\"\n  (click)=\"buttonClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -212,16 +212,16 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 760,
-                            "end": 773,
+                            "pos": 764,
+                            "end": 777,
                             "kind": 327,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 761,
-                                "end": 769,
+                                "pos": 765,
+                                "end": 773,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -262,7 +262,7 @@
             ],
             "outputsClass": [
                 {
-                    "name": "onClick",
+                    "name": "buttonClick",
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -288,7 +288,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n  type=\"button\"\n  (click)=\"buttonClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  buttonClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -748,7 +748,7 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-48b9abe37706bc42f20cfa97ed9f943678344ea7d254c0c82183c657750c2191b43486fe730c778627b2ea6aa0e2f33a7abcf3ce08b68ad18b062ad99ea97acb",
+            "id": "component-HeaderComponent-6a9ff448849c0c06880120630fcd426ae9190ddac5800d720579867cff0d095895280fb61b9f2fc7a2dabdf2c9e38b0efc44d51249619a91454695b8902802a8",
             "file": "src/stories/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -760,7 +760,7 @@
                 "./header.css"
             ],
             "styles": [],
-            "template": "<header>  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>",
+            "template": "<header>  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (buttonClick)=\"logout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (buttonClick)=\"login.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (buttonClick)=\"createAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -777,7 +777,7 @@
             ],
             "outputsClass": [
                 {
-                    "name": "onCreateAccount",
+                    "name": "createAccount",
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -785,7 +785,7 @@
                     "type": "EventEmitter"
                 },
                 {
-                    "name": "onLogin",
+                    "name": "login",
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -793,7 +793,7 @@
                     "type": "EventEmitter"
                 },
                 {
-                    "name": "onLogout",
+                    "name": "logout",
                     "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -821,7 +821,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ButtonComponent } from './button.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-header',\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `<header>\n  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>`,\n  styleUrls: ['./header.css'],\n})\nexport class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ButtonComponent } from './button.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-header',\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `<header>\n  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (buttonClick)=\"logout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (buttonClick)=\"login.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (buttonClick)=\"createAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>`,\n  styleUrls: ['./header.css'],\n})\nexport class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  login = new EventEmitter<Event>();\n\n  @Output()\n  logout = new EventEmitter<Event>();\n\n  @Output()\n  createAccount = new EventEmitter<Event>();\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1360,7 +1360,7 @@
         },
         {
             "name": "TooltipComponent",
-            "id": "component-TooltipComponent-de497f5f58e524e59bd788569866a85c33bcef9097795f622ae568bf6471b3d4bfd592db3a36f4cf093fd086ac9c947789b3a6643fc2ff2e232c7f0d2b2a696c",
+            "id": "component-TooltipComponent-e52c3ed9314cf399478af74c03566dbf05f4d0b6ad906e16360ac764eacb0ed81563bea98b36ddc7b02af70fcb293178e7a322aa7956e83048327cd0c39b4e5c",
             "file": "src/app/components/tooltip/tooltip.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1478,7 +1478,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 132,
+                    "line": 131,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -1530,7 +1530,7 @@
                     "argsDecorator": [],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 132
+                    "line": 131
                 },
                 {
                     "name": "window:scroll",
@@ -1538,7 +1538,7 @@
                     "argsDecorator": [],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 132
+                    "line": 131
                 }
             ],
             "standalone": true,
@@ -1551,7 +1551,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ElementRef, HostListener } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype TooltipPosition = 'top' | 'right' | 'bottom' | 'left';\ntype TooltipVariant = 'dark' | 'light' | 'info' | 'warning' | 'error';\n\n@Component({\n  selector: 'app-tooltip',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"relative inline-block\">\n      <!-- Tooltip trigger -->\n      <div (mouseenter)=\"show()\" (mouseleave)=\"hide()\">\n        <ng-content></ng-content>\n      </div>\n\n      <!-- Tooltip content -->\n      <div *ngIf=\"isVisible\" \n           [class]=\"tooltipClasses\"\n           [style.margin-left.px]=\"position === 'top' || position === 'bottom' ? offsetX : 0\"\n           [style.margin-top.px]=\"position === 'left' || position === 'right' ? offsetY : 0\">\n        {{ content }}\n        <div [class]=\"arrowClasses\"></div>\n      </div>\n    </div>\n  `\n})\nexport class TooltipComponent {\n  @Input() content: string = '';\n  @Input() position: TooltipPosition = 'top';\n  @Input() variant: TooltipVariant = 'dark';\n  @Input() delay: number = 0;\n\n  isVisible: boolean = false;\n  offsetX: number = 0;\n  offsetY: number = 0;\n\n  private showTimeout?: number;\n\n  constructor(private elementRef: ElementRef) {}\n\n  get tooltipClasses(): string {\n    const baseClasses = 'absolute z-50 px-2 py-1 text-sm rounded shadow-lg whitespace-nowrap';\n    const positionClasses = {\n      top: 'bottom-full left-1/2 transform -translate-x-1/2 mb-2',\n      right: 'left-full top-1/2 transform -translate-y-1/2 ml-2',\n      bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',\n      left: 'right-full top-1/2 transform -translate-y-1/2 mr-2'\n    };\n    const variantClasses = {\n      dark: 'bg-gray-900 text-white',\n      light: 'bg-white text-gray-900 border border-gray-200',\n      info: 'bg-blue-600 text-white',\n      warning: 'bg-yellow-500 text-white',\n      error: 'bg-red-600 text-white'\n    };\n\n    return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;\n  }\n\n  get arrowClasses(): string {\n    const baseClasses = 'absolute w-2 h-2 transform rotate-45';\n    const positionClasses = {\n      top: 'bottom-[-4px] left-1/2 -translate-x-1/2',\n      right: 'left-[-4px] top-1/2 -translate-y-1/2',\n      bottom: 'top-[-4px] left-1/2 -translate-x-1/2',\n      left: 'right-[-4px] top-1/2 -translate-y-1/2'\n    };\n    const variantClasses = {\n      dark: 'bg-gray-900',\n      light: 'bg-white border-b border-r border-gray-200',\n      info: 'bg-blue-600',\n      warning: 'bg-yellow-500',\n      error: 'bg-red-600'\n    };\n\n    return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;\n  }\n\n  show(): void {\n    if (this.delay) {\n      this.showTimeout = window.setTimeout(() => {\n        this.isVisible = true;\n        this.updatePosition();\n      }, this.delay);\n    } else {\n      this.isVisible = true;\n      this.updatePosition();\n    }\n  }\n\n  hide(): void {\n    if (this.showTimeout) {\n      clearTimeout(this.showTimeout);\n    }\n    this.isVisible = false;\n  }\n\n  private updatePosition(): void {\n    const element = this.elementRef.nativeElement;\n    const tooltip = element.querySelector('[class*=\"absolute\"]');\n    if (!tooltip) return;\n\n    const elementRect = element.getBoundingClientRect();\n    const tooltipRect = tooltip.getBoundingClientRect();\n\n    // Adjust position if tooltip is outside viewport\n    if (this.position === 'top' || this.position === 'bottom') {\n      const leftOverflow = tooltipRect.left < 0;\n      const rightOverflow = tooltipRect.right > window.innerWidth;\n\n      if (leftOverflow) {\n        this.offsetX = -tooltipRect.left + 8;\n      } else if (rightOverflow) {\n        this.offsetX = window.innerWidth - tooltipRect.right - 8;\n      }\n    } else {\n      const topOverflow = tooltipRect.top < 0;\n      const bottomOverflow = tooltipRect.bottom > window.innerHeight;\n\n      if (topOverflow) {\n        this.offsetY = -tooltipRect.top + 8;\n      } else if (bottomOverflow) {\n        this.offsetY = window.innerHeight - tooltipRect.bottom - 8;\n      }\n    }\n  }\n\n  @HostListener('window:scroll')\n  @HostListener('window:resize')\n  onWindowChange(): void {\n    if (this.isVisible) {\n      this.updatePosition();\n    }\n  }\n} ",
+            "sourceCode": "import { Component, Input, ElementRef, HostListener } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype TooltipPosition = 'top' | 'right' | 'bottom' | 'left';\ntype TooltipVariant = 'dark' | 'light' | 'info' | 'warning' | 'error';\n\n@Component({\n  selector: 'app-tooltip',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"relative inline-block\">\n      <!-- Tooltip trigger -->\n      <div (mouseenter)=\"show()\" (mouseleave)=\"hide()\">\n        <ng-content></ng-content>\n      </div>\n\n      <!-- Tooltip content -->\n      <div *ngIf=\"isVisible\" \n           [class]=\"tooltipClasses\"\n           [style.margin-left.px]=\"position === 'top' || position === 'bottom' ? offsetX : 0\"\n           [style.margin-top.px]=\"position === 'left' || position === 'right' ? offsetY : 0\">\n        {{ content }}\n        <div [class]=\"arrowClasses\"></div>\n      </div>\n    </div>\n  `\n})\nexport class TooltipComponent {\n  @Input() content: string = '';\n  @Input() position: TooltipPosition = 'top';\n  @Input() variant: TooltipVariant = 'dark';\n  @Input() delay: number = 0;\n\n  isVisible: boolean = false;\n  offsetX: number = 0;\n  offsetY: number = 0;\n\n  private showTimeout?: number;\n\n  constructor(private elementRef: ElementRef) {}\n\n  get tooltipClasses(): string {\n    const baseClasses = 'absolute z-50 px-2 py-1 text-sm rounded shadow-lg whitespace-nowrap';\n    const positionClasses = {\n      top: 'bottom-full left-1/2 transform -translate-x-1/2 mb-2',\n      right: 'left-full top-1/2 transform -translate-y-1/2 ml-2',\n      bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',\n      left: 'right-full top-1/2 transform -translate-y-1/2 mr-2'\n    };\n    const variantClasses = {\n      dark: 'bg-gray-900 text-white',\n      light: 'bg-white text-gray-900 border border-gray-200',\n      info: 'bg-blue-600 text-white',\n      warning: 'bg-yellow-500 text-white',\n      error: 'bg-red-600 text-white'\n    };\n\n    return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;\n  }\n\n  get arrowClasses(): string {\n    const baseClasses = 'absolute w-2 h-2 transform rotate-45';\n    const positionClasses = {\n      top: 'bottom-[-4px] left-1/2 -translate-x-1/2',\n      right: 'left-[-4px] top-1/2 -translate-y-1/2',\n      bottom: 'top-[-4px] left-1/2 -translate-x-1/2',\n      left: 'right-[-4px] top-1/2 -translate-y-1/2'\n    };\n    const variantClasses = {\n      dark: 'bg-gray-900',\n      light: 'bg-white border-b border-r border-gray-200',\n      info: 'bg-blue-600',\n      warning: 'bg-yellow-500',\n      error: 'bg-red-600'\n    };\n\n    return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;\n  }\n\n  show(): void {\n    if (this.delay) {\n      this.showTimeout = window.setTimeout(() => {\n        this.isVisible = true;\n        this.updatePosition();\n      }, this.delay);\n    } else {\n      this.isVisible = true;\n      this.updatePosition();\n    }\n  }\n\n  hide(): void {\n    if (this.showTimeout) {\n      clearTimeout(this.showTimeout);\n    }\n    this.isVisible = false;\n  }\n\n  private updatePosition(): void {\n    const element = this.elementRef.nativeElement as HTMLElement;\n    const tooltip = element.querySelector('[class*=\"absolute\"]') as HTMLElement;\n    if (!tooltip) return;\n\n    const tooltipRect = tooltip.getBoundingClientRect();\n\n    // Adjust position if tooltip is outside viewport\n    if (this.position === 'top' || this.position === 'bottom') {\n      const leftOverflow = tooltipRect.left < 0;\n      const rightOverflow = tooltipRect.right > window.innerWidth;\n\n      if (leftOverflow) {\n        this.offsetX = -tooltipRect.left + 8;\n      } else if (rightOverflow) {\n        this.offsetX = window.innerWidth - tooltipRect.right - 8;\n      }\n    } else {\n      const topOverflow = tooltipRect.top < 0;\n      const bottomOverflow = tooltipRect.bottom > window.innerHeight;\n\n      if (topOverflow) {\n        this.offsetY = -tooltipRect.top + 8;\n      } else if (bottomOverflow) {\n        this.offsetY = window.innerHeight - tooltipRect.bottom - 8;\n      }\n    }\n  }\n\n  @HostListener('window:scroll')\n  @HostListener('window:resize')\n  onWindowChange(): void {\n    if (this.isVisible) {\n      this.updatePosition();\n    }\n  }\n} ",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",

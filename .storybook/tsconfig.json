@@ -4,10 +4,14 @@
     "types": ["node"],
     "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "../src/test.ts",
-    "../src/**/*.spec.ts",
-    "../projects/**/*.spec.ts"
+  "include": [
+    "../src/**/*.stories.ts",
+    "../src/**/*.stories.js",
+    "../src/**/*.stories.jsx",
+    "../src/**/*.stories.tsx",
+    "../src/**/*.stories.mdx",
+    "*.ts",
+    "*.js"
   ],
-  "include": ["../src/**/*", "./preview.ts"]
+  "exclude": ["../src/test.ts", "../src/**/*.spec.ts"]
 }
