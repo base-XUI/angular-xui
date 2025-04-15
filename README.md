@@ -55,6 +55,53 @@ Then use the components in your templates:
 </xui-card>
 ```
 
+### Button Examples
+
+Here are some examples of how to use the Button component:
+
+```html
+<!-- Primary Button -->
+<xui-button variant="primary">Primary Button</xui-button>
+
+<!-- Secondary Button -->
+<xui-button variant="secondary">Secondary Button</xui-button>
+
+<!-- Success Button -->
+<xui-button variant="success">Success Button</xui-button>
+
+<!-- Danger Button -->
+<xui-button variant="danger">Danger Button</xui-button>
+
+<!-- Warning Button -->
+<xui-button variant="warning">Warning Button</xui-button>
+
+<!-- Info Button -->
+<xui-button variant="info">Info Button</xui-button>
+
+<!-- Light Button -->
+<xui-button variant="light">Light Button</xui-button>
+
+<!-- Dark Button -->
+<xui-button variant="dark">Dark Button</xui-button>
+
+<!-- Link Button -->
+<xui-button variant="link">Link Button</xui-button>
+
+<!-- Disabled Button -->
+<xui-button variant="primary" [disabled]="true">Disabled Button</xui-button>
+
+<!-- Button with Icon -->
+<xui-button variant="primary"> <i class="fas fa-plus"></i> Add Item </xui-button>
+
+<!-- Button with Loading State -->
+<xui-button variant="primary" [loading]="true">Loading...</xui-button>
+
+<!-- Button with Custom Size -->
+<xui-button variant="primary" size="small">Small Button</xui-button>
+<xui-button variant="primary" size="medium">Medium Button</xui-button>
+<xui-button variant="primary" size="large">Large Button</xui-button>
+```
+
 ## Development
 
 ### Prerequisites
