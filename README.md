@@ -1,61 +1,129 @@
 # Angular XUI
 
-Angular XUI components library - A comprehensive UI component library for Angular applications.
+Angular XUI is a comprehensive UI component library for Angular applications, providing a set of reusable, accessible, and customizable components.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+## Features
 
-## Development server
+- 🎨 Modern and customizable UI components
+- 📱 Responsive design
+- ♿ Accessibility support
+- 🧩 Component-based architecture
+- 🎭 Storybook integration for component documentation
+- 🧪 Comprehensive testing setup
 
-To start a local development server, run:
+## Available Components
+
+- **Button**: Versatile button component with multiple variants
+- **Card**: Flexible card component for content display
+- **Grid Layout**: Responsive grid system
+- **Navbar**: Navigation bar component
+- **Sidemenu**: Side navigation menu
+- **Tooltip**: Information tooltip component
+- **Typography**: Text styling components
+
+## Getting Started
+
+### Installation
 
 ```bash
-ng serve
+npm install @base-xui/angular-xui
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Usage
 
-## Code scaffolding
+Import the components you need in your Angular module:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+```typescript
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AngularXuiModule } from "@base-xui/angular-xui";
 
-```bash
-ng generate component component-name
+@NgModule({
+  imports: [BrowserModule, AngularXuiModule],
+  // ...
+})
+export class AppModule {}
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Then use the components in your templates:
+
+```html
+<xui-button variant="primary">Click me</xui-button>
+<xui-card>
+  <xui-card-header>Card Title</xui-card-header>
+  <xui-card-content>Card content goes here</xui-card-content>
+</xui-card>
+```
+
+## Development
+
+### Prerequisites
+
+- Node.js 18.19.1 or higher
+- npm 10.2.4 or higher
+- Angular CLI 19.1.6 or higher
+
+### Setup
+
+1. Clone the repository:
 
 ```bash
-ng generate --help
+git clone https://github.com/base-XUI/angular-xui.git
+cd angular-xui
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm start
+```
+
+4. View Storybook documentation:
+
+```bash
+npm run storybook
 ```
 
 ## Building
 
-To build the project run:
+To build the library:
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Testing
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Unit Tests
 
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### E2E Tests
 
 ```bash
-ng e2e
+npm run e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular Documentation](https://angular.io/docs)
+- [Storybook Documentation](https://storybook.js.org/docs/angular/get-started/introduction)
+- [Component Documentation](https://base-xui.github.io/angular-xui)
