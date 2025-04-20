@@ -14,11 +14,21 @@ const meta: Meta<ButtonComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'danger']
+      options: ['text', 'contained', 'outlined']
+    },
+    color: {
+      control: 'select',
+      options: ['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']
     },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large']
+    },
+    fullWidth: {
+      control: 'boolean'
+    },
+    disableElevation: {
+      control: 'boolean'
     },
     disabled: {
       control: 'boolean'
@@ -28,6 +38,10 @@ const meta: Meta<ButtonComponent> = {
     },
     iconRight: {
       control: 'text'
+    },
+    type: {
+      control: 'select',
+      options: ['button', 'submit', 'reset']
     }
   }
 };
@@ -35,61 +49,49 @@ const meta: Meta<ButtonComponent> = {
 export default meta;
 type Story = StoryObj<ButtonComponent>;
 
-export const Primary: Story = {
+export const Contained: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'medium'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size">
-        Click Me
+      <app-button [variant]="variant" [color]="color" [size]="size">
+        Contained Button
       </app-button>
     `
   })
 };
 
-export const Secondary: Story = {
+export const Text: Story = {
   args: {
-    variant: 'secondary',
+    variant: 'text',
+    color: 'primary',
     size: 'medium'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size">
-        Click Me
+      <app-button [variant]="variant" [color]="color" [size]="size">
+        Text Button
       </app-button>
     `
   })
 };
 
-export const Outline: Story = {
+export const Outlined: Story = {
   args: {
-    variant: 'outline',
+    variant: 'outlined',
+    color: 'primary',
     size: 'medium'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size">
-        Click Me
-      </app-button>
-    `
-  })
-};
-
-export const Danger: Story = {
-  args: {
-    variant: 'danger',
-    size: 'medium'
-  },
-  render: (args) => ({
-    props: args,
-    template: `
-      <app-button [variant]="variant" [size]="size">
-        Click Me
+      <app-button [variant]="variant" [color]="color" [size]="size">
+        Outlined Button
       </app-button>
     `
   })
@@ -97,13 +99,14 @@ export const Danger: Story = {
 
 export const Small: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'small'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size">
+      <app-button [variant]="variant" [color]="color" [size]="size">
         Small Button
       </app-button>
     `
@@ -112,13 +115,14 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'large'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size">
+      <app-button [variant]="variant" [color]="color" [size]="size">
         Large Button
       </app-button>
     `
@@ -127,14 +131,15 @@ export const Large: Story = {
 
 export const Disabled: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'medium',
     disabled: true
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size" [disabled]="disabled">
+      <app-button [variant]="variant" [color]="color" [size]="size" [disabled]="disabled">
         Disabled Button
       </app-button>
     `
@@ -143,14 +148,15 @@ export const Disabled: Story = {
 
 export const WithLeftIcon: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'medium',
     iconLeft: '👈'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size" [iconLeft]="iconLeft">
+      <app-button [variant]="variant" [color]="color" [size]="size" [iconLeft]="iconLeft">
         Button with Left Icon
       </app-button>
     `
@@ -159,14 +165,15 @@ export const WithLeftIcon: Story = {
 
 export const WithRightIcon: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'medium',
     iconRight: '👉'
   },
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size" [iconRight]="iconRight">
+      <app-button [variant]="variant" [color]="color" [size]="size" [iconRight]="iconRight">
         Button with Right Icon
       </app-button>
     `
@@ -175,7 +182,8 @@ export const WithRightIcon: Story = {
 
 export const WithBothIcons: Story = {
   args: {
-    variant: 'primary',
+    variant: 'contained',
+    color: 'primary',
     size: 'medium',
     iconLeft: '👈',
     iconRight: '👉'
@@ -183,8 +191,42 @@ export const WithBothIcons: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <app-button [variant]="variant" [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight">
+      <app-button [variant]="variant" [color]="color" [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight">
         Button with Both Icons
+      </app-button>
+    `
+  })
+};
+
+export const FullWidth: Story = {
+  args: {
+    variant: 'contained',
+    color: 'primary',
+    size: 'medium',
+    fullWidth: true
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [color]="color" [size]="size" [fullWidth]="fullWidth">
+        Full Width Button
+      </app-button>
+    `
+  })
+};
+
+export const NoElevation: Story = {
+  args: {
+    variant: 'contained',
+    color: 'primary',
+    size: 'medium',
+    disableElevation: true
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <app-button [variant]="variant" [color]="color" [size]="size" [disableElevation]="disableElevation">
+        No Elevation Button
       </app-button>
     `
   })
