@@ -7,7 +7,8 @@ const buttonVariants = cva('px-4 py-2 rounded-md', {
     variant: {
       primary: 'bg-blue-600 text-white hover:bg-blue-700',
       secondary: 'bg-gray-600 text-white hover:bg-gray-700',
-      outline: 'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',
+      outline:
+        'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',
       danger: 'bg-red-600 text-white hover:bg-red-700',
     },
     size: {
@@ -27,14 +28,18 @@ const buttonVariants = cva('px-4 py-2 rounded-md', {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <button [class]="buttonClasses" [disabled]="disabled" (click)="handleClick()">
+    <button
+      [class]="buttonClasses"
+      [disabled]="disabled"
+      (click)="handleClick()"
+    >
       <span class="flex items-center gap-2">
         <span *ngIf="iconLeft" class="icon-left">{{ iconLeft }}</span>
         <ng-content></ng-content>
         <span *ngIf="iconRight" class="icon-right">{{ iconRight }}</span>
       </span>
     </button>
-  `
+  `,
 })
 export class ButtonComponent {
   @Input() variant: 'primary' | 'secondary' | 'outline' | 'danger' = 'primary';

@@ -35,8 +35,16 @@ interface MenuItem {
                 [class]="getParentMenuClasses(item.active)"
               >
                 <span class="flex items-center">
-                  <span *ngIf="item.leftIcon" class="mr-2" [innerHTML]="sanitizeIcon(item.leftIcon)"></span>
-                  <span *ngIf="item.icon" class="mr-3" [innerHTML]="sanitizeIcon(item.icon)"></span>
+                  <span
+                    *ngIf="item.leftIcon"
+                    class="mr-2"
+                    [innerHTML]="sanitizeIcon(item.leftIcon)"
+                  ></span>
+                  <span
+                    *ngIf="item.icon"
+                    class="mr-3"
+                    [innerHTML]="sanitizeIcon(item.icon)"
+                  ></span>
                   {{ item.label }}
                   <span *ngIf="item.badge" [class]="getBadgeClasses()">
                     {{ item.badge }}
@@ -50,16 +58,18 @@ interface MenuItem {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </span>
               </button>
-              
+
               <!-- Submenu -->
-              <div
-                *ngIf="item.active"
-                class="pl-4 space-y-1"
-              >
+              <div *ngIf="item.active" class="pl-4 space-y-1">
                 <a
                   *ngFor="let child of item.children"
                   [href]="child.href"
@@ -67,8 +77,16 @@ interface MenuItem {
                 >
                   <span class="flex items-center justify-between w-full">
                     <span class="flex items-center">
-                      <span *ngIf="child.leftIcon" class="mr-2" [innerHTML]="sanitizeIcon(child.leftIcon)"></span>
-                      <span *ngIf="child.icon" class="mr-3" [innerHTML]="sanitizeIcon(child.icon)"></span>
+                      <span
+                        *ngIf="child.leftIcon"
+                        class="mr-2"
+                        [innerHTML]="sanitizeIcon(child.leftIcon)"
+                      ></span>
+                      <span
+                        *ngIf="child.icon"
+                        class="mr-3"
+                        [innerHTML]="sanitizeIcon(child.icon)"
+                      ></span>
                       {{ child.label }}
                     </span>
                     <span *ngIf="child.badge" [class]="getBadgeClasses()">
@@ -81,14 +99,19 @@ interface MenuItem {
 
             <!-- Single item -->
             <ng-template #singleItem>
-              <a
-                [href]="item.href"
-                [class]="getMenuItemClasses(item.active)"
-              >
+              <a [href]="item.href" [class]="getMenuItemClasses(item.active)">
                 <span class="flex items-center justify-between w-full">
                   <span class="flex items-center">
-                    <span *ngIf="item.leftIcon" class="mr-2" [innerHTML]="sanitizeIcon(item.leftIcon)"></span>
-                    <span *ngIf="item.icon" class="mr-3" [innerHTML]="sanitizeIcon(item.icon)"></span>
+                    <span
+                      *ngIf="item.leftIcon"
+                      class="mr-2"
+                      [innerHTML]="sanitizeIcon(item.leftIcon)"
+                    ></span>
+                    <span
+                      *ngIf="item.icon"
+                      class="mr-3"
+                      [innerHTML]="sanitizeIcon(item.icon)"
+                    ></span>
                     {{ item.label }}
                   </span>
                   <span *ngIf="item.badge" [class]="getBadgeClasses()">
@@ -101,7 +124,7 @@ interface MenuItem {
         </nav>
       </div>
     </div>
-  `
+  `,
 })
 export class SidemenuComponent {
   @Input() variant: 'light' | 'dark' = 'light';
@@ -123,8 +146,9 @@ export class SidemenuComponent {
   }
 
   getMenuItemClasses(isActive: boolean = false): string {
-    const baseClasses = 'flex items-center px-4 py-2 text-sm rounded-md transition-colors';
-    
+    const baseClasses =
+      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';
+
     if (this.variant === 'light') {
       return isActive
         ? `${baseClasses} bg-blue-100 text-blue-700`
@@ -137,8 +161,9 @@ export class SidemenuComponent {
   }
 
   getParentMenuClasses(isActive: boolean = false): string {
-    const baseClasses = 'flex items-center justify-between w-full px-4 py-2 text-sm rounded-md transition-colors';
-    
+    const baseClasses =
+      'flex items-center justify-between w-full px-4 py-2 text-sm rounded-md transition-colors';
+
     if (this.variant === 'light') {
       return isActive
         ? `${baseClasses} bg-gray-100 text-gray-900`
@@ -151,8 +176,9 @@ export class SidemenuComponent {
   }
 
   getSubmenuClasses(isActive: boolean = false): string {
-    const baseClasses = 'flex items-center px-4 py-2 text-sm rounded-md transition-colors';
-    
+    const baseClasses =
+      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';
+
     if (this.variant === 'light') {
       return isActive
         ? `${baseClasses} bg-blue-50 text-blue-700`
@@ -174,4 +200,4 @@ export class SidemenuComponent {
   toggleSubmenu(item: MenuItem): void {
     item.active = !item.active;
   }
-} 
+}

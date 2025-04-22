@@ -14,16 +14,16 @@ const meta: Meta<TooltipComponent> = {
   argTypes: {
     position: {
       control: 'select',
-      options: ['top', 'right', 'bottom', 'left']
+      options: ['top', 'right', 'bottom', 'left'],
     },
     variant: {
       control: 'select',
-      options: ['dark', 'light', 'info', 'warning', 'error']
+      options: ['dark', 'light', 'info', 'warning', 'error'],
     },
     delay: {
-      control: 'number'
-    }
-  }
+      control: 'number',
+    },
+  },
 };
 
 export default meta;
@@ -33,7 +33,7 @@ export const Basic: Story = {
   args: {
     content: 'This is a tooltip',
     position: 'top',
-    variant: 'dark'
+    variant: 'dark',
   },
   render: (args) => ({
     props: args,
@@ -49,8 +49,8 @@ export const Basic: Story = {
           </button>
         </app-tooltip>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const Positions: Story = {
@@ -81,8 +81,8 @@ export const Positions: Story = {
           </button>
         </app-tooltip>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const Variants: Story = {
@@ -119,14 +119,14 @@ export const Variants: Story = {
           </button>
         </app-tooltip>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const WithDelay: Story = {
   args: {
     content: 'Tooltip with 500ms delay',
-    delay: 500
+    delay: 500,
   },
   render: (args) => ({
     props: args,
@@ -141,6 +141,6 @@ export const WithDelay: Story = {
           </button>
         </app-tooltip>
       </div>
-    `
-  })
-}; 
+    `,
+  }),
+};

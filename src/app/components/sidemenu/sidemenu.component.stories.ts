@@ -15,15 +15,15 @@ const meta: Meta<SidemenuComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     brand: {
-      control: 'text'
+      control: 'text',
     },
     menuItems: {
-      control: 'object'
-    }
-  }
+      control: 'object',
+    },
+  },
 };
 
 export default meta;
@@ -34,7 +34,7 @@ const defaultMenuItems = [
     label: 'Dashboard',
     icon: Icons.dashboard,
     href: '#',
-    active: true
+    active: true,
   },
   {
     label: 'Team',
@@ -43,8 +43,8 @@ const defaultMenuItems = [
     children: [
       { label: 'Overview', href: '#', icon: Icons.chart },
       { label: 'Members', href: '#', active: true, icon: Icons.users },
-      { label: 'Calendar', href: '#', icon: Icons.calendar }
-    ]
+      { label: 'Calendar', href: '#', icon: Icons.calendar },
+    ],
   },
   {
     label: 'Projects',
@@ -52,38 +52,38 @@ const defaultMenuItems = [
     href: '#',
     children: [
       { label: 'All Projects', href: '#', icon: Icons.folder },
-      { label: 'Documentation', href: '#', icon: Icons.document }
-    ]
+      { label: 'Documentation', href: '#', icon: Icons.document },
+    ],
   },
   {
     label: 'Settings',
     icon: Icons.settings,
-    href: '#'
-  }
+    href: '#',
+  },
 ];
 
 export const Light: Story = {
   args: {
     variant: 'light',
     brand: 'Dashboard',
-    menuItems: defaultMenuItems
-  }
+    menuItems: defaultMenuItems,
+  },
 };
 
 export const Dark: Story = {
   args: {
     variant: 'dark',
     brand: 'Dashboard',
-    menuItems: defaultMenuItems
-  }
+    menuItems: defaultMenuItems,
+  },
 };
 
 export const WithoutIcons: Story = {
   args: {
     variant: 'light',
     brand: 'Dashboard',
-    menuItems: defaultMenuItems.map(({ icon, ...item }) => item)
-  }
+    menuItems: defaultMenuItems.map(({ icon, ...item }) => item),
+  },
 };
 
 export const SimpleMenu: Story = {
@@ -93,9 +93,9 @@ export const SimpleMenu: Story = {
     menuItems: [
       { label: 'Home', href: '#', active: true, icon: Icons.home },
       { label: 'Projects', href: '#', icon: Icons.folder },
-      { label: 'Settings', href: '#', icon: Icons.settings }
-    ]
-  }
+      { label: 'Settings', href: '#', icon: Icons.settings },
+    ],
+  },
 };
 
 export const WithNestedItems: Story = {
@@ -110,8 +110,8 @@ export const WithNestedItems: Story = {
         children: [
           { label: 'Overview', href: '#', icon: Icons.chart },
           { label: 'Documents', href: '#', icon: Icons.document },
-          { label: 'Calendar', href: '#', icon: Icons.calendar }
-        ]
+          { label: 'Calendar', href: '#', icon: Icons.calendar },
+        ],
       },
       {
         label: 'Team',
@@ -119,11 +119,11 @@ export const WithNestedItems: Story = {
         href: '#',
         children: [
           { label: 'Members', href: '#', icon: Icons.users },
-          { label: 'Schedule', href: '#', icon: Icons.calendar }
-        ]
-      }
-    ]
-  }
+          { label: 'Schedule', href: '#', icon: Icons.calendar },
+        ],
+      },
+    ],
+  },
 };
 
 export const WithNotifications: Story = {
@@ -136,22 +136,22 @@ export const WithNotifications: Story = {
         icon: Icons.inbox,
         href: '#',
         active: true,
-        badge: '5'
+        badge: '5',
       },
       {
         label: 'Messages',
         icon: Icons.message,
         href: '#',
-        badge: '3'
+        badge: '3',
       },
       {
         label: 'Notifications',
         icon: Icons.bell,
         href: '#',
-        badge: 'New'
-      }
-    ]
-  }
+        badge: 'New',
+      },
+    ],
+  },
 };
 
 export const WithCommunication: Story = {
@@ -164,41 +164,41 @@ export const WithCommunication: Story = {
         icon: Icons.message,
         href: '#',
         children: [
-          { 
-            label: 'General', 
-            href: '#', 
+          {
+            label: 'General',
+            href: '#',
             icon: Icons.message,
-            badge: '2'
+            badge: '2',
           },
-          { 
-            label: 'Announcements', 
-            href: '#', 
+          {
+            label: 'Announcements',
+            href: '#',
             icon: Icons.notification,
-            badge: 'New'
-          }
-        ]
+            badge: 'New',
+          },
+        ],
       },
       {
         label: 'Notifications',
         icon: Icons.bell,
         href: '#',
         children: [
-          { 
-            label: 'Mentions', 
-            href: '#', 
+          {
+            label: 'Mentions',
+            href: '#',
             icon: Icons.notification,
-            badge: '3'
+            badge: '3',
           },
-          { 
-            label: 'Inbox', 
-            href: '#', 
+          {
+            label: 'Inbox',
+            href: '#',
             icon: Icons.inbox,
-            badge: '5'
-          }
-        ]
-      }
-    ]
-  }
+            badge: '5',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 export const WithIconsAndBadges: Story = {
@@ -210,13 +210,13 @@ export const WithIconsAndBadges: Story = {
         label: 'Overview',
         icon: Icons.dashboard,
         href: '#',
-        active: true
+        active: true,
       },
       {
         label: 'Messages',
         icon: Icons.message,
         href: '#',
-        badge: '12'
+        badge: '12',
       },
       {
         label: 'Notifications',
@@ -224,22 +224,22 @@ export const WithIconsAndBadges: Story = {
         href: '#',
         badge: 'New',
         children: [
-          { 
-            label: 'Alerts', 
-            href: '#', 
+          {
+            label: 'Alerts',
+            href: '#',
             icon: Icons.notification,
-            badge: '3'
+            badge: '3',
           },
-          { 
-            label: 'Updates', 
-            href: '#', 
+          {
+            label: 'Updates',
+            href: '#',
             icon: Icons.inbox,
-            badge: 'New'
-          }
-        ]
-      }
-    ]
-  }
+            badge: 'New',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 export const WithLeftIcons: Story = {
@@ -252,7 +252,7 @@ export const WithLeftIcons: Story = {
         icon: Icons.dashboard,
         leftIcon: Icons.chevronRight,
         href: '#',
-        active: true
+        active: true,
       },
       {
         label: 'Favorites',
@@ -260,20 +260,20 @@ export const WithLeftIcons: Story = {
         leftIcon: Icons.chevronRight,
         href: '#',
         children: [
-          { 
-            label: 'Starred Items', 
-            href: '#', 
+          {
+            label: 'Starred Items',
+            href: '#',
             icon: Icons.star,
-            leftIcon: Icons.dot
+            leftIcon: Icons.dot,
           },
-          { 
-            label: 'Important', 
-            href: '#', 
+          {
+            label: 'Important',
+            href: '#',
             icon: Icons.notification,
             leftIcon: Icons.dot,
-            badge: 'New'
-          }
-        ]
+            badge: 'New',
+          },
+        ],
       },
       {
         label: 'Quick Access',
@@ -281,22 +281,22 @@ export const WithLeftIcons: Story = {
         leftIcon: Icons.chevronRight,
         href: '#',
         children: [
-          { 
-            label: 'Recent', 
-            href: '#', 
+          {
+            label: 'Recent',
+            href: '#',
             icon: Icons.clock,
-            leftIcon: Icons.dot
+            leftIcon: Icons.dot,
           },
-          { 
-            label: 'Offline', 
-            href: '#', 
+          {
+            label: 'Offline',
+            href: '#',
             icon: Icons.download,
-            leftIcon: Icons.dot
-          }
-        ]
-      }
-    ]
-  }
+            leftIcon: Icons.dot,
+          },
+        ],
+      },
+    ],
+  },
 };
 
 export const WithDotIndicators: Story = {
@@ -309,14 +309,14 @@ export const WithDotIndicators: Story = {
         icon: Icons.dashboard,
         leftIcon: Icons.dot,
         href: '#',
-        active: true
+        active: true,
       },
       {
         label: 'With Badge',
         icon: Icons.bell,
         leftIcon: Icons.dot,
         href: '#',
-        badge: '3'
+        badge: '3',
       },
       {
         label: 'Nested Items',
@@ -324,20 +324,20 @@ export const WithDotIndicators: Story = {
         leftIcon: Icons.dot,
         href: '#',
         children: [
-          { 
-            label: 'Sub Item 1', 
-            href: '#', 
+          {
+            label: 'Sub Item 1',
+            href: '#',
             icon: Icons.document,
-            leftIcon: Icons.dot
+            leftIcon: Icons.dot,
           },
-          { 
-            label: 'Sub Item 2', 
-            href: '#', 
+          {
+            label: 'Sub Item 2',
+            href: '#',
             icon: Icons.chart,
-            leftIcon: Icons.dot
-          }
-        ]
-      }
-    ]
-  }
-}; 
+            leftIcon: Icons.dot,
+          },
+        ],
+      },
+    ],
+  },
+};

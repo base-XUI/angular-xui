@@ -7,7 +7,7 @@ import { ButtonComponent } from './components/button/button.component';
   standalone: true,
   imports: [RouterOutlet, ButtonComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'angular-xui';

@@ -14,22 +14,22 @@ const meta: Meta<ButtonComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'danger']
+      options: ['primary', 'secondary', 'outline', 'danger'],
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large']
+      options: ['small', 'medium', 'large'],
     },
     disabled: {
-      control: 'boolean'
+      control: 'boolean',
     },
     iconLeft: {
-      control: 'text'
+      control: 'text',
     },
     iconRight: {
-      control: 'text'
-    }
-  }
+      control: 'text',
+    },
+  },
 };
 
 export default meta;
@@ -38,7 +38,7 @@ type Story = StoryObj<ButtonComponent>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    size: 'medium'
+    size: 'medium',
   },
   render: (args) => ({
     props: args,
@@ -46,14 +46,14 @@ export const Primary: Story = {
       <app-button [variant]="variant" [size]="size">
         Click Me
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    size: 'medium'
+    size: 'medium',
   },
   render: (args) => ({
     props: args,
@@ -61,14 +61,14 @@ export const Secondary: Story = {
       <app-button [variant]="variant" [size]="size">
         Click Me
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const Outline: Story = {
   args: {
     variant: 'outline',
-    size: 'medium'
+    size: 'medium',
   },
   render: (args) => ({
     props: args,
@@ -76,14 +76,14 @@ export const Outline: Story = {
       <app-button [variant]="variant" [size]="size">
         Click Me
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const Danger: Story = {
   args: {
     variant: 'danger',
-    size: 'medium'
+    size: 'medium',
   },
   render: (args) => ({
     props: args,
@@ -91,14 +91,14 @@ export const Danger: Story = {
       <app-button [variant]="variant" [size]="size">
         Click Me
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const Small: Story = {
   args: {
     variant: 'primary',
-    size: 'small'
+    size: 'small',
   },
   render: (args) => ({
     props: args,
@@ -106,14 +106,14 @@ export const Small: Story = {
       <app-button [variant]="variant" [size]="size">
         Small Button
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const Large: Story = {
   args: {
     variant: 'primary',
-    size: 'large'
+    size: 'large',
   },
   render: (args) => ({
     props: args,
@@ -121,15 +121,15 @@ export const Large: Story = {
       <app-button [variant]="variant" [size]="size">
         Large Button
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const Disabled: Story = {
   args: {
     variant: 'primary',
     size: 'medium',
-    disabled: true
+    disabled: true,
   },
   render: (args) => ({
     props: args,
@@ -137,15 +137,15 @@ export const Disabled: Story = {
       <app-button [variant]="variant" [size]="size" [disabled]="disabled">
         Disabled Button
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const WithLeftIcon: Story = {
   args: {
     variant: 'primary',
     size: 'medium',
-    iconLeft: '👈'
+    iconLeft: '👈',
   },
   render: (args) => ({
     props: args,
@@ -153,15 +153,15 @@ export const WithLeftIcon: Story = {
       <app-button [variant]="variant" [size]="size" [iconLeft]="iconLeft">
         Button with Left Icon
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const WithRightIcon: Story = {
   args: {
     variant: 'primary',
     size: 'medium',
-    iconRight: '👉'
+    iconRight: '👉',
   },
   render: (args) => ({
     props: args,
@@ -169,8 +169,8 @@ export const WithRightIcon: Story = {
       <app-button [variant]="variant" [size]="size" [iconRight]="iconRight">
         Button with Right Icon
       </app-button>
-    `
-  })
+    `,
+  }),
 };
 
 export const WithBothIcons: Story = {
@@ -178,7 +178,7 @@ export const WithBothIcons: Story = {
     variant: 'primary',
     size: 'medium',
     iconLeft: '👈',
-    iconRight: '👉'
+    iconRight: '👉',
   },
   render: (args) => ({
     props: args,
@@ -186,6 +186,6 @@ export const WithBothIcons: Story = {
       <app-button [variant]="variant" [size]="size" [iconLeft]="iconLeft" [iconRight]="iconRight">
         Button with Both Icons
       </app-button>
-    `
-  })
-}; 
+    `,
+  }),
+};

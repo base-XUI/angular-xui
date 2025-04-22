@@ -18,10 +18,7 @@ import { CommonModule } from '@angular/common';
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <ng-container *ngFor="let item of menuItems">
-                <a 
-                  [class]="getLinkClasses(item.active)"
-                  [href]="item.href"
-                >
+                <a [class]="getLinkClasses(item.active)" [href]="item.href">
                   {{ item.label }}
                 </a>
               </ng-container>
@@ -72,24 +69,17 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <!-- Mobile menu -->
-      <div
-        class="md:hidden"
-        [class.block]="isOpen"
-        [class.hidden]="!isOpen"
-      >
+      <div class="md:hidden" [class.block]="isOpen" [class.hidden]="!isOpen">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <ng-container *ngFor="let item of menuItems">
-            <a
-              [class]="getMobileLinkClasses(item.active)"
-              [href]="item.href"
-            >
+            <a [class]="getMobileLinkClasses(item.active)" [href]="item.href">
               {{ item.label }}
             </a>
           </ng-container>
         </div>
       </div>
     </nav>
-  `
+  `,
 })
 export class NavbarComponent {
   @Input() variant: 'light' | 'dark' = 'light';
@@ -103,24 +93,23 @@ export class NavbarComponent {
   isOpen = false;
 
   get containerClasses(): string {
-    return this.variant === 'light'
-      ? 'bg-white shadow'
-      : 'bg-gray-800';
+    return this.variant === 'light' ? 'bg-white shadow' : 'bg-gray-800';
   }
 
   get mobileButtonClasses(): string {
     return `
       inline-flex items-center justify-center p-2 rounded-md
-      ${this.variant === 'light'
-        ? 'text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
-        : 'text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+      ${
+        this.variant === 'light'
+          ? 'text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'
+          : 'text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
       }
     `;
   }
 
   getLinkClasses(isActive: boolean = false): string {
     const baseClasses = 'px-3 py-2 rounded-md text-sm font-medium';
-    
+
     if (this.variant === 'light') {
       return isActive
         ? `${baseClasses} bg-blue-100 text-blue-700`
@@ -134,7 +123,7 @@ export class NavbarComponent {
 
   getMobileLinkClasses(isActive: boolean = false): string {
     const baseClasses = 'block px-3 py-2 rounded-md text-base font-medium';
-    
+
     if (this.variant === 'light') {
       return isActive
         ? `${baseClasses} bg-blue-100 text-blue-700`
@@ -145,4 +134,4 @@ export class NavbarComponent {
         : `${baseClasses} text-gray-300 hover:text-white hover:bg-gray-700`;
     }
   }
-} 
+}

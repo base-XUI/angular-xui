@@ -16,15 +16,21 @@ type TooltipVariant = 'dark' | 'light' | 'info' | 'warning' | 'error';
       </div>
 
       <!-- Tooltip content -->
-      <div *ngIf="isVisible" 
-           [class]="tooltipClasses"
-           [style.margin-left.px]="position === 'top' || position === 'bottom' ? offsetX : 0"
-           [style.margin-top.px]="position === 'left' || position === 'right' ? offsetY : 0">
+      <div
+        *ngIf="isVisible"
+        [class]="tooltipClasses"
+        [style.margin-left.px]="
+          position === 'top' || position === 'bottom' ? offsetX : 0
+        "
+        [style.margin-top.px]="
+          position === 'left' || position === 'right' ? offsetY : 0
+        "
+      >
         {{ content }}
         <div [class]="arrowClasses"></div>
       </div>
     </div>
-  `
+  `,
 })
 export class TooltipComponent {
   @Input() content: string = '';
@@ -41,19 +47,20 @@ export class TooltipComponent {
   constructor(private elementRef: ElementRef) {}
 
   get tooltipClasses(): string {
-    const baseClasses = 'absolute z-50 px-2 py-1 text-sm rounded shadow-lg whitespace-nowrap';
+    const baseClasses =
+      'absolute z-50 px-2 py-1 text-sm rounded shadow-lg whitespace-nowrap';
     const positionClasses = {
       top: 'bottom-full left-1/2 transform -translate-x-1/2 mb-2',
       right: 'left-full top-1/2 transform -translate-y-1/2 ml-2',
       bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',
-      left: 'right-full top-1/2 transform -translate-y-1/2 mr-2'
+      left: 'right-full top-1/2 transform -translate-y-1/2 mr-2',
     };
     const variantClasses = {
       dark: 'bg-gray-900 text-white',
       light: 'bg-white text-gray-900 border border-gray-200',
       info: 'bg-blue-600 text-white',
       warning: 'bg-yellow-500 text-white',
-      error: 'bg-red-600 text-white'
+      error: 'bg-red-600 text-white',
     };
 
     return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;
@@ -65,14 +72,14 @@ export class TooltipComponent {
       top: 'bottom-[-4px] left-1/2 -translate-x-1/2',
       right: 'left-[-4px] top-1/2 -translate-y-1/2',
       bottom: 'top-[-4px] left-1/2 -translate-x-1/2',
-      left: 'right-[-4px] top-1/2 -translate-y-1/2'
+      left: 'right-[-4px] top-1/2 -translate-y-1/2',
     };
     const variantClasses = {
       dark: 'bg-gray-900',
       light: 'bg-white border-b border-r border-gray-200',
       info: 'bg-blue-600',
       warning: 'bg-yellow-500',
-      error: 'bg-red-600'
+      error: 'bg-red-600',
     };
 
     return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;
@@ -133,4 +140,4 @@ export class TooltipComponent {
       this.updatePosition();
     }
   }
-} 
+}

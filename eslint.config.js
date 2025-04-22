@@ -7,7 +7,7 @@ const prettier = require("eslint-config-prettier");
 
 module.exports = [
   {
-    ignores: ["dist/**", "node_modules/**"]
+    ignores: ["dist/**", "node_modules/**"],
   },
   {
     files: ["**/*.ts"],
@@ -20,7 +20,7 @@ module.exports = [
     },
     plugins: {
       "@typescript-eslint": tseslint,
-      "@angular-eslint": angulareslint
+      "@angular-eslint": angulareslint,
     },
     rules: {
       ...tseslint.configs["recommended"].rules,
@@ -40,19 +40,19 @@ module.exports = [
       "@angular-eslint/component-class-suffix": "error",
       "@angular-eslint/directive-class-suffix": "error",
       "@angular-eslint/no-empty-lifecycle-method": "off",
-      "@angular-eslint/no-output-on-prefix": "warn"
+      "@angular-eslint/no-output-on-prefix": "warn",
     },
   },
   {
     files: ["**/*.html"],
     plugins: {
-      "@angular-eslint/template": angularTemplate
+      "@angular-eslint/template": angularTemplate,
     },
     languageOptions: {
-      parser: angularParser
+      parser: angularParser,
     },
     rules: {
-      ...angularTemplate.configs.recommended.rules
-    }
-  }
+      ...angularTemplate.configs.recommended.rules,
+    },
+  },
 ];
