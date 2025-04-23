@@ -35,6 +35,7 @@
     "prepare": "husky install",
     "changeset": "changeset",
     "version-packages": "changeset version",
+    "lint": "eslint .",
     "release": "changeset publish",
     "format": "prettier --write ."
   },
