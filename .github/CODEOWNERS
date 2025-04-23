@@ -1,0 +1,26 @@
+# This file defines code ownership for the react-xui library
+# Each line is a file pattern followed by one or more owners
+
+# These owners will be the default owners for everything in the repo
+* @base-xui/maintainers
+
+# Component library core files
+/lib/src/ @base-xui/core-team
+
+# Individual component directories (customize with your actual team structure)
+/lib/src/components/inputs/ @base-xui/input-components
+/lib/src/components/feedback/ @base-xui/feedback-components
+/lib/src/components/layout/ @base-xui/layout-components
+/lib/src/components/system-design/ @base-xui/system-design
+
+# Documentation
+/lib/docs/ @base-xui/docs-team
+
+# Build configuration
+*.config.js @base-xui/build-team
+*.config.ts @base-xui/build-team
+vite.config.ts @base-xui/build-team
+tsconfig*.json @base-xui/build-team
+
+# CI/CD workflows
+/.github/workflows/ @base-xui/devops-team
