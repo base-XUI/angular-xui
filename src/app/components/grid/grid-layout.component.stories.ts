@@ -14,20 +14,20 @@ const meta: Meta<GridLayoutComponent> = {
   argTypes: {
     cols: {
       control: 'select',
-      options: [1, 2, 3, 4, 5, 6, 12]
+      options: [1, 2, 3, 4, 5, 6, 12],
     },
     gap: {
       control: 'select',
-      options: ['none', 'small', 'medium', 'large']
+      options: ['none', 'small', 'medium', 'large'],
     },
     padding: {
       control: 'select',
-      options: ['none', 'small', 'medium', 'large']
+      options: ['none', 'small', 'medium', 'large'],
     },
     responsive: {
-      control: 'boolean'
-    }
-  }
+      control: 'boolean',
+    },
+  },
 };
 
 export default meta;
@@ -35,13 +35,18 @@ type Story = StoryObj<GridLayoutComponent>;
 
 // Helper function to create grid items
 const createGridItems = (count: number) => {
-  return Array(count).fill(0).map((_, i) => `
+  return Array(count)
+    .fill(0)
+    .map(
+      (_, i) => `
     <div class="bg-white p-4 rounded-lg shadow">
       <div class="h-32 bg-gray-100 rounded-md mb-2"></div>
       <h3 class="text-lg font-medium">Item ${i + 1}</h3>
       <p class="text-gray-600">Description for item ${i + 1}</p>
     </div>
-  `).join('');
+  `,
+    )
+    .join('');
 };
 
 export const ThreeColumns: Story = {
@@ -49,7 +54,7 @@ export const ThreeColumns: Story = {
     cols: 3,
     gap: 'medium',
     padding: 'medium',
-    responsive: true
+    responsive: true,
   },
   render: (args) => ({
     props: args,
@@ -59,8 +64,8 @@ export const ThreeColumns: Story = {
           ${createGridItems(6)}
         </app-grid-layout>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const TwoColumns: Story = {
@@ -68,7 +73,7 @@ export const TwoColumns: Story = {
     cols: 2,
     gap: 'large',
     padding: 'medium',
-    responsive: true
+    responsive: true,
   },
   render: (args) => ({
     props: args,
@@ -78,8 +83,8 @@ export const TwoColumns: Story = {
           ${createGridItems(4)}
         </app-grid-layout>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const FourColumns: Story = {
@@ -87,7 +92,7 @@ export const FourColumns: Story = {
     cols: 4,
     gap: 'medium',
     padding: 'medium',
-    responsive: true
+    responsive: true,
   },
   render: (args) => ({
     props: args,
@@ -97,8 +102,8 @@ export const FourColumns: Story = {
           ${createGridItems(8)}
         </app-grid-layout>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const DashboardGrid: Story = {
@@ -106,7 +111,7 @@ export const DashboardGrid: Story = {
     cols: 12,
     gap: 'medium',
     padding: 'medium',
-    responsive: false
+    responsive: false,
   },
   render: (args) => ({
     props: args,
@@ -131,6 +136,6 @@ export const DashboardGrid: Story = {
           </div>
         </app-grid-layout>
       </div>
-    `
-  })
-}; 
+    `,
+  }),
+};

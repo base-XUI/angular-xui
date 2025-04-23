@@ -14,13 +14,13 @@ const meta: Meta<CardComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['basic', 'bordered', 'elevated', 'flat']
+      options: ['basic', 'bordered', 'elevated', 'flat'],
     },
     padding: {
       control: 'select',
-      options: ['none', 'small', 'medium', 'large']
-    }
-  }
+      options: ['none', 'small', 'medium', 'large'],
+    },
+  },
 };
 
 export default meta;
@@ -49,8 +49,8 @@ export const Basic: Story = {
           </p>
         </app-card>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const WithImage: Story = {
@@ -59,7 +59,7 @@ export const WithImage: Story = {
     padding: 'medium',
     title: 'Card with Image',
     imageUrl: 'https://source.unsplash.com/random/800x400',
-    imageAlt: 'Random image'
+    imageAlt: 'Random image',
   },
   render: (args) => ({
     props: args,
@@ -78,8 +78,8 @@ export const WithImage: Story = {
           </p>
         </app-card>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const WithFooter: Story = {
@@ -87,7 +87,7 @@ export const WithFooter: Story = {
     variant: 'bordered',
     padding: 'medium',
     title: 'Card with Footer',
-    footer: true
+    footer: true,
   },
   render: (args) => ({
     props: args,
@@ -112,8 +112,8 @@ export const WithFooter: Story = {
           </div>
         </app-card>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const Flat: Story = {
@@ -121,7 +121,7 @@ export const Flat: Story = {
     variant: 'flat',
     padding: 'large',
     title: 'Flat Card',
-    subtitle: 'With large padding'
+    subtitle: 'With large padding',
   },
   render: (args) => ({
     props: args,
@@ -139,8 +139,8 @@ export const Flat: Story = {
           </p>
         </app-card>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const ImageLeft: Story = {
@@ -151,7 +151,7 @@ export const ImageLeft: Story = {
     imageUrl: 'https://source.unsplash.com/random/400x400',
     imageAlt: 'Random image',
     imagePosition: 'left',
-    imageSize: 'medium'
+    imageSize: 'medium',
   },
   render: (args) => ({
     props: args,
@@ -172,8 +172,8 @@ export const ImageLeft: Story = {
           </p>
         </app-card>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const BackgroundImage: Story = {
@@ -182,7 +182,7 @@ export const BackgroundImage: Story = {
     padding: 'large',
     title: 'Card with Background Image',
     imageUrl: 'https://source.unsplash.com/random/1200x800',
-    imagePosition: 'background'
+    imagePosition: 'background',
   },
   render: (args) => ({
     props: args,
@@ -201,13 +201,13 @@ export const BackgroundImage: Story = {
           </p>
         </app-card>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 export const LoadingStates: Story = {
   args: {
-    padding: 'none'
+    padding: 'none',
   },
   render: (args) => ({
     props: args,
@@ -254,6 +254,6 @@ export const LoadingStates: Story = {
           </div>
         </app-card>
       </div>
-    `
-  })
-}; 
+    `,
+  }),
+};

@@ -14,15 +14,15 @@ const meta: Meta<NavbarComponent> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['light', 'dark']
+      options: ['light', 'dark'],
     },
     brand: {
-      control: 'text'
+      control: 'text',
     },
     menuItems: {
-      control: 'object'
-    }
-  }
+      control: 'object',
+    },
+  },
 };
 
 export default meta;
@@ -33,31 +33,31 @@ const defaultMenuItems = [
   { label: 'Features', href: '#' },
   { label: 'Pricing', href: '#' },
   { label: 'About', href: '#' },
-  { label: 'Contact', href: '#' }
+  { label: 'Contact', href: '#' },
 ];
 
 export const Light: Story = {
   args: {
     variant: 'light',
     brand: 'Company',
-    menuItems: defaultMenuItems
-  }
+    menuItems: defaultMenuItems,
+  },
 };
 
 export const Dark: Story = {
   args: {
     variant: 'dark',
     brand: 'Company',
-    menuItems: defaultMenuItems
-  }
+    menuItems: defaultMenuItems,
+  },
 };
 
 export const WithLongBrand: Story = {
   args: {
     variant: 'light',
     brand: 'Very Long Company Name',
-    menuItems: defaultMenuItems
-  }
+    menuItems: defaultMenuItems,
+  },
 };
 
 export const WithManyItems: Story = {
@@ -68,7 +68,7 @@ export const WithManyItems: Story = {
       ...defaultMenuItems,
       { label: 'Services', href: '#' },
       { label: 'Blog', href: '#' },
-      { label: 'Support', href: '#' }
-    ]
-  }
-}; 
+      { label: 'Support', href: '#' },
+    ],
+  },
+};

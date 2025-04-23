@@ -1,48 +1,56 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button.component';
-import { By } from '@angular/platform-browser';
 
 describe('ButtonComponent', () => {
-  let component: ButtonComponent;
-  let fixture: ComponentFixture<ButtonComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ButtonComponent]
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ButtonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    cy.mount(ButtonComponent, {
+      imports: [CommonModule],
+    });
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    cy.get('button').should('exist');
   });
 
-  it('should render button with default variant', () => {
-    component.variant = 'secondary';
-    fixture.detectChanges();
-    const buttonElement = fixture.nativeElement.querySelector('button');
-    expect(buttonElement).toBeTruthy();
-    expect(buttonElement.classList.contains('bg-gray-600')).toBeTruthy();
-    expect(buttonElement.classList.contains('text-white')).toBeTruthy();
-    expect(buttonElement.classList.contains('hover:bg-gray-700')).toBeTruthy();
+  it('should render button with secondary variant', () => {
+    cy.mount(ButtonComponent, {
+      imports: [CommonModule],
+      componentProperties: {
+        variant: 'secondary',
+      },
+    });
+
+    cy.get('button').should('have.class', 'bg-gray-600');
+    cy.get('button').should('have.class', 'text-white');
+    cy.get('button').should('have.class', 'hover:bg-gray-700');
   });
 
   it('should render button with primary variant', () => {
-    component.variant = 'primary';
-    fixture.detectChanges();
-    const buttonElement = fixture.nativeElement.querySelector('button');
-    expect(buttonElement.classList.contains('bg-blue-600')).toBeTruthy();
-    expect(buttonElement.classList.contains('text-white')).toBeTruthy();
-    expect(buttonElement.classList.contains('hover:bg-blue-700')).toBeTruthy();
+    cy.mount(ButtonComponent, {
+      imports: [CommonModule],
+      componentProperties: {
+        variant: 'primary',
+      },
+    });
+
+    cy.get('button').should('have.class', 'bg-blue-600');
+    cy.get('button').should('have.class', 'text-white');
+    cy.get('button').should('have.class', 'hover:bg-blue-700');
   });
 
   it('should emit click event when clicked', () => {
-    const spy = jest.spyOn(component.clicked, 'emit');
-    const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-    buttonElement.click();
-    expect(spy).toHaveBeenCalled();
+    const clickSpy = cy.spy().as('clickSpy');
+
+    cy.mount(ButtonComponent, {
+      imports: [CommonModule],
+      componentProperties: {
+        clicked: {
+          emit: clickSpy,
+        } as any,
+      },
+    });
+
+    cy.get('button').click();
+    cy.get('@clickSpy').should('have.been.called');
   });
 });

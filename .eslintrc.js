@@ -14,7 +14,7 @@ module.exports = {
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "prettier"
+        "prettier",
       ],
       rules: {
         "@typescript-eslint/no-explicit-any": "warn",
@@ -24,22 +24,22 @@ module.exports = {
           {
             argsIgnorePattern: "^_",
             varsIgnorePattern: "^_",
-            ignoreRestSiblings: true
-          }
+            ignoreRestSiblings: true,
+          },
         ],
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-inferrable-types": "off",
         "@angular-eslint/component-class-suffix": "error",
         "@angular-eslint/directive-class-suffix": "error",
-        "@angular-eslint/no-empty-lifecycle-method": "off"
-      }
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+      },
     },
     {
       files: ["*.html"],
       extends: [
         "plugin:@angular-eslint/template/recommended",
-        "plugin:@angular-eslint/template/accessibility"
-      ]
-    }
-  ]
-}; 
+        "plugin:@angular-eslint/template/accessibility",
+      ],
+    },
+  ],
+};

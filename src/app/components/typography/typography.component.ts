@@ -9,10 +9,19 @@ import { CommonModule } from '@angular/common';
     <div [class]="classes">
       {{ text }}
     </div>
-  `
+  `,
 })
 export class TypographyComponent {
-  @Input() variant: 'h1' | 'h2' | 'h3' | 'h4' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' = 'body1';
+  @Input() variant:
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'subtitle1'
+    | 'subtitle2'
+    | 'body1'
+    | 'body2'
+    | 'caption' = 'body1';
   @Input() text: string = '';
 
   get classes(): string {
@@ -25,9 +34,9 @@ export class TypographyComponent {
       subtitle2: 'text-lg font-medium text-gray-800 leading-relaxed',
       body1: 'text-base text-gray-700 leading-relaxed',
       body2: 'text-sm text-gray-700 leading-relaxed',
-      caption: 'text-xs text-gray-600 leading-normal'
+      caption: 'text-xs text-gray-600 leading-normal',
     };
 
     return variantClasses[this.variant];
   }
-} 
+}
