@@ -31,7 +31,7 @@
     "test:e2e": "cypress run",
     "test:e2e:ui": "cypress open --e2e",
     "storybook": "ng run angular-xui:storybook",
-    "storybook:build": "ng run angular-xui:build-storybook",
+    "build:storybook": "ng run angular-xui:build-storybook",
     "prepare": "husky install",
     "changeset": "changeset",
     "version-packages": "changeset version",
