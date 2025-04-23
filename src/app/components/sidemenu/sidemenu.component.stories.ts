@@ -1,27 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { SidemenuComponent } from './sidemenu.component';
-import { moduleMetadata } from '@storybook/angular';
-import { Icons } from '../../shared/icons';
+import type { Meta, StoryObj } from "@storybook/angular";
+import { SidemenuComponent } from "./sidemenu.component";
+import { moduleMetadata } from "@storybook/angular";
+import { Icons } from "../../shared/icons";
 
 const meta: Meta<SidemenuComponent> = {
-  title: 'Components/Sidemenu',
+  title: "Components/Sidemenu",
   component: SidemenuComponent,
   decorators: [
     moduleMetadata({
       imports: [SidemenuComponent],
     }),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['light', 'dark'],
+      control: "select",
+      options: ["light", "dark"],
     },
     brand: {
-      control: 'text',
+      control: "text",
     },
     menuItems: {
-      control: 'object',
+      control: "object",
     },
   },
 };
@@ -31,95 +31,95 @@ type Story = StoryObj<SidemenuComponent>;
 
 const defaultMenuItems = [
   {
-    label: 'Dashboard',
+    label: "Dashboard",
     icon: Icons.dashboard,
-    href: '#',
+    href: "#",
     active: true,
   },
   {
-    label: 'Team',
+    label: "Team",
     icon: Icons.users,
-    href: '#',
+    href: "#",
     children: [
-      { label: 'Overview', href: '#', icon: Icons.chart },
-      { label: 'Members', href: '#', active: true, icon: Icons.users },
-      { label: 'Calendar', href: '#', icon: Icons.calendar },
+      { label: "Overview", href: "#", icon: Icons.chart },
+      { label: "Members", href: "#", active: true, icon: Icons.users },
+      { label: "Calendar", href: "#", icon: Icons.calendar },
     ],
   },
   {
-    label: 'Projects',
+    label: "Projects",
     icon: Icons.folder,
-    href: '#',
+    href: "#",
     children: [
-      { label: 'All Projects', href: '#', icon: Icons.folder },
-      { label: 'Documentation', href: '#', icon: Icons.document },
+      { label: "All Projects", href: "#", icon: Icons.folder },
+      { label: "Documentation", href: "#", icon: Icons.document },
     ],
   },
   {
-    label: 'Settings',
+    label: "Settings",
     icon: Icons.settings,
-    href: '#',
+    href: "#",
   },
 ];
 
 export const Light: Story = {
   args: {
-    variant: 'light',
-    brand: 'Dashboard',
+    variant: "light",
+    brand: "Dashboard",
     menuItems: defaultMenuItems,
   },
 };
 
 export const Dark: Story = {
   args: {
-    variant: 'dark',
-    brand: 'Dashboard',
+    variant: "dark",
+    brand: "Dashboard",
     menuItems: defaultMenuItems,
   },
 };
 
 export const WithoutIcons: Story = {
   args: {
-    variant: 'light',
-    brand: 'Dashboard',
+    variant: "light",
+    brand: "Dashboard",
     menuItems: defaultMenuItems.map(({ icon, ...item }) => item),
   },
 };
 
 export const SimpleMenu: Story = {
   args: {
-    variant: 'light',
-    brand: 'Simple Menu',
+    variant: "light",
+    brand: "Simple Menu",
     menuItems: [
-      { label: 'Home', href: '#', active: true, icon: Icons.home },
-      { label: 'Projects', href: '#', icon: Icons.folder },
-      { label: 'Settings', href: '#', icon: Icons.settings },
+      { label: "Home", href: "#", active: true, icon: Icons.home },
+      { label: "Projects", href: "#", icon: Icons.folder },
+      { label: "Settings", href: "#", icon: Icons.settings },
     ],
   },
 };
 
 export const WithNestedItems: Story = {
   args: {
-    variant: 'light',
-    brand: 'Nested Menu',
+    variant: "light",
+    brand: "Nested Menu",
     menuItems: [
       {
-        label: 'Projects',
+        label: "Projects",
         icon: Icons.folder,
-        href: '#',
+        href: "#",
         children: [
-          { label: 'Overview', href: '#', icon: Icons.chart },
-          { label: 'Documents', href: '#', icon: Icons.document },
-          { label: 'Calendar', href: '#', icon: Icons.calendar },
+          { label: "Overview", href: "#", icon: Icons.chart },
+          { label: "Documents", href: "#", icon: Icons.document },
+          { label: "Calendar", href: "#", icon: Icons.calendar },
         ],
       },
       {
-        label: 'Team',
+        label: "Team",
         icon: Icons.users,
-        href: '#',
+        href: "#",
         children: [
-          { label: 'Members', href: '#', icon: Icons.users },
-          { label: 'Schedule', href: '#', icon: Icons.calendar },
+          { label: "Members", href: "#", icon: Icons.users },
+          { label: "Schedule", href: "#", icon: Icons.calendar },
         ],
       },
     ],
@@ -128,27 +128,27 @@ export const WithNestedItems: Story = {
 
 export const WithNotifications: Story = {
   args: {
-    variant: 'light',
-    brand: 'Notifications',
+    variant: "light",
+    brand: "Notifications",
     menuItems: [
       {
-        label: 'Inbox',
+        label: "Inbox",
         icon: Icons.inbox,
-        href: '#',
+        href: "#",
         active: true,
-        badge: '5',
+        badge: "5",
       },
       {
-        label: 'Messages',
+        label: "Messages",
         icon: Icons.message,
-        href: '#',
-        badge: '3',
+        href: "#",
+        badge: "3",
       },
       {
-        label: 'Notifications',
+        label: "Notifications",
         icon: Icons.bell,
-        href: '#',
-        badge: 'New',
+        href: "#",
+        badge: "New",
       },
     ],
   },
@@ -156,44 +156,44 @@ export const WithNotifications: Story = {
 
 export const WithCommunication: Story = {
   args: {
-    variant: 'light',
-    brand: 'Communication',
+    variant: "light",
+    brand: "Communication",
     menuItems: [
       {
-        label: 'Team Chat',
+        label: "Team Chat",
         icon: Icons.message,
-        href: '#',
+        href: "#",
         children: [
           {
-            label: 'General',
-            href: '#',
+            label: "General",
+            href: "#",
             icon: Icons.message,
-            badge: '2',
+            badge: "2",
           },
           {
-            label: 'Announcements',
-            href: '#',
+            label: "Announcements",
+            href: "#",
             icon: Icons.notification,
-            badge: 'New',
+            badge: "New",
           },
         ],
       },
       {
-        label: 'Notifications',
+        label: "Notifications",
         icon: Icons.bell,
-        href: '#',
+        href: "#",
         children: [
           {
-            label: 'Mentions',
-            href: '#',
+            label: "Mentions",
+            href: "#",
             icon: Icons.notification,
-            badge: '3',
+            badge: "3",
           },
           {
-            label: 'Inbox',
-            href: '#',
+            label: "Inbox",
+            href: "#",
             icon: Icons.inbox,
-            badge: '5',
+            badge: "5",
           },
         ],
       },
@@ -203,38 +203,38 @@ export const WithCommunication: Story = {
 
 export const WithIconsAndBadges: Story = {
   args: {
-    variant: 'light',
-    brand: 'Dashboard',
+    variant: "light",
+    brand: "Dashboard",
     menuItems: [
       {
-        label: 'Overview',
+        label: "Overview",
         icon: Icons.dashboard,
-        href: '#',
+        href: "#",
         active: true,
       },
       {
-        label: 'Messages',
+        label: "Messages",
         icon: Icons.message,
-        href: '#',
-        badge: '12',
+        href: "#",
+        badge: "12",
       },
       {
-        label: 'Notifications',
+        label: "Notifications",
         icon: Icons.bell,
-        href: '#',
-        badge: 'New',
+        href: "#",
+        badge: "New",
         children: [
           {
-            label: 'Alerts',
-            href: '#',
+            label: "Alerts",
+            href: "#",
             icon: Icons.notification,
-            badge: '3',
+            badge: "3",
           },
           {
-            label: 'Updates',
-            href: '#',
+            label: "Updates",
+            href: "#",
             icon: Icons.inbox,
-            badge: 'New',
+            badge: "New",
           },
         ],
       },
@@ -244,52 +244,52 @@ export const WithIconsAndBadges: Story = {
 
 export const WithLeftIcons: Story = {
   args: {
-    variant: 'light',
-    brand: 'Menu with Left Icons',
+    variant: "light",
+    brand: "Menu with Left Icons",
     menuItems: [
       {
-        label: 'Dashboard',
+        label: "Dashboard",
         icon: Icons.dashboard,
         leftIcon: Icons.chevronRight,
-        href: '#',
+        href: "#",
         active: true,
       },
       {
-        label: 'Favorites',
+        label: "Favorites",
         icon: Icons.star,
         leftIcon: Icons.chevronRight,
-        href: '#',
+        href: "#",
         children: [
           {
-            label: 'Starred Items',
-            href: '#',
+            label: "Starred Items",
+            href: "#",
             icon: Icons.star,
             leftIcon: Icons.dot,
           },
           {
-            label: 'Important',
-            href: '#',
+            label: "Important",
+            href: "#",
             icon: Icons.notification,
             leftIcon: Icons.dot,
-            badge: 'New',
+            badge: "New",
           },
         ],
       },
       {
-        label: 'Quick Access',
+        label: "Quick Access",
         icon: Icons.arrowRight,
         leftIcon: Icons.chevronRight,
-        href: '#',
+        href: "#",
         children: [
           {
-            label: 'Recent',
-            href: '#',
+            label: "Recent",
+            href: "#",
             icon: Icons.clock,
             leftIcon: Icons.dot,
           },
           {
-            label: 'Offline',
-            href: '#',
+            label: "Offline",
+            href: "#",
             icon: Icons.download,
             leftIcon: Icons.dot,
           },
@@ -301,38 +301,38 @@ export const WithLeftIcons: Story = {
 
 export const WithDotIndicators: Story = {
   args: {
-    variant: 'light',
-    brand: 'Menu with Dots',
+    variant: "light",
+    brand: "Menu with Dots",
     menuItems: [
       {
-        label: 'Active Item',
+        label: "Active Item",
         icon: Icons.dashboard,
         leftIcon: Icons.dot,
-        href: '#',
+        href: "#",
         active: true,
       },
       {
-        label: 'With Badge',
+        label: "With Badge",
         icon: Icons.bell,
         leftIcon: Icons.dot,
-        href: '#',
-        badge: '3',
+        href: "#",
+        badge: "3",
       },
       {
-        label: 'Nested Items',
+        label: "Nested Items",
         icon: Icons.folder,
         leftIcon: Icons.dot,
-        href: '#',
+        href: "#",
         children: [
           {
-            label: 'Sub Item 1',
-            href: '#',
+            label: "Sub Item 1",
+            href: "#",
             icon: Icons.document,
             leftIcon: Icons.dot,
           },
           {
-            label: 'Sub Item 2',
-            href: '#',
+            label: "Sub Item 2",
+            href: "#",
             icon: Icons.chart,
             leftIcon: Icons.dot,
           },

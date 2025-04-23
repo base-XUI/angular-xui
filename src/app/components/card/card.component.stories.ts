@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { CardComponent } from './card.component';
-import { moduleMetadata } from '@storybook/angular';
+import type { Meta, StoryObj } from "@storybook/angular";
+import { CardComponent } from "./card.component";
+import { moduleMetadata } from "@storybook/angular";
 
 const meta: Meta<CardComponent> = {
-  title: 'Components/Card',
+  title: "Components/Card",
   component: CardComponent,
   decorators: [
     moduleMetadata({
       imports: [CardComponent],
     }),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['basic', 'bordered', 'elevated', 'flat'],
+      control: "select",
+      options: ["basic", "bordered", "elevated", "flat"],
     },
     padding: {
-      control: 'select',
-      options: ['none', 'small', 'medium', 'large'],
+      control: "select",
+      options: ["none", "small", "medium", "large"],
     },
   },
 };
@@ -28,10 +28,10 @@ type Story = StoryObj<CardComponent>;
 
 export const Basic: Story = {
   args: {
-    variant: 'basic',
-    padding: 'medium',
-    title: 'Card Title',
-    subtitle: 'Card Subtitle',
+    variant: "basic",
+    padding: "medium",
+    title: "Card Title",
+    subtitle: "Card Subtitle",
   },
   render: (args) => ({
     props: args,
@@ -55,11 +55,11 @@ export const Basic: Story = {
 
 export const WithImage: Story = {
   args: {
-    variant: 'elevated',
-    padding: 'medium',
-    title: 'Card with Image',
-    imageUrl: 'https://source.unsplash.com/random/800x400',
-    imageAlt: 'Random image',
+    variant: "elevated",
+    padding: "medium",
+    title: "Card with Image",
+    imageUrl: "https://source.unsplash.com/random/800x400",
+    imageAlt: "Random image",
   },
   render: (args) => ({
     props: args,
@@ -84,9 +84,9 @@ export const WithImage: Story = {
 
 export const WithFooter: Story = {
   args: {
-    variant: 'bordered',
-    padding: 'medium',
-    title: 'Card with Footer',
+    variant: "bordered",
+    padding: "medium",
+    title: "Card with Footer",
     footer: true,
   },
   render: (args) => ({
@@ -118,10 +118,10 @@ export const WithFooter: Story = {
 
 export const Flat: Story = {
   args: {
-    variant: 'flat',
-    padding: 'large',
-    title: 'Flat Card',
-    subtitle: 'With large padding',
+    variant: "flat",
+    padding: "large",
+    title: "Flat Card",
+    subtitle: "With large padding",
   },
   render: (args) => ({
     props: args,
@@ -145,13 +145,13 @@ export const Flat: Story = {
 
 export const ImageLeft: Story = {
   args: {
-    variant: 'elevated',
-    padding: 'medium',
-    title: 'Card with Left Image',
-    imageUrl: 'https://source.unsplash.com/random/400x400',
-    imageAlt: 'Random image',
-    imagePosition: 'left',
-    imageSize: 'medium',
+    variant: "elevated",
+    padding: "medium",
+    title: "Card with Left Image",
+    imageUrl: "https://source.unsplash.com/random/400x400",
+    imageAlt: "Random image",
+    imagePosition: "left",
+    imageSize: "medium",
   },
   render: (args) => ({
     props: args,
@@ -178,11 +178,11 @@ export const ImageLeft: Story = {
 
 export const BackgroundImage: Story = {
   args: {
-    variant: 'basic',
-    padding: 'large',
-    title: 'Card with Background Image',
-    imageUrl: 'https://source.unsplash.com/random/1200x800',
-    imagePosition: 'background',
+    variant: "basic",
+    padding: "large",
+    title: "Card with Background Image",
+    imageUrl: "https://source.unsplash.com/random/1200x800",
+    imagePosition: "background",
   },
   render: (args) => ({
     props: args,
@@ -207,7 +207,7 @@ export const BackgroundImage: Story = {
 
 export const LoadingStates: Story = {
   args: {
-    padding: 'none',
+    padding: "none",
   },
   render: (args) => ({
     props: args,

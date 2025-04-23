@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 interface MenuItem {
   label: string;
@@ -13,7 +13,7 @@ interface MenuItem {
 }
 
 @Component({
-  selector: 'app-sidemenu',
+  selector: "app-sidemenu",
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -21,12 +21,12 @@ interface MenuItem {
       <!-- Sidebar -->
       <div [class]="containerClasses">
         <!-- Logo section -->
-        <div class="flex items-center h-16 px-4 border-b">
+        <div class="flex h-16 items-center border-b px-4">
           <span class="text-lg font-semibold">{{ brand }}</span>
         </div>
 
         <!-- Menu items -->
-        <nav class="flex-1 px-2 py-4 space-y-1">
+        <nav class="flex-1 space-y-1 px-2 py-4">
           <ng-container *ngFor="let item of menuItems">
             <!-- Item with children -->
             <div *ngIf="item.children; else singleItem" class="space-y-1">
@@ -52,8 +52,8 @@ interface MenuItem {
                 </span>
                 <span class="ml-auto">
                   <svg
-                    [class]="item.active ? 'transform rotate-180' : ''"
-                    class="w-4 h-4 transition-transform"
+                    [class]="item.active ? 'rotate-180 transform' : ''"
+                    class="h-4 w-4 transition-transform"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -69,13 +69,13 @@ interface MenuItem {
               </button>
 
               <!-- Submenu -->
-              <div *ngIf="item.active" class="pl-4 space-y-1">
+              <div *ngIf="item.active" class="space-y-1 pl-4">
                 <a
                   *ngFor="let child of item.children"
                   [href]="child.href"
                   [class]="getSubmenuClasses(child.active)"
                 >
-                  <span class="flex items-center justify-between w-full">
+                  <span class="flex w-full items-center justify-between">
                     <span class="flex items-center">
                       <span
                         *ngIf="child.leftIcon"
@@ -100,7 +100,7 @@ interface MenuItem {
             <!-- Single item -->
             <ng-template #singleItem>
               <a [href]="item.href" [class]="getMenuItemClasses(item.active)">
-                <span class="flex items-center justify-between w-full">
+                <span class="flex w-full items-center justify-between">
                   <span class="flex items-center">
                     <span
                       *ngIf="item.leftIcon"
@@ -127,8 +127,8 @@ interface MenuItem {
   `,
 })
 export class SidemenuComponent {
-  @Input() variant: 'light' | 'dark' = 'light';
-  @Input() brand: string = 'Dashboard';
+  @Input() variant: "light" | "dark" = "light";
+  @Input() brand: string = "Dashboard";
   @Input() menuItems: MenuItem[] = [];
   @Input() collapsed: boolean = false;
 
@@ -139,17 +139,17 @@ export class SidemenuComponent {
   }
 
   get containerClasses(): string {
-    const baseClasses = 'flex flex-col w-64 transition-all duration-300';
-    return this.variant === 'light'
+    const baseClasses = "flex flex-col w-64 transition-all duration-300";
+    return this.variant === "light"
       ? `${baseClasses} bg-white border-r`
       : `${baseClasses} bg-gray-800 border-gray-700`;
   }
 
   getMenuItemClasses(isActive: boolean = false): string {
     const baseClasses =
-      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';
+      "flex items-center px-4 py-2 text-sm rounded-md transition-colors";
 
-    if (this.variant === 'light') {
+    if (this.variant === "light") {
       return isActive
         ? `${baseClasses} bg-blue-100 text-blue-700`
         : `${baseClasses} text-gray-700 hover:bg-gray-100`;
@@ -162,9 +162,9 @@ export class SidemenuComponent {
 
   getParentMenuClasses(isActive: boolean = false): string {
     const baseClasses =
-      'flex items-center justify-between w-full px-4 py-2 text-sm rounded-md transition-colors';
+      "flex items-center justify-between w-full px-4 py-2 text-sm rounded-md transition-colors";
 
-    if (this.variant === 'light') {
+    if (this.variant === "light") {
       return isActive
         ? `${baseClasses} bg-gray-100 text-gray-900`
         : `${baseClasses} text-gray-700 hover:bg-gray-100`;
@@ -177,9 +177,9 @@ export class SidemenuComponent {
 
   getSubmenuClasses(isActive: boolean = false): string {
     const baseClasses =
-      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';
+      "flex items-center px-4 py-2 text-sm rounded-md transition-colors";
 
-    if (this.variant === 'light') {
+    if (this.variant === "light") {
       return isActive
         ? `${baseClasses} bg-blue-50 text-blue-700`
         : `${baseClasses} text-gray-600 hover:bg-gray-50`;
@@ -191,8 +191,8 @@ export class SidemenuComponent {
   }
 
   getBadgeClasses(): string {
-    const baseClasses = 'ml-2 px-2 py-0.5 text-xs font-medium rounded-full';
-    return this.variant === 'light'
+    const baseClasses = "ml-2 px-2 py-0.5 text-xs font-medium rounded-full";
+    return this.variant === "light"
       ? `${baseClasses} bg-blue-100 text-blue-800`
       : `${baseClasses} bg-gray-700 text-gray-200`;
   }

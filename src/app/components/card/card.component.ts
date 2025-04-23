@@ -1,13 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-type CardVariant = 'basic' | 'bordered' | 'elevated' | 'flat';
-type CardPadding = 'none' | 'small' | 'medium' | 'large';
-type ImagePosition = 'top' | 'left' | 'right' | 'bottom' | 'background';
-type ImageSize = 'small' | 'medium' | 'large' | 'full';
+type CardVariant = "basic" | "bordered" | "elevated" | "flat";
+type CardPadding = "none" | "small" | "medium" | "large";
+type ImagePosition = "top" | "left" | "right" | "bottom" | "background";
+type ImageSize = "small" | "medium" | "large" | "full";
 
 @Component({
-  selector: 'app-card',
+  selector: "app-card",
   standalone: true,
   imports: [CommonModule],
   template: `
@@ -15,10 +15,10 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
       <!-- Background Image Placeholder -->
       <div
         *ngIf="shouldShowImage('background')"
-        class="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center"
+        class="absolute inset-0 flex animate-pulse items-center justify-center bg-gray-200 dark:bg-gray-700"
       >
         <svg
-          class="w-12 h-12 text-gray-400"
+          class="h-12 w-12 text-gray-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -37,10 +37,10 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
         <div *ngIf="shouldShowImage('left')" [class]="mediaClasses">
           <div
             *ngIf="!imageUrl"
-            class="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center"
+            class="flex h-full w-full animate-pulse items-center justify-center bg-gray-200 dark:bg-gray-700"
           >
             <svg
-              class="w-12 h-12 text-gray-400"
+              class="h-12 w-12 text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -57,19 +57,19 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
             *ngIf="imageUrl"
             [src]="imageUrl"
             [alt]="imageAlt"
-            class="w-full h-full object-cover"
+            class="h-full w-full object-cover"
           />
         </div>
 
-        <div class="flex flex-col flex-1 relative">
+        <div class="relative flex flex-1 flex-col">
           <!-- Top Image -->
           <div *ngIf="shouldShowImage('top')" [class]="mediaClasses">
             <div
               *ngIf="!imageUrl"
-              class="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center"
+              class="flex h-full w-full animate-pulse items-center justify-center bg-gray-200 dark:bg-gray-700"
             >
               <svg
-                class="w-12 h-12 text-gray-400"
+                class="h-12 w-12 text-gray-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
               *ngIf="imageUrl"
               [src]="imageUrl"
               [alt]="imageAlt"
-              class="w-full h-full object-cover"
+              class="h-full w-full object-cover"
             />
           </div>
 
@@ -115,10 +115,10 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
           <div *ngIf="shouldShowImage('bottom')" [class]="mediaClasses">
             <div
               *ngIf="!imageUrl"
-              class="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center"
+              class="flex h-full w-full animate-pulse items-center justify-center bg-gray-200 dark:bg-gray-700"
             >
               <svg
-                class="w-12 h-12 text-gray-400"
+                class="h-12 w-12 text-gray-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
               *ngIf="imageUrl"
               [src]="imageUrl"
               [alt]="imageAlt"
-              class="w-full h-full object-cover"
+              class="h-full w-full object-cover"
             />
           </div>
         </div>
@@ -144,10 +144,10 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
         <div *ngIf="shouldShowImage('right')" [class]="mediaClasses">
           <div
             *ngIf="!imageUrl"
-            class="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center"
+            class="flex h-full w-full animate-pulse items-center justify-center bg-gray-200 dark:bg-gray-700"
           >
             <svg
-              class="w-12 h-12 text-gray-400"
+              class="h-12 w-12 text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -164,7 +164,7 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
             *ngIf="imageUrl"
             [src]="imageUrl"
             [alt]="imageAlt"
-            class="w-full h-full object-cover"
+            class="h-full w-full object-cover"
           />
         </div>
       </div>
@@ -172,45 +172,45 @@ type ImageSize = 'small' | 'medium' | 'large' | 'full';
   `,
 })
 export class CardComponent {
-  @Input() variant: CardVariant = 'basic';
-  @Input() padding: CardPadding = 'medium';
+  @Input() variant: CardVariant = "basic";
+  @Input() padding: CardPadding = "medium";
   @Input() title?: string;
   @Input() subtitle?: string;
   @Input() imageUrl?: string;
   @Input() imageAlt?: string;
-  @Input() imagePosition: ImagePosition = 'top';
-  @Input() imageSize: ImageSize = 'medium';
+  @Input() imagePosition: ImagePosition = "top";
+  @Input() imageSize: ImageSize = "medium";
   @Input() footer: boolean = false;
 
   get containerClasses(): string {
-    return this.imagePosition === 'left' || this.imagePosition === 'right'
-      ? 'flex'
-      : '';
+    return this.imagePosition === "left" || this.imagePosition === "right"
+      ? "flex"
+      : "";
   }
 
   get cardClasses(): string {
-    const baseClasses = 'overflow-hidden rounded-lg relative';
+    const baseClasses = "overflow-hidden rounded-lg relative";
 
     const variantClasses = {
-      basic: 'bg-white dark:bg-gray-800',
+      basic: "bg-white dark:bg-gray-800",
       bordered:
-        'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',
-      elevated: 'bg-white dark:bg-gray-800 shadow-lg',
-      flat: 'bg-gray-50 dark:bg-gray-900',
+        "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700",
+      elevated: "bg-white dark:bg-gray-800 shadow-lg",
+      flat: "bg-gray-50 dark:bg-gray-900",
     };
 
     const backgroundClasses =
-      this.imagePosition === 'background' ? 'text-white relative' : '';
+      this.imagePosition === "background" ? "text-white relative" : "";
 
     return `${baseClasses} ${variantClasses[this.variant]} ${backgroundClasses}`;
   }
 
   get paddingClasses(): string {
     return {
-      none: '',
-      small: 'p-2',
-      medium: 'p-4',
-      large: 'p-6',
+      none: "",
+      small: "p-2",
+      medium: "p-4",
+      large: "p-6",
     }[this.padding];
   }
 
@@ -219,33 +219,33 @@ export class CardComponent {
   }
 
   get mediaClasses(): string {
-    const baseClasses = 'overflow-hidden';
+    const baseClasses = "overflow-hidden";
 
-    if (this.imagePosition === 'left' || this.imagePosition === 'right') {
+    if (this.imagePosition === "left" || this.imagePosition === "right") {
       const sizeClasses = {
-        small: 'w-32',
-        medium: 'w-48',
-        large: 'w-64',
-        full: 'w-1/2',
+        small: "w-32",
+        medium: "w-48",
+        large: "w-64",
+        full: "w-1/2",
       };
       return `${baseClasses} ${sizeClasses[this.imageSize]}`;
     }
 
     const heightClasses = {
-      small: 'h-32',
-      medium: 'h-48',
-      large: 'h-64',
-      full: 'aspect-video',
+      small: "h-32",
+      medium: "h-48",
+      large: "h-64",
+      full: "aspect-video",
     };
     return `${baseClasses} ${heightClasses[this.imageSize]}`;
   }
 
   get backgroundImageStyle() {
-    if (this.imagePosition === 'background' && this.imageUrl) {
+    if (this.imagePosition === "background" && this.imageUrl) {
       return {
-        'background-image': `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${this.imageUrl})`,
-        'background-size': 'cover',
-        'background-position': 'center',
+        "background-image": `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${this.imageUrl})`,
+        "background-size": "cover",
+        "background-position": "center",
       };
     }
     return {};

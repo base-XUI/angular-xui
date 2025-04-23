@@ -1,27 +1,27 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { TooltipComponent } from './tooltip.component';
-import { moduleMetadata } from '@storybook/angular';
+import type { Meta, StoryObj } from "@storybook/angular";
+import { TooltipComponent } from "./tooltip.component";
+import { moduleMetadata } from "@storybook/angular";
 
 const meta: Meta<TooltipComponent> = {
-  title: 'Components/Tooltip',
+  title: "Components/Tooltip",
   component: TooltipComponent,
   decorators: [
     moduleMetadata({
       imports: [TooltipComponent],
     }),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     position: {
-      control: 'select',
-      options: ['top', 'right', 'bottom', 'left'],
+      control: "select",
+      options: ["top", "right", "bottom", "left"],
     },
     variant: {
-      control: 'select',
-      options: ['dark', 'light', 'info', 'warning', 'error'],
+      control: "select",
+      options: ["dark", "light", "info", "warning", "error"],
     },
     delay: {
-      control: 'number',
+      control: "number",
     },
   },
 };
@@ -31,9 +31,9 @@ type Story = StoryObj<TooltipComponent>;
 
 export const Basic: Story = {
   args: {
-    content: 'This is a tooltip',
-    position: 'top',
-    variant: 'dark',
+    content: "This is a tooltip",
+    position: "top",
+    variant: "dark",
   },
   render: (args) => ({
     props: args,
@@ -125,7 +125,7 @@ export const Variants: Story = {
 
 export const WithDelay: Story = {
   args: {
-    content: 'Tooltip with 500ms delay',
+    content: "Tooltip with 500ms delay",
     delay: 500,
   },
   render: (args) => ({

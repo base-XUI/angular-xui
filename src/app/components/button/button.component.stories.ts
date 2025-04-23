@@ -1,33 +1,33 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { ButtonComponent } from './button.component';
-import { moduleMetadata } from '@storybook/angular';
+import type { Meta, StoryObj } from "@storybook/angular";
+import { ButtonComponent } from "./button.component";
+import { moduleMetadata } from "@storybook/angular";
 
 const meta: Meta<ButtonComponent> = {
-  title: 'Components/Button',
+  title: "Components/Button",
   component: ButtonComponent,
   decorators: [
     moduleMetadata({
       imports: [ButtonComponent],
     }),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'outline', 'danger'],
+      control: "select",
+      options: ["primary", "secondary", "outline", "danger"],
     },
     size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
+      control: "select",
+      options: ["small", "medium", "large"],
     },
     disabled: {
-      control: 'boolean',
+      control: "boolean",
     },
     iconLeft: {
-      control: 'text',
+      control: "text",
     },
     iconRight: {
-      control: 'text',
+      control: "text",
     },
   },
 };
@@ -37,8 +37,8 @@ type Story = StoryObj<ButtonComponent>;
 
 export const Primary: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
+    variant: "primary",
+    size: "medium",
   },
   render: (args) => ({
     props: args,
@@ -52,8 +52,8 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    variant: 'secondary',
-    size: 'medium',
+    variant: "secondary",
+    size: "medium",
   },
   render: (args) => ({
     props: args,
@@ -67,8 +67,8 @@ export const Secondary: Story = {
 
 export const Outline: Story = {
   args: {
-    variant: 'outline',
-    size: 'medium',
+    variant: "outline",
+    size: "medium",
   },
   render: (args) => ({
     props: args,
@@ -82,8 +82,8 @@ export const Outline: Story = {
 
 export const Danger: Story = {
   args: {
-    variant: 'danger',
-    size: 'medium',
+    variant: "danger",
+    size: "medium",
   },
   render: (args) => ({
     props: args,
@@ -97,8 +97,8 @@ export const Danger: Story = {
 
 export const Small: Story = {
   args: {
-    variant: 'primary',
-    size: 'small',
+    variant: "primary",
+    size: "small",
   },
   render: (args) => ({
     props: args,
@@ -112,8 +112,8 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: {
-    variant: 'primary',
-    size: 'large',
+    variant: "primary",
+    size: "large",
   },
   render: (args) => ({
     props: args,
@@ -127,8 +127,8 @@ export const Large: Story = {
 
 export const Disabled: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
+    variant: "primary",
+    size: "medium",
     disabled: true,
   },
   render: (args) => ({
@@ -143,9 +143,9 @@ export const Disabled: Story = {
 
 export const WithLeftIcon: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
-    iconLeft: '👈',
+    variant: "primary",
+    size: "medium",
+    iconLeft: "👈",
   },
   render: (args) => ({
     props: args,
@@ -159,9 +159,9 @@ export const WithLeftIcon: Story = {
 
 export const WithRightIcon: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
-    iconRight: '👉',
+    variant: "primary",
+    size: "medium",
+    iconRight: "👉",
   },
   render: (args) => ({
     props: args,
@@ -175,10 +175,10 @@ export const WithRightIcon: Story = {
 
 export const WithBothIcons: Story = {
   args: {
-    variant: 'primary',
-    size: 'medium',
-    iconLeft: '👈',
-    iconRight: '👉',
+    variant: "primary",
+    size: "medium",
+    iconLeft: "👈",
+    iconRight: "👉",
   },
   render: (args) => ({
     props: args,

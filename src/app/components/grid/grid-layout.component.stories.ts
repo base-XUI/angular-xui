@@ -1,31 +1,31 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { GridLayoutComponent } from './grid-layout.component';
-import { moduleMetadata } from '@storybook/angular';
+import type { Meta, StoryObj } from "@storybook/angular";
+import { GridLayoutComponent } from "./grid-layout.component";
+import { moduleMetadata } from "@storybook/angular";
 
 const meta: Meta<GridLayoutComponent> = {
-  title: 'Layout/Grid',
+  title: "Layout/Grid",
   component: GridLayoutComponent,
   decorators: [
     moduleMetadata({
       imports: [GridLayoutComponent],
     }),
   ],
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     cols: {
-      control: 'select',
+      control: "select",
       options: [1, 2, 3, 4, 5, 6, 12],
     },
     gap: {
-      control: 'select',
-      options: ['none', 'small', 'medium', 'large'],
+      control: "select",
+      options: ["none", "small", "medium", "large"],
     },
     padding: {
-      control: 'select',
-      options: ['none', 'small', 'medium', 'large'],
+      control: "select",
+      options: ["none", "small", "medium", "large"],
     },
     responsive: {
-      control: 'boolean',
+      control: "boolean",
     },
   },
 };
@@ -46,14 +46,14 @@ const createGridItems = (count: number) => {
     </div>
   `,
     )
-    .join('');
+    .join("");
 };
 
 export const ThreeColumns: Story = {
   args: {
     cols: 3,
-    gap: 'medium',
-    padding: 'medium',
+    gap: "medium",
+    padding: "medium",
     responsive: true,
   },
   render: (args) => ({
@@ -71,8 +71,8 @@ export const ThreeColumns: Story = {
 export const TwoColumns: Story = {
   args: {
     cols: 2,
-    gap: 'large',
-    padding: 'medium',
+    gap: "large",
+    padding: "medium",
     responsive: true,
   },
   render: (args) => ({
@@ -90,8 +90,8 @@ export const TwoColumns: Story = {
 export const FourColumns: Story = {
   args: {
     cols: 4,
-    gap: 'medium',
-    padding: 'medium',
+    gap: "medium",
+    padding: "medium",
     responsive: true,
   },
   render: (args) => ({
@@ -109,8 +109,8 @@ export const FourColumns: Story = {
 export const DashboardGrid: Story = {
   args: {
     cols: 12,
-    gap: 'medium',
-    padding: 'medium',
+    gap: "medium",
+    padding: "medium",
     responsive: false,
   },
   render: (args) => ({
