@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { HeaderComponent } from './header.component';
-import type { User } from './user';
+import { HeaderComponent } from "./header.component";
+import type { User } from "./user";
 
 @Component({
-  selector: 'storybook-page',
+  selector: "storybook-page",
   standalone: true,
   imports: [CommonModule, HeaderComponent],
   template: `<article>
@@ -82,7 +82,7 @@ import type { User } from './user';
       </div>
     </section>
   </article>`,
-  styleUrls: ['./page.css'],
+  styleUrls: ["./page.css"],
 })
 export class PageComponent {
   user: User | null = null;
@@ -92,10 +92,10 @@ export class PageComponent {
   }
 
   doLogin() {
-    this.user = { name: 'Jane Doe' };
+    this.user = { name: "Jane Doe" };
   }
 
   doCreateAccount() {
-    this.user = { name: 'Jane Doe' };
+    this.user = { name: "Jane Doe" };
   }
 }

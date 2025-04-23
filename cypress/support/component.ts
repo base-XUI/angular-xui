@@ -3,10 +3,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands';
+import "./commands";
 
-import { mount } from '@cypress/angular';
-import '@cypress/angular';
+import { mount } from "@cypress/angular";
+import "@cypress/angular";
 
 // Augment the Cypress namespace to include the mount command
 declare global {
@@ -18,4 +18,4 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount);
+Cypress.Commands.add("mount", mount);

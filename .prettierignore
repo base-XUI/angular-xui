@@ -1,0 +1,36 @@
+# Compiled output
+dist/
+out-tsc/
+build/
+
+# Dependencies
+node_modules/
+
+# Angular environment files
+src/environments/
+
+# Generated files
+*.generated.ts
+*.gen.ts
+*.ngfactory.ts
+*.ngsummary.ts
+*.bundle.ts
+*.min.ts
+*.d.ts
+
+# IDE/project config
+.vscode/
+.idea/
+.DS_Store
+.husky
+.changeset
+.angular
+.github
+
+# Coverage reports
+coverage/
+
+# Misc
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
