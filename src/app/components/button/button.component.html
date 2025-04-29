@@ -1,3 +1,93 @@
-<button [class]="classes" [disabled]="disabled">
-  {{ label }}
-</button>
+<ng-container *ngIf="component === 'button' || !component; else customElement">
+  <button
+    [type]="type"
+    [class]="buttonClasses"
+    [disabled]="isDisabled"
+    (click)="handleClick()"
+  >
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </button>
+</ng-container>
+
+<ng-template #customElement>
+  <ng-container [ngSwitch]="component">
+    <a
+      *ngSwitchCase="'a'"
+      [href]="href || '#'"
+      [target]="target"
+      [class]="buttonClasses"
+      [attr.aria-disabled]="isDisabled ? 'true' : null"
+      [attr.role]="role || 'button'"
+      (click)="isDisabled ? $event.preventDefault() : handleClick()"
+    >
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </a>
+
+    <div
+      *ngSwitchDefault
+      [class]="buttonClasses"
+      [attr.aria-disabled]="isDisabled ? 'true' : null"
+      [attr.role]="role || 'button'"
+      (click)="!isDisabled && handleClick()"
+    >
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #contentTemplate>
+  <ng-container *ngIf="loading && loadingPosition === 'start'">
+    <span class="mr-2 inline-flex items-center">
+      <ng-container
+        *ngIf="customLoadingIndicator; else defaultLoadingIndicator"
+      >
+        <ng-container *ngTemplateOutlet="customLoadingIndicator"></ng-container>
+      </ng-container>
+    </span>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && startIcon">
+    <span class="mr-2">
+      <ng-container *ngTemplateOutlet="startIcon"></ng-container>
+    </span>
+  </ng-container>
+
+  <ng-container *ngIf="loading && loadingPosition === 'center'">
+    <span class="flex items-center gap-2">
+      <span class="inline-flex items-center">
+        <ng-container
+          *ngIf="customLoadingIndicator; else defaultLoadingIndicator"
+        >
+          <ng-container
+            *ngTemplateOutlet="customLoadingIndicator"
+          ></ng-container>
+        </ng-container>
+      </span>
+      <ng-content></ng-content>
+    </span>
+  </ng-container>
+
+  <ng-container *ngIf="!(loading && loadingPosition === 'center')">
+    <ng-content></ng-content>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && endIcon">
+    <span class="ml-2">
+      <ng-container *ngTemplateOutlet="endIcon"></ng-container>
+    </span>
+  </ng-container>
+
+  <ng-container *ngIf="loading && loadingPosition === 'end'">
+    <span class="ml-2 inline-flex items-center">
+      <ng-container
+        *ngIf="customLoadingIndicator; else defaultLoadingIndicator"
+      >
+        <ng-container *ngTemplateOutlet="customLoadingIndicator"></ng-container>
+      </ng-container>
+    </span>
+  </ng-container>
+</ng-template>
+
+<ng-template #defaultLoadingIndicator>
+  <span class="h-4 w-4 animate-spin">⌛</span>
+</ng-template>

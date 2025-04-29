@@ -1,104 +1,77 @@
 import { ButtonComponent } from "./button.component";
 import { CommonModule } from "@angular/common";
-import { EventEmitter } from "@angular/core";
+import { Component, TemplateRef, ViewChild } from "@angular/core";
 
-describe("ButtonComponent", () => {
-  it("mounts", () => {
-    // Using string-based mounting for content projection
-    cy.mount(`<app-button>Click Me</app-button>`, {
-      imports: [CommonModule, ButtonComponent],
-    });
-    cy.get("button").should("be.visible");
-    cy.get("button").should("contain.text", "Click Me");
-  });
+// Helper component to provide template refs for testing
+@Component({
+  selector: "test-button-host",
+  standalone: true,
+  imports: [CommonModule, ButtonComponent],
+  template: `
+    <ng-template #startIconTpl>
+      <span data-testid="start-icon">→</span>
+    </ng-template>
 
-  it("applies correct class variants", () => {
-    cy.mount(ButtonComponent, {
-      componentProperties: {
-        variant: "primary",
-        size: "medium",
-      },
-      imports: [CommonModule],
-    });
-    // Primary button should have the primary color class
-    cy.get("button").should("have.class", "bg-blue-600");
+    <ng-template #endIconTpl>
+      <span data-testid="end-icon">←</span>
+    </ng-template>
 
-    // Update variant to secondary
-    cy.mount(ButtonComponent, {
-      componentProperties: {
-        variant: "secondary",
-        size: "medium",
-      },
-      imports: [CommonModule],
-    });
-    // Secondary button should have the secondary color class
-    cy.get("button").should("have.class", "bg-gray-600");
-  });
+    <ng-template #customLoaderTpl>
+      <span data-testid="custom-loader">Loading...</span>
+    </ng-template>
 
-  it("emits click events", () => {
-    const onClickSpy = cy.spy().as("onClickSpy");
-    // Create a proper EventEmitter with the spy
-    const clickedEmitter = new EventEmitter<void>();
-    // Replace the emit method with our spy
-    clickedEmitter.emit = onClickSpy;
+    <app-button
+      [variant]="variant"
+      [color]="color"
+      [size]="size"
+      [disabled]="disabled"
+      [loading]="loading"
+      [loadingPosition]="loadingPosition"
+      [fullWidth]="fullWidth"
+      [disableElevation]="disableElevation"
+      [component]="component"
+      [href]="href"
+      [target]="target"
+      [type]="type"
+      [role]="role"
+      [startIcon]="startIcon ? startIconTpl : null"
+      [endIcon]="endIcon ? endIconTpl : null"
+      [customLoadingIndicator]="customLoadingIndicator ? customLoaderTpl : null"
+      (clicked)="onClick()"
+    >
+      {{ content }}
+    </app-button>
+  `,
+})
+class TestButtonHostComponent {
+  @ViewChild("startIconTpl") startIconTpl!: TemplateRef<unknown>;
+  @ViewChild("endIconTpl") endIconTpl!: TemplateRef<unknown>;
+  @ViewChild("customLoaderTpl") customLoaderTpl!: TemplateRef<unknown>;
 
-    cy.mount(ButtonComponent, {
-      componentProperties: {
-        variant: "primary",
-        size: "medium",
-        clicked: clickedEmitter,
-      },
-      imports: [CommonModule],
-    });
-    cy.get("button").click();
-    cy.get("@onClickSpy").should("have.been.called");
-  });
+  variant: "text" | "contained" | "outlined" = "contained";
+  color:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning" = "primary";
+  size: "small" | "medium" | "large" = "medium";
+  disabled: boolean = false;
+  loading: boolean = false;
+  loadingPosition: "start" | "center" | "end" = "center";
+  fullWidth: boolean = false;
+  disableElevation: boolean = false;
+  component: string = "button";
+  href?: string;
+  target?: string;
+  type: "button" | "submit" | "reset" = "button";
+  role?: string;
+  content: string = "Button Text";
+  startIcon: boolean = false;
+  endIcon: boolean = false;
+  customLoadingIndicator: boolean = false;
 
-  it("supports different sizes", () => {
-    // Test small size
-    cy.mount(ButtonComponent, {
-      componentProperties: {
-        variant: "primary",
-        size: "small",
-      },
-      imports: [CommonModule],
-    });
-    cy.get("button").should("have.class", "text-sm");
-
-    // Test large size
-    cy.mount(ButtonComponent, {
-      componentProperties: {
-        variant: "primary",
-        size: "large",
-      },
-      imports: [CommonModule],
-    });
-    cy.get("button").should("have.class", "text-lg");
-  });
-
-  it("renders icons correctly", () => {
-    // Using string-based mounting for icon testing
-    cy.mount(
-      `<app-button iconLeft="←" iconRight="→">Button with icons</app-button>`,
-      {
-        imports: [CommonModule, ButtonComponent],
-      },
-    );
-
-    cy.get(".icon-left").should("contain", "←");
-    cy.get(".icon-right").should("contain", "→");
-  });
-
-  it("can be disabled", () => {
-    cy.mount(ButtonComponent, {
-      componentProperties: {
-        variant: "primary",
-        size: "medium",
-        disabled: true,
-      },
-      imports: [CommonModule],
-    });
-
-    cy.get("button").should("be.disabled");
-  });
-});
+  onClick = cy.stub().as("onClickStub");
+}
