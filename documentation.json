@@ -1,6 +1,50 @@
 {
   "pipes": [],
-  "interfaces": [],
+  "interfaces": [
+    {
+      "name": "ElementProps",
+      "id": "interface-ElementProps-5968d431215f1670d768459bf0d99515180f37cfa47b32e4773e2cdcbe4834bd6155c08bb6fe201ff754754b6cbe3daa4080d4d138a604189139aa03cf356ebd",
+      "file": "src/app/shared/utils/a11y.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "export interface ElementProps {\n  disabled?: boolean;\n  [key: string]: unknown;\n}\n\n/**\n * Adapts props for accessibility based on the component type\n * @param props The original props object\n * @param elementType The type of element to adapt props for\n * @returns The adapted props with appropriate accessibility attributes\n */\nexport function adaptPropsForA11y(\n  props: ElementProps,\n  elementType: string,\n): ElementProps {\n  const { disabled, ...rest } = props;\n\n  // For non-button elements, use aria-disabled instead of the disabled attribute\n  if (\n    disabled &&\n    elementType !== \"button\" &&\n    elementType !== \"input\" &&\n    elementType !== \"select\" &&\n    elementType !== \"textarea\"\n  ) {\n    return {\n      \"aria-disabled\": \"true\",\n      ...rest,\n    };\n  }\n\n  return props;\n}\n",
+      "properties": [
+        {
+          "name": "disabled",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 5
+        }
+      ],
+      "indexSignatures": [
+        {
+          "id": "index-declaration-5968d431215f1670d768459bf0d99515180f37cfa47b32e4773e2cdcbe4834bd6155c08bb6fe201ff754754b6cbe3daa4080d4d138a604189139aa03cf356ebd",
+          "args": [
+            {
+              "name": "key",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "",
+          "line": 5,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "kind": 181,
+      "description": "<p>Properties that can be passed to an element</p>\n",
+      "rawdescription": "\n\nProperties that can be passed to an element\n",
+      "methods": [],
+      "extends": []
+    }
+  ],
   "injectables": [],
   "guards": [],
   "interceptors": [],
@@ -9,7 +53,7 @@
   "components": [
     {
       "name": "AppComponent",
-      "id": "component-AppComponent-a4d3904731676a58611443c027629e93f98f345d0600eb1c2d67e94245aff2915e5febee44a63bcbbb862d86a99b62b67198ed1b3fd96a5a43468a6af3564eec",
+      "id": "component-AppComponent-af709f46eb42eaced7475c350ca014a6fba4f0defa9dd31ccff53c14b0b7053a65654c0a06226bf0b63f1de7d53d9dfdd0246826957fda2f72d871d5279f5a4e",
       "file": "src/app/app.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -34,7 +78,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 13
+          "line": 12
         }
       ],
       "methodsClass": [],
@@ -55,18 +99,18 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\r\nimport { RouterOutlet } from \"@angular/router\";\r\nimport { ButtonComponent } from \"./components/button/button.component\";\r\n\r\n@Component({\r\n  selector: \"app-root\",\r\n  standalone: true,\r\n  imports: [RouterOutlet, ButtonComponent],\r\n  templateUrl: \"./app.component.html\",\r\n  styleUrl: \"./app.component.scss\",\r\n})\r\nexport class AppComponent {\r\n  title = \"angular-xui\";\r\n}\r\n",
-      "styleUrl": "./app.component.scss",
+      "sourceCode": "import { Component } from \"@angular/core\";\r\nimport { RouterOutlet } from \"@angular/router\";\r\nimport { ButtonComponent } from \"./components/button/button.component\";\r\n\r\n@Component({\r\n  selector: \"app-root\",\r\n  standalone: true,\r\n  imports: [RouterOutlet, ButtonComponent],\r\n  templateUrl: \"./app.component.html\",\r\n})\r\nexport class AppComponent {\r\n  title = \"angular-xui\";\r\n}\r\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<style>\r\n  :host {\r\n    --bright-blue: oklch(51.01% 0.274 263.83);\r\n    --electric-violet: oklch(53.18% 0.28 296.97);\r\n    --french-violet: oklch(47.66% 0.246 305.88);\r\n    --vivid-pink: oklch(69.02% 0.277 332.77);\r\n    --hot-red: oklch(61.42% 0.238 15.34);\r\n    --orange-red: oklch(63.32% 0.24 31.68);\r\n\r\n    --gray-900: oklch(19.37% 0.006 300.98);\r\n    --gray-700: oklch(36.98% 0.014 302.71);\r\n    --gray-400: oklch(70.9% 0.015 304.04);\r\n\r\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\r\n      180deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\r\n      90deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --pill-accent: var(--bright-blue);\r\n\r\n    font-family:\r\n      \"Inter\",\r\n      -apple-system,\r\n      BlinkMacSystemFont,\r\n      \"Segoe UI\",\r\n      Roboto,\r\n      Helvetica,\r\n      Arial,\r\n      sans-serif,\r\n      \"Apple Color Emoji\",\r\n      \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n    box-sizing: border-box;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 3.125rem;\r\n    color: var(--gray-900);\r\n    font-weight: 500;\r\n    line-height: 100%;\r\n    letter-spacing: -0.125rem;\r\n    margin: 0;\r\n    font-family:\r\n      \"Inter Tight\",\r\n      -apple-system,\r\n      BlinkMacSystemFont,\r\n      \"Segoe UI\",\r\n      Roboto,\r\n      Helvetica,\r\n      Arial,\r\n      sans-serif,\r\n      \"Apple Color Emoji\",\r\n      \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n  }\r\n\r\n  p {\r\n    margin: 0;\r\n    color: var(--gray-700);\r\n  }\r\n\r\n  main {\r\n    width: 100%;\r\n    min-height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 1rem;\r\n    box-sizing: inherit;\r\n    position: relative;\r\n  }\r\n\r\n  .angular-logo {\r\n    max-width: 9.2rem;\r\n  }\r\n\r\n  .content {\r\n    display: flex;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n    max-width: 700px;\r\n    margin-bottom: 3rem;\r\n  }\r\n\r\n  .content h1 {\r\n    margin-top: 1.75rem;\r\n  }\r\n\r\n  .content p {\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .divider {\r\n    width: 1px;\r\n    background: var(--red-to-pink-to-purple-vertical-gradient);\r\n    margin-inline: 0.5rem;\r\n  }\r\n\r\n  .pill-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: start;\r\n    flex-wrap: wrap;\r\n    gap: 1.25rem;\r\n  }\r\n\r\n  .pill {\r\n    display: flex;\r\n    align-items: center;\r\n    --pill-accent: var(--bright-blue);\r\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\r\n    color: var(--pill-accent);\r\n    padding-inline: 0.75rem;\r\n    padding-block: 0.375rem;\r\n    border-radius: 2.75rem;\r\n    border: 0;\r\n    transition: background 0.3s ease;\r\n    font-family: var(--inter-font);\r\n    font-size: 0.875rem;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    line-height: 1.4rem;\r\n    letter-spacing: -0.00875rem;\r\n    text-decoration: none;\r\n  }\r\n\r\n  .pill:hover {\r\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\r\n  }\r\n\r\n  .pill-group .pill:nth-child(6n + 1) {\r\n    --pill-accent: var(--bright-blue);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 2) {\r\n    --pill-accent: var(--french-violet);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 3),\r\n  .pill-group .pill:nth-child(6n + 4),\r\n  .pill-group .pill:nth-child(6n + 5) {\r\n    --pill-accent: var(--hot-red);\r\n  }\r\n\r\n  .pill-group svg {\r\n    margin-inline-start: 0.25rem;\r\n  }\r\n\r\n  .social-links {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.73rem;\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .social-links path {\r\n    transition: fill 0.3s ease;\r\n    fill: var(--gray-400);\r\n  }\r\n\r\n  .social-links a:hover svg path {\r\n    fill: var(--gray-900);\r\n  }\r\n\r\n  @media screen and (max-width: 650px) {\r\n    .content {\r\n      flex-direction: column;\r\n      width: max-content;\r\n    }\r\n\r\n    .divider {\r\n      height: 1px;\r\n      width: 100%;\r\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\r\n      margin-block: 1.5rem;\r\n    }\r\n  }\r\n</style>\r\n\r\n<div class=\"min-h-screen bg-gray-100 p-8\">\r\n  <h1 class=\"text-4xl font-bold text-blue-600\">Welcome to {{ title }}</h1>\r\n  <p class=\"mt-4 text-gray-600\">Your Angular app with Tailwind CSS is ready!</p>\r\n  <div class=\"mt-4 space-x-4\">\r\n    <app-button label=\"Primary Button\" variant=\"primary\"></app-button>\r\n    <app-button\r\n      label=\"With Icon\"\r\n      variant=\"secondary\"\r\n      iconRight=\"→\"\r\n    ></app-button>\r\n    <app-button label=\"Outline Button\" variant=\"outline\"></app-button>\r\n  </div>\r\n</div>\r\n<router-outlet />\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n"
+      "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<style>\r\n  :host {\r\n    --bright-blue: oklch(51.01% 0.274 263.83);\r\n    --electric-violet: oklch(53.18% 0.28 296.97);\r\n    --french-violet: oklch(47.66% 0.246 305.88);\r\n    --vivid-pink: oklch(69.02% 0.277 332.77);\r\n    --hot-red: oklch(61.42% 0.238 15.34);\r\n    --orange-red: oklch(63.32% 0.24 31.68);\r\n\r\n    --gray-900: oklch(19.37% 0.006 300.98);\r\n    --gray-700: oklch(36.98% 0.014 302.71);\r\n    --gray-400: oklch(70.9% 0.015 304.04);\r\n\r\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\r\n      180deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\r\n      90deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --pill-accent: var(--bright-blue);\r\n\r\n    font-family:\r\n      \"Inter\",\r\n      -apple-system,\r\n      BlinkMacSystemFont,\r\n      \"Segoe UI\",\r\n      Roboto,\r\n      Helvetica,\r\n      Arial,\r\n      sans-serif,\r\n      \"Apple Color Emoji\",\r\n      \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n    box-sizing: border-box;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 3.125rem;\r\n    color: var(--gray-900);\r\n    font-weight: 500;\r\n    line-height: 100%;\r\n    letter-spacing: -0.125rem;\r\n    margin: 0;\r\n    font-family:\r\n      \"Inter Tight\",\r\n      -apple-system,\r\n      BlinkMacSystemFont,\r\n      \"Segoe UI\",\r\n      Roboto,\r\n      Helvetica,\r\n      Arial,\r\n      sans-serif,\r\n      \"Apple Color Emoji\",\r\n      \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n  }\r\n\r\n  p {\r\n    margin: 0;\r\n    color: var(--gray-700);\r\n  }\r\n\r\n  main {\r\n    width: 100%;\r\n    min-height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 1rem;\r\n    box-sizing: inherit;\r\n    position: relative;\r\n  }\r\n\r\n  .angular-logo {\r\n    max-width: 9.2rem;\r\n  }\r\n\r\n  .content {\r\n    display: flex;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n    max-width: 700px;\r\n    margin-bottom: 3rem;\r\n  }\r\n\r\n  .content h1 {\r\n    margin-top: 1.75rem;\r\n  }\r\n\r\n  .content p {\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .divider {\r\n    width: 1px;\r\n    background: var(--red-to-pink-to-purple-vertical-gradient);\r\n    margin-inline: 0.5rem;\r\n  }\r\n\r\n  .pill-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: start;\r\n    flex-wrap: wrap;\r\n    gap: 1.25rem;\r\n  }\r\n\r\n  .pill {\r\n    display: flex;\r\n    align-items: center;\r\n    --pill-accent: var(--bright-blue);\r\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\r\n    color: var(--pill-accent);\r\n    padding-inline: 0.75rem;\r\n    padding-block: 0.375rem;\r\n    border-radius: 2.75rem;\r\n    border: 0;\r\n    transition: background 0.3s ease;\r\n    font-family: var(--inter-font);\r\n    font-size: 0.875rem;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    line-height: 1.4rem;\r\n    letter-spacing: -0.00875rem;\r\n    text-decoration: none;\r\n  }\r\n\r\n  .pill:hover {\r\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\r\n  }\r\n\r\n  .pill-group .pill:nth-child(6n + 1) {\r\n    --pill-accent: var(--bright-blue);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 2) {\r\n    --pill-accent: var(--french-violet);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 3),\r\n  .pill-group .pill:nth-child(6n + 4),\r\n  .pill-group .pill:nth-child(6n + 5) {\r\n    --pill-accent: var(--hot-red);\r\n  }\r\n\r\n  .pill-group svg {\r\n    margin-inline-start: 0.25rem;\r\n  }\r\n\r\n  .social-links {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.73rem;\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .social-links path {\r\n    transition: fill 0.3s ease;\r\n    fill: var(--gray-400);\r\n  }\r\n\r\n  .social-links a:hover svg path {\r\n    fill: var(--gray-900);\r\n  }\r\n\r\n  @media screen and (max-width: 650px) {\r\n    .content {\r\n      flex-direction: column;\r\n      width: max-content;\r\n    }\r\n\r\n    .divider {\r\n      height: 1px;\r\n      width: 100%;\r\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\r\n      margin-block: 1.5rem;\r\n    }\r\n  }\r\n</style>\r\n\r\n<div class=\"min-h-screen bg-gray-100 p-8\">\r\n  <h1 class=\"text-4xl font-bold text-blue-600\">Welcome to {{ title }}</h1>\r\n  <p class=\"mt-4 text-gray-600\">Your Angular app with Tailwind CSS is ready!</p>\r\n</div>\r\n<router-outlet />\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n"
     },
     {
       "name": "ButtonComponent",
-      "id": "component-ButtonComponent-5e946814f6417ea40dbca73dbfc301be9f8fc054da3f4126bb00493a3ce6c2711f1912f539d08df2c5962c2a3a77825d666bea5aa95e77ebee3a75bc4fe08e04",
-      "file": "src/app/components/button/button.component.ts",
+      "id": "component-ButtonComponent-6a2513b35084b3edd143f890e0efd52ad6a485019dcd335bf939c5380ed23d82d933d304b0bb8d0fbd656720e2923759038eb00b00fafe97d67ce9acb8918d95",
+      "file": "src/app/components/inputs/button/button.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -75,33 +119,102 @@
       "selector": "app-button",
       "styleUrls": [],
       "styles": [],
-      "template": "<button\n  [class]=\"buttonClasses\"\n  [disabled]=\"disabled\"\n  (click)=\"handleClick()\"\n>\n  <span class=\"flex items-center gap-2\">\n    <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n    <ng-content></ng-content>\n    <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n  </span>\n</button>\n",
-      "templateUrl": [],
+      "templateUrl": ["./button.component.html"],
       "viewProviders": [],
       "hostDirectives": [],
       "inputsClass": [
+        {
+          "name": "color",
+          "defaultValue": "\"primary\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 23,
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "decorators": []
+        },
+        {
+          "name": "component",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 37,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "customLoadingIndicator",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 44,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
         {
           "name": "disabled",
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 47,
+          "line": 32,
           "type": "boolean",
           "decorators": []
         },
         {
-          "name": "iconLeft",
+          "name": "disableElevation",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 48,
+          "line": 36,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "endIcon",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 43,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "fullWidth",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 35,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "href",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 39,
           "type": "string",
           "decorators": []
         },
         {
-          "name": "iconRight",
+          "name": "loading",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 49,
+          "line": 33,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "loadingPosition",
+          "defaultValue": "\"center\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 34,
+          "type": "\"start\" | \"center\" | \"end\"",
+          "decorators": []
+        },
+        {
+          "name": "role",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 41,
           "type": "string",
           "decorators": []
         },
@@ -110,17 +223,42 @@
           "defaultValue": "\"medium\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 46,
+          "line": 31,
           "type": "\"small\" | \"medium\" | \"large\"",
           "decorators": []
         },
         {
-          "name": "variant",
-          "defaultValue": "\"primary\"",
+          "name": "startIcon",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 45,
-          "type": "\"primary\" | \"secondary\" | \"outline\" | \"danger\"",
+          "line": 42,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "target",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 40,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "type",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 38,
+          "type": "\"button\" | \"submit\" | \"reset\"",
+          "decorators": []
+        },
+        {
+          "name": "variant",
+          "defaultValue": "\"contained\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 22,
+          "type": "\"text\" | \"contained\" | \"outlined\"",
           "decorators": []
         }
       ],
@@ -130,7 +268,7 @@
           "defaultValue": "new EventEmitter<void>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 50,
+          "line": 45,
           "type": "EventEmitter"
         }
       ],
@@ -142,7 +280,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 56,
+          "line": 61,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -161,22 +299,324 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input, Output, EventEmitter } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { cva } from \"class-variance-authority\";\r\n\r\nconst buttonVariants = cva(\"px-4 py-2 rounded-md\", {\r\n  variants: {\r\n    variant: {\r\n      primary: \"bg-blue-600 text-white hover:bg-blue-700\",\r\n      secondary: \"bg-gray-600 text-white hover:bg-gray-700\",\r\n      outline:\r\n        \"border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white\",\r\n      danger: \"bg-red-600 text-white hover:bg-red-700\",\r\n    },\r\n    size: {\r\n      small: \"text-sm\",\r\n      medium: \"text-base\",\r\n      large: \"text-lg\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"primary\",\r\n    size: \"medium\",\r\n  },\r\n});\r\n\r\n@Component({\r\n  selector: \"app-button\",\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  template: `\r\n    <button\r\n      [class]=\"buttonClasses\"\r\n      [disabled]=\"disabled\"\r\n      (click)=\"handleClick()\"\r\n    >\r\n      <span class=\"flex items-center gap-2\">\r\n        <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\r\n        <ng-content></ng-content>\r\n        <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\r\n      </span>\r\n    </button>\r\n  `,\r\n})\r\nexport class ButtonComponent {\r\n  @Input() variant: \"primary\" | \"secondary\" | \"outline\" | \"danger\" = \"primary\";\r\n  @Input() size: \"small\" | \"medium\" | \"large\" = \"medium\";\r\n  @Input() disabled: boolean = false;\r\n  @Input() iconLeft?: string;\r\n  @Input() iconRight?: string;\r\n  @Output() clicked = new EventEmitter<void>();\r\n\r\n  get buttonClasses(): string {\r\n    return buttonVariants({ variant: this.variant, size: this.size });\r\n  }\r\n\r\n  handleClick() {\r\n    this.clicked.emit();\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  TemplateRef,\n  ChangeDetectionStrategy,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { buttonVariants } from \"./variants\";\nimport { ButtonBaseProps } from \"./button.types\";\n\n@Component({\n  selector: \"app-button\",\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  templateUrl: \"./button.component.html\",\n  styleUrls: [],\n})\nexport class ButtonComponent implements ButtonBaseProps {\n  @Input() variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\n  @Input() color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  @Input() size: \"small\" | \"medium\" | \"large\" = \"medium\";\n  @Input() disabled: boolean = false;\n  @Input() loading: boolean = false;\n  @Input() loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\n  @Input() fullWidth: boolean = false;\n  @Input() disableElevation: boolean = false;\n  @Input() component: string = \"button\";\n  @Input() type: \"button\" | \"submit\" | \"reset\" = \"button\";\n  @Input() href?: string;\n  @Input() target?: string;\n  @Input() role?: string;\n  @Input() startIcon?: TemplateRef<unknown>;\n  @Input() endIcon?: TemplateRef<unknown>;\n  @Input() customLoadingIndicator?: TemplateRef<unknown>;\n  @Output() clicked = new EventEmitter<void>();\n\n  get isDisabled(): boolean {\n    return this.disabled || this.loading;\n  }\n\n  get buttonClasses(): string {\n    return buttonVariants({\n      variant: this.variant,\n      color: this.color,\n      size: this.size,\n      fullWidth: this.fullWidth,\n      disableElevation: this.disableElevation,\n    });\n  }\n\n  handleClick() {\n    if (!this.isDisabled) {\n      this.clicked.emit();\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
+      "implements": ["ButtonBaseProps"],
       "accessors": {
+        "isDisabled": {
+          "name": "isDisabled",
+          "getSignature": {
+            "name": "isDisabled",
+            "type": "boolean",
+            "returnType": "boolean",
+            "line": 47
+          }
+        },
         "buttonClasses": {
           "name": "buttonClasses",
           "getSignature": {
             "name": "buttonClasses",
             "type": "string",
             "returnType": "string",
-            "line": 52
+            "line": 51
           }
         }
-      }
+      },
+      "templateData": "<ng-container *ngIf=\"component === 'button' || !component; else customElement\">\r\n  <button\r\n    [type]=\"type\"\r\n    [class]=\"buttonClasses\"\r\n    [disabled]=\"isDisabled\"\r\n    (click)=\"handleClick()\"\r\n  >\r\n    <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\r\n  </button>\r\n</ng-container>\r\n\r\n<ng-template #customElement>\r\n  <ng-container [ngSwitch]=\"component\">\r\n    <a\r\n      *ngSwitchCase=\"'a'\"\r\n      [href]=\"href || '#'\"\r\n      [target]=\"target\"\r\n      [class]=\"buttonClasses\"\r\n      [attr.aria-disabled]=\"isDisabled ? 'true' : null\"\r\n      [attr.role]=\"role || 'button'\"\r\n      (click)=\"isDisabled ? $event.preventDefault() : handleClick()\"\r\n    >\r\n      <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\r\n    </a>\r\n\r\n    <div\r\n      *ngSwitchDefault\r\n      [class]=\"buttonClasses\"\r\n      [attr.aria-disabled]=\"isDisabled ? 'true' : null\"\r\n      [attr.role]=\"role || 'button'\"\r\n      (click)=\"!isDisabled && handleClick()\"\r\n    >\r\n      <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\r\n    </div>\r\n  </ng-container>\r\n</ng-template>\r\n\r\n<ng-template #contentTemplate>\r\n  <ng-container *ngIf=\"loading && loadingPosition === 'start'\">\r\n    <span class=\"mr-2 inline-flex items-center\">\r\n      <ng-container\r\n        *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\r\n      >\r\n        <ng-container *ngTemplateOutlet=\"customLoadingIndicator\"></ng-container>\r\n      </ng-container>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"!loading && startIcon\">\r\n    <span class=\"mr-2\">\r\n      <ng-container *ngTemplateOutlet=\"startIcon\"></ng-container>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"loading && loadingPosition === 'center'\">\r\n    <span class=\"flex items-center gap-2\">\r\n      <span class=\"inline-flex items-center\">\r\n        <ng-container\r\n          *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"customLoadingIndicator\"\r\n          ></ng-container>\r\n        </ng-container>\r\n      </span>\r\n      <ng-content></ng-content>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"!(loading && loadingPosition === 'center')\">\r\n    <ng-content></ng-content>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"!loading && endIcon\">\r\n    <span class=\"ml-2\">\r\n      <ng-container *ngTemplateOutlet=\"endIcon\"></ng-container>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"loading && loadingPosition === 'end'\">\r\n    <span class=\"ml-2 inline-flex items-center\">\r\n      <ng-container\r\n        *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\r\n      >\r\n        <ng-container *ngTemplateOutlet=\"customLoadingIndicator\"></ng-container>\r\n      </ng-container>\r\n    </span>\r\n  </ng-container>\r\n</ng-template>\r\n\r\n<ng-template #defaultLoadingIndicator>\r\n  <span class=\"h-4 w-4 animate-spin\">⌛</span>\r\n</ng-template>\r\n"
+    },
+    {
+      "name": "TestButtonHostComponent",
+      "id": "component-TestButtonHostComponent-eb93b7a0c30a19a9243faa2fa62164634e8384ce4970e499c2a237377948a7fc7fc5130bfb48df8425dd6b97067677a572986a4a5f6afea4e4ba77ba17ab7e77",
+      "file": "src/app/components/inputs/button/button.component.cy.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "test-button-host",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<ng-template #startIconTpl>\n  <span data-testid=\"start-icon\">→</span>\n</ng-template>\n\n<ng-template #endIconTpl>\n  <span data-testid=\"end-icon\">←</span>\n</ng-template>\n\n<ng-template #customLoaderTpl>\n  <span data-testid=\"custom-loader\">Loading...</span>\n</ng-template>\n\n<app-button\n  [variant]=\"variant\"\n  [color]=\"color\"\n  [size]=\"size\"\n  [disabled]=\"disabled\"\n  [loading]=\"loading\"\n  [loadingPosition]=\"loadingPosition\"\n  [fullWidth]=\"fullWidth\"\n  [disableElevation]=\"disableElevation\"\n  [component]=\"component\"\n  [href]=\"href\"\n  [target]=\"target\"\n  [type]=\"type\"\n  [role]=\"role\"\n  [startIcon]=\"startIcon ? startIconTpl : null\"\n  [endIcon]=\"endIcon ? endIconTpl : null\"\n  [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n  (clicked)=\"onClick()\"\n>\n  {{ content }}\n</app-button>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "color",
+          "defaultValue": "\"primary\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 52
+        },
+        {
+          "name": "component",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 66
+        },
+        {
+          "name": "content",
+          "defaultValue": "\"Button Text\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 71
+        },
+        {
+          "name": "customLoaderTpl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 49,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'customLoaderTpl'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "customLoadingIndicator",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 74
+        },
+        {
+          "name": "disabled",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 61
+        },
+        {
+          "name": "disableElevation",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 65
+        },
+        {
+          "name": "endIcon",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 73
+        },
+        {
+          "name": "endIconTpl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 48,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'endIconTpl'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "fullWidth",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 64
+        },
+        {
+          "name": "href",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 67
+        },
+        {
+          "name": "loading",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 62
+        },
+        {
+          "name": "loadingPosition",
+          "defaultValue": "\"center\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"start\" | \"center\" | \"end\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 63
+        },
+        {
+          "name": "onClick",
+          "defaultValue": "cy.stub().as(\"onClickStub\")",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 76
+        },
+        {
+          "name": "role",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 70
+        },
+        {
+          "name": "size",
+          "defaultValue": "\"medium\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"small\" | \"medium\" | \"large\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 60
+        },
+        {
+          "name": "startIcon",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 72
+        },
+        {
+          "name": "startIconTpl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 47,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'startIconTpl'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "target",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 68
+        },
+        {
+          "name": "type",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"button\" | \"submit\" | \"reset\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 69
+        },
+        {
+          "name": "variant",
+          "defaultValue": "\"contained\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"text\" | \"contained\" | \"outlined\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 51
+        }
+      ],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "ButtonComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { ButtonComponent } from \"./button.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { Component, TemplateRef, ViewChild } from \"@angular/core\";\n\n// Helper component to provide template refs for testing\n@Component({\n  selector: \"test-button-host\",\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `\n    <ng-template #startIconTpl>\n      <span data-testid=\"start-icon\">→</span>\n    </ng-template>\n\n    <ng-template #endIconTpl>\n      <span data-testid=\"end-icon\">←</span>\n    </ng-template>\n\n    <ng-template #customLoaderTpl>\n      <span data-testid=\"custom-loader\">Loading...</span>\n    </ng-template>\n\n    <app-button\n      [variant]=\"variant\"\n      [color]=\"color\"\n      [size]=\"size\"\n      [disabled]=\"disabled\"\n      [loading]=\"loading\"\n      [loadingPosition]=\"loadingPosition\"\n      [fullWidth]=\"fullWidth\"\n      [disableElevation]=\"disableElevation\"\n      [component]=\"component\"\n      [href]=\"href\"\n      [target]=\"target\"\n      [type]=\"type\"\n      [role]=\"role\"\n      [startIcon]=\"startIcon ? startIconTpl : null\"\n      [endIcon]=\"endIcon ? endIconTpl : null\"\n      [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n      (clicked)=\"onClick()\"\n    >\n      {{ content }}\n    </app-button>\n  `,\n})\nclass TestButtonHostComponent {\n  @ViewChild(\"startIconTpl\") startIconTpl!: TemplateRef<unknown>;\n  @ViewChild(\"endIconTpl\") endIconTpl!: TemplateRef<unknown>;\n  @ViewChild(\"customLoaderTpl\") customLoaderTpl!: TemplateRef<unknown>;\n\n  variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\n  color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  size: \"small\" | \"medium\" | \"large\" = \"medium\";\n  disabled: boolean = false;\n  loading: boolean = false;\n  loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\n  fullWidth: boolean = false;\n  disableElevation: boolean = false;\n  component: string = \"button\";\n  href?: string;\n  target?: string;\n  type: \"button\" | \"submit\" | \"reset\" = \"button\";\n  role?: string;\n  content: string = \"Button Text\";\n  startIcon: boolean = false;\n  endIcon: boolean = false;\n  customLoadingIndicator: boolean = false;\n\n  onClick = cy.stub().as(\"onClickStub\");\n}\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
     },
     {
       "name": "TypographyComponent",
@@ -266,11 +706,21 @@
         "name": "buttonVariants",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/button/button.component.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "cva(\"px-4 py-2 rounded-md\", {\r\n  variants: {\r\n    variant: {\r\n      primary: \"bg-blue-600 text-white hover:bg-blue-700\",\r\n      secondary: \"bg-gray-600 text-white hover:bg-gray-700\",\r\n      outline:\r\n        \"border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white\",\r\n      danger: \"bg-red-600 text-white hover:bg-red-700\",\r\n    },\r\n    size: {\r\n      small: \"text-sm\",\r\n      medium: \"text-base\",\r\n      large: \"text-lg\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"primary\",\r\n    size: \"medium\",\r\n  },\r\n})"
+        "defaultValue": "cva(\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n  {\n    variants: buttonVariantsConfig.variants,\n    compoundVariants: [\n      // Contained variant colors\n      {\n        variant: \"contained\",\n        color: \"inherit\",\n        className: \"text-inherit hover:bg-gray-100\",\n      },\n      {\n        variant: \"contained\",\n        color: \"primary\",\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"secondary\",\n        className:\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"success\",\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"error\",\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"info\",\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"warning\",\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\n      },\n      // Outlined variant colors\n      {\n        variant: \"outlined\",\n        color: \"inherit\",\n        className: \"text-inherit border-current\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"primary\",\n        className: \"text-primary border-primary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"secondary\",\n        className: \"text-secondary border-secondary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"success\",\n        className: \"text-success border-success\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"error\",\n        className: \"text-error border-error\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"info\",\n        className: \"text-info border-info\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"warning\",\n        className: \"text-warning border-warning\",\n      },\n      // Text variant colors\n      {\n        variant: \"text\",\n        color: \"inherit\",\n        className: \"text-inherit\",\n      },\n      {\n        variant: \"text\",\n        color: \"primary\",\n        className: \"text-primary hover:bg-primary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"secondary\",\n        className: \"text-secondary hover:bg-secondary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"success\",\n        className: \"text-success hover:bg-success/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"error\",\n        className: \"text-error hover:bg-error/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"info\",\n        className: \"text-info hover:bg-info/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"warning\",\n        className: \"text-warning hover:bg-warning/10\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"contained\" as ButtonVariant,\n      color: \"primary\" as ButtonColor,\n      size: \"medium\" as ButtonSize,\n      fullWidth: false,\n      disableElevation: false,\n    },\n  },\n)"
+      },
+      {
+        "name": "buttonVariantsConfig",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/components/inputs/button/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  variants: {\n    variant: {\n      text: \"bg-transparent hover:bg-gray-100\",\n      contained: \"shadow-sm\",\n      outlined: \"border bg-transparent\",\n    },\n    color: {\n      inherit: \"\",\n      primary: \"\",\n      secondary: \"\",\n      success: \"\",\n      error: \"\",\n      info: \"\",\n      warning: \"\",\n    },\n    size: {\n      small: \"h-8 px-3 text-xs\",\n      medium: \"h-10 px-4 text-sm\",\n      large: \"h-12 px-6 text-base\",\n    },\n    fullWidth: {\n      true: \"w-full\",\n    },\n    disableElevation: {\n      true: \"shadow-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"contained\",\n    color: \"primary\",\n    size: \"medium\",\n    fullWidth: false,\n    disableElevation: false,\n  },\n}"
       },
       {
         "name": "Icons",
@@ -283,8 +733,140 @@
         "defaultValue": "{\r\n  // Dashboard icons\r\n  dashboard: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"/>\r\n  </svg>`,\r\n\r\n  // User/Team icons\r\n  users: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z\"/>\r\n  </svg>`,\r\n\r\n  // Project icons\r\n  folder: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z\"/>\r\n  </svg>`,\r\n\r\n  // Settings icon\r\n  settings: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z\"/>\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\"/>\r\n  </svg>`,\r\n\r\n  // Additional icons\r\n  home: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"/>\r\n  </svg>`,\r\n\r\n  calendar: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z\"/>\r\n  </svg>`,\r\n\r\n  chart: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\"/>\r\n  </svg>`,\r\n\r\n  document: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"/>\r\n  </svg>`,\r\n\r\n  // New icons\r\n  bell: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\"/>\r\n  </svg>`,\r\n\r\n  inbox: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4\"/>\r\n  </svg>`,\r\n\r\n  message: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z\"/>\r\n  </svg>`,\r\n\r\n  notification: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z\"/>\r\n  </svg>`,\r\n\r\n  // List item icons\r\n  chevronRight: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"/>\r\n  </svg>`,\r\n\r\n  arrowRight: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M14 5l7 7m0 0l-7 7m7-7H3\"/>\r\n  </svg>`,\r\n\r\n  dot: `<svg class=\"w-2 h-2\" fill=\"currentColor\" viewBox=\"0 0 8 8\">\r\n    <circle cx=\"4\" cy=\"4\" r=\"3\"/>\r\n  </svg>`,\r\n\r\n  star: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z\"/>\r\n  </svg>`,\r\n\r\n  // Add these missing icons\r\n  clock: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z\"/>\r\n  </svg>`,\r\n\r\n  download: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4\"/>\r\n  </svg>`,\r\n}"
       }
     ],
-    "functions": [],
-    "typealiases": [],
+    "functions": [
+      {
+        "name": "adaptPropsForA11y",
+        "file": "src/app/shared/utils/a11y.ts",
+        "ctype": "miscellaneous",
+        "subtype": "function",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "<p>Adapts props for accessibility based on the component type</p>\n",
+        "args": [
+          {
+            "name": "props",
+            "type": "ElementProps",
+            "deprecated": false,
+            "deprecationMessage": ""
+          },
+          {
+            "name": "elementType",
+            "type": "string",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "returnType": "ElementProps",
+        "jsdoctags": [
+          {
+            "name": {
+              "pos": 214,
+              "end": 219,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "props"
+            },
+            "type": "ElementProps",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "pos": 208,
+              "end": 213,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "param"
+            },
+            "comment": "<p>The original props object</p>\n"
+          },
+          {
+            "name": {
+              "pos": 256,
+              "end": 267,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "elementType"
+            },
+            "type": "string",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "pos": 250,
+              "end": 255,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "param"
+            },
+            "comment": "<p>The type of element to adapt props for</p>\n"
+          },
+          {
+            "tagName": {
+              "pos": 311,
+              "end": 318,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "returns"
+            },
+            "comment": "<p>The adapted props with appropriate accessibility attributes</p>\n"
+          }
+        ]
+      }
+    ],
+    "typealiases": [
+      {
+        "name": "ButtonBaseProps",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/inputs/button/button.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "<p>Base props for the Button component</p>\n",
+        "kind": 193
+      },
+      {
+        "name": "ButtonColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+        "file": "src/app/components/inputs/button/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
+      },
+      {
+        "name": "ButtonSize",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"small\" | \"medium\" | \"large\"",
+        "file": "src/app/components/inputs/button/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
+      },
+      {
+        "name": "ButtonVariant",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"text\" | \"contained\" | \"outlined\"",
+        "file": "src/app/components/inputs/button/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
+      }
+    ],
     "enumerations": [],
     "groupedVariables": {
       "src/app/app.config.ts": [
@@ -299,16 +881,26 @@
           "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n  ],\r\n}"
         }
       ],
-      "src/app/components/button/button.component.ts": [
+      "src/app/components/inputs/button/variants.ts": [
         {
           "name": "buttonVariants",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/button/button.component.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "cva(\"px-4 py-2 rounded-md\", {\r\n  variants: {\r\n    variant: {\r\n      primary: \"bg-blue-600 text-white hover:bg-blue-700\",\r\n      secondary: \"bg-gray-600 text-white hover:bg-gray-700\",\r\n      outline:\r\n        \"border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white\",\r\n      danger: \"bg-red-600 text-white hover:bg-red-700\",\r\n    },\r\n    size: {\r\n      small: \"text-sm\",\r\n      medium: \"text-base\",\r\n      large: \"text-lg\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"primary\",\r\n    size: \"medium\",\r\n  },\r\n})"
+          "defaultValue": "cva(\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n  {\n    variants: buttonVariantsConfig.variants,\n    compoundVariants: [\n      // Contained variant colors\n      {\n        variant: \"contained\",\n        color: \"inherit\",\n        className: \"text-inherit hover:bg-gray-100\",\n      },\n      {\n        variant: \"contained\",\n        color: \"primary\",\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"secondary\",\n        className:\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"success\",\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"error\",\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"info\",\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"warning\",\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\n      },\n      // Outlined variant colors\n      {\n        variant: \"outlined\",\n        color: \"inherit\",\n        className: \"text-inherit border-current\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"primary\",\n        className: \"text-primary border-primary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"secondary\",\n        className: \"text-secondary border-secondary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"success\",\n        className: \"text-success border-success\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"error\",\n        className: \"text-error border-error\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"info\",\n        className: \"text-info border-info\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"warning\",\n        className: \"text-warning border-warning\",\n      },\n      // Text variant colors\n      {\n        variant: \"text\",\n        color: \"inherit\",\n        className: \"text-inherit\",\n      },\n      {\n        variant: \"text\",\n        color: \"primary\",\n        className: \"text-primary hover:bg-primary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"secondary\",\n        className: \"text-secondary hover:bg-secondary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"success\",\n        className: \"text-success hover:bg-success/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"error\",\n        className: \"text-error hover:bg-error/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"info\",\n        className: \"text-info hover:bg-info/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"warning\",\n        className: \"text-warning hover:bg-warning/10\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"contained\" as ButtonVariant,\n      color: \"primary\" as ButtonColor,\n      size: \"medium\" as ButtonSize,\n      fullWidth: false,\n      disableElevation: false,\n    },\n  },\n)"
+        },
+        {
+          "name": "buttonVariantsConfig",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/components/inputs/button/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  variants: {\n    variant: {\n      text: \"bg-transparent hover:bg-gray-100\",\n      contained: \"shadow-sm\",\n      outlined: \"border bg-transparent\",\n    },\n    color: {\n      inherit: \"\",\n      primary: \"\",\n      secondary: \"\",\n      success: \"\",\n      error: \"\",\n      info: \"\",\n      warning: \"\",\n    },\n    size: {\n      small: \"h-8 px-3 text-xs\",\n      medium: \"h-10 px-4 text-sm\",\n      large: \"h-12 px-6 text-base\",\n    },\n    fullWidth: {\n      true: \"w-full\",\n    },\n    disableElevation: {\n      true: \"shadow-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"contained\",\n    color: \"primary\",\n    size: \"medium\",\n    fullWidth: false,\n    disableElevation: false,\n  },\n}"
         }
       ],
       "src/app/shared/icons.ts": [
@@ -324,13 +916,151 @@
         }
       ]
     },
-    "groupedFunctions": {},
+    "groupedFunctions": {
+      "src/app/shared/utils/a11y.ts": [
+        {
+          "name": "adaptPropsForA11y",
+          "file": "src/app/shared/utils/a11y.ts",
+          "ctype": "miscellaneous",
+          "subtype": "function",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "<p>Adapts props for accessibility based on the component type</p>\n",
+          "args": [
+            {
+              "name": "props",
+              "type": "ElementProps",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "elementType",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "ElementProps",
+          "jsdoctags": [
+            {
+              "name": {
+                "pos": 214,
+                "end": 219,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "props"
+              },
+              "type": "ElementProps",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "pos": 208,
+                "end": 213,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "param"
+              },
+              "comment": "<p>The original props object</p>\n"
+            },
+            {
+              "name": {
+                "pos": 256,
+                "end": 267,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "elementType"
+              },
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "pos": 250,
+                "end": 255,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "param"
+              },
+              "comment": "<p>The type of element to adapt props for</p>\n"
+            },
+            {
+              "tagName": {
+                "pos": 311,
+                "end": 318,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "returns"
+              },
+              "comment": "<p>The adapted props with appropriate accessibility attributes</p>\n"
+            }
+          ]
+        }
+      ]
+    },
     "groupedEnumerations": {},
-    "groupedTypeAliases": {}
+    "groupedTypeAliases": {
+      "src/app/components/inputs/button/button.types.ts": [
+        {
+          "name": "ButtonBaseProps",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/inputs/button/button.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "<p>Base props for the Button component</p>\n",
+          "kind": 193
+        }
+      ],
+      "src/app/components/inputs/button/variants.ts": [
+        {
+          "name": "ButtonColor",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "file": "src/app/components/inputs/button/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        },
+        {
+          "name": "ButtonSize",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"small\" | \"medium\" | \"large\"",
+          "file": "src/app/components/inputs/button/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        },
+        {
+          "name": "ButtonVariant",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"text\" | \"contained\" | \"outlined\"",
+          "file": "src/app/components/inputs/button/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        }
+      ]
+    }
   },
   "routes": [],
   "coverage": {
-    "count": 0,
+    "count": 17,
     "status": "low",
     "files": [
       {
@@ -353,20 +1083,79 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.component.ts",
+        "filePath": "src/app/components/inputs/button/button.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "TestButtonHostComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/22",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/button.component.ts",
         "type": "component",
         "linktype": "component",
         "name": "ButtonComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/8",
+        "coverageCount": "0/19",
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.component.ts",
+        "filePath": "src/app/components/inputs/button/button.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "ButtonBaseProps",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "buttonVariants",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "buttonVariantsConfig",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "ButtonColor",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "ButtonSize",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "ButtonVariant",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -389,6 +1178,25 @@
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
+      },
+      {
+        "filePath": "src/app/shared/utils/a11y.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "ElementProps",
+        "coveragePercent": 50,
+        "coverageCount": "1/2",
+        "status": "medium"
+      },
+      {
+        "filePath": "src/app/shared/utils/a11y.ts",
+        "type": "function",
+        "linktype": "miscellaneous",
+        "linksubtype": "function",
+        "name": "adaptPropsForA11y",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
       }
     ]
   }
