@@ -9,7 +9,7 @@ const colorOptions = Object.keys(buttonVariantsConfig.variants.color);
 const sizeOptions = Object.keys(buttonVariantsConfig.variants.size);
 
 const meta: Meta<ButtonComponent> = {
-  title: "Components/Button",
+  title: "Inputs/Button",
   component: ButtonComponent,
   decorators: [
     moduleMetadata({

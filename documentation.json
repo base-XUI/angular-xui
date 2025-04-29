@@ -109,7 +109,7 @@
     {
       "name": "ButtonComponent",
       "id": "component-ButtonComponent-6a2513b35084b3edd143f890e0efd52ad6a485019dcd335bf939c5380ed23d82d933d304b0bb8d0fbd656720e2923759038eb00b00fafe97d67ce9acb8918d95",
-      "file": "src/app/components/button/button.component.ts",
+      "file": "src/app/components/inputs/button/button.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
@@ -330,7 +330,7 @@
     {
       "name": "TestButtonHostComponent",
       "id": "component-TestButtonHostComponent-eb93b7a0c30a19a9243faa2fa62164634e8384ce4970e499c2a237377948a7fc7fc5130bfb48df8425dd6b97067677a572986a4a5f6afea4e4ba77ba17ab7e77",
-      "file": "src/app/components/button/button.component.cy.ts",
+      "file": "src/app/components/inputs/button/button.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -706,21 +706,21 @@
         "name": "buttonVariants",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/button/variants.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "cva(\r\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\r\n  {\r\n    variants: buttonVariantsConfig.variants,\r\n    compoundVariants: [\r\n      // Contained variant colors\r\n      {\r\n        variant: \"contained\",\r\n        color: \"inherit\",\r\n        className: \"text-inherit hover:bg-gray-100\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"primary\",\r\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"secondary\",\r\n        className:\r\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"success\",\r\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"error\",\r\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"info\",\r\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"warning\",\r\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\r\n      },\r\n      // Outlined variant colors\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"inherit\",\r\n        className: \"text-inherit border-current\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"primary\",\r\n        className: \"text-primary border-primary\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"secondary\",\r\n        className: \"text-secondary border-secondary\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"success\",\r\n        className: \"text-success border-success\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"error\",\r\n        className: \"text-error border-error\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"info\",\r\n        className: \"text-info border-info\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"warning\",\r\n        className: \"text-warning border-warning\",\r\n      },\r\n      // Text variant colors\r\n      {\r\n        variant: \"text\",\r\n        color: \"inherit\",\r\n        className: \"text-inherit\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"primary\",\r\n        className: \"text-primary hover:bg-primary/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"secondary\",\r\n        className: \"text-secondary hover:bg-secondary/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"success\",\r\n        className: \"text-success hover:bg-success/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"error\",\r\n        className: \"text-error hover:bg-error/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"info\",\r\n        className: \"text-info hover:bg-info/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"warning\",\r\n        className: \"text-warning hover:bg-warning/10\",\r\n      },\r\n    ],\r\n    defaultVariants: {\r\n      variant: \"contained\" as ButtonVariant,\r\n      color: \"primary\" as ButtonColor,\r\n      size: \"medium\" as ButtonSize,\r\n      fullWidth: false,\r\n      disableElevation: false,\r\n    },\r\n  },\r\n)"
+        "defaultValue": "cva(\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n  {\n    variants: buttonVariantsConfig.variants,\n    compoundVariants: [\n      // Contained variant colors\n      {\n        variant: \"contained\",\n        color: \"inherit\",\n        className: \"text-inherit hover:bg-gray-100\",\n      },\n      {\n        variant: \"contained\",\n        color: \"primary\",\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"secondary\",\n        className:\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"success\",\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"error\",\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"info\",\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"warning\",\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\n      },\n      // Outlined variant colors\n      {\n        variant: \"outlined\",\n        color: \"inherit\",\n        className: \"text-inherit border-current\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"primary\",\n        className: \"text-primary border-primary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"secondary\",\n        className: \"text-secondary border-secondary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"success\",\n        className: \"text-success border-success\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"error\",\n        className: \"text-error border-error\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"info\",\n        className: \"text-info border-info\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"warning\",\n        className: \"text-warning border-warning\",\n      },\n      // Text variant colors\n      {\n        variant: \"text\",\n        color: \"inherit\",\n        className: \"text-inherit\",\n      },\n      {\n        variant: \"text\",\n        color: \"primary\",\n        className: \"text-primary hover:bg-primary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"secondary\",\n        className: \"text-secondary hover:bg-secondary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"success\",\n        className: \"text-success hover:bg-success/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"error\",\n        className: \"text-error hover:bg-error/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"info\",\n        className: \"text-info hover:bg-info/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"warning\",\n        className: \"text-warning hover:bg-warning/10\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"contained\" as ButtonVariant,\n      color: \"primary\" as ButtonColor,\n      size: \"medium\" as ButtonSize,\n      fullWidth: false,\n      disableElevation: false,\n    },\n  },\n)"
       },
       {
         "name": "buttonVariantsConfig",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/button/variants.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
-        "defaultValue": "{\r\n  variants: {\r\n    variant: {\r\n      text: \"bg-transparent hover:bg-gray-100\",\r\n      contained: \"shadow-sm\",\r\n      outlined: \"border bg-transparent\",\r\n    },\r\n    color: {\r\n      inherit: \"\",\r\n      primary: \"\",\r\n      secondary: \"\",\r\n      success: \"\",\r\n      error: \"\",\r\n      info: \"\",\r\n      warning: \"\",\r\n    },\r\n    size: {\r\n      small: \"h-8 px-3 text-xs\",\r\n      medium: \"h-10 px-4 text-sm\",\r\n      large: \"h-12 px-6 text-base\",\r\n    },\r\n    fullWidth: {\r\n      true: \"w-full\",\r\n    },\r\n    disableElevation: {\r\n      true: \"shadow-none\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"contained\",\r\n    color: \"primary\",\r\n    size: \"medium\",\r\n    fullWidth: false,\r\n    disableElevation: false,\r\n  },\r\n}"
+        "defaultValue": "{\n  variants: {\n    variant: {\n      text: \"bg-transparent hover:bg-gray-100\",\n      contained: \"shadow-sm\",\n      outlined: \"border bg-transparent\",\n    },\n    color: {\n      inherit: \"\",\n      primary: \"\",\n      secondary: \"\",\n      success: \"\",\n      error: \"\",\n      info: \"\",\n      warning: \"\",\n    },\n    size: {\n      small: \"h-8 px-3 text-xs\",\n      medium: \"h-10 px-4 text-sm\",\n      large: \"h-12 px-6 text-base\",\n    },\n    fullWidth: {\n      true: \"w-full\",\n    },\n    disableElevation: {\n      true: \"shadow-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"contained\",\n    color: \"primary\",\n    size: \"medium\",\n    fullWidth: false,\n    disableElevation: false,\n  },\n}"
       },
       {
         "name": "Icons",
@@ -827,7 +827,7 @@
         "ctype": "miscellaneous",
         "subtype": "typealias",
         "rawtype": "",
-        "file": "src/app/components/button/button.types.ts",
+        "file": "src/app/components/inputs/button/button.types.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "<p>Base props for the Button component</p>\n",
@@ -838,7 +838,7 @@
         "ctype": "miscellaneous",
         "subtype": "typealias",
         "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
-        "file": "src/app/components/button/variants.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -849,7 +849,7 @@
         "ctype": "miscellaneous",
         "subtype": "typealias",
         "rawtype": "\"small\" | \"medium\" | \"large\"",
-        "file": "src/app/components/button/variants.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -860,7 +860,7 @@
         "ctype": "miscellaneous",
         "subtype": "typealias",
         "rawtype": "\"text\" | \"contained\" | \"outlined\"",
-        "file": "src/app/components/button/variants.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -881,26 +881,26 @@
           "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n  ],\r\n}"
         }
       ],
-      "src/app/components/button/variants.ts": [
+      "src/app/components/inputs/button/variants.ts": [
         {
           "name": "buttonVariants",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/button/variants.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "cva(\r\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\r\n  {\r\n    variants: buttonVariantsConfig.variants,\r\n    compoundVariants: [\r\n      // Contained variant colors\r\n      {\r\n        variant: \"contained\",\r\n        color: \"inherit\",\r\n        className: \"text-inherit hover:bg-gray-100\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"primary\",\r\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"secondary\",\r\n        className:\r\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"success\",\r\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"error\",\r\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"info\",\r\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\r\n      },\r\n      {\r\n        variant: \"contained\",\r\n        color: \"warning\",\r\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\r\n      },\r\n      // Outlined variant colors\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"inherit\",\r\n        className: \"text-inherit border-current\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"primary\",\r\n        className: \"text-primary border-primary\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"secondary\",\r\n        className: \"text-secondary border-secondary\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"success\",\r\n        className: \"text-success border-success\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"error\",\r\n        className: \"text-error border-error\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"info\",\r\n        className: \"text-info border-info\",\r\n      },\r\n      {\r\n        variant: \"outlined\",\r\n        color: \"warning\",\r\n        className: \"text-warning border-warning\",\r\n      },\r\n      // Text variant colors\r\n      {\r\n        variant: \"text\",\r\n        color: \"inherit\",\r\n        className: \"text-inherit\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"primary\",\r\n        className: \"text-primary hover:bg-primary/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"secondary\",\r\n        className: \"text-secondary hover:bg-secondary/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"success\",\r\n        className: \"text-success hover:bg-success/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"error\",\r\n        className: \"text-error hover:bg-error/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"info\",\r\n        className: \"text-info hover:bg-info/10\",\r\n      },\r\n      {\r\n        variant: \"text\",\r\n        color: \"warning\",\r\n        className: \"text-warning hover:bg-warning/10\",\r\n      },\r\n    ],\r\n    defaultVariants: {\r\n      variant: \"contained\" as ButtonVariant,\r\n      color: \"primary\" as ButtonColor,\r\n      size: \"medium\" as ButtonSize,\r\n      fullWidth: false,\r\n      disableElevation: false,\r\n    },\r\n  },\r\n)"
+          "defaultValue": "cva(\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n  {\n    variants: buttonVariantsConfig.variants,\n    compoundVariants: [\n      // Contained variant colors\n      {\n        variant: \"contained\",\n        color: \"inherit\",\n        className: \"text-inherit hover:bg-gray-100\",\n      },\n      {\n        variant: \"contained\",\n        color: \"primary\",\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"secondary\",\n        className:\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"success\",\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"error\",\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"info\",\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"warning\",\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\n      },\n      // Outlined variant colors\n      {\n        variant: \"outlined\",\n        color: \"inherit\",\n        className: \"text-inherit border-current\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"primary\",\n        className: \"text-primary border-primary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"secondary\",\n        className: \"text-secondary border-secondary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"success\",\n        className: \"text-success border-success\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"error\",\n        className: \"text-error border-error\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"info\",\n        className: \"text-info border-info\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"warning\",\n        className: \"text-warning border-warning\",\n      },\n      // Text variant colors\n      {\n        variant: \"text\",\n        color: \"inherit\",\n        className: \"text-inherit\",\n      },\n      {\n        variant: \"text\",\n        color: \"primary\",\n        className: \"text-primary hover:bg-primary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"secondary\",\n        className: \"text-secondary hover:bg-secondary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"success\",\n        className: \"text-success hover:bg-success/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"error\",\n        className: \"text-error hover:bg-error/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"info\",\n        className: \"text-info hover:bg-info/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"warning\",\n        className: \"text-warning hover:bg-warning/10\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"contained\" as ButtonVariant,\n      color: \"primary\" as ButtonColor,\n      size: \"medium\" as ButtonSize,\n      fullWidth: false,\n      disableElevation: false,\n    },\n  },\n)"
         },
         {
           "name": "buttonVariantsConfig",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/button/variants.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
-          "defaultValue": "{\r\n  variants: {\r\n    variant: {\r\n      text: \"bg-transparent hover:bg-gray-100\",\r\n      contained: \"shadow-sm\",\r\n      outlined: \"border bg-transparent\",\r\n    },\r\n    color: {\r\n      inherit: \"\",\r\n      primary: \"\",\r\n      secondary: \"\",\r\n      success: \"\",\r\n      error: \"\",\r\n      info: \"\",\r\n      warning: \"\",\r\n    },\r\n    size: {\r\n      small: \"h-8 px-3 text-xs\",\r\n      medium: \"h-10 px-4 text-sm\",\r\n      large: \"h-12 px-6 text-base\",\r\n    },\r\n    fullWidth: {\r\n      true: \"w-full\",\r\n    },\r\n    disableElevation: {\r\n      true: \"shadow-none\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"contained\",\r\n    color: \"primary\",\r\n    size: \"medium\",\r\n    fullWidth: false,\r\n    disableElevation: false,\r\n  },\r\n}"
+          "defaultValue": "{\n  variants: {\n    variant: {\n      text: \"bg-transparent hover:bg-gray-100\",\n      contained: \"shadow-sm\",\n      outlined: \"border bg-transparent\",\n    },\n    color: {\n      inherit: \"\",\n      primary: \"\",\n      secondary: \"\",\n      success: \"\",\n      error: \"\",\n      info: \"\",\n      warning: \"\",\n    },\n    size: {\n      small: \"h-8 px-3 text-xs\",\n      medium: \"h-10 px-4 text-sm\",\n      large: \"h-12 px-6 text-base\",\n    },\n    fullWidth: {\n      true: \"w-full\",\n    },\n    disableElevation: {\n      true: \"shadow-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"contained\",\n    color: \"primary\",\n    size: \"medium\",\n    fullWidth: false,\n    disableElevation: false,\n  },\n}"
         }
       ],
       "src/app/shared/icons.ts": [
@@ -1008,26 +1008,26 @@
     },
     "groupedEnumerations": {},
     "groupedTypeAliases": {
-      "src/app/components/button/button.types.ts": [
+      "src/app/components/inputs/button/button.types.ts": [
         {
           "name": "ButtonBaseProps",
           "ctype": "miscellaneous",
           "subtype": "typealias",
           "rawtype": "",
-          "file": "src/app/components/button/button.types.ts",
+          "file": "src/app/components/inputs/button/button.types.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "<p>Base props for the Button component</p>\n",
           "kind": 193
         }
       ],
-      "src/app/components/button/variants.ts": [
+      "src/app/components/inputs/button/variants.ts": [
         {
           "name": "ButtonColor",
           "ctype": "miscellaneous",
           "subtype": "typealias",
           "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
-          "file": "src/app/components/button/variants.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -1038,7 +1038,7 @@
           "ctype": "miscellaneous",
           "subtype": "typealias",
           "rawtype": "\"small\" | \"medium\" | \"large\"",
-          "file": "src/app/components/button/variants.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -1049,7 +1049,7 @@
           "ctype": "miscellaneous",
           "subtype": "typealias",
           "rawtype": "\"text\" | \"contained\" | \"outlined\"",
-          "file": "src/app/components/button/variants.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -1083,7 +1083,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.component.cy.ts",
+        "filePath": "src/app/components/inputs/button/button.component.cy.ts",
         "type": "component",
         "linktype": "component",
         "name": "TestButtonHostComponent",
@@ -1092,7 +1092,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.component.ts",
+        "filePath": "src/app/components/inputs/button/button.component.ts",
         "type": "component",
         "linktype": "component",
         "name": "ButtonComponent",
@@ -1101,7 +1101,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.types.ts",
+        "filePath": "src/app/components/inputs/button/button.types.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
@@ -1111,7 +1111,7 @@
         "status": "very-good"
       },
       {
-        "filePath": "src/app/components/button/variants.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -1121,7 +1121,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/variants.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -1131,7 +1131,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/variants.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
@@ -1141,7 +1141,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/variants.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
@@ -1151,7 +1151,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/variants.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
