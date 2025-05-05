@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "angular-xui": {
-      "projectType": "application",
+      "projectType": "library",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
