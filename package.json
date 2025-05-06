@@ -51,7 +51,6 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
-    "@base-xui/angular-xui": "file:.yalc/@base-xui/angular-xui",
     "@changesets/changelog-github": "^0.5.1",
     "class-variance-authority": "^0.7.1",
     "rxjs": "~7.8.0",
