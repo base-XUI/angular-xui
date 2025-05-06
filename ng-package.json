@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/ng-packagr/ng-package.schema.json",
+  "dest": "./dist/angular-xui",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": ["src/styles"]
+  },
+  "assets": ["dist/angular-xui/styles.css"],
+  "allowedNonPeerDependencies": [
+    "@angular/animations",
+    "@angular/common",
+    "@angular/core",
+    "@angular/forms",
+    "@angular/platform-browser",
+    "@angular/platform-browser-dynamic",
+    "@angular/router",
+    "@angular/compiler",
+    "@changesets/changelog-github",
+    "class-variance-authority",
+    "rxjs",
+    "zone.js",
+    "@base-xui/angular-xui",
+    "tslib"
+  ]
+}

@@ -1,17 +1,17 @@
-import type { StorybookConfig } from '@storybook/angular';
+import type { StorybookConfig } from "@storybook/angular";
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: ['@storybook/addon-essentials'],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: ["@storybook/addon-essentials"],
   framework: {
-    name: '@storybook/angular',
+    name: "@storybook/angular",
     options: {},
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: "tag",
   },
   core: {
-    builder: '@storybook/builder-webpack5',
+    builder: "@storybook/builder-webpack5",
     disableTelemetry: true,
   },
 };

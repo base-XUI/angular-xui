@@ -2,112 +2,45 @@
   "pipes": [],
   "interfaces": [
     {
-      "name": "MenuItem",
-      "id": "interface-MenuItem-82c9bcbbf788be040161f25f5fa1d34bb12f4d3ab13febb427e87b0773da992784e6ada76f8915bd2e66c8f949192056d471d9e03c9000acc5866b61d3d6f460",
-      "file": "src/app/components/sidemenu/sidemenu.component.ts",
+      "name": "ElementProps",
+      "id": "interface-ElementProps-5968d431215f1670d768459bf0d99515180f37cfa47b32e4773e2cdcbe4834bd6155c08bb6fe201ff754754b6cbe3daa4080d4d138a604189139aa03cf356ebd",
+      "file": "src/app/shared/utils/a11y.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\ninterface MenuItem {\n  label: string;\n  icon?: string;\n  leftIcon?: string;\n  href: string;\n  active?: boolean;\n  children?: MenuItem[];\n  badge?: string;\n}\n\n@Component({\n  selector: 'app-sidemenu',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"flex h-screen\">\n      <!-- Sidebar -->\n      <div [class]=\"containerClasses\">\n        <!-- Logo section -->\n        <div class=\"flex items-center h-16 px-4 border-b\">\n          <span class=\"text-lg font-semibold\">{{ brand }}</span>\n        </div>\n\n        <!-- Menu items -->\n        <nav class=\"flex-1 px-2 py-4 space-y-1\">\n          <ng-container *ngFor=\"let item of menuItems\">\n            <!-- Item with children -->\n            <div *ngIf=\"item.children; else singleItem\" class=\"space-y-1\">\n              <button\n                (click)=\"toggleSubmenu(item)\"\n                [class]=\"getParentMenuClasses(item.active)\"\n              >\n                <span class=\"flex items-center\">\n                  <span\n                    *ngIf=\"item.leftIcon\"\n                    class=\"mr-2\"\n                    [innerHTML]=\"sanitizeIcon(item.leftIcon)\"\n                  ></span>\n                  <span\n                    *ngIf=\"item.icon\"\n                    class=\"mr-3\"\n                    [innerHTML]=\"sanitizeIcon(item.icon)\"\n                  ></span>\n                  {{ item.label }}\n                  <span *ngIf=\"item.badge\" [class]=\"getBadgeClasses()\">\n                    {{ item.badge }}\n                  </span>\n                </span>\n                <span class=\"ml-auto\">\n                  <svg\n                    [class]=\"item.active ? 'transform rotate-180' : ''\"\n                    class=\"w-4 h-4 transition-transform\"\n                    fill=\"none\"\n                    viewBox=\"0 0 24 24\"\n                    stroke=\"currentColor\"\n                  >\n                    <path\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                      stroke-width=\"2\"\n                      d=\"M19 9l-7 7-7-7\"\n                    />\n                  </svg>\n                </span>\n              </button>\n\n              <!-- Submenu -->\n              <div *ngIf=\"item.active\" class=\"pl-4 space-y-1\">\n                <a\n                  *ngFor=\"let child of item.children\"\n                  [href]=\"child.href\"\n                  [class]=\"getSubmenuClasses(child.active)\"\n                >\n                  <span class=\"flex items-center justify-between w-full\">\n                    <span class=\"flex items-center\">\n                      <span\n                        *ngIf=\"child.leftIcon\"\n                        class=\"mr-2\"\n                        [innerHTML]=\"sanitizeIcon(child.leftIcon)\"\n                      ></span>\n                      <span\n                        *ngIf=\"child.icon\"\n                        class=\"mr-3\"\n                        [innerHTML]=\"sanitizeIcon(child.icon)\"\n                      ></span>\n                      {{ child.label }}\n                    </span>\n                    <span *ngIf=\"child.badge\" [class]=\"getBadgeClasses()\">\n                      {{ child.badge }}\n                    </span>\n                  </span>\n                </a>\n              </div>\n            </div>\n\n            <!-- Single item -->\n            <ng-template #singleItem>\n              <a [href]=\"item.href\" [class]=\"getMenuItemClasses(item.active)\">\n                <span class=\"flex items-center justify-between w-full\">\n                  <span class=\"flex items-center\">\n                    <span\n                      *ngIf=\"item.leftIcon\"\n                      class=\"mr-2\"\n                      [innerHTML]=\"sanitizeIcon(item.leftIcon)\"\n                    ></span>\n                    <span\n                      *ngIf=\"item.icon\"\n                      class=\"mr-3\"\n                      [innerHTML]=\"sanitizeIcon(item.icon)\"\n                    ></span>\n                    {{ item.label }}\n                  </span>\n                  <span *ngIf=\"item.badge\" [class]=\"getBadgeClasses()\">\n                    {{ item.badge }}\n                  </span>\n                </span>\n              </a>\n            </ng-template>\n          </ng-container>\n        </nav>\n      </div>\n    </div>\n  `,\n})\nexport class SidemenuComponent {\n  @Input() variant: 'light' | 'dark' = 'light';\n  @Input() brand: string = 'Dashboard';\n  @Input() menuItems: MenuItem[] = [];\n  @Input() collapsed: boolean = false;\n\n  constructor(private sanitizer: DomSanitizer) {}\n\n  sanitizeIcon(icon: string): SafeHtml {\n    return this.sanitizer.bypassSecurityTrustHtml(icon);\n  }\n\n  get containerClasses(): string {\n    const baseClasses = 'flex flex-col w-64 transition-all duration-300';\n    return this.variant === 'light'\n      ? `${baseClasses} bg-white border-r`\n      : `${baseClasses} bg-gray-800 border-gray-700`;\n  }\n\n  getMenuItemClasses(isActive: boolean = false): string {\n    const baseClasses =\n      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-blue-100 text-blue-700`\n        : `${baseClasses} text-gray-700 hover:bg-gray-100`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-900 text-white`\n        : `${baseClasses} text-gray-300 hover:bg-gray-700 hover:text-white`;\n    }\n  }\n\n  getParentMenuClasses(isActive: boolean = false): string {\n    const baseClasses =\n      'flex items-center justify-between w-full px-4 py-2 text-sm rounded-md transition-colors';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-gray-100 text-gray-900`\n        : `${baseClasses} text-gray-700 hover:bg-gray-100`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-700 text-white`\n        : `${baseClasses} text-gray-300 hover:bg-gray-700 hover:text-white`;\n    }\n  }\n\n  getSubmenuClasses(isActive: boolean = false): string {\n    const baseClasses =\n      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-blue-50 text-blue-700`\n        : `${baseClasses} text-gray-600 hover:bg-gray-50`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-700 text-white`\n        : `${baseClasses} text-gray-400 hover:bg-gray-700 hover:text-white`;\n    }\n  }\n\n  getBadgeClasses(): string {\n    const baseClasses = 'ml-2 px-2 py-0.5 text-xs font-medium rounded-full';\n    return this.variant === 'light'\n      ? `${baseClasses} bg-blue-100 text-blue-800`\n      : `${baseClasses} bg-gray-700 text-gray-200`;\n  }\n\n  toggleSubmenu(item: MenuItem): void {\n    item.active = !item.active;\n  }\n}\n",
+      "sourceCode": "export interface ElementProps {\n  disabled?: boolean;\n  [key: string]: unknown;\n}\n\n/**\n * Adapts props for accessibility based on the component type\n * @param props The original props object\n * @param elementType The type of element to adapt props for\n * @returns The adapted props with appropriate accessibility attributes\n */\nexport function adaptPropsForA11y(\n  props: ElementProps,\n  elementType: string,\n): ElementProps {\n  const { disabled, ...rest } = props;\n\n  // For non-button elements, use aria-disabled instead of the disabled attribute\n  if (\n    disabled &&\n    elementType !== \"button\" &&\n    elementType !== \"input\" &&\n    elementType !== \"select\" &&\n    elementType !== \"textarea\"\n  ) {\n    return {\n      \"aria-disabled\": \"true\",\n      ...rest,\n    };\n  }\n\n  return props;\n}\n",
       "properties": [
         {
-          "name": "active",
+          "name": "disabled",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "boolean",
           "indexKey": "",
           "optional": true,
           "description": "",
-          "line": 10
-        },
-        {
-          "name": "badge",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": true,
-          "description": "",
-          "line": 12
-        },
-        {
-          "name": "children",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "MenuItem[]",
-          "indexKey": "",
-          "optional": true,
-          "description": "",
-          "line": 11
-        },
-        {
-          "name": "href",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 9
-        },
-        {
-          "name": "icon",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": true,
-          "description": "",
-          "line": 7
-        },
-        {
-          "name": "label",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 6
-        },
-        {
-          "name": "leftIcon",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": true,
-          "description": "",
-          "line": 8
+          "line": 5
         }
       ],
-      "indexSignatures": [],
-      "kind": 171,
-      "methods": [],
-      "extends": []
-    },
-    {
-      "name": "User",
-      "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
-      "file": "src/stories/user.ts",
-      "deprecated": false,
-      "deprecationMessage": "",
-      "type": "interface",
-      "sourceCode": "export interface User {\n  name: string;\n}\n",
-      "properties": [
+      "indexSignatures": [
         {
-          "name": "name",
+          "id": "index-declaration-5968d431215f1670d768459bf0d99515180f37cfa47b32e4773e2cdcbe4834bd6155c08bb6fe201ff754754b6cbe3daa4080d4d138a604189139aa03cf356ebd",
+          "args": [
+            {
+              "name": "key",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "",
+          "line": 5,
           "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 2
+          "deprecationMessage": ""
         }
       ],
-      "indexSignatures": [],
-      "kind": 171,
+      "kind": 181,
+      "description": "<p>Properties that can be passed to an element</p>\n",
+      "rawdescription": "\n\nProperties that can be passed to an element\n",
       "methods": [],
       "extends": []
     }
@@ -120,7 +53,7 @@
   "components": [
     {
       "name": "AppComponent",
-      "id": "component-AppComponent-ecc252aebe215a2c17e6bc801755c632b205e2e193e7ee2aa8c7beea3c62a143212ac3f0fffb19b33da031ccae84a41fe6dea6a8af8312598c5dcd5870aa9f41",
+      "id": "component-AppComponent-af13274b0df226ff25d35289806304eeee09c2fdfdd29cdcb87ce710aea3d5931c2d7b378f342fd67de3cb0648628f2c6734e1a719dc6dbecd4ca03c050d550a",
       "file": "src/app/app.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -138,14 +71,14 @@
       "propertiesClass": [
         {
           "name": "title",
-          "defaultValue": "'angular-xui'",
+          "defaultValue": "\"angular-xui\"",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 13
+          "line": 11
         }
       ],
       "methodsClass": [],
@@ -157,159 +90,23 @@
       "imports": [
         {
           "name": "RouterOutlet"
-        },
-        {
-          "name": "ButtonComponent",
-          "type": "component"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { ButtonComponent } from './components/button/button.component';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [RouterOutlet, ButtonComponent],\n  templateUrl: './app.component.html',\n  styleUrl: './app.component.scss',\n})\nexport class AppComponent {\n  title = 'angular-xui';\n}\n",
-      "styleUrl": "./app.component.scss",
+      "sourceCode": "import { Component } from \"@angular/core\";\nimport { RouterOutlet } from \"@angular/router\";\n\n@Component({\n  selector: \"app-root\",\n  standalone: true,\n  imports: [RouterOutlet],\n  templateUrl: \"./app.component.html\",\n})\nexport class AppComponent {\n  title = \"angular-xui\";\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n\n<style>\n  :host {\n    --bright-blue: oklch(51.01% 0.274 263.83);\n    --electric-violet: oklch(53.18% 0.28 296.97);\n    --french-violet: oklch(47.66% 0.246 305.88);\n    --vivid-pink: oklch(69.02% 0.277 332.77);\n    --hot-red: oklch(61.42% 0.238 15.34);\n    --orange-red: oklch(63.32% 0.24 31.68);\n\n    --gray-900: oklch(19.37% 0.006 300.98);\n    --gray-700: oklch(36.98% 0.014 302.71);\n    --gray-400: oklch(70.9% 0.015 304.04);\n\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\n      180deg,\n      var(--orange-red) 0%,\n      var(--vivid-pink) 50%,\n      var(--electric-violet) 100%\n    );\n\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\n      90deg,\n      var(--orange-red) 0%,\n      var(--vivid-pink) 50%,\n      var(--electric-violet) 100%\n    );\n\n    --pill-accent: var(--bright-blue);\n\n    font-family:\n      \"Inter\",\n      -apple-system,\n      BlinkMacSystemFont,\n      \"Segoe UI\",\n      Roboto,\n      Helvetica,\n      Arial,\n      sans-serif,\n      \"Apple Color Emoji\",\n      \"Segoe UI Emoji\",\n      \"Segoe UI Symbol\";\n    box-sizing: border-box;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n\n  h1 {\n    font-size: 3.125rem;\n    color: var(--gray-900);\n    font-weight: 500;\n    line-height: 100%;\n    letter-spacing: -0.125rem;\n    margin: 0;\n    font-family:\n      \"Inter Tight\",\n      -apple-system,\n      BlinkMacSystemFont,\n      \"Segoe UI\",\n      Roboto,\n      Helvetica,\n      Arial,\n      sans-serif,\n      \"Apple Color Emoji\",\n      \"Segoe UI Emoji\",\n      \"Segoe UI Symbol\";\n  }\n\n  p {\n    margin: 0;\n    color: var(--gray-700);\n  }\n\n  main {\n    width: 100%;\n    min-height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding: 1rem;\n    box-sizing: inherit;\n    position: relative;\n  }\n\n  .angular-logo {\n    max-width: 9.2rem;\n  }\n\n  .content {\n    display: flex;\n    justify-content: space-around;\n    width: 100%;\n    max-width: 700px;\n    margin-bottom: 3rem;\n  }\n\n  .content h1 {\n    margin-top: 1.75rem;\n  }\n\n  .content p {\n    margin-top: 1.5rem;\n  }\n\n  .divider {\n    width: 1px;\n    background: var(--red-to-pink-to-purple-vertical-gradient);\n    margin-inline: 0.5rem;\n  }\n\n  .pill-group {\n    display: flex;\n    flex-direction: column;\n    align-items: start;\n    flex-wrap: wrap;\n    gap: 1.25rem;\n  }\n\n  .pill {\n    display: flex;\n    align-items: center;\n    --pill-accent: var(--bright-blue);\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\n    color: var(--pill-accent);\n    padding-inline: 0.75rem;\n    padding-block: 0.375rem;\n    border-radius: 2.75rem;\n    border: 0;\n    transition: background 0.3s ease;\n    font-family: var(--inter-font);\n    font-size: 0.875rem;\n    font-style: normal;\n    font-weight: 500;\n    line-height: 1.4rem;\n    letter-spacing: -0.00875rem;\n    text-decoration: none;\n  }\n\n  .pill:hover {\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\n  }\n\n  .pill-group .pill:nth-child(6n + 1) {\n    --pill-accent: var(--bright-blue);\n  }\n  .pill-group .pill:nth-child(6n + 2) {\n    --pill-accent: var(--french-violet);\n  }\n  .pill-group .pill:nth-child(6n + 3),\n  .pill-group .pill:nth-child(6n + 4),\n  .pill-group .pill:nth-child(6n + 5) {\n    --pill-accent: var(--hot-red);\n  }\n\n  .pill-group svg {\n    margin-inline-start: 0.25rem;\n  }\n\n  .social-links {\n    display: flex;\n    align-items: center;\n    gap: 0.73rem;\n    margin-top: 1.5rem;\n  }\n\n  .social-links path {\n    transition: fill 0.3s ease;\n    fill: var(--gray-400);\n  }\n\n  .social-links a:hover svg path {\n    fill: var(--gray-900);\n  }\n\n  @media screen and (max-width: 650px) {\n    .content {\n      flex-direction: column;\n      width: max-content;\n    }\n\n    .divider {\n      height: 1px;\n      width: 100%;\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\n      margin-block: 1.5rem;\n    }\n  }\n</style>\n\n<div class=\"p-8 bg-gray-100 min-h-screen\">\n  <h1 class=\"text-4xl font-bold text-blue-600\">Welcome to {{ title }}</h1>\n  <p class=\"mt-4 text-gray-600\">Your Angular app with Tailwind CSS is ready!</p>\n  <div class=\"mt-4 space-x-4\">\n    <app-button label=\"Primary Button\" variant=\"primary\"></app-button>\n    <app-button\n      label=\"With Icon\"\n      variant=\"secondary\"\n      iconRight=\"→\"\n    ></app-button>\n    <app-button label=\"Outline Button\" variant=\"outline\"></app-button>\n  </div>\n</div>\n<router-outlet />\n\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n"
+      "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n\n<div class=\"min-h-screen bg-gray-100 p-8\">\n  <h1 class=\"text-4xl font-bold text-blue-600\">Welcome to {{ title }}</h1>\n  <p class=\"mt-4 text-gray-600\">Your Angular app with Tailwind CSS is ready!</p>\n</div>\n<router-outlet />\n\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n"
     },
     {
       "name": "ButtonComponent",
-      "id": "component-ButtonComponent-928264c85ce4cbbe032ee2fb496ca872d6040f8f1d6f028c36049c3c6fe4e753e62387040232a06c6a06d9b5457c42294f2ea247101b9950f9a6c0bda3999704",
-      "file": "src/stories/button.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "storybook-button",
-      "styleUrls": ["./button.css"],
-      "styles": [],
-      "template": "<button   type=\"button\"\n   (click)=\"buttonClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "backgroundColor",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "rawdescription": "\nWhat background color to use",
-          "description": "<p>What background color to use</p>\n",
-          "line": 25,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "label",
-          "defaultValue": "'Button'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "pos": 778,
-              "end": 791,
-              "kind": 327,
-              "id": 0,
-              "flags": 16842752,
-              "modifierFlagsCache": 0,
-              "transformFlags": 0,
-              "tagName": {
-                "pos": 779,
-                "end": 787,
-                "kind": 80,
-                "id": 0,
-                "flags": 16842752,
-                "transformFlags": 0,
-                "escapedText": "required"
-              },
-              "comment": ""
-            }
-          ],
-          "rawdescription": "\n\nButton contents\n\n",
-          "description": "<p>Button contents</p>\n",
-          "line": 37,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "primary",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "rawdescription": "\nIs this the principal call to action on the page?",
-          "description": "<p>Is this the principal call to action on the page?</p>\n",
-          "line": 21,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "size",
-          "defaultValue": "'medium'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "rawdescription": "\nHow large should the button be?",
-          "description": "<p>How large should the button be?</p>\n",
-          "line": 29,
-          "type": "\"small\" | \"medium\" | \"large\"",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [
-        {
-          "name": "buttonClick",
-          "defaultValue": "new EventEmitter<Event>()",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "rawdescription": "\nOptional click handler",
-          "description": "<p>Optional click handler</p>\n",
-          "line": 41,
-          "type": "EventEmitter"
-        }
-      ],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n    type=\"button\"\n    (click)=\"buttonClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  buttonClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary\n      ? 'storybook-button--primary'\n      : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": [
-        {
-          "data": ".storybook-button {\n  display: inline-block;\n  cursor: pointer;\n  border: 0;\n  border-radius: 3em;\n  font-weight: 700;\n  line-height: 1;\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n.storybook-button--primary {\n  background-color: #555ab9;\n  color: white;\n}\n.storybook-button--secondary {\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n  background-color: transparent;\n  color: #333;\n}\n.storybook-button--small {\n  padding: 10px 16px;\n  font-size: 12px;\n}\n.storybook-button--medium {\n  padding: 11px 20px;\n  font-size: 14px;\n}\n.storybook-button--large {\n  padding: 12px 24px;\n  font-size: 16px;\n}\n",
-          "styleUrl": "./button.css"
-        }
-      ],
-      "stylesData": "",
-      "extends": [],
-      "accessors": {
-        "classes": {
-          "name": "classes",
-          "getSignature": {
-            "name": "classes",
-            "type": "[]",
-            "returnType": "string[]",
-            "line": 43
-          }
-        }
-      }
-    },
-    {
-      "name": "ButtonComponent",
-      "id": "component-ButtonComponent-5b2c35343c27712313ad2f11959dd0d6516d4ffadb32055f06986be5e8e12066d8f9f7f143d8f3d9889690ca3cce49459226bd73c8fae0875bf6ea22770951b5-1",
-      "file": "src/app/components/button/button.component.ts",
+      "id": "component-ButtonComponent-6a2513b35084b3edd143f890e0efd52ad6a485019dcd335bf939c5380ed23d82d933d304b0bb8d0fbd656720e2923759038eb00b00fafe97d67ce9acb8918d95",
+      "file": "src/app/components/inputs/button/button.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -318,52 +115,146 @@
       "selector": "app-button",
       "styleUrls": [],
       "styles": [],
-      "template": "<button\n  [class]=\"buttonClasses\"\n  [disabled]=\"disabled\"\n  (click)=\"handleClick()\"\n>\n  <span class=\"flex items-center gap-2\">\n    <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n    <ng-content></ng-content>\n    <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n  </span>\n</button>\n",
-      "templateUrl": [],
+      "templateUrl": ["./button.component.html"],
       "viewProviders": [],
       "hostDirectives": [],
       "inputsClass": [
+        {
+          "name": "color",
+          "defaultValue": "\"primary\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 23,
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "decorators": []
+        },
+        {
+          "name": "component",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 37,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "customLoadingIndicator",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 44,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
         {
           "name": "disabled",
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 47,
+          "line": 32,
           "type": "boolean",
           "decorators": []
         },
         {
-          "name": "iconLeft",
+          "name": "disableElevation",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 48,
+          "line": 36,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "endIcon",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 43,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "fullWidth",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 35,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "href",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 39,
           "type": "string",
           "decorators": []
         },
         {
-          "name": "iconRight",
+          "name": "loading",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 49,
+          "line": 33,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "loadingPosition",
+          "defaultValue": "\"center\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 34,
+          "type": "\"start\" | \"center\" | \"end\"",
+          "decorators": []
+        },
+        {
+          "name": "role",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 41,
           "type": "string",
           "decorators": []
         },
         {
           "name": "size",
-          "defaultValue": "'medium'",
+          "defaultValue": "\"medium\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 46,
+          "line": 31,
           "type": "\"small\" | \"medium\" | \"large\"",
           "decorators": []
         },
         {
-          "name": "variant",
-          "defaultValue": "'primary'",
+          "name": "startIcon",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 45,
-          "type": "\"primary\" | \"secondary\" | \"outline\" | \"danger\"",
+          "line": 42,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "target",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 40,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "type",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 38,
+          "type": "\"button\" | \"submit\" | \"reset\"",
+          "decorators": []
+        },
+        {
+          "name": "variant",
+          "defaultValue": "\"contained\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 22,
+          "type": "\"text\" | \"contained\" | \"outlined\"",
           "decorators": []
         }
       ],
@@ -373,7 +264,7 @@
           "defaultValue": "new EventEmitter<void>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 50,
+          "line": 45,
           "type": "EventEmitter"
         }
       ],
@@ -385,7 +276,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 56,
+          "line": 61,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -404,398 +295,300 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { cva } from 'class-variance-authority';\n\nconst buttonVariants = cva('px-4 py-2 rounded-md', {\n  variants: {\n    variant: {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700',\n      outline:\n        'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',\n      danger: 'bg-red-600 text-white hover:bg-red-700',\n    },\n    size: {\n      small: 'text-sm',\n      medium: 'text-base',\n      large: 'text-lg',\n    },\n  },\n  defaultVariants: {\n    variant: 'primary',\n    size: 'medium',\n  },\n});\n\n@Component({\n  selector: 'app-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <button\n      [class]=\"buttonClasses\"\n      [disabled]=\"disabled\"\n      (click)=\"handleClick()\"\n    >\n      <span class=\"flex items-center gap-2\">\n        <span *ngIf=\"iconLeft\" class=\"icon-left\">{{ iconLeft }}</span>\n        <ng-content></ng-content>\n        <span *ngIf=\"iconRight\" class=\"icon-right\">{{ iconRight }}</span>\n      </span>\n    </button>\n  `,\n})\nexport class ButtonComponent {\n  @Input() variant: 'primary' | 'secondary' | 'outline' | 'danger' = 'primary';\n  @Input() size: 'small' | 'medium' | 'large' = 'medium';\n  @Input() disabled: boolean = false;\n  @Input() iconLeft?: string;\n  @Input() iconRight?: string;\n  @Output() clicked = new EventEmitter<void>();\n\n  get buttonClasses(): string {\n    return buttonVariants({ variant: this.variant, size: this.size });\n  }\n\n  handleClick() {\n    this.clicked.emit();\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  TemplateRef,\n  ChangeDetectionStrategy,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { buttonVariants } from \"./variants\";\nimport { ButtonBaseProps } from \"./button.types\";\n\n@Component({\n  selector: \"app-button\",\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  templateUrl: \"./button.component.html\",\n  styleUrls: [],\n})\nexport class ButtonComponent implements ButtonBaseProps {\n  @Input() variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\n  @Input() color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  @Input() size: \"small\" | \"medium\" | \"large\" = \"medium\";\n  @Input() disabled: boolean = false;\n  @Input() loading: boolean = false;\n  @Input() loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\n  @Input() fullWidth: boolean = false;\n  @Input() disableElevation: boolean = false;\n  @Input() component: string = \"button\";\n  @Input() type: \"button\" | \"submit\" | \"reset\" = \"button\";\n  @Input() href?: string;\n  @Input() target?: string;\n  @Input() role?: string;\n  @Input() startIcon?: TemplateRef<unknown>;\n  @Input() endIcon?: TemplateRef<unknown>;\n  @Input() customLoadingIndicator?: TemplateRef<unknown>;\n  @Output() clicked = new EventEmitter<void>();\n\n  get isDisabled(): boolean {\n    return this.disabled || this.loading;\n  }\n\n  get buttonClasses(): string {\n    return buttonVariants({\n      variant: this.variant,\n      color: this.color,\n      size: this.size,\n      fullWidth: this.fullWidth,\n      disableElevation: this.disableElevation,\n    });\n  }\n\n  handleClick() {\n    if (!this.isDisabled) {\n      this.clicked.emit();\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
+      "implements": ["ButtonBaseProps"],
       "accessors": {
+        "isDisabled": {
+          "name": "isDisabled",
+          "getSignature": {
+            "name": "isDisabled",
+            "type": "boolean",
+            "returnType": "boolean",
+            "line": 47
+          }
+        },
         "buttonClasses": {
           "name": "buttonClasses",
           "getSignature": {
             "name": "buttonClasses",
             "type": "string",
             "returnType": "string",
-            "line": 52
+            "line": 51
           }
         }
       },
-      "isDuplicate": true,
-      "duplicateId": 1,
-      "duplicateName": "ButtonComponent-1"
+      "templateData": "<ng-container *ngIf=\"component === 'button' || !component; else customElement\">\n  <button\n    [type]=\"type\"\n    [class]=\"buttonClasses\"\n    [disabled]=\"isDisabled\"\n    (click)=\"handleClick()\"\n  >\n    <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\n  </button>\n</ng-container>\n\n<ng-template #customElement>\n  <ng-container [ngSwitch]=\"component\">\n    <a\n      *ngSwitchCase=\"'a'\"\n      [href]=\"href || '#'\"\n      [target]=\"target\"\n      [class]=\"buttonClasses\"\n      [attr.aria-disabled]=\"isDisabled ? 'true' : null\"\n      [attr.role]=\"role || 'button'\"\n      (click)=\"isDisabled ? $event.preventDefault() : handleClick()\"\n    >\n      <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\n    </a>\n\n    <div\n      *ngSwitchDefault\n      [class]=\"buttonClasses\"\n      [attr.aria-disabled]=\"isDisabled ? 'true' : null\"\n      [attr.role]=\"role || 'button'\"\n      (click)=\"!isDisabled && handleClick()\"\n    >\n      <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\n    </div>\n  </ng-container>\n</ng-template>\n\n<ng-template #contentTemplate>\n  <ng-container *ngIf=\"loading && loadingPosition === 'start'\">\n    <span class=\"mr-2 inline-flex items-center\">\n      <ng-container\n        *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\n      >\n        <ng-container *ngTemplateOutlet=\"customLoadingIndicator\"></ng-container>\n      </ng-container>\n    </span>\n  </ng-container>\n\n  <ng-container *ngIf=\"!loading && startIcon\">\n    <span class=\"mr-2\">\n      <ng-container *ngTemplateOutlet=\"startIcon\"></ng-container>\n    </span>\n  </ng-container>\n\n  <ng-container *ngIf=\"loading && loadingPosition === 'center'\">\n    <span class=\"flex items-center gap-2\">\n      <span class=\"inline-flex items-center\">\n        <ng-container\n          *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\n        >\n          <ng-container\n            *ngTemplateOutlet=\"customLoadingIndicator\"\n          ></ng-container>\n        </ng-container>\n      </span>\n      <ng-content></ng-content>\n    </span>\n  </ng-container>\n\n  <ng-container *ngIf=\"!(loading && loadingPosition === 'center')\">\n    <ng-content></ng-content>\n  </ng-container>\n\n  <ng-container *ngIf=\"!loading && endIcon\">\n    <span class=\"ml-2\">\n      <ng-container *ngTemplateOutlet=\"endIcon\"></ng-container>\n    </span>\n  </ng-container>\n\n  <ng-container *ngIf=\"loading && loadingPosition === 'end'\">\n    <span class=\"ml-2 inline-flex items-center\">\n      <ng-container\n        *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\n      >\n        <ng-container *ngTemplateOutlet=\"customLoadingIndicator\"></ng-container>\n      </ng-container>\n    </span>\n  </ng-container>\n</ng-template>\n\n<ng-template #defaultLoadingIndicator>\n  <span class=\"h-4 w-4 animate-spin\">⌛</span>\n</ng-template>\n"
     },
     {
-      "name": "CardComponent",
-      "id": "component-CardComponent-c73d5734fb2dd50d1d1e3efec325c2b45339196c10aab0a2d9250129893dbad2a3dcc89275bcf2e921041a05bd1de2412e418acdf8252cb1a4735a1a7f3b3339",
-      "file": "src/app/components/card/card.component.ts",
+      "name": "TestButtonHostComponent",
+      "id": "component-TestButtonHostComponent-f2b1dfa8d0cad1868ccb771a9201b4bc593a359175d2d8007e1879f449c01c12964222cc96c9005df7a3766d9ab56dabdcf5ed5a6e8e135f55b5ae6e90f78a4c",
+      "file": "src/app/components/inputs/button/button.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
       "providers": [],
-      "selector": "app-card",
+      "selector": "test-button-host",
       "styleUrls": [],
       "styles": [],
-      "template": "<div [class]=\"cardClasses\" [ngStyle]=\"backgroundImageStyle\">\n  <!-- Background Image Placeholder -->\n  <div\n    *ngIf=\"shouldShowImage('background')\"\n    class=\"absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n  >\n    <svg\n      class=\"w-12 h-12 text-gray-400\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      viewBox=\"0 0 24 24\"\n    >\n      <path\n        stroke-linecap=\"round\"\n        stroke-linejoin=\"round\"\n        stroke-width=\"2\"\n        d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n      />\n    </svg>\n  </div>\n\n  <div [class]=\"containerClasses\">\n    <!-- Left Image -->\n    <div *ngIf=\"shouldShowImage('left')\" [class]=\"mediaClasses\">\n      <div\n        *ngIf=\"!imageUrl\"\n        class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n      >\n        <svg\n          class=\"w-12 h-12 text-gray-400\"\n          fill=\"none\"\n          stroke=\"currentColor\"\n          viewBox=\"0 0 24 24\"\n        >\n          <path\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n            stroke-width=\"2\"\n            d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n          />\n        </svg>\n      </div>\n      <img\n        *ngIf=\"imageUrl\"\n        [src]=\"imageUrl\"\n        [alt]=\"imageAlt\"\n        class=\"w-full h-full object-cover\"\n      />\n    </div>\n\n    <div class=\"flex flex-col flex-1 relative\">\n      <!-- Top Image -->\n      <div *ngIf=\"shouldShowImage('top')\" [class]=\"mediaClasses\">\n        <div\n          *ngIf=\"!imageUrl\"\n          class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n        >\n          <svg\n            class=\"w-12 h-12 text-gray-400\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            viewBox=\"0 0 24 24\"\n          >\n            <path\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n              stroke-width=\"2\"\n              d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n            />\n          </svg>\n        </div>\n        <img\n          *ngIf=\"imageUrl\"\n          [src]=\"imageUrl\"\n          [alt]=\"imageAlt\"\n          class=\"w-full h-full object-cover\"\n        />\n      </div>\n\n      <!-- Card Header -->\n      <div *ngIf=\"title || subtitle\" [class]=\"headerClasses\">\n        <div *ngIf=\"title\" class=\"text-lg font-semibold\">{{ title }}</div>\n        <div\n          *ngIf=\"subtitle\"\n          class=\"text-sm text-gray-600 dark:text-gray-400\"\n        >\n          {{ subtitle }}\n        </div>\n      </div>\n\n      <!-- Card Content -->\n      <div [class]=\"contentClasses\">\n        <ng-content></ng-content>\n      </div>\n\n      <!-- Card Footer -->\n      <div *ngIf=\"footer\" [class]=\"footerClasses\">\n        <ng-content select=\"[footer]\"></ng-content>\n      </div>\n\n      <!-- Bottom Image -->\n      <div *ngIf=\"shouldShowImage('bottom')\" [class]=\"mediaClasses\">\n        <div\n          *ngIf=\"!imageUrl\"\n          class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n        >\n          <svg\n            class=\"w-12 h-12 text-gray-400\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            viewBox=\"0 0 24 24\"\n          >\n            <path\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n              stroke-width=\"2\"\n              d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n            />\n          </svg>\n        </div>\n        <img\n          *ngIf=\"imageUrl\"\n          [src]=\"imageUrl\"\n          [alt]=\"imageAlt\"\n          class=\"w-full h-full object-cover\"\n        />\n      </div>\n    </div>\n\n    <!-- Right Image -->\n    <div *ngIf=\"shouldShowImage('right')\" [class]=\"mediaClasses\">\n      <div\n        *ngIf=\"!imageUrl\"\n        class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n      >\n        <svg\n          class=\"w-12 h-12 text-gray-400\"\n          fill=\"none\"\n          stroke=\"currentColor\"\n          viewBox=\"0 0 24 24\"\n        >\n          <path\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n            stroke-width=\"2\"\n            d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n          />\n        </svg>\n      </div>\n      <img\n        *ngIf=\"imageUrl\"\n        [src]=\"imageUrl\"\n        [alt]=\"imageAlt\"\n        class=\"w-full h-full object-cover\"\n      />\n    </div>\n  </div>\n</div>\n",
+      "template": "<ng-template #startIconTpl>\n  <span data-testid=\"start-icon\">→</span>\n</ng-template>\n\n<ng-template #endIconTpl>\n  <span data-testid=\"end-icon\">←</span>\n</ng-template>\n\n<ng-template #customLoaderTpl>\n  <span data-testid=\"custom-loader\">Loading...</span>\n</ng-template>\n\n<app-button\n  [variant]=\"variant\"\n  [color]=\"color\"\n  [size]=\"size\"\n  [disabled]=\"disabled\"\n  [loading]=\"loading\"\n  [loadingPosition]=\"loadingPosition\"\n  [fullWidth]=\"fullWidth\"\n  [disableElevation]=\"disableElevation\"\n  [component]=\"component\"\n  [href]=\"href\"\n  [target]=\"target\"\n  [type]=\"type\"\n  [role]=\"role\"\n  [startIcon]=\"startIcon ? startIconTpl : null\"\n  [endIcon]=\"endIcon ? endIconTpl : null\"\n  [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n  (clicked)=\"onClick()\"\n>\n  {{ content }}\n</app-button>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
-      "inputsClass": [
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
         {
-          "name": "footer",
+          "name": "color",
+          "defaultValue": "\"primary\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 52
+        },
+        {
+          "name": "component",
+          "defaultValue": "\"button\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 66
+        },
+        {
+          "name": "content",
+          "defaultValue": "\"Button Text\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 71
+        },
+        {
+          "name": "customLoaderTpl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 49,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'customLoaderTpl'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "customLoadingIndicator",
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 183,
           "type": "boolean",
-          "decorators": []
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 74
         },
         {
-          "name": "imageAlt",
+          "name": "disabled",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 180,
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 61
+        },
+        {
+          "name": "disableElevation",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 65
+        },
+        {
+          "name": "endIcon",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 73
+        },
+        {
+          "name": "endIconTpl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 48,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'endIconTpl'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "fullWidth",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 64
+        },
+        {
+          "name": "href",
+          "deprecated": false,
+          "deprecationMessage": "",
           "type": "string",
-          "decorators": []
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 67
         },
         {
-          "name": "imagePosition",
-          "defaultValue": "'top'",
+          "name": "loading",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 181,
-          "type": "ImagePosition",
-          "decorators": []
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 62
         },
         {
-          "name": "imageSize",
-          "defaultValue": "'medium'",
+          "name": "loadingPosition",
+          "defaultValue": "\"center\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 182,
-          "type": "ImageSize",
-          "decorators": []
+          "type": "\"start\" | \"center\" | \"end\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 63
         },
         {
-          "name": "imageUrl",
+          "name": "onClick",
+          "defaultValue": "cy.stub().as(\"onClickStub\")",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 179,
+          "type": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 76
+        },
+        {
+          "name": "role",
+          "deprecated": false,
+          "deprecationMessage": "",
           "type": "string",
-          "decorators": []
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 70
         },
         {
-          "name": "padding",
-          "defaultValue": "'medium'",
+          "name": "size",
+          "defaultValue": "\"medium\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 176,
-          "type": "CardPadding",
-          "decorators": []
+          "type": "\"small\" | \"medium\" | \"large\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 60
         },
         {
-          "name": "subtitle",
+          "name": "startIcon",
+          "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 178,
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 72
+        },
+        {
+          "name": "startIconTpl",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 47,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'startIconTpl'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "target",
+          "deprecated": false,
+          "deprecationMessage": "",
           "type": "string",
-          "decorators": []
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 68
         },
         {
-          "name": "title",
+          "name": "type",
+          "defaultValue": "\"button\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 177,
-          "type": "string",
-          "decorators": []
+          "type": "\"button\" | \"submit\" | \"reset\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 69
         },
         {
           "name": "variant",
-          "defaultValue": "'basic'",
+          "defaultValue": "\"contained\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 175,
-          "type": "CardVariant",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [
-        {
-          "name": "shouldShowImage",
-          "args": [
-            {
-              "name": "position",
-              "type": "ImagePosition",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
+          "type": "\"text\" | \"contained\" | \"outlined\"",
+          "indexKey": "",
           "optional": false,
-          "returnType": "boolean",
-          "typeParameters": [],
-          "line": 262,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "position",
-              "type": "ImagePosition",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
+          "description": "",
+          "line": 51
         }
       ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype CardVariant = 'basic' | 'bordered' | 'elevated' | 'flat';\ntype CardPadding = 'none' | 'small' | 'medium' | 'large';\ntype ImagePosition = 'top' | 'left' | 'right' | 'bottom' | 'background';\ntype ImageSize = 'small' | 'medium' | 'large' | 'full';\n\n@Component({\n  selector: 'app-card',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div [class]=\"cardClasses\" [ngStyle]=\"backgroundImageStyle\">\n      <!-- Background Image Placeholder -->\n      <div\n        *ngIf=\"shouldShowImage('background')\"\n        class=\"absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n      >\n        <svg\n          class=\"w-12 h-12 text-gray-400\"\n          fill=\"none\"\n          stroke=\"currentColor\"\n          viewBox=\"0 0 24 24\"\n        >\n          <path\n            stroke-linecap=\"round\"\n            stroke-linejoin=\"round\"\n            stroke-width=\"2\"\n            d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n          />\n        </svg>\n      </div>\n\n      <div [class]=\"containerClasses\">\n        <!-- Left Image -->\n        <div *ngIf=\"shouldShowImage('left')\" [class]=\"mediaClasses\">\n          <div\n            *ngIf=\"!imageUrl\"\n            class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n          >\n            <svg\n              class=\"w-12 h-12 text-gray-400\"\n              fill=\"none\"\n              stroke=\"currentColor\"\n              viewBox=\"0 0 24 24\"\n            >\n              <path\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                stroke-width=\"2\"\n                d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n              />\n            </svg>\n          </div>\n          <img\n            *ngIf=\"imageUrl\"\n            [src]=\"imageUrl\"\n            [alt]=\"imageAlt\"\n            class=\"w-full h-full object-cover\"\n          />\n        </div>\n\n        <div class=\"flex flex-col flex-1 relative\">\n          <!-- Top Image -->\n          <div *ngIf=\"shouldShowImage('top')\" [class]=\"mediaClasses\">\n            <div\n              *ngIf=\"!imageUrl\"\n              class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n            >\n              <svg\n                class=\"w-12 h-12 text-gray-400\"\n                fill=\"none\"\n                stroke=\"currentColor\"\n                viewBox=\"0 0 24 24\"\n              >\n                <path\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                  stroke-width=\"2\"\n                  d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n                />\n              </svg>\n            </div>\n            <img\n              *ngIf=\"imageUrl\"\n              [src]=\"imageUrl\"\n              [alt]=\"imageAlt\"\n              class=\"w-full h-full object-cover\"\n            />\n          </div>\n\n          <!-- Card Header -->\n          <div *ngIf=\"title || subtitle\" [class]=\"headerClasses\">\n            <div *ngIf=\"title\" class=\"text-lg font-semibold\">{{ title }}</div>\n            <div\n              *ngIf=\"subtitle\"\n              class=\"text-sm text-gray-600 dark:text-gray-400\"\n            >\n              {{ subtitle }}\n            </div>\n          </div>\n\n          <!-- Card Content -->\n          <div [class]=\"contentClasses\">\n            <ng-content></ng-content>\n          </div>\n\n          <!-- Card Footer -->\n          <div *ngIf=\"footer\" [class]=\"footerClasses\">\n            <ng-content select=\"[footer]\"></ng-content>\n          </div>\n\n          <!-- Bottom Image -->\n          <div *ngIf=\"shouldShowImage('bottom')\" [class]=\"mediaClasses\">\n            <div\n              *ngIf=\"!imageUrl\"\n              class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n            >\n              <svg\n                class=\"w-12 h-12 text-gray-400\"\n                fill=\"none\"\n                stroke=\"currentColor\"\n                viewBox=\"0 0 24 24\"\n              >\n                <path\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                  stroke-width=\"2\"\n                  d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n                />\n              </svg>\n            </div>\n            <img\n              *ngIf=\"imageUrl\"\n              [src]=\"imageUrl\"\n              [alt]=\"imageAlt\"\n              class=\"w-full h-full object-cover\"\n            />\n          </div>\n        </div>\n\n        <!-- Right Image -->\n        <div *ngIf=\"shouldShowImage('right')\" [class]=\"mediaClasses\">\n          <div\n            *ngIf=\"!imageUrl\"\n            class=\"w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center\"\n          >\n            <svg\n              class=\"w-12 h-12 text-gray-400\"\n              fill=\"none\"\n              stroke=\"currentColor\"\n              viewBox=\"0 0 24 24\"\n            >\n              <path\n                stroke-linecap=\"round\"\n                stroke-linejoin=\"round\"\n                stroke-width=\"2\"\n                d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\"\n              />\n            </svg>\n          </div>\n          <img\n            *ngIf=\"imageUrl\"\n            [src]=\"imageUrl\"\n            [alt]=\"imageAlt\"\n            class=\"w-full h-full object-cover\"\n          />\n        </div>\n      </div>\n    </div>\n  `,\n})\nexport class CardComponent {\n  @Input() variant: CardVariant = 'basic';\n  @Input() padding: CardPadding = 'medium';\n  @Input() title?: string;\n  @Input() subtitle?: string;\n  @Input() imageUrl?: string;\n  @Input() imageAlt?: string;\n  @Input() imagePosition: ImagePosition = 'top';\n  @Input() imageSize: ImageSize = 'medium';\n  @Input() footer: boolean = false;\n\n  get containerClasses(): string {\n    return this.imagePosition === 'left' || this.imagePosition === 'right'\n      ? 'flex'\n      : '';\n  }\n\n  get cardClasses(): string {\n    const baseClasses = 'overflow-hidden rounded-lg relative';\n\n    const variantClasses = {\n      basic: 'bg-white dark:bg-gray-800',\n      bordered:\n        'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700',\n      elevated: 'bg-white dark:bg-gray-800 shadow-lg',\n      flat: 'bg-gray-50 dark:bg-gray-900',\n    };\n\n    const backgroundClasses =\n      this.imagePosition === 'background' ? 'text-white relative' : '';\n\n    return `${baseClasses} ${variantClasses[this.variant]} ${backgroundClasses}`;\n  }\n\n  get paddingClasses(): string {\n    return {\n      none: '',\n      small: 'p-2',\n      medium: 'p-4',\n      large: 'p-6',\n    }[this.padding];\n  }\n\n  get headerClasses(): string {\n    return `${this.paddingClasses} border-b border-gray-200 dark:border-gray-700`;\n  }\n\n  get mediaClasses(): string {\n    const baseClasses = 'overflow-hidden';\n\n    if (this.imagePosition === 'left' || this.imagePosition === 'right') {\n      const sizeClasses = {\n        small: 'w-32',\n        medium: 'w-48',\n        large: 'w-64',\n        full: 'w-1/2',\n      };\n      return `${baseClasses} ${sizeClasses[this.imageSize]}`;\n    }\n\n    const heightClasses = {\n      small: 'h-32',\n      medium: 'h-48',\n      large: 'h-64',\n      full: 'aspect-video',\n    };\n    return `${baseClasses} ${heightClasses[this.imageSize]}`;\n  }\n\n  get backgroundImageStyle() {\n    if (this.imagePosition === 'background' && this.imageUrl) {\n      return {\n        'background-image': `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${this.imageUrl})`,\n        'background-size': 'cover',\n        'background-position': 'center',\n      };\n    }\n    return {};\n  }\n\n  get contentClasses(): string {\n    return this.paddingClasses;\n  }\n\n  get footerClasses(): string {\n    return `${this.paddingClasses} border-t border-gray-200 dark:border-gray-700`;\n  }\n\n  shouldShowImage(position: ImagePosition): boolean {\n    return (\n      this.imagePosition === position ||\n      (!this.imageUrl && this.imagePosition === position)\n    );\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": [],
-      "accessors": {
-        "containerClasses": {
-          "name": "containerClasses",
-          "getSignature": {
-            "name": "containerClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 185
-          }
-        },
-        "cardClasses": {
-          "name": "cardClasses",
-          "getSignature": {
-            "name": "cardClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 191
-          }
-        },
-        "paddingClasses": {
-          "name": "paddingClasses",
-          "getSignature": {
-            "name": "paddingClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 208
-          }
-        },
-        "headerClasses": {
-          "name": "headerClasses",
-          "getSignature": {
-            "name": "headerClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 217
-          }
-        },
-        "mediaClasses": {
-          "name": "mediaClasses",
-          "getSignature": {
-            "name": "mediaClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 221
-          }
-        },
-        "backgroundImageStyle": {
-          "name": "backgroundImageStyle",
-          "getSignature": {
-            "name": "backgroundImageStyle",
-            "type": "",
-            "returnType": "",
-            "line": 243
-          }
-        },
-        "contentClasses": {
-          "name": "contentClasses",
-          "getSignature": {
-            "name": "contentClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 254
-          }
-        },
-        "footerClasses": {
-          "name": "footerClasses",
-          "getSignature": {
-            "name": "footerClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 258
-          }
-        }
-      }
-    },
-    {
-      "name": "GridLayoutComponent",
-      "id": "component-GridLayoutComponent-2dbb9836d7fe9d4d6b32432d08a6f5efd719de600245f2cae458f463cb6e8ebe61ca738d43e3de758447ea837890e42ba2bb175c4e466c99561fbd9e33eebda7",
-      "file": "src/app/components/grid/grid-layout.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "app-grid-layout",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<div [class]=\"containerClasses\">\n  <div [class]=\"gridClasses\">\n    <ng-content></ng-content>\n  </div>\n</div>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "cols",
-          "defaultValue": "3",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 17,
-          "type": "\"1\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"12\"",
-          "decorators": []
-        },
-        {
-          "name": "gap",
-          "defaultValue": "'medium'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 18,
-          "type": "\"none\" | \"small\" | \"medium\" | \"large\"",
-          "decorators": []
-        },
-        {
-          "name": "padding",
-          "defaultValue": "'medium'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 19,
-          "type": "\"none\" | \"small\" | \"medium\" | \"large\"",
-          "decorators": []
-        },
-        {
-          "name": "responsive",
-          "defaultValue": "true",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 20,
-          "type": "boolean",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-grid-layout',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div [class]=\"containerClasses\">\n      <div [class]=\"gridClasses\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n  `,\n})\nexport class GridLayoutComponent {\n  @Input() cols: 1 | 2 | 3 | 4 | 5 | 6 | 12 = 3;\n  @Input() gap: 'none' | 'small' | 'medium' | 'large' = 'medium';\n  @Input() padding: 'none' | 'small' | 'medium' | 'large' = 'medium';\n  @Input() responsive: boolean = true;\n\n  get containerClasses(): string {\n    const paddingClasses = {\n      none: '',\n      small: 'p-2',\n      medium: 'p-4',\n      large: 'p-6',\n    };\n\n    return paddingClasses[this.padding];\n  }\n\n  get gridClasses(): string {\n    const baseClasses = 'grid';\n\n    const gapClasses = {\n      none: 'gap-0',\n      small: 'gap-2',\n      medium: 'gap-4',\n      large: 'gap-6',\n    };\n\n    const colClasses = {\n      1: 'grid-cols-1',\n      2: 'grid-cols-2',\n      3: 'grid-cols-3',\n      4: 'grid-cols-4',\n      5: 'grid-cols-5',\n      6: 'grid-cols-6',\n      12: 'grid-cols-12',\n    };\n\n    const responsiveClasses = this.responsive\n      ? 'grid-cols-1 sm:grid-cols-2 md:' + colClasses[this.cols]\n      : colClasses[this.cols];\n\n    return `${baseClasses} ${gapClasses[this.gap]} ${responsiveClasses}`;\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": [],
-      "accessors": {
-        "containerClasses": {
-          "name": "containerClasses",
-          "getSignature": {
-            "name": "containerClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 22
-          }
-        },
-        "gridClasses": {
-          "name": "gridClasses",
-          "getSignature": {
-            "name": "gridClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 33
-          }
-        }
-      }
-    },
-    {
-      "name": "HeaderComponent",
-      "id": "component-HeaderComponent-bb6d048afb708e1b496e909e0105e21185b2346a98bbffb1100c490678ac0e2f18575ab9f358d278e3c58236f46b9aa37239bddc700f0f6afc05a06780d95b8b",
-      "file": "src/stories/header.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "storybook-header",
-      "styleUrls": ["./header.css"],
-      "styles": [],
-      "template": "<header>    <div class=\"storybook-header\">\n      <div>\n        <svg\n          width=\"32\"\n          height=\"32\"\n          viewBox=\"0 0 32 32\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n        >\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (buttonClick)=\"logout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (buttonClick)=\"login.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            [primary]=\"true\"\n            class=\"margin-left\"\n            (buttonClick)=\"createAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "user",
-          "defaultValue": "null",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 74,
-          "type": "User | null",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [
-        {
-          "name": "createAccount",
-          "defaultValue": "new EventEmitter<Event>()",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 83,
-          "type": "EventEmitter"
-        },
-        {
-          "name": "login",
-          "defaultValue": "new EventEmitter<Event>()",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 77,
-          "type": "EventEmitter"
-        },
-        {
-          "name": "logout",
-          "defaultValue": "new EventEmitter<Event>()",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 80,
-          "type": "EventEmitter"
-        }
-      ],
-      "propertiesClass": [],
       "methodsClass": [],
       "deprecated": false,
       "deprecationMessage": "",
@@ -815,782 +608,15 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ButtonComponent } from './button.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-header',\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `<header>\n    <div class=\"storybook-header\">\n      <div>\n        <svg\n          width=\"32\"\n          height=\"32\"\n          viewBox=\"0 0 32 32\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n        >\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (buttonClick)=\"logout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (buttonClick)=\"login.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            [primary]=\"true\"\n            class=\"margin-left\"\n            (buttonClick)=\"createAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  login = new EventEmitter<Event>();\n\n  @Output()\n  logout = new EventEmitter<Event>();\n\n  @Output()\n  createAccount = new EventEmitter<Event>();\n}\n",
+      "sourceCode": "import { ButtonComponent } from \"./button.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { Component, TemplateRef, ViewChild } from \"@angular/core\";\n\n// Helper component to provide template refs for testing\n@Component({\n  selector: \"test-button-host\",\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `\n    <ng-template #startIconTpl>\n      <span data-testid=\"start-icon\">→</span>\n    </ng-template>\n\n    <ng-template #endIconTpl>\n      <span data-testid=\"end-icon\">←</span>\n    </ng-template>\n\n    <ng-template #customLoaderTpl>\n      <span data-testid=\"custom-loader\">Loading...</span>\n    </ng-template>\n\n    <app-button\n      [variant]=\"variant\"\n      [color]=\"color\"\n      [size]=\"size\"\n      [disabled]=\"disabled\"\n      [loading]=\"loading\"\n      [loadingPosition]=\"loadingPosition\"\n      [fullWidth]=\"fullWidth\"\n      [disableElevation]=\"disableElevation\"\n      [component]=\"component\"\n      [href]=\"href\"\n      [target]=\"target\"\n      [type]=\"type\"\n      [role]=\"role\"\n      [startIcon]=\"startIcon ? startIconTpl : null\"\n      [endIcon]=\"endIcon ? endIconTpl : null\"\n      [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n      (clicked)=\"onClick()\"\n    >\n      {{ content }}\n    </app-button>\n  `,\n})\nclass TestButtonHostComponent {\n  @ViewChild(\"startIconTpl\") startIconTpl!: TemplateRef<unknown>;\n  @ViewChild(\"endIconTpl\") endIconTpl!: TemplateRef<unknown>;\n  @ViewChild(\"customLoaderTpl\") customLoaderTpl!: TemplateRef<unknown>;\n\n  variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\n  color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  size: \"small\" | \"medium\" | \"large\" = \"medium\";\n  disabled: boolean = false;\n  loading: boolean = false;\n  loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\n  fullWidth: boolean = false;\n  disableElevation: boolean = false;\n  component: string = \"button\";\n  href?: string;\n  target?: string;\n  type: \"button\" | \"submit\" | \"reset\" = \"button\";\n  role?: string;\n  content: string = \"Button Text\";\n  startIcon: boolean = false;\n  endIcon: boolean = false;\n  customLoadingIndicator: boolean = false;\n\n  onClick = cy.stub().as(\"onClickStub\");\n}\n\ndescribe(\"Button Component\", () => {\n  it(\"renders default button correctly\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        content: \"Click me\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\").and(\"contain.text\", \"Click me\");\n  });\n\n  it(\"renders with different variants\", () => {\n    // Test outlined variant\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        variant: \"outlined\",\n        content: \"Outlined\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"border\");\n\n    // Test text variant with explicitly setting color to inherit\n    // to avoid color settings overriding variant styling\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        variant: \"text\",\n        color: \"inherit\",\n        content: \"Text Button\",\n      },\n    });\n    cy.get(\"button\")\n      .should(\"not.have.class\", \"bg-primary\")\n      .and(\"have.class\", \"bg-transparent\");\n  });\n\n  it(\"renders with different colors\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        color: \"primary\",\n        content: \"Primary\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        color: \"secondary\",\n        content: \"Secondary\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        color: \"error\",\n        content: \"Error\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\");\n  });\n\n  it(\"renders with different sizes\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        size: \"small\",\n        content: \"Small\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"h-8\").and(\"have.class\", \"px-3\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        size: \"large\",\n        content: \"Large\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"h-12\").and(\"have.class\", \"px-6\");\n  });\n\n  it(\"renders as a full width button\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        fullWidth: true,\n        content: \"Full Width\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"w-full\");\n  });\n\n  it(\"disables the button when disabled prop is true\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        disabled: true,\n        content: \"Disabled\",\n      },\n    });\n    cy.get(\"button\").should(\"be.disabled\");\n  });\n\n  it(\"shows loading state\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        content: \"Loading\",\n        loadingPosition: \"center\",\n      },\n    });\n    // Check for the loading spinner character\n    cy.get(\"button\").find(\".animate-spin\").should(\"exist\");\n\n    // Button should be disabled during loading state\n    cy.get(\"button\").should(\"be.disabled\");\n\n    // Button should still be visible\n    cy.get(\"button\").should(\"be.visible\");\n  });\n\n  it(\"renders with loading at different positions\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        loadingPosition: \"start\",\n        content: \"Start\",\n      },\n    });\n    cy.get(\"button .mr-2\").should(\"exist\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        loadingPosition: \"end\",\n        content: \"End\",\n      },\n    });\n    cy.get(\"button .ml-2\").should(\"exist\");\n  });\n\n  it(\"renders with custom loading indicator\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        customLoadingIndicator: true,\n        content: \"Custom Loader\",\n      },\n    });\n    cy.get('[data-testid=\"custom-loader\"]').should(\"exist\");\n  });\n\n  it(\"renders with start icon\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        startIcon: true,\n        content: \"With Start Icon\",\n      },\n    });\n    cy.get('[data-testid=\"start-icon\"]').should(\"exist\");\n    cy.get(\"button\").contains(\"With Start Icon\");\n  });\n\n  it(\"renders with end icon\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        endIcon: true,\n        content: \"With End Icon\",\n      },\n    });\n    cy.get('[data-testid=\"end-icon\"]').should(\"exist\");\n    cy.get(\"button\").contains(\"With End Icon\");\n  });\n\n  it(\"renders as a custom element type\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        component: \"a\",\n        href: \"#test\",\n        content: \"Link Button\",\n      },\n    });\n    cy.get(\"a\")\n      .should(\"have.attr\", \"href\", \"#test\")\n      .and(\"contain.text\", \"Link Button\");\n  });\n\n  it(\"emits clicked event when clicked\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        content: \"Clickable Button\",\n      },\n    });\n    cy.get(\"button\").click();\n    cy.get(\"@onClickStub\").should(\"have.been.calledOnce\");\n  });\n\n  it(\"does not emit clicked event when disabled\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        disabled: true,\n        content: \"Disabled Button\",\n      },\n    });\n    cy.get(\"button\").click({ force: true });\n    cy.get(\"@onClickStub\").should(\"not.have.been.called\");\n  });\n\n  it(\"does not emit clicked event when loading\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        content: \"Loading Button\",\n      },\n    });\n    cy.get(\"button\").click({ force: true });\n    cy.get(\"@onClickStub\").should(\"not.have.been.called\");\n  });\n});\n",
       "assetsDirs": [],
-      "styleUrlsData": [
-        {
-          "data": ".storybook-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.storybook-header svg {\n  display: inline-block;\n  vertical-align: top;\n}\n\n.storybook-header h1 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 6px 0 6px 10px;\n  font-weight: 700;\n  font-size: 20px;\n  line-height: 1;\n}\n\n.storybook-header button + button {\n  margin-left: 10px;\n}\n\n.storybook-header .welcome {\n  margin-right: 10px;\n  color: #333;\n  font-size: 14px;\n}\n",
-          "styleUrl": "./header.css"
-        }
-      ],
+      "styleUrlsData": "",
       "stylesData": "",
       "extends": []
-    },
-    {
-      "name": "NavbarComponent",
-      "id": "component-NavbarComponent-caabeae04f3677ad38237780e0abb42b00b95f12744c99d7d5cbcf806beff863f941fc48f8357575231e1f9109f1b0e6fb8b6bd6533b5113d40ec51b0bcbe0ab",
-      "file": "src/app/components/navbar/navbar.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "app-navbar",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<nav [class]=\"containerClasses\">\n  <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n    <div class=\"flex items-center justify-between h-16\">\n      <!-- Logo/Brand -->\n      <div class=\"flex-shrink-0\">\n        <span class=\"text-xl font-semibold\">{{ brand }}</span>\n      </div>\n\n      <!-- Desktop Menu -->\n      <div class=\"hidden md:block\">\n        <div class=\"ml-10 flex items-baseline space-x-4\">\n          <ng-container *ngFor=\"let item of menuItems\">\n            <a [class]=\"getLinkClasses(item.active)\" [href]=\"item.href\">\n              {{ item.label }}\n            </a>\n          </ng-container>\n        </div>\n      </div>\n\n      <!-- Mobile menu button -->\n      <div class=\"md:hidden\">\n        <button\n          type=\"button\"\n          (click)=\"isOpen = !isOpen\"\n          [class]=\"mobileButtonClasses\"\n        >\n          <span class=\"sr-only\">Open main menu</span>\n          <!-- Icon when menu is closed -->\n          <svg\n            *ngIf=\"!isOpen\"\n            class=\"block h-6 w-6\"\n            fill=\"none\"\n            viewBox=\"0 0 24 24\"\n            stroke=\"currentColor\"\n          >\n            <path\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n              stroke-width=\"2\"\n              d=\"M4 6h16M4 12h16M4 18h16\"\n            />\n          </svg>\n          <!-- Icon when menu is open -->\n          <svg\n            *ngIf=\"isOpen\"\n            class=\"block h-6 w-6\"\n            fill=\"none\"\n            viewBox=\"0 0 24 24\"\n            stroke=\"currentColor\"\n          >\n            <path\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n              stroke-width=\"2\"\n              d=\"M6 18L18 6M6 6l12 12\"\n            />\n          </svg>\n        </button>\n      </div>\n    </div>\n  </div>\n\n  <!-- Mobile menu -->\n  <div class=\"md:hidden\" [class.block]=\"isOpen\" [class.hidden]=\"!isOpen\">\n    <div class=\"px-2 pt-2 pb-3 space-y-1 sm:px-3\">\n      <ng-container *ngFor=\"let item of menuItems\">\n        <a [class]=\"getMobileLinkClasses(item.active)\" [href]=\"item.href\">\n          {{ item.label }}\n        </a>\n      </ng-container>\n    </div>\n  </div>\n</nav>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "brand",
-          "defaultValue": "'Brand'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 86,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "menuItems",
-          "defaultValue": "[]",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 87,
-          "type": "Array<literal type>",
-          "decorators": []
-        },
-        {
-          "name": "variant",
-          "defaultValue": "'light'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 85,
-          "type": "\"light\" | \"dark\"",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [
-        {
-          "name": "isOpen",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 93
-        }
-      ],
-      "methodsClass": [
-        {
-          "name": "getLinkClasses",
-          "args": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false"
-            }
-          ],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 110,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "getMobileLinkClasses",
-          "args": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false"
-            }
-          ],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 124,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-navbar',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <nav [class]=\"containerClasses\">\n      <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">\n        <div class=\"flex items-center justify-between h-16\">\n          <!-- Logo/Brand -->\n          <div class=\"flex-shrink-0\">\n            <span class=\"text-xl font-semibold\">{{ brand }}</span>\n          </div>\n\n          <!-- Desktop Menu -->\n          <div class=\"hidden md:block\">\n            <div class=\"ml-10 flex items-baseline space-x-4\">\n              <ng-container *ngFor=\"let item of menuItems\">\n                <a [class]=\"getLinkClasses(item.active)\" [href]=\"item.href\">\n                  {{ item.label }}\n                </a>\n              </ng-container>\n            </div>\n          </div>\n\n          <!-- Mobile menu button -->\n          <div class=\"md:hidden\">\n            <button\n              type=\"button\"\n              (click)=\"isOpen = !isOpen\"\n              [class]=\"mobileButtonClasses\"\n            >\n              <span class=\"sr-only\">Open main menu</span>\n              <!-- Icon when menu is closed -->\n              <svg\n                *ngIf=\"!isOpen\"\n                class=\"block h-6 w-6\"\n                fill=\"none\"\n                viewBox=\"0 0 24 24\"\n                stroke=\"currentColor\"\n              >\n                <path\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                  stroke-width=\"2\"\n                  d=\"M4 6h16M4 12h16M4 18h16\"\n                />\n              </svg>\n              <!-- Icon when menu is open -->\n              <svg\n                *ngIf=\"isOpen\"\n                class=\"block h-6 w-6\"\n                fill=\"none\"\n                viewBox=\"0 0 24 24\"\n                stroke=\"currentColor\"\n              >\n                <path\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                  stroke-width=\"2\"\n                  d=\"M6 18L18 6M6 6l12 12\"\n                />\n              </svg>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Mobile menu -->\n      <div class=\"md:hidden\" [class.block]=\"isOpen\" [class.hidden]=\"!isOpen\">\n        <div class=\"px-2 pt-2 pb-3 space-y-1 sm:px-3\">\n          <ng-container *ngFor=\"let item of menuItems\">\n            <a [class]=\"getMobileLinkClasses(item.active)\" [href]=\"item.href\">\n              {{ item.label }}\n            </a>\n          </ng-container>\n        </div>\n      </div>\n    </nav>\n  `,\n})\nexport class NavbarComponent {\n  @Input() variant: 'light' | 'dark' = 'light';\n  @Input() brand: string = 'Brand';\n  @Input() menuItems: Array<{\n    label: string;\n    href: string;\n    active?: boolean;\n  }> = [];\n\n  isOpen = false;\n\n  get containerClasses(): string {\n    return this.variant === 'light' ? 'bg-white shadow' : 'bg-gray-800';\n  }\n\n  get mobileButtonClasses(): string {\n    return `\n      inline-flex items-center justify-center p-2 rounded-md\n      ${\n        this.variant === 'light'\n          ? 'text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500'\n          : 'text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'\n      }\n    `;\n  }\n\n  getLinkClasses(isActive: boolean = false): string {\n    const baseClasses = 'px-3 py-2 rounded-md text-sm font-medium';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-blue-100 text-blue-700`\n        : `${baseClasses} text-gray-700 hover:text-gray-900 hover:bg-gray-100`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-900 text-white`\n        : `${baseClasses} text-gray-300 hover:text-white hover:bg-gray-700`;\n    }\n  }\n\n  getMobileLinkClasses(isActive: boolean = false): string {\n    const baseClasses = 'block px-3 py-2 rounded-md text-base font-medium';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-blue-100 text-blue-700`\n        : `${baseClasses} text-gray-700 hover:text-gray-900 hover:bg-gray-100`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-900 text-white`\n        : `${baseClasses} text-gray-300 hover:text-white hover:bg-gray-700`;\n    }\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": [],
-      "accessors": {
-        "containerClasses": {
-          "name": "containerClasses",
-          "getSignature": {
-            "name": "containerClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 95
-          }
-        },
-        "mobileButtonClasses": {
-          "name": "mobileButtonClasses",
-          "getSignature": {
-            "name": "mobileButtonClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 99
-          }
-        }
-      }
-    },
-    {
-      "name": "PageComponent",
-      "id": "component-PageComponent-f339e64096c17a2279bed7ca4737b0d7c52eddb2150563e1bc46f2c65f92bf4673aba333c4eb3be66e1993105ded0701ff70a7c7e62dac168aa75229d1c7b5da",
-      "file": "src/stories/page.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "storybook-page",
-      "styleUrls": ["./page.css"],
-      "styles": [],
-      "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section class=\"storybook-page\">\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a\n          href=\"https://componentdriven.org\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page\n        states without needing to navigate to them in your app. Here are some\n        handy patterns for managing page data in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose\n          such data from the \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock\n          these services out using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a\n          href=\"https://storybook.js.org/tutorials/\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a\n          href=\"https://storybook.js.org/docs\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          docs\n        </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg\n          width=\"10\"\n          height=\"10\"\n          viewBox=\"0 0 12 12\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n        >\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [
-        {
-          "name": "user",
-          "defaultValue": "null",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "User | null",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 88
-        }
-      ],
-      "methodsClass": [
-        {
-          "name": "doCreateAccount",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 98,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "doLogin",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 94,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "doLogout",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 90,
-          "deprecated": false,
-          "deprecationMessage": ""
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        },
-        {
-          "name": "HeaderComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { HeaderComponent } from './header.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-page',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section class=\"storybook-page\">\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a\n          href=\"https://componentdriven.org\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page\n        states without needing to navigate to them in your app. Here are some\n        handy patterns for managing page data in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose\n          such data from the \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock\n          these services out using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a\n          href=\"https://storybook.js.org/tutorials/\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a\n          href=\"https://storybook.js.org/docs\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          docs\n        </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg\n          width=\"10\"\n          height=\"10\"\n          viewBox=\"0 0 12 12\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n        >\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": [
-        {
-          "data": ".storybook-page {\n  margin: 0 auto;\n  padding: 48px 20px;\n  max-width: 600px;\n  color: #333;\n  font-size: 14px;\n  line-height: 24px;\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n.storybook-page h2 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 0 0 4px;\n  font-weight: 700;\n  font-size: 32px;\n  line-height: 1;\n}\n\n.storybook-page p {\n  margin: 1em 0;\n}\n\n.storybook-page a {\n  color: inherit;\n}\n\n.storybook-page ul {\n  margin: 1em 0;\n  padding-left: 30px;\n}\n\n.storybook-page li {\n  margin-bottom: 8px;\n}\n\n.storybook-page .tip {\n  display: inline-block;\n  vertical-align: top;\n  margin-right: 10px;\n  border-radius: 1em;\n  background: #e7fdd8;\n  padding: 4px 12px;\n  color: #357a14;\n  font-weight: 700;\n  font-size: 11px;\n  line-height: 12px;\n}\n\n.storybook-page .tip-wrapper {\n  margin-top: 40px;\n  margin-bottom: 40px;\n  font-size: 13px;\n  line-height: 20px;\n}\n\n.storybook-page .tip-wrapper svg {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 3px;\n  margin-right: 4px;\n  width: 12px;\n  height: 12px;\n}\n\n.storybook-page .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
-          "styleUrl": "./page.css"
-        }
-      ],
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "SidemenuComponent",
-      "id": "component-SidemenuComponent-82c9bcbbf788be040161f25f5fa1d34bb12f4d3ab13febb427e87b0773da992784e6ada76f8915bd2e66c8f949192056d471d9e03c9000acc5866b61d3d6f460",
-      "file": "src/app/components/sidemenu/sidemenu.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "app-sidemenu",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<div class=\"flex h-screen\">\n  <!-- Sidebar -->\n  <div [class]=\"containerClasses\">\n    <!-- Logo section -->\n    <div class=\"flex items-center h-16 px-4 border-b\">\n      <span class=\"text-lg font-semibold\">{{ brand }}</span>\n    </div>\n\n    <!-- Menu items -->\n    <nav class=\"flex-1 px-2 py-4 space-y-1\">\n      <ng-container *ngFor=\"let item of menuItems\">\n        <!-- Item with children -->\n        <div *ngIf=\"item.children; else singleItem\" class=\"space-y-1\">\n          <button\n            (click)=\"toggleSubmenu(item)\"\n            [class]=\"getParentMenuClasses(item.active)\"\n          >\n            <span class=\"flex items-center\">\n              <span\n                *ngIf=\"item.leftIcon\"\n                class=\"mr-2\"\n                [innerHTML]=\"sanitizeIcon(item.leftIcon)\"\n              ></span>\n              <span\n                *ngIf=\"item.icon\"\n                class=\"mr-3\"\n                [innerHTML]=\"sanitizeIcon(item.icon)\"\n              ></span>\n              {{ item.label }}\n              <span *ngIf=\"item.badge\" [class]=\"getBadgeClasses()\">\n                {{ item.badge }}\n              </span>\n            </span>\n            <span class=\"ml-auto\">\n              <svg\n                [class]=\"item.active ? 'transform rotate-180' : ''\"\n                class=\"w-4 h-4 transition-transform\"\n                fill=\"none\"\n                viewBox=\"0 0 24 24\"\n                stroke=\"currentColor\"\n              >\n                <path\n                  stroke-linecap=\"round\"\n                  stroke-linejoin=\"round\"\n                  stroke-width=\"2\"\n                  d=\"M19 9l-7 7-7-7\"\n                />\n              </svg>\n            </span>\n          </button>\n\n          <!-- Submenu -->\n          <div *ngIf=\"item.active\" class=\"pl-4 space-y-1\">\n            <a\n              *ngFor=\"let child of item.children\"\n              [href]=\"child.href\"\n              [class]=\"getSubmenuClasses(child.active)\"\n            >\n              <span class=\"flex items-center justify-between w-full\">\n                <span class=\"flex items-center\">\n                  <span\n                    *ngIf=\"child.leftIcon\"\n                    class=\"mr-2\"\n                    [innerHTML]=\"sanitizeIcon(child.leftIcon)\"\n                  ></span>\n                  <span\n                    *ngIf=\"child.icon\"\n                    class=\"mr-3\"\n                    [innerHTML]=\"sanitizeIcon(child.icon)\"\n                  ></span>\n                  {{ child.label }}\n                </span>\n                <span *ngIf=\"child.badge\" [class]=\"getBadgeClasses()\">\n                  {{ child.badge }}\n                </span>\n              </span>\n            </a>\n          </div>\n        </div>\n\n        <!-- Single item -->\n        <ng-template #singleItem>\n          <a [href]=\"item.href\" [class]=\"getMenuItemClasses(item.active)\">\n            <span class=\"flex items-center justify-between w-full\">\n              <span class=\"flex items-center\">\n                <span\n                  *ngIf=\"item.leftIcon\"\n                  class=\"mr-2\"\n                  [innerHTML]=\"sanitizeIcon(item.leftIcon)\"\n                ></span>\n                <span\n                  *ngIf=\"item.icon\"\n                  class=\"mr-3\"\n                  [innerHTML]=\"sanitizeIcon(item.icon)\"\n                ></span>\n                {{ item.label }}\n              </span>\n              <span *ngIf=\"item.badge\" [class]=\"getBadgeClasses()\">\n                {{ item.badge }}\n              </span>\n            </span>\n          </a>\n        </ng-template>\n      </ng-container>\n    </nav>\n  </div>\n</div>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "brand",
-          "defaultValue": "'Dashboard'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 131,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "collapsed",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 133,
-          "type": "boolean",
-          "decorators": []
-        },
-        {
-          "name": "menuItems",
-          "defaultValue": "[]",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 132,
-          "type": "MenuItem[]",
-          "decorators": []
-        },
-        {
-          "name": "variant",
-          "defaultValue": "'light'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 130,
-          "type": "\"light\" | \"dark\"",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [
-        {
-          "name": "getBadgeClasses",
-          "args": [],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 193,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "getMenuItemClasses",
-          "args": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false"
-            }
-          ],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 148,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "getParentMenuClasses",
-          "args": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false"
-            }
-          ],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 163,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "getSubmenuClasses",
-          "args": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false"
-            }
-          ],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 178,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "isActive",
-              "type": "boolean",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "defaultValue": "false",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "sanitizeIcon",
-          "args": [
-            {
-              "name": "icon",
-              "type": "string",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "SafeHtml",
-          "typeParameters": [],
-          "line": 137,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "icon",
-              "type": "string",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "toggleSubmenu",
-          "args": [
-            {
-              "name": "item",
-              "type": "MenuItem",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 200,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "item",
-              "type": "MenuItem",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\ninterface MenuItem {\n  label: string;\n  icon?: string;\n  leftIcon?: string;\n  href: string;\n  active?: boolean;\n  children?: MenuItem[];\n  badge?: string;\n}\n\n@Component({\n  selector: 'app-sidemenu',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"flex h-screen\">\n      <!-- Sidebar -->\n      <div [class]=\"containerClasses\">\n        <!-- Logo section -->\n        <div class=\"flex items-center h-16 px-4 border-b\">\n          <span class=\"text-lg font-semibold\">{{ brand }}</span>\n        </div>\n\n        <!-- Menu items -->\n        <nav class=\"flex-1 px-2 py-4 space-y-1\">\n          <ng-container *ngFor=\"let item of menuItems\">\n            <!-- Item with children -->\n            <div *ngIf=\"item.children; else singleItem\" class=\"space-y-1\">\n              <button\n                (click)=\"toggleSubmenu(item)\"\n                [class]=\"getParentMenuClasses(item.active)\"\n              >\n                <span class=\"flex items-center\">\n                  <span\n                    *ngIf=\"item.leftIcon\"\n                    class=\"mr-2\"\n                    [innerHTML]=\"sanitizeIcon(item.leftIcon)\"\n                  ></span>\n                  <span\n                    *ngIf=\"item.icon\"\n                    class=\"mr-3\"\n                    [innerHTML]=\"sanitizeIcon(item.icon)\"\n                  ></span>\n                  {{ item.label }}\n                  <span *ngIf=\"item.badge\" [class]=\"getBadgeClasses()\">\n                    {{ item.badge }}\n                  </span>\n                </span>\n                <span class=\"ml-auto\">\n                  <svg\n                    [class]=\"item.active ? 'transform rotate-180' : ''\"\n                    class=\"w-4 h-4 transition-transform\"\n                    fill=\"none\"\n                    viewBox=\"0 0 24 24\"\n                    stroke=\"currentColor\"\n                  >\n                    <path\n                      stroke-linecap=\"round\"\n                      stroke-linejoin=\"round\"\n                      stroke-width=\"2\"\n                      d=\"M19 9l-7 7-7-7\"\n                    />\n                  </svg>\n                </span>\n              </button>\n\n              <!-- Submenu -->\n              <div *ngIf=\"item.active\" class=\"pl-4 space-y-1\">\n                <a\n                  *ngFor=\"let child of item.children\"\n                  [href]=\"child.href\"\n                  [class]=\"getSubmenuClasses(child.active)\"\n                >\n                  <span class=\"flex items-center justify-between w-full\">\n                    <span class=\"flex items-center\">\n                      <span\n                        *ngIf=\"child.leftIcon\"\n                        class=\"mr-2\"\n                        [innerHTML]=\"sanitizeIcon(child.leftIcon)\"\n                      ></span>\n                      <span\n                        *ngIf=\"child.icon\"\n                        class=\"mr-3\"\n                        [innerHTML]=\"sanitizeIcon(child.icon)\"\n                      ></span>\n                      {{ child.label }}\n                    </span>\n                    <span *ngIf=\"child.badge\" [class]=\"getBadgeClasses()\">\n                      {{ child.badge }}\n                    </span>\n                  </span>\n                </a>\n              </div>\n            </div>\n\n            <!-- Single item -->\n            <ng-template #singleItem>\n              <a [href]=\"item.href\" [class]=\"getMenuItemClasses(item.active)\">\n                <span class=\"flex items-center justify-between w-full\">\n                  <span class=\"flex items-center\">\n                    <span\n                      *ngIf=\"item.leftIcon\"\n                      class=\"mr-2\"\n                      [innerHTML]=\"sanitizeIcon(item.leftIcon)\"\n                    ></span>\n                    <span\n                      *ngIf=\"item.icon\"\n                      class=\"mr-3\"\n                      [innerHTML]=\"sanitizeIcon(item.icon)\"\n                    ></span>\n                    {{ item.label }}\n                  </span>\n                  <span *ngIf=\"item.badge\" [class]=\"getBadgeClasses()\">\n                    {{ item.badge }}\n                  </span>\n                </span>\n              </a>\n            </ng-template>\n          </ng-container>\n        </nav>\n      </div>\n    </div>\n  `,\n})\nexport class SidemenuComponent {\n  @Input() variant: 'light' | 'dark' = 'light';\n  @Input() brand: string = 'Dashboard';\n  @Input() menuItems: MenuItem[] = [];\n  @Input() collapsed: boolean = false;\n\n  constructor(private sanitizer: DomSanitizer) {}\n\n  sanitizeIcon(icon: string): SafeHtml {\n    return this.sanitizer.bypassSecurityTrustHtml(icon);\n  }\n\n  get containerClasses(): string {\n    const baseClasses = 'flex flex-col w-64 transition-all duration-300';\n    return this.variant === 'light'\n      ? `${baseClasses} bg-white border-r`\n      : `${baseClasses} bg-gray-800 border-gray-700`;\n  }\n\n  getMenuItemClasses(isActive: boolean = false): string {\n    const baseClasses =\n      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-blue-100 text-blue-700`\n        : `${baseClasses} text-gray-700 hover:bg-gray-100`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-900 text-white`\n        : `${baseClasses} text-gray-300 hover:bg-gray-700 hover:text-white`;\n    }\n  }\n\n  getParentMenuClasses(isActive: boolean = false): string {\n    const baseClasses =\n      'flex items-center justify-between w-full px-4 py-2 text-sm rounded-md transition-colors';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-gray-100 text-gray-900`\n        : `${baseClasses} text-gray-700 hover:bg-gray-100`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-700 text-white`\n        : `${baseClasses} text-gray-300 hover:bg-gray-700 hover:text-white`;\n    }\n  }\n\n  getSubmenuClasses(isActive: boolean = false): string {\n    const baseClasses =\n      'flex items-center px-4 py-2 text-sm rounded-md transition-colors';\n\n    if (this.variant === 'light') {\n      return isActive\n        ? `${baseClasses} bg-blue-50 text-blue-700`\n        : `${baseClasses} text-gray-600 hover:bg-gray-50`;\n    } else {\n      return isActive\n        ? `${baseClasses} bg-gray-700 text-white`\n        : `${baseClasses} text-gray-400 hover:bg-gray-700 hover:text-white`;\n    }\n  }\n\n  getBadgeClasses(): string {\n    const baseClasses = 'ml-2 px-2 py-0.5 text-xs font-medium rounded-full';\n    return this.variant === 'light'\n      ? `${baseClasses} bg-blue-100 text-blue-800`\n      : `${baseClasses} bg-gray-700 text-gray-200`;\n  }\n\n  toggleSubmenu(item: MenuItem): void {\n    item.active = !item.active;\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "sanitizer",
-            "type": "DomSanitizer",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 133,
-        "jsdoctags": [
-          {
-            "name": "sanitizer",
-            "type": "DomSanitizer",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
-      "extends": [],
-      "accessors": {
-        "containerClasses": {
-          "name": "containerClasses",
-          "getSignature": {
-            "name": "containerClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 141
-          }
-        }
-      }
-    },
-    {
-      "name": "TooltipComponent",
-      "id": "component-TooltipComponent-768da43f0e29562e18edc03513fe04ced0afcf66c674973e1b2bbb92544e5f749de2b7c4c706f1e5930dae6cb910276b87dc1797543e8efbe5bd2926b4ad35f3",
-      "file": "src/app/components/tooltip/tooltip.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "app-tooltip",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<div class=\"relative inline-block\">\n  <!-- Tooltip trigger -->\n  <div (mouseenter)=\"show()\" (mouseleave)=\"hide()\">\n    <ng-content></ng-content>\n  </div>\n\n  <!-- Tooltip content -->\n  <div\n    *ngIf=\"isVisible\"\n    [class]=\"tooltipClasses\"\n    [style.margin-left.px]=\"\n      position === 'top' || position === 'bottom' ? offsetX : 0\n    \"\n    [style.margin-top.px]=\"\n      position === 'left' || position === 'right' ? offsetY : 0\n    \"\n  >\n    {{ content }}\n    <div [class]=\"arrowClasses\"></div>\n  </div>\n</div>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [
-        {
-          "name": "content",
-          "defaultValue": "''",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 36,
-          "type": "string",
-          "decorators": []
-        },
-        {
-          "name": "delay",
-          "defaultValue": "0",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 39,
-          "type": "number",
-          "decorators": []
-        },
-        {
-          "name": "position",
-          "defaultValue": "'top'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 37,
-          "type": "TooltipPosition",
-          "decorators": []
-        },
-        {
-          "name": "variant",
-          "defaultValue": "'dark'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 38,
-          "type": "TooltipVariant",
-          "decorators": []
-        }
-      ],
-      "outputsClass": [],
-      "propertiesClass": [
-        {
-          "name": "isVisible",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 41
-        },
-        {
-          "name": "offsetX",
-          "defaultValue": "0",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 42
-        },
-        {
-          "name": "offsetY",
-          "defaultValue": "0",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 43
-        },
-        {
-          "name": "showTimeout",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "indexKey": "",
-          "optional": true,
-          "description": "",
-          "line": 45,
-          "modifierKind": [123]
-        }
-      ],
-      "methodsClass": [
-        {
-          "name": "hide",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 100,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "onWindowChange",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 138,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "decorators": [
-            {
-              "name": "HostListener",
-              "stringifiedArguments": "'window:scroll'"
-            },
-            {
-              "name": "HostListener",
-              "stringifiedArguments": "'window:resize'"
-            }
-          ],
-          "modifierKind": [170, 170]
-        },
-        {
-          "name": "show",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 88,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "updatePosition",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 107,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "modifierKind": [123]
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [
-        {
-          "name": "window:resize",
-          "args": [],
-          "argsDecorator": [],
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 138
-        },
-        {
-          "name": "window:scroll",
-          "args": [],
-          "argsDecorator": [],
-          "deprecated": false,
-          "deprecationMessage": "",
-          "line": 138
-        }
-      ],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "CommonModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component, Input, ElementRef, HostListener } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype TooltipPosition = 'top' | 'right' | 'bottom' | 'left';\ntype TooltipVariant = 'dark' | 'light' | 'info' | 'warning' | 'error';\n\n@Component({\n  selector: 'app-tooltip',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div class=\"relative inline-block\">\n      <!-- Tooltip trigger -->\n      <div (mouseenter)=\"show()\" (mouseleave)=\"hide()\">\n        <ng-content></ng-content>\n      </div>\n\n      <!-- Tooltip content -->\n      <div\n        *ngIf=\"isVisible\"\n        [class]=\"tooltipClasses\"\n        [style.margin-left.px]=\"\n          position === 'top' || position === 'bottom' ? offsetX : 0\n        \"\n        [style.margin-top.px]=\"\n          position === 'left' || position === 'right' ? offsetY : 0\n        \"\n      >\n        {{ content }}\n        <div [class]=\"arrowClasses\"></div>\n      </div>\n    </div>\n  `,\n})\nexport class TooltipComponent {\n  @Input() content: string = '';\n  @Input() position: TooltipPosition = 'top';\n  @Input() variant: TooltipVariant = 'dark';\n  @Input() delay: number = 0;\n\n  isVisible: boolean = false;\n  offsetX: number = 0;\n  offsetY: number = 0;\n\n  private showTimeout?: number;\n\n  constructor(private elementRef: ElementRef) {}\n\n  get tooltipClasses(): string {\n    const baseClasses =\n      'absolute z-50 px-2 py-1 text-sm rounded shadow-lg whitespace-nowrap';\n    const positionClasses = {\n      top: 'bottom-full left-1/2 transform -translate-x-1/2 mb-2',\n      right: 'left-full top-1/2 transform -translate-y-1/2 ml-2',\n      bottom: 'top-full left-1/2 transform -translate-x-1/2 mt-2',\n      left: 'right-full top-1/2 transform -translate-y-1/2 mr-2',\n    };\n    const variantClasses = {\n      dark: 'bg-gray-900 text-white',\n      light: 'bg-white text-gray-900 border border-gray-200',\n      info: 'bg-blue-600 text-white',\n      warning: 'bg-yellow-500 text-white',\n      error: 'bg-red-600 text-white',\n    };\n\n    return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;\n  }\n\n  get arrowClasses(): string {\n    const baseClasses = 'absolute w-2 h-2 transform rotate-45';\n    const positionClasses = {\n      top: 'bottom-[-4px] left-1/2 -translate-x-1/2',\n      right: 'left-[-4px] top-1/2 -translate-y-1/2',\n      bottom: 'top-[-4px] left-1/2 -translate-x-1/2',\n      left: 'right-[-4px] top-1/2 -translate-y-1/2',\n    };\n    const variantClasses = {\n      dark: 'bg-gray-900',\n      light: 'bg-white border-b border-r border-gray-200',\n      info: 'bg-blue-600',\n      warning: 'bg-yellow-500',\n      error: 'bg-red-600',\n    };\n\n    return `${baseClasses} ${positionClasses[this.position]} ${variantClasses[this.variant]}`;\n  }\n\n  show(): void {\n    if (this.delay) {\n      this.showTimeout = window.setTimeout(() => {\n        this.isVisible = true;\n        this.updatePosition();\n      }, this.delay);\n    } else {\n      this.isVisible = true;\n      this.updatePosition();\n    }\n  }\n\n  hide(): void {\n    if (this.showTimeout) {\n      clearTimeout(this.showTimeout);\n    }\n    this.isVisible = false;\n  }\n\n  private updatePosition(): void {\n    const element = this.elementRef.nativeElement as HTMLElement;\n    const tooltip = element.querySelector('[class*=\"absolute\"]') as HTMLElement;\n    if (!tooltip) return;\n\n    const tooltipRect = tooltip.getBoundingClientRect();\n\n    // Adjust position if tooltip is outside viewport\n    if (this.position === 'top' || this.position === 'bottom') {\n      const leftOverflow = tooltipRect.left < 0;\n      const rightOverflow = tooltipRect.right > window.innerWidth;\n\n      if (leftOverflow) {\n        this.offsetX = -tooltipRect.left + 8;\n      } else if (rightOverflow) {\n        this.offsetX = window.innerWidth - tooltipRect.right - 8;\n      }\n    } else {\n      const topOverflow = tooltipRect.top < 0;\n      const bottomOverflow = tooltipRect.bottom > window.innerHeight;\n\n      if (topOverflow) {\n        this.offsetY = -tooltipRect.top + 8;\n      } else if (bottomOverflow) {\n        this.offsetY = window.innerHeight - tooltipRect.bottom - 8;\n      }\n    }\n  }\n\n  @HostListener('window:scroll')\n  @HostListener('window:resize')\n  onWindowChange(): void {\n    if (this.isVisible) {\n      this.updatePosition();\n    }\n  }\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "elementRef",
-            "type": "ElementRef",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 45,
-        "jsdoctags": [
-          {
-            "name": "elementRef",
-            "type": "ElementRef",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
-      "extends": [],
-      "accessors": {
-        "tooltipClasses": {
-          "name": "tooltipClasses",
-          "getSignature": {
-            "name": "tooltipClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 49
-          }
-        },
-        "arrowClasses": {
-          "name": "arrowClasses",
-          "getSignature": {
-            "name": "arrowClasses",
-            "type": "string",
-            "returnType": "string",
-            "line": 69
-          }
-        }
-      }
     },
     {
       "name": "TypographyComponent",
-      "id": "component-TypographyComponent-2c552c204394e9a9012058e0669a96f5773e984cecd7452803019058d6f5234c30577ba9f2eee10a9ac91d03d5b36191fa527ff29db011efe0b82e38f27ae5c8",
+      "id": "component-TypographyComponent-735054c3ee8e21ca9ae3766ac267685488e66b2d9efb36e8cfcd7dfeb246eacb75043423a942d38b96bd6a42e9fc1b2682cf178fa6b721073be615a870ae145a",
       "file": "src/app/components/typography/typography.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -1607,7 +633,7 @@
       "inputsClass": [
         {
           "name": "text",
-          "defaultValue": "''",
+          "defaultValue": "\"\"",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 25,
@@ -1616,7 +642,7 @@
         },
         {
           "name": "variant",
-          "defaultValue": "'body1'",
+          "defaultValue": "\"body1\"",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 15,
@@ -1641,7 +667,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-typography',\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div [class]=\"classes\">\n      {{ text }}\n    </div>\n  `,\n})\nexport class TypographyComponent {\n  @Input() variant:\n    | 'h1'\n    | 'h2'\n    | 'h3'\n    | 'h4'\n    | 'subtitle1'\n    | 'subtitle2'\n    | 'body1'\n    | 'body2'\n    | 'caption' = 'body1';\n  @Input() text: string = '';\n\n  get classes(): string {\n    const variantClasses = {\n      h1: 'text-5xl font-bold text-gray-900 leading-tight',\n      h2: 'text-4xl font-semibold text-gray-900 leading-tight',\n      h3: 'text-3xl font-semibold text-gray-900 leading-snug',\n      h4: 'text-2xl font-medium text-gray-900 leading-snug',\n      subtitle1: 'text-xl font-medium text-gray-800 leading-relaxed',\n      subtitle2: 'text-lg font-medium text-gray-800 leading-relaxed',\n      body1: 'text-base text-gray-700 leading-relaxed',\n      body2: 'text-sm text-gray-700 leading-relaxed',\n      caption: 'text-xs text-gray-600 leading-normal',\n    };\n\n    return variantClasses[this.variant];\n  }\n}\n",
+      "sourceCode": "import { Component, Input } from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\n@Component({\n  selector: \"app-typography\",\n  standalone: true,\n  imports: [CommonModule],\n  template: `\n    <div [class]=\"classes\">\n      {{ text }}\n    </div>\n  `,\n})\nexport class TypographyComponent {\n  @Input() variant:\n    | \"h1\"\n    | \"h2\"\n    | \"h3\"\n    | \"h4\"\n    | \"subtitle1\"\n    | \"subtitle2\"\n    | \"body1\"\n    | \"body2\"\n    | \"caption\" = \"body1\";\n  @Input() text: string = \"\";\n\n  get classes(): string {\n    const variantClasses = {\n      h1: \"text-5xl font-bold text-gray-900 leading-tight\",\n      h2: \"text-4xl font-semibold text-gray-900 leading-tight\",\n      h3: \"text-3xl font-semibold text-gray-900 leading-snug\",\n      h4: \"text-2xl font-medium text-gray-900 leading-snug\",\n      subtitle1: \"text-xl font-medium text-gray-800 leading-relaxed\",\n      subtitle2: \"text-lg font-medium text-gray-800 leading-relaxed\",\n      body1: \"text-base text-gray-700 leading-relaxed\",\n      body2: \"text-sm text-gray-700 leading-relaxed\",\n      caption: \"text-xs text-gray-600 leading-normal\",\n    };\n\n    return variantClasses[this.variant];\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -1676,11 +702,21 @@
         "name": "buttonVariants",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/button/button.component.ts",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "cva('px-4 py-2 rounded-md', {\n  variants: {\n    variant: {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700',\n      outline:\n        'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',\n      danger: 'bg-red-600 text-white hover:bg-red-700',\n    },\n    size: {\n      small: 'text-sm',\n      medium: 'text-base',\n      large: 'text-lg',\n    },\n  },\n  defaultVariants: {\n    variant: 'primary',\n    size: 'medium',\n  },\n})"
+        "defaultValue": "cva(\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n  {\n    variants: buttonVariantsConfig.variants,\n    compoundVariants: [\n      // Contained variant colors\n      {\n        variant: \"contained\",\n        color: \"inherit\",\n        className: \"text-inherit hover:bg-gray-100\",\n      },\n      {\n        variant: \"contained\",\n        color: \"primary\",\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"secondary\",\n        className:\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"success\",\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"error\",\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"info\",\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"warning\",\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\n      },\n      // Outlined variant colors\n      {\n        variant: \"outlined\",\n        color: \"inherit\",\n        className: \"text-inherit border-current\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"primary\",\n        className: \"text-primary border-primary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"secondary\",\n        className: \"text-secondary border-secondary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"success\",\n        className: \"text-success border-success\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"error\",\n        className: \"text-error border-error\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"info\",\n        className: \"text-info border-info\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"warning\",\n        className: \"text-warning border-warning\",\n      },\n      // Text variant colors\n      {\n        variant: \"text\",\n        color: \"inherit\",\n        className: \"text-inherit\",\n      },\n      {\n        variant: \"text\",\n        color: \"primary\",\n        className: \"text-primary hover:bg-primary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"secondary\",\n        className: \"text-secondary hover:bg-secondary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"success\",\n        className: \"text-success hover:bg-success/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"error\",\n        className: \"text-error hover:bg-error/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"info\",\n        className: \"text-info hover:bg-info/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"warning\",\n        className: \"text-warning hover:bg-warning/10\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"contained\" as ButtonVariant,\n      color: \"primary\" as ButtonColor,\n      size: \"medium\" as ButtonSize,\n      fullWidth: false,\n      disableElevation: false,\n    },\n  },\n)"
+      },
+      {
+        "name": "buttonVariantsConfig",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/components/inputs/button/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  variants: {\n    variant: {\n      text: \"bg-transparent hover:bg-gray-100\",\n      contained: \"shadow-sm\",\n      outlined: \"border bg-transparent\",\n    },\n    color: {\n      inherit: \"\",\n      primary: \"\",\n      secondary: \"\",\n      success: \"\",\n      error: \"\",\n      info: \"\",\n      warning: \"\",\n    },\n    size: {\n      small: \"h-8 px-3 text-xs\",\n      medium: \"h-10 px-4 text-sm\",\n      large: \"h-12 px-6 text-base\",\n    },\n    fullWidth: {\n      true: \"w-full\",\n    },\n    disableElevation: {\n      true: \"shadow-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"contained\",\n    color: \"primary\",\n    size: \"medium\",\n    fullWidth: false,\n    disableElevation: false,\n  },\n}"
       },
       {
         "name": "Icons",
@@ -1693,69 +729,134 @@
         "defaultValue": "{\n  // Dashboard icons\n  dashboard: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"/>\n  </svg>`,\n\n  // User/Team icons\n  users: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z\"/>\n  </svg>`,\n\n  // Project icons\n  folder: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z\"/>\n  </svg>`,\n\n  // Settings icon\n  settings: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z\"/>\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\"/>\n  </svg>`,\n\n  // Additional icons\n  home: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"/>\n  </svg>`,\n\n  calendar: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z\"/>\n  </svg>`,\n\n  chart: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\"/>\n  </svg>`,\n\n  document: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"/>\n  </svg>`,\n\n  // New icons\n  bell: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\"/>\n  </svg>`,\n\n  inbox: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4\"/>\n  </svg>`,\n\n  message: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z\"/>\n  </svg>`,\n\n  notification: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z\"/>\n  </svg>`,\n\n  // List item icons\n  chevronRight: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"/>\n  </svg>`,\n\n  arrowRight: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M14 5l7 7m0 0l-7 7m7-7H3\"/>\n  </svg>`,\n\n  dot: `<svg class=\"w-2 h-2\" fill=\"currentColor\" viewBox=\"0 0 8 8\">\n    <circle cx=\"4\" cy=\"4\" r=\"3\"/>\n  </svg>`,\n\n  star: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z\"/>\n  </svg>`,\n\n  // Add these missing icons\n  clock: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z\"/>\n  </svg>`,\n\n  download: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4\"/>\n  </svg>`,\n}"
       }
     ],
-    "functions": [],
+    "functions": [
+      {
+        "name": "adaptPropsForA11y",
+        "file": "src/app/shared/utils/a11y.ts",
+        "ctype": "miscellaneous",
+        "subtype": "function",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "<p>Adapts props for accessibility based on the component type</p>\n",
+        "args": [
+          {
+            "name": "props",
+            "type": "ElementProps",
+            "deprecated": false,
+            "deprecationMessage": ""
+          },
+          {
+            "name": "elementType",
+            "type": "string",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "returnType": "ElementProps",
+        "jsdoctags": [
+          {
+            "name": {
+              "pos": 214,
+              "end": 219,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "props"
+            },
+            "type": "ElementProps",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "pos": 208,
+              "end": 213,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "param"
+            },
+            "comment": "<p>The original props object</p>\n"
+          },
+          {
+            "name": {
+              "pos": 256,
+              "end": 267,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "elementType"
+            },
+            "type": "string",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "pos": 250,
+              "end": 255,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "param"
+            },
+            "comment": "<p>The type of element to adapt props for</p>\n"
+          },
+          {
+            "tagName": {
+              "pos": 311,
+              "end": 318,
+              "kind": 80,
+              "id": 0,
+              "flags": 16777216,
+              "transformFlags": 0,
+              "escapedText": "returns"
+            },
+            "comment": "<p>The adapted props with appropriate accessibility attributes</p>\n"
+          }
+        ]
+      }
+    ],
     "typealiases": [
       {
-        "name": "CardPadding",
+        "name": "ButtonBaseProps",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "\"none\" | \"small\" | \"medium\" | \"large\"",
-        "file": "src/app/components/card/card.component.ts",
+        "rawtype": "",
+        "file": "src/app/components/inputs/button/button.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "<p>Base props for the Button component</p>\n",
+        "kind": 193
+      },
+      {
+        "name": "ButtonColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
         "kind": 192
       },
       {
-        "name": "CardVariant",
+        "name": "ButtonSize",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "\"basic\" | \"bordered\" | \"elevated\" | \"flat\"",
-        "file": "src/app/components/card/card.component.ts",
+        "rawtype": "\"small\" | \"medium\" | \"large\"",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
         "kind": 192
       },
       {
-        "name": "ImagePosition",
+        "name": "ButtonVariant",
         "ctype": "miscellaneous",
         "subtype": "typealias",
-        "rawtype": "\"top\" | \"left\" | \"right\" | \"bottom\" | \"background\"",
-        "file": "src/app/components/card/card.component.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 192
-      },
-      {
-        "name": "ImageSize",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "\"small\" | \"medium\" | \"large\" | \"full\"",
-        "file": "src/app/components/card/card.component.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 192
-      },
-      {
-        "name": "TooltipPosition",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "\"top\" | \"right\" | \"bottom\" | \"left\"",
-        "file": "src/app/components/tooltip/tooltip.component.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 192
-      },
-      {
-        "name": "TooltipVariant",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "\"dark\" | \"light\" | \"info\" | \"warning\" | \"error\"",
-        "file": "src/app/components/tooltip/tooltip.component.ts",
+        "rawtype": "\"text\" | \"contained\" | \"outlined\"",
+        "file": "src/app/components/inputs/button/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -1776,16 +877,26 @@
           "defaultValue": "{\n  providers: [\n    provideZoneChangeDetection({ eventCoalescing: true }),\n    provideRouter(routes),\n  ],\n}"
         }
       ],
-      "src/app/components/button/button.component.ts": [
+      "src/app/components/inputs/button/variants.ts": [
         {
           "name": "buttonVariants",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/button/button.component.ts",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "cva('px-4 py-2 rounded-md', {\n  variants: {\n    variant: {\n      primary: 'bg-blue-600 text-white hover:bg-blue-700',\n      secondary: 'bg-gray-600 text-white hover:bg-gray-700',\n      outline:\n        'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white',\n      danger: 'bg-red-600 text-white hover:bg-red-700',\n    },\n    size: {\n      small: 'text-sm',\n      medium: 'text-base',\n      large: 'text-lg',\n    },\n  },\n  defaultVariants: {\n    variant: 'primary',\n    size: 'medium',\n  },\n})"
+          "defaultValue": "cva(\n  \"inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer\",\n  {\n    variants: buttonVariantsConfig.variants,\n    compoundVariants: [\n      // Contained variant colors\n      {\n        variant: \"contained\",\n        color: \"inherit\",\n        className: \"text-inherit hover:bg-gray-100\",\n      },\n      {\n        variant: \"contained\",\n        color: \"primary\",\n        className: \"text-primary-foreground bg-primary hover:bg-primary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"secondary\",\n        className:\n          \"text-secondary-foreground bg-secondary hover:bg-secondary/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"success\",\n        className: \"text-success-foreground bg-success hover:bg-success/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"error\",\n        className: \"text-error-foreground bg-error hover:bg-error/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"info\",\n        className: \"text-info-foreground bg-info hover:bg-info/90\",\n      },\n      {\n        variant: \"contained\",\n        color: \"warning\",\n        className: \"text-warning-foreground bg-warning hover:bg-warning/90\",\n      },\n      // Outlined variant colors\n      {\n        variant: \"outlined\",\n        color: \"inherit\",\n        className: \"text-inherit border-current\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"primary\",\n        className: \"text-primary border-primary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"secondary\",\n        className: \"text-secondary border-secondary\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"success\",\n        className: \"text-success border-success\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"error\",\n        className: \"text-error border-error\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"info\",\n        className: \"text-info border-info\",\n      },\n      {\n        variant: \"outlined\",\n        color: \"warning\",\n        className: \"text-warning border-warning\",\n      },\n      // Text variant colors\n      {\n        variant: \"text\",\n        color: \"inherit\",\n        className: \"text-inherit\",\n      },\n      {\n        variant: \"text\",\n        color: \"primary\",\n        className: \"text-primary hover:bg-primary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"secondary\",\n        className: \"text-secondary hover:bg-secondary/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"success\",\n        className: \"text-success hover:bg-success/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"error\",\n        className: \"text-error hover:bg-error/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"info\",\n        className: \"text-info hover:bg-info/10\",\n      },\n      {\n        variant: \"text\",\n        color: \"warning\",\n        className: \"text-warning hover:bg-warning/10\",\n      },\n    ],\n    defaultVariants: {\n      variant: \"contained\" as ButtonVariant,\n      color: \"primary\" as ButtonColor,\n      size: \"medium\" as ButtonSize,\n      fullWidth: false,\n      disableElevation: false,\n    },\n  },\n)"
+        },
+        {
+          "name": "buttonVariantsConfig",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/components/inputs/button/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  variants: {\n    variant: {\n      text: \"bg-transparent hover:bg-gray-100\",\n      contained: \"shadow-sm\",\n      outlined: \"border bg-transparent\",\n    },\n    color: {\n      inherit: \"\",\n      primary: \"\",\n      secondary: \"\",\n      success: \"\",\n      error: \"\",\n      info: \"\",\n      warning: \"\",\n    },\n    size: {\n      small: \"h-8 px-3 text-xs\",\n      medium: \"h-10 px-4 text-sm\",\n      large: \"h-12 px-6 text-base\",\n    },\n    fullWidth: {\n      true: \"w-full\",\n    },\n    disableElevation: {\n      true: \"shadow-none\",\n    },\n  },\n  defaultVariants: {\n    variant: \"contained\",\n    color: \"primary\",\n    size: \"medium\",\n    fullWidth: false,\n    disableElevation: false,\n  },\n}"
         }
       ],
       "src/app/shared/icons.ts": [
@@ -1801,73 +912,140 @@
         }
       ]
     },
-    "groupedFunctions": {},
+    "groupedFunctions": {
+      "src/app/shared/utils/a11y.ts": [
+        {
+          "name": "adaptPropsForA11y",
+          "file": "src/app/shared/utils/a11y.ts",
+          "ctype": "miscellaneous",
+          "subtype": "function",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "<p>Adapts props for accessibility based on the component type</p>\n",
+          "args": [
+            {
+              "name": "props",
+              "type": "ElementProps",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "elementType",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "ElementProps",
+          "jsdoctags": [
+            {
+              "name": {
+                "pos": 214,
+                "end": 219,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "props"
+              },
+              "type": "ElementProps",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "pos": 208,
+                "end": 213,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "param"
+              },
+              "comment": "<p>The original props object</p>\n"
+            },
+            {
+              "name": {
+                "pos": 256,
+                "end": 267,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "elementType"
+              },
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "pos": 250,
+                "end": 255,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "param"
+              },
+              "comment": "<p>The type of element to adapt props for</p>\n"
+            },
+            {
+              "tagName": {
+                "pos": 311,
+                "end": 318,
+                "kind": 80,
+                "id": 0,
+                "flags": 16777216,
+                "transformFlags": 0,
+                "escapedText": "returns"
+              },
+              "comment": "<p>The adapted props with appropriate accessibility attributes</p>\n"
+            }
+          ]
+        }
+      ]
+    },
     "groupedEnumerations": {},
     "groupedTypeAliases": {
-      "src/app/components/card/card.component.ts": [
+      "src/app/components/inputs/button/button.types.ts": [
         {
-          "name": "CardPadding",
+          "name": "ButtonBaseProps",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "\"none\" | \"small\" | \"medium\" | \"large\"",
-          "file": "src/app/components/card/card.component.ts",
+          "rawtype": "",
+          "file": "src/app/components/inputs/button/button.types.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "description": "",
-          "kind": 192
-        },
-        {
-          "name": "CardVariant",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "\"basic\" | \"bordered\" | \"elevated\" | \"flat\"",
-          "file": "src/app/components/card/card.component.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 192
-        },
-        {
-          "name": "ImagePosition",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "\"top\" | \"left\" | \"right\" | \"bottom\" | \"background\"",
-          "file": "src/app/components/card/card.component.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 192
-        },
-        {
-          "name": "ImageSize",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "\"small\" | \"medium\" | \"large\" | \"full\"",
-          "file": "src/app/components/card/card.component.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 192
+          "description": "<p>Base props for the Button component</p>\n",
+          "kind": 193
         }
       ],
-      "src/app/components/tooltip/tooltip.component.ts": [
+      "src/app/components/inputs/button/variants.ts": [
         {
-          "name": "TooltipPosition",
+          "name": "ButtonColor",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "\"top\" | \"right\" | \"bottom\" | \"left\"",
-          "file": "src/app/components/tooltip/tooltip.component.ts",
+          "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
           "kind": 192
         },
         {
-          "name": "TooltipVariant",
+          "name": "ButtonSize",
           "ctype": "miscellaneous",
           "subtype": "typealias",
-          "rawtype": "\"dark\" | \"light\" | \"info\" | \"warning\" | \"error\"",
-          "file": "src/app/components/tooltip/tooltip.component.ts",
+          "rawtype": "\"small\" | \"medium\" | \"large\"",
+          "file": "src/app/components/inputs/button/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        },
+        {
+          "name": "ButtonVariant",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"text\" | \"contained\" | \"outlined\"",
+          "file": "src/app/components/inputs/button/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -1878,7 +1056,7 @@
   },
   "routes": [],
   "coverage": {
-    "count": 3,
+    "count": 17,
     "status": "low",
     "files": [
       {
@@ -1901,16 +1079,35 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.component.ts",
+        "filePath": "src/app/components/inputs/button/button.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "TestButtonHostComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/22",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/button.component.ts",
         "type": "component",
         "linktype": "component",
         "name": "ButtonComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/8",
+        "coverageCount": "0/19",
         "status": "low"
       },
       {
-        "filePath": "src/app/components/button/button.component.ts",
+        "filePath": "src/app/components/inputs/button/button.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "ButtonBaseProps",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
+      },
+      {
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -1920,115 +1117,41 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/card/card.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "CardComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/11",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/card/card.component.ts",
-        "type": "type alias",
+        "filePath": "src/app/components/inputs/button/variants.ts",
+        "type": "variable",
         "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "CardPadding",
+        "linksubtype": "variable",
+        "name": "buttonVariantsConfig",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
       },
       {
-        "filePath": "src/app/components/card/card.component.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
-        "name": "CardVariant",
+        "name": "ButtonColor",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
       },
       {
-        "filePath": "src/app/components/card/card.component.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
-        "name": "ImagePosition",
+        "name": "ButtonSize",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
       },
       {
-        "filePath": "src/app/components/card/card.component.ts",
+        "filePath": "src/app/components/inputs/button/variants.ts",
         "type": "type alias",
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
-        "name": "ImageSize",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/grid/grid-layout.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "GridLayoutComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/5",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/navbar/navbar.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "NavbarComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/7",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/sidemenu/sidemenu.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "SidemenuComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/12",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/sidemenu/sidemenu.component.ts",
-        "type": "interface",
-        "linktype": "interface",
-        "name": "MenuItem",
-        "coveragePercent": 0,
-        "coverageCount": "0/8",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/tooltip/tooltip.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "TooltipComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/16",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/tooltip/tooltip.component.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "TooltipPosition",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/tooltip/tooltip.component.ts",
-        "type": "type alias",
-        "linktype": "miscellaneous",
-        "linksubtype": "typealias",
-        "name": "TooltipVariant",
+        "name": "ButtonVariant",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -2053,40 +1176,23 @@
         "status": "low"
       },
       {
-        "filePath": "src/stories/button.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "ButtonComponent",
-        "coveragePercent": 83,
-        "coverageCount": "5/6",
-        "status": "very-good"
-      },
-      {
-        "filePath": "src/stories/header.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "HeaderComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/5",
-        "status": "low"
-      },
-      {
-        "filePath": "src/stories/page.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "PageComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/5",
-        "status": "low"
-      },
-      {
-        "filePath": "src/stories/user.ts",
+        "filePath": "src/app/shared/utils/a11y.ts",
         "type": "interface",
         "linktype": "interface",
-        "name": "User",
-        "coveragePercent": 0,
-        "coverageCount": "0/2",
-        "status": "low"
+        "name": "ElementProps",
+        "coveragePercent": 50,
+        "coverageCount": "1/2",
+        "status": "medium"
+      },
+      {
+        "filePath": "src/app/shared/utils/a11y.ts",
+        "type": "function",
+        "linktype": "miscellaneous",
+        "linksubtype": "function",
+        "name": "adaptPropsForA11y",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
       }
     ]
   }

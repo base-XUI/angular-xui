@@ -24,19 +24,22 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build:package": "ng-packagr -p ng-package.json && pnpm run build:css",
+    "build:css": "tailwindcss -i ./src/styles.scss -o ./dist/angular-xui/styles.css --minify",
     "watch": "ng build --watch --configuration development",
-    "test": "cypress run --component",
-    "test:watch": "cypress open --component",
+    "test:unit": "cypress run --component",
+    "test:unit:ui": "cypress open --component",
     "test:e2e": "cypress run",
-    "test:e2e:watch": "cypress open",
+    "test:e2e:ui": "cypress open --e2e",
     "storybook": "ng run angular-xui:storybook",
-    "build-storybook": "ng run angular-xui:build-storybook",
+    "build:storybook": "ng run angular-xui:build-storybook",
     "prepare": "husky install",
     "changeset": "changeset",
     "version-packages": "changeset version",
+    "lint": "eslint .",
     "release": "changeset publish",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "private": false,
   "dependencies": {
@@ -63,6 +66,8 @@
     "@angular/compiler-cli": "^19.1.0",
     "@changesets/cli": "^2.29.1",
     "@chromatic-com/storybook": "^3.2.4",
+    "@commitlint/cli": "^19.2.0",
+    "@commitlint/config-conventional": "^19.1.0",
     "@compodoc/compodoc": "^1.1.26",
     "@cypress/angular": "^3.0.0",
     "@cypress/schematic": "^3.0.0",
@@ -79,20 +84,26 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "autoprefixer": "^10.4.21",
     "css-loader": "^6.11.0",
     "cypress": "^14.3.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "postcss": "^8.5.2",
+    "ng-packagr": "^19.2.2",
+    "postcss": "^8.5.3",
     "postcss-loader": "^7.3.4",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "sass": "^1.85.0",
     "sass-loader": "^13.3.3",
     "storybook": "^8.5.6",
     "style-loader": "^3.3.4",
-    "typescript": "~5.7.2"
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "~5.7.2",
+    "yalc": "1.0.0-pre.53"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -108,6 +119,10 @@
     ],
     "*.md": [
       "prettier --write"
+    ],
+    "*.cy.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "peerDependencies": {
@@ -122,6 +137,9 @@
     "class-variance-authority": "^0.7.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
   }
 }

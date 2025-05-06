@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "outDir": "./dist/angular-xui"
+  },
+  "exclude": ["src/**/*.spec.ts", "src/test.ts"],
+  "angularCompilerOptions": {
+    "skipTemplateCodegen": false,
+    "enableIvy": true,
+    "strictMetadataEmit": true
+  }
+}

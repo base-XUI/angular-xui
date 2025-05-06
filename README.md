@@ -2,31 +2,16 @@
 
 Angular XUI is a comprehensive UI component library for Angular applications, providing a set of reusable, accessible, and customizable components.
 
-## Features
-
-- 🎨 Modern and customizable UI components
-- 📱 Responsive design
-- ♿ Accessibility support
-- 🧩 Component-based architecture
-- 🎭 Storybook integration for component documentation
-- 🧪 Comprehensive testing setup
-
-## Available Components
-
-- **Button**: Versatile button component with multiple variants
-- **Card**: Flexible card component for content display
-- **Grid Layout**: Responsive grid system
-- **Navbar**: Navigation bar component
-- **Sidemenu**: Side navigation menu
-- **Tooltip**: Information tooltip component
-- **Typography**: Text styling components
-
 ## Getting Started
 
 ### Installation
 
 ```bash
 npm install @base-xui/angular-xui
+# or
+yarn add @base-xui/angular-xui
+# or
+pnpm add @base-xui/angular-xui
 ```
 
 ### Usage
@@ -80,7 +65,7 @@ Here are some examples of how to use the Button component:
 ### Prerequisites
 
 - Node.js 18.19.1 or higher
-- npm 10.2.4 or higher
+- pnpm 10.2.4 or higher
 - Angular CLI 19.1.6 or higher
 
 ### Setup
@@ -95,19 +80,19 @@ cd angular-xui
 2. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. Start the development server:
 
 ```bash
-npm start
+pnpm start
 ```
 
 4. View Storybook documentation:
 
 ```bash
-npm run storybook
+pnpm run storybook
 ```
 
 ## Building
@@ -115,32 +100,96 @@ npm run storybook
 To build the library:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 The build artifacts will be stored in the `dist/` directory.
+
+### Testing Locally with yalc
+
+For testing the package in another local project without publishing to npm:
+
+1. Install yalc globally (if not already installed):
+
+   ```bash
+   npm install -g yalc
+   # or
+   pnpm install -g yalc
+   ```
+
+2. When you make changes to the library:
+
+   ```bash
+   # In angular-xui directory
+   pnpm build:package
+   yalc push
+   ```
+
+   Or use watch mode for continuous updates:
+
+   ```bash
+   pnpm build:package --watch
+   ```
+
+   And in another terminal:
+
+   ```bash
+   yalc push --watch
+   ```
+
+3. Link package to local angular app:
+
+   ```bash
+   # In your test app directory
+   yalc add @base-xui/angular-xui
+   pnpm install # or npm install
+   ```
+
+4. To remove the yalc link:
+
+   ```bash
+   # In your test app directory
+   yalc remove @base-xui/angular-xui
+   npm install # or pnpm install
+   ```
+
+### Available Scripts
+
+- `pnpm storybook` - Start Storybook for component development
+- `pnpm build:storybook` - Build Storybook for deployment
+- `pnpm test:unit` - Run components test (unit test)
+- `pnpm test:unit:ui` - Open Visualized components test interface
+- `pnpm test:e2e` - Run end to end tests
+- `pnpm test:e2e:ui` - Open Visualized e2e test interface
+- `pnpm lint` - Lint code
+- `pnpm format` - Format code
+
+### Project Structure
+
+- `src/app/` - Component source code
+- `src/app/components/` - UI components
 
 ## Testing
 
 ### Unit Tests
 
 ```bash
-npm test
+pnpm test:unit
 ```
 
 ### E2E Tests
 
 ```bash
-npm run e2e
+pnpm test:e2e
 ```
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed information about our development workflow, branching strategy, and release process.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+[MIT License](./LICENSE)
 
 ## Additional Resources
 

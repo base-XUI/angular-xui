@@ -36,9 +36,12 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/cypress/screenshots
 
 # System files
 .DS_Store
 Thumbs.db
+.env
+.npmrc
 
 *storybook.log
