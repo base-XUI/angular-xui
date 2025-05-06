@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@base-xui/angular-xui": {
+      "signature": "20f193d43c386083c73a2dca929ea7fb",
+      "file": true
+    }
+  }
+}
