@@ -22,8 +22,10 @@
     }
   ],
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "storybook": "ng run angular-xui:storybook",
+    "dev:link": "pnpm build:package && yalc push",
+    "dev:publish": "pnpm build:package && yalc publish",
+    "dev:watch": "concurrently \"pnpm build:package --watch\" \"yalc push --watch\"",
     "build:package": "ng-packagr -p ng-package.json && pnpm run build:css",
     "build:css": "tailwindcss -i ./src/styles.scss -o ./dist/angular-xui/styles.css --minify",
     "watch": "ng build --watch --configuration development",
@@ -31,7 +33,6 @@
     "test:unit:ui": "cypress open --component",
     "test:e2e": "cypress run",
     "test:e2e:ui": "cypress open --e2e",
-    "storybook": "ng run angular-xui:storybook",
     "build:storybook": "ng run angular-xui:build-storybook",
     "prepare": "husky install",
     "changeset": "changeset",
@@ -39,7 +40,9 @@
     "lint": "eslint .",
     "release": "changeset publish",
     "format": "prettier --write .",
-    "postinstall": "node ./scripts/postinstall.js"
+    "postinstall": "node ./scripts/postinstall.js",
+    "ng": "ng",
+    "start": "ng serve"
   },
   "private": false,
   "dependencies": {
@@ -85,6 +88,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.2",
     "css-loader": "^6.11.0",
     "cypress": "^14.3.1",
     "eslint": "^8.56.0",
@@ -134,12 +138,12 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "autoprefixer": "^10.4.0",
     "class-variance-authority": "^0.7.1",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0",
-    "tailwindcss": "^3.4.0",
     "postcss": "^8.4.0",
-    "autoprefixer": "^10.4.0"
+    "rxjs": "~7.8.0",
+    "tailwindcss": "^3.4.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.0"
   }
 }
