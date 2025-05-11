@@ -1,0 +1,18 @@
+<ng-container *ngIf="component === 'a' || !component; else customElement">
+ <a 
+ [class]="linkClasses"
+  *ngIf="true"    
+    [href]="href || '#'">
+    <ng-content></ng-content>
+  </a>
+ 
+</ng-container>
+
+<ng-template #customElement>
+  <ng-container [ngSwitch]="component">
+    <a *ngSwitchCase="'button'"  [class]="linkClasses"
+    [attr.role]="role || 'a'">
+    Link Button
+    </a>
+  </ng-container>
+</ng-template>
