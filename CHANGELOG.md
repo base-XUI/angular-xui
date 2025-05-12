@@ -1,5 +1,13 @@
 # @base-xui/angular-xui
 
+## 0.1.2
+
+### Patch Changes
+
+- [#27](https://github.com/base-XUI/angular-xui/pull/27) [`5d6ff96`](https://github.com/base-XUI/angular-xui/commit/5d6ff966074d974d23fed38986ef7c1bb67b2d88) Thanks [@MoElBehary](https://github.com/MoElBehary)! - relese Install Cypress step
+
+- [#29](https://github.com/base-XUI/angular-xui/pull/29) [`730286d`](https://github.com/base-XUI/angular-xui/commit/730286dc5a2125bea9f0cdbd9cb8b485a5f5d995) Thanks [@MoElBehary](https://github.com/MoElBehary)! - change button selector name
+
 ## 0.1.1
 
 ### Patch Changes
