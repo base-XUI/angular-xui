@@ -2,4 +2,4 @@
 "@base-xui/angular-xui": patch
 ---
 
-base-xui
+relese Install Cypress step
