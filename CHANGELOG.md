@@ -1,5 +1,11 @@
 # @base-xui/angular-xui
 
+## 0.1.1
+
+### Patch Changes
+
+- [#31](https://github.com/base-XUI/angular-xui/pull/31) [`e44e356`](https://github.com/base-XUI/angular-xui/commit/e44e3569997f6b85ad21318792614bf190ed1494) Thanks [@MoElBehary](https://github.com/MoElBehary)! - updating publishConfig
+
 ## 0.1.2
 
 ### Patch Changes
