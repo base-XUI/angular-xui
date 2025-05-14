@@ -64,7 +64,65 @@ describe("Link Component", () => {
       .and("have.attr", "href", "#")
       .and("contain.text", "Default Link");
   });
+  // Test with text decoration class
+  it("renders with different text decorations", () => {
+    // Test always underline
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        underline: "always",
+      },
+    });
+    cy.get("a").should("have.class", "underline");
+    // Test hover underline
 
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        underline: "hover",
+      },
+    });
+    cy.get("a").should("have.class", "hover:underline");
+    // Test non underline
+
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        underline: "none",
+      },
+    });
+    cy.get("a").should("have.class", "no-underline");
+  });
+  // Test color of link
+  it("renders with different colors", () => {
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        color: "inherit",
+      },
+    });
+    cy.get("a").should("exist");
+
+    //primary color
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        color: "primary",
+      },
+    });
+    cy.get("a").should("exist");
+
+    //secondary color
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        color: "secondary",
+      },
+    });
+    cy.get("a").should("exist");
+    //warning color
+    cy.mount(TestLinkHostComponent, {
+      componentProperties: {
+        color: "warning",
+      },
+    });
+    cy.get("a").should("exist");
+  });
+  //test render as custom component
   it("renders as a custom component", () => {
     cy.mount(TestLinkHostComponent, {
       componentProperties: {
