@@ -265,6 +265,7 @@ export const WithAction: Story = {
     ...Default.args,
     message: "This is a snackbar with an action.",
     showAction: true,
+    severity: "info",
   },
 };
 
