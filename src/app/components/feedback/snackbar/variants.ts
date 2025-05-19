@@ -1,7 +1,6 @@
 import {
   SnackbarAnchorOrigin,
   SnackbarSeverity,
-  SnackbarTransition,
   SnackbarVariant,
 } from "./snackbar.types";
 
@@ -24,33 +23,33 @@ export const severityStyles: Record<
   { filled: string; outlined: string; icon: string }
 > = {
   primary: {
-    filled: "bg-primary border text-primary-foreground",
-    outlined: "bg-transparent border border-primary text-primary",
+    filled: "bg-white text-black",
+    outlined: "bg-white border border-gray-200 text-blac",
     icon: "text-primary-foreground",
   },
   secondary: {
-    filled: "bg-secondary text-secondary-foreground",
-    outlined: "bg-transparent border border-secondary text-secondary",
+    filled: "bg-gray-700 text-white",
+    outlined: "bg-white border border-gray-700 text-gray-700",
     icon: "text-secondary-foreground",
   },
   success: {
-    filled: "bg-success text-success-foreground",
-    outlined: "bg-transparent border border-success text-success",
+    filled: "bg-green-500 text-white",
+    outlined: "bg-white border border-green-500 text-green-500",
     icon: "text-success-foreground",
   },
   error: {
-    filled: "bg-destructive text-destructive-foreground",
-    outlined: "bg-transparent border border-destructive text-destructive",
+    filled: "bg-red-500 text-white",
+    outlined: "bg-white border border-red-500 text-red-500",
     icon: "text-destructive-foreground",
   },
   info: {
-    filled: "bg-white text-black",
-    outlined: "bg-transparent border border-info text-info",
+    filled: "bg-blue-500 text-white",
+    outlined: "bg-white border border-blue-500 text-blue-500",
     icon: "text-info",
   },
   warning: {
-    filled: "bg-warning text-warning-foreground",
-    outlined: "bg-transparent border border-warning text-warning",
+    filled: "bg-amber-500 text-white",
+    outlined: "bg-white border border-amber-500 text-amber-500",
     icon: "text-warning-foreground",
   },
 };
@@ -80,28 +79,12 @@ export function getPositionStyles(anchorOrigin: SnackbarAnchorOrigin): string {
   return position;
 }
 
-// Transition styles
-export function getTransitionStyles(
-  transition: SnackbarTransition,
-  open: boolean,
-  anchorOrigin: SnackbarAnchorOrigin,
-): string {
-  const { vertical } = anchorOrigin;
-
+// Visibility styles
+export function getVisibilityStyles(open: boolean): string {
   if (!open) {
     return "opacity-0 scale-95 pointer-events-none";
   }
-
-  switch (transition) {
-    case "fade":
-      return "opacity-100";
-    case "slide":
-      return `opacity-100 transform ${vertical === "top" ? "translate-y-0" : "translate-y-0"}`;
-    case "grow":
-      return "opacity-100 scale-100";
-    default:
-      return "opacity-100";
-  }
+  return "opacity-100";
 }
 
 // Get combined styles based on props
@@ -109,14 +92,13 @@ export function getSnackbarStyles(
   severity: SnackbarSeverity,
   variant: SnackbarVariant,
   anchorOrigin: SnackbarAnchorOrigin,
-  transition: SnackbarTransition,
   open: boolean,
 ): string {
   const severityStyle = severityStyles[severity][variant];
   const positionStyle = getPositionStyles(anchorOrigin);
-  const transitionStyle = getTransitionStyles(transition, open, anchorOrigin);
+  const visibilityStyle = getVisibilityStyles(open);
 
-  return `${baseSnackbarStyles.container} ${severityStyle} ${positionStyle} ${transitionStyle}`;
+  return `${baseSnackbarStyles.container} ${severityStyle} ${positionStyle} ${visibilityStyle}`;
 }
 
 // Get icon color based on severity and variant

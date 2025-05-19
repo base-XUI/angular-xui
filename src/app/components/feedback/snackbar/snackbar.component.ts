@@ -13,17 +13,10 @@ import {
 import { DomSanitizer } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { SvgIconComponent } from "./svg-icon/svg-icon.component";
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from "@angular/animations";
+
 import {
   SnackbarAnchorOrigin,
   SnackbarSeverity,
-  SnackbarTransition,
   SnackbarVariant,
 } from "./snackbar.types";
 import { getSnackbarStyles, getCloseButtonStyles } from "./variants";
@@ -36,99 +29,10 @@ import {
 } from "./icons";
 
 @Component({
-  selector: "xui-snackbar",
+  selector: "app-snackbar",
   templateUrl: "./snackbar.component.html",
   standalone: true,
   imports: [CommonModule, SvgIconComponent],
-  animations: [
-    trigger("snackbarAnimation", [
-      // Fade animation
-      state("fade-in", style({ opacity: 1 })),
-      state("fade-out", style({ opacity: 0 })),
-
-      // Slide animation
-      state(
-        "slide-in-top",
-        style({
-          opacity: 1,
-          transform: "translateY(0)",
-        }),
-      ),
-      state(
-        "slide-out-top",
-        style({
-          opacity: 0,
-          transform: "translateY(-100%)",
-        }),
-      ),
-      state(
-        "slide-in-bottom",
-        style({
-          opacity: 1,
-          transform: "translateY(0)",
-        }),
-      ),
-      state(
-        "slide-out-bottom",
-        style({
-          opacity: 0,
-          transform: "translateY(100%)",
-        }),
-      ),
-
-      // Grow animation
-      state(
-        "grow-in",
-        style({
-          opacity: 1,
-          transform: "scale(1)",
-        }),
-      ),
-      state(
-        "grow-out",
-        style({
-          opacity: 0,
-          transform: "scale(0.9)",
-        }),
-      ),
-
-      // Transitions
-      transition("void => fade-in", [
-        style({ opacity: 0 }),
-        animate("150ms ease-out"),
-      ]),
-      transition("fade-in => fade-out", [animate("100ms ease-in")]),
-
-      transition("void => slide-in-top", [
-        style({
-          opacity: 0,
-          transform: "translateY(-100%)",
-        }),
-        animate("200ms ease-out"),
-      ]),
-      transition("slide-in-top => slide-out-top", [animate("150ms ease-in")]),
-
-      transition("void => slide-in-bottom", [
-        style({
-          opacity: 0,
-          transform: "translateY(100%)",
-        }),
-        animate("200ms ease-out"),
-      ]),
-      transition("slide-in-bottom => slide-out-bottom", [
-        animate("150ms ease-in"),
-      ]),
-
-      transition("void => grow-in", [
-        style({
-          opacity: 0,
-          transform: "scale(0.9)",
-        }),
-        animate("200ms ease-out"),
-      ]),
-      transition("grow-in => grow-out", [animate("150ms ease-in")]),
-    ]),
-  ],
 })
 export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   // Required inputs
@@ -137,24 +41,22 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   // Optional inputs with default values
   @Input() message?: string;
   @Input() action?: TemplateRef<unknown>;
-  @Input() autoHideDuration: number = 5000;
+  @Input() autoHideDuration: number = 50000000;
   @Input() anchorOrigin: SnackbarAnchorOrigin = {
     vertical: "bottom",
     horizontal: "left",
   };
   @Input() style: Record<string, string | number> = {};
-  @Input() severity: SnackbarSeverity = "info";
-  @Input() variant: SnackbarVariant = "filled";
+  @Input() severity?: SnackbarSeverity = "primary";
+  @Input() variant?: SnackbarVariant = "filled";
   @Input() withCloseIcon: boolean = true;
   @Input() closeIcon?: TemplateRef<unknown>;
   @Input() customIcon?: TemplateRef<unknown>;
-  @Input() transition: SnackbarTransition = "fade";
 
   // Output events
   @Output() closeHandle = new EventEmitter<void>();
 
   // Internal properties
-  animationState: string = "";
   containerClass: string = "";
   closeButtonClass: string = "";
   autoHideTimeoutId?: number;
@@ -171,14 +73,12 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this.updateStyles();
     this.updateSeverityIcon();
-    this.setAnimationState();
     this.setupAutoHide();
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
     this.updateStyles();
     this.updateSeverityIcon();
-    this.setAnimationState();
     this.setupAutoHide();
   }
 
@@ -188,16 +88,15 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   private updateStyles(): void {
     this.containerClass = getSnackbarStyles(
-      this.severity,
-      this.variant,
+      this.severity || "primary",
+      this.variant || "filled",
       this.anchorOrigin,
-      this.transition,
       this.open,
     );
 
     this.closeButtonClass = `ml-2 p-1 rounded-full hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getCloseButtonStyles(
-      this.severity,
-      this.variant,
+      this.severity || "primary",
+      this.variant || "filled",
     )}`;
   }
 
@@ -213,42 +112,11 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
         this.severityIcon = WarningIcon;
         break;
       case "info":
-        // No icon for default info severity
-        this.severityIcon = "";
-        break;
-      default:
         this.severityIcon = InfoIcon;
         break;
-    }
-  }
-
-  private setAnimationState(): void {
-    if (this.open) {
-      switch (this.transition) {
-        case "slide":
-          this.animationState = `slide-in-${this.anchorOrigin.vertical}`;
-          break;
-        case "grow":
-          this.animationState = "grow-in";
-          break;
-        case "fade":
-        default:
-          this.animationState = "fade-in";
-          break;
-      }
-    } else {
-      switch (this.transition) {
-        case "slide":
-          this.animationState = `slide-out-${this.anchorOrigin.vertical}`;
-          break;
-        case "grow":
-          this.animationState = "grow-out";
-          break;
-        case "fade":
-        default:
-          this.animationState = "fade-out";
-          break;
-      }
+      default:
+        this.severityIcon = "";
+        break;
     }
   }
 

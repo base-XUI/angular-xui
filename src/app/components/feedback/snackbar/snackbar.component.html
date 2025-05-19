@@ -1,54 +1,59 @@
 <!-- Snackbar container -->
-<div 
+<div
   *ngIf="open"
   [ngClass]="containerClass"
   [ngStyle]="style"
-  [@snackbarAnimation]="{ value: animationState, params: { vertical: anchorOrigin.vertical } }"
   role="alert"
-  aria-live="assertive">
-  
+  aria-live="assertive"
+>
   <!-- Content area -->
-  <div class="flex-grow flex items-center">
+  <div class="flex flex-grow items-center px-2">
     <!-- Severity icon - hidden for default severity -->
-    <xui-svg-icon
-      *ngIf="!customIcon && severity !== 'info'" 
+    <app-svg-icon
+      *ngIf="!customIcon && severity !== 'primary' && severity !== 'secondary'"
       [svg]="severityIcon"
-      className="w-5 h-5 mr-3 justify-center align-center flex">
-    </xui-svg-icon>
-    
+      className="w-5 h-5 mr-3 justify-center align-center flex"
+    >
+    </app-svg-icon>
+
     <!-- Custom icon if provided -->
-    <span 
-      *ngIf="customIcon" 
-      class="w-5 h-5 mr-3 justify-center align-center flex">
+    <span
+      *ngIf="customIcon"
+      class="align-center mr-3 flex h-5 w-5 justify-center"
+    >
       <ng-container *ngTemplateOutlet="customIcon"></ng-container>
     </span>
-    
+
     <!-- Message or children content -->
     <div class="text-sm font-medium">
-      <ng-container *ngIf="message; else contentTpl">{{ message }}</ng-container>
+      <ng-container *ngIf="message; else contentTpl">{{
+        message
+      }}</ng-container>
       <ng-template #contentTpl>
         <ng-content></ng-content>
       </ng-template>
     </div>
   </div>
-  
+
   <!-- Action area -->
   <div *ngIf="action" class="ml-auto pl-3">
     <ng-container *ngTemplateOutlet="action"></ng-container>
   </div>
-  
+
   <!-- Close button -->
-  <button 
+  <button
     *ngIf="withCloseIcon"
     type="button"
     [ngClass]="closeButtonClass"
     (click)="handleClose()"
-    aria-label="Close">
-    <xui-svg-icon
-      *ngIf="!closeIcon" 
+    aria-label="Close"
+  >
+    <app-svg-icon
+      *ngIf="!closeIcon"
       [svg]="defaultCloseIcon"
-      className="w-5 h-5 justify-center align-center flex">
-    </xui-svg-icon>
+      className="w-5 h-5 justify-center align-center flex"
+    >
+    </app-svg-icon>
     <ng-container *ngIf="closeIcon">
       <ng-container *ngTemplateOutlet="closeIcon"></ng-container>
     </ng-container>

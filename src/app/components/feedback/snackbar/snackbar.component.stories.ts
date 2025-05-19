@@ -12,7 +12,6 @@ import { SvgIconComponent } from "./svg-icon/svg-icon.component";
 import {
   SnackbarAnchorOrigin,
   SnackbarSeverity,
-  SnackbarTransition,
   SnackbarVariant,
 } from "./snackbar.types";
 
@@ -42,14 +41,14 @@ import {
       <ng-template #actionTemplate>
         <button
           (click)="handleAction()"
-          class="rounded px-2 py-1 text-xs font-medium focus:outline-none"
+          class="rounded px-2 py-1 text-xs font-medium text-cyan-950 focus:outline-none"
           [ngClass]="actionButtonClass"
         >
           ACTION
         </button>
       </ng-template>
 
-      <xui-snackbar
+      <app-snackbar
         [open]="open"
         [message]="message"
         [action]="showAction ? actionTemplate : undefined"
@@ -58,10 +57,9 @@ import {
         [severity]="severity"
         [variant]="variant"
         [withCloseIcon]="withCloseIcon"
-        [transition]="transition"
         (closeHandle)="handleClose()"
       >
-      </xui-snackbar>
+      </app-snackbar>
     </div>
   `,
   styles: [
@@ -89,7 +87,6 @@ class SnackbarStoryWrapperComponent {
   @Input() variant: SnackbarVariant = "filled";
   @Input() withCloseIcon: boolean = true;
   @Input() closeIcon?: TemplateRef<unknown> = undefined;
-  @Input() transition: SnackbarTransition = "fade";
 
   get actionButtonClass(): string {
     if (this.variant === "outlined") {
@@ -147,8 +144,7 @@ export default {
         [anchorOrigin]="anchorOrigin"
         [severity]="severity"
         [variant]="variant"
-        [withCloseIcon]="withCloseIcon"
-        [transition]="transition">
+        [withCloseIcon]="withCloseIcon">
       </snackbar-story-wrapper>
     `,
   }),
@@ -208,11 +204,6 @@ The Snackbar component provides brief messages about app processes. They appear 
       control: "boolean",
       description: "Whether to show a close icon",
     },
-    transition: {
-      control: "select",
-      options: ["fade", "slide", "grow"],
-      description: "The transition animation to use",
-    },
   },
 } as Meta<SnackbarStoryWrapperComponent>;
 
@@ -225,18 +216,23 @@ export const Default: Story = {
     showAction: false,
     autoHideDuration: 5000,
     anchorOrigin: { vertical: "bottom", horizontal: "left" },
-    severity: "info", // Default severity with white background and black text, no icon
-    variant: "filled",
     withCloseIcon: true,
-    transition: "fade",
+    severity: "primary",
   },
 };
 
+export const Secondary: Story = {
+  args: {
+    ...Default.args,
+    message: "This is an info snackbar with icon.",
+    severity: "secondary", // Using primary to show an icon
+  },
+};
 export const Info: Story = {
   args: {
     ...Default.args,
     message: "This is an info snackbar with icon.",
-    severity: "primary", // Using primary to show an icon
+    severity: "info", // Using primary to show an icon
   },
 };
 
@@ -296,22 +292,6 @@ export const BottomCenter: Story = {
   },
 };
 
-export const SlideTransition: Story = {
-  args: {
-    ...Default.args,
-    message: "This snackbar uses a slide transition.",
-    transition: "slide",
-  },
-};
-
-export const GrowTransition: Story = {
-  args: {
-    ...Default.args,
-    message: "This snackbar uses a grow transition.",
-    transition: "grow",
-  },
-};
-
 export const NoAutoHide: Story = {
   args: {
     ...Default.args,
@@ -325,5 +305,102 @@ export const WithoutCloseIcon: Story = {
     ...Default.args,
     message: "This snackbar has no close icon.",
     withCloseIcon: false,
+  },
+};
+
+// Custom story wrapper component for demonstrating content projection
+@Component({
+  selector: "snackbar-custom-content-wrapper",
+  standalone: true,
+  imports: [SnackbarComponent, CommonModule],
+  template: `
+    <div class="p-4">
+      <div class="mb-4 flex gap-2">
+        <button
+          (click)="toggleSnackbar()"
+          class="rounded bg-primary px-4 py-2 text-white"
+        >
+          {{ open ? "Close" : "Open" }} Snackbar
+        </button>
+      </div>
+
+      <app-snackbar
+        [open]="open"
+        [autoHideDuration]="autoHideDuration"
+        [anchorOrigin]="anchorOrigin"
+        [severity]="severity"
+        [variant]="variant"
+        [withCloseIcon]="withCloseIcon"
+        (closeHandle)="handleClose()"
+      >
+        <div>
+          <h3>Custom content title</h3>
+          <div class="flex items-center">
+            <span class="mr-2 text-lg">🎉</span>
+            <span class="font-medium">Custom Content</span>
+            <span class="ml-2 text-sm italic">with rich formatting</span>
+          </div>
+        </div>
+      </app-snackbar>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        display: block;
+        min-height: 400px;
+      }
+    `,
+  ],
+})
+class SnackbarCustomContentWrapperComponent {
+  @Input() open: boolean = false;
+  @Input() autoHideDuration: number = 5000000;
+  @Input() anchorOrigin: SnackbarAnchorOrigin = {
+    vertical: "bottom",
+    horizontal: "left",
+  };
+  @Input() severity: SnackbarSeverity = "info";
+  @Input() variant: SnackbarVariant = "filled";
+  @Input() withCloseIcon: boolean = true;
+
+  toggleSnackbar(): void {
+    this.open = !this.open;
+  }
+
+  handleClose(): void {
+    this.open = false;
+    console.log("Snackbar closed");
+  }
+}
+
+export const WithCustomContent: Story = {
+  render: (args) => ({
+    moduleMetadata: {
+      imports: [SnackbarCustomContentWrapperComponent],
+    },
+    props: args,
+    template: `
+      <snackbar-custom-content-wrapper
+        [open]="open"
+        [autoHideDuration]="autoHideDuration"
+        [anchorOrigin]="anchorOrigin"
+        [severity]="severity"
+        [variant]="variant"
+        [withCloseIcon]="withCloseIcon">
+      </snackbar-custom-content-wrapper>
+    `,
+  }),
+  args: {
+    ...Default.args,
+    message: undefined, // No message as we're using custom content
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This example demonstrates how to use custom content projection instead of the "message" property. When content is projected into the component, it takes precedence over the message property.',
+      },
+    },
   },
 };

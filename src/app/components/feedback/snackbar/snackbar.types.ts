@@ -6,7 +6,6 @@ export type SnackbarSeverity =
   | "info"
   | "warning";
 export type SnackbarVariant = "filled" | "outlined";
-export type SnackbarTransition = "fade" | "slide" | "grow";
 export type SnackbarVerticalPosition = "top" | "bottom";
 export type SnackbarHorizontalPosition = "left" | "center" | "right";
 
@@ -28,5 +27,4 @@ export interface SnackbarOptions {
   withCloseIcon?: boolean;
   closeIcon?: any;
   customIcon?: any;
-  transition?: SnackbarTransition;
 }

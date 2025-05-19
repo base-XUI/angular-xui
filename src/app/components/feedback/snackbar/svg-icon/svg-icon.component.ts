@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
-  selector: "xui-svg-icon",
+  selector: "app-svg-icon",
   standalone: true,
   imports: [CommonModule],
   template: `<span
