@@ -24,7 +24,7 @@ export const severityStyles: Record<
 > = {
   primary: {
     filled: "bg-white text-black",
-    outlined: "bg-white border border-gray-200 text-blac",
+    outlined: "bg-white border border-gray-200 text-black",
     icon: "text-primary-foreground",
   },
   secondary: {
