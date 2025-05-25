@@ -28,14 +28,6 @@ import {
         >
           {{ open ? "Close" : "Open" }} Snackbar
         </button>
-
-        <button
-          *ngIf="open"
-          (click)="resetAutoHide()"
-          class="rounded bg-secondary px-4 py-2 text-white"
-        >
-          Reset Auto-hide Timer
-        </button>
       </div>
 
       <ng-template #actionTemplate>
@@ -133,6 +125,7 @@ export default {
       providers: [provideAnimations()],
     }),
   ],
+  tags: ["autodocs"],
   render: (args) => ({
     props: args,
     template: `
