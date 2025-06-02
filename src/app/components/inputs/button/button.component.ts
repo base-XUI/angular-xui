@@ -11,7 +11,7 @@ import { buttonVariants } from "./variants";
 import { ButtonBaseProps } from "./button.types";
 
 @Component({
-  selector: "app-button",
+  selector: "xui-button",
   standalone: true,
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
