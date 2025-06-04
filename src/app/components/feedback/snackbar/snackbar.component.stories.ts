@@ -8,12 +8,7 @@ import { SnackbarComponent } from "./snackbar.component";
 import { Component, Input, TemplateRef, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { SvgIconComponent } from "./svg-icon/svg-icon.component";
-import {
-  SnackbarAnchorOrigin,
-  SnackbarSeverity,
-  SnackbarVariant,
-} from "./snackbar.types";
+import { SnackbarAnchorOrigin } from "./snackbar.types";
 
 @Component({
   selector: "snackbar-story-wrapper",
@@ -46,8 +41,6 @@ import {
         [action]="showAction ? actionTemplate : undefined"
         [autoHideDuration]="autoHideDuration"
         [anchorOrigin]="anchorOrigin"
-        [severity]="severity"
-        [variant]="variant"
         [withCloseIcon]="withCloseIcon"
         (closeHandle)="handleClose()"
       >
@@ -75,15 +68,11 @@ class SnackbarStoryWrapperComponent {
     vertical: "bottom",
     horizontal: "left",
   };
-  @Input() severity: SnackbarSeverity = "info";
-  @Input() variant: SnackbarVariant = "filled";
+
   @Input() withCloseIcon: boolean = true;
   @Input() closeIcon?: TemplateRef<unknown> = undefined;
 
   get actionButtonClass(): string {
-    if (this.variant === "outlined") {
-      return `text-${this.severity} border border-${this.severity} hover:bg-${this.severity} hover:bg-opacity-10`;
-    }
     return "text-white border border-white hover:bg-white hover:bg-opacity-10";
   }
 
@@ -114,12 +103,7 @@ export default {
   component: SnackbarComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        SnackbarComponent,
-        SnackbarStoryWrapperComponent,
-        SvgIconComponent,
-        CommonModule,
-      ],
+      imports: [SnackbarComponent, SnackbarStoryWrapperComponent, CommonModule],
     }),
     applicationConfig({
       providers: [provideAnimations()],
@@ -135,8 +119,6 @@ export default {
         [showAction]="showAction"
         [autoHideDuration]="autoHideDuration"
         [anchorOrigin]="anchorOrigin"
-        [severity]="severity"
-        [variant]="variant"
         [withCloseIcon]="withCloseIcon">
       </snackbar-story-wrapper>
     `,
@@ -151,8 +133,6 @@ The Snackbar component provides brief messages about app processes. They appear 
 
 ## Features
 
-- Multiple severity levels (primary, secondary, success, error, info, warning)
-- Two variants (filled, outlined)
 - Customizable position
 - Auto-hide functionality
 - Custom actions
@@ -183,16 +163,7 @@ The Snackbar component provides brief messages about app processes. They appear 
       control: "object",
       description: "The position where the snackbar should appear",
     },
-    severity: {
-      control: "select",
-      options: ["primary", "secondary", "success", "error", "info", "warning"],
-      description: "The severity level of the snackbar",
-    },
-    variant: {
-      control: "select",
-      options: ["filled", "outlined"],
-      description: "The variant of the snackbar",
-    },
+
     withCloseIcon: {
       control: "boolean",
       description: "Whether to show a close icon",
@@ -210,46 +181,6 @@ export const Default: Story = {
     autoHideDuration: 5000,
     anchorOrigin: { vertical: "bottom", horizontal: "left" },
     withCloseIcon: true,
-    severity: "primary",
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    ...Default.args,
-    message: "This is an info snackbar with icon.",
-    severity: "secondary", // Using primary to show an icon
-  },
-};
-export const Info: Story = {
-  args: {
-    ...Default.args,
-    message: "This is an info snackbar with icon.",
-    severity: "info", // Using primary to show an icon
-  },
-};
-
-export const Success: Story = {
-  args: {
-    ...Default.args,
-    message: "This is a success snackbar.",
-    severity: "success",
-  },
-};
-
-export const Error: Story = {
-  args: {
-    ...Default.args,
-    message: "This is an error snackbar.",
-    severity: "error",
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    ...Default.args,
-    message: "This is a warning snackbar.",
-    severity: "warning",
   },
 };
 
@@ -258,15 +189,6 @@ export const WithAction: Story = {
     ...Default.args,
     message: "This is a snackbar with an action.",
     showAction: true,
-    severity: "info",
-  },
-};
-
-export const Outlined: Story = {
-  args: {
-    ...Default.args,
-    message: "This is an outlined snackbar.",
-    variant: "outlined",
   },
 };
 
@@ -322,8 +244,6 @@ export const WithoutCloseIcon: Story = {
         [open]="open"
         [autoHideDuration]="autoHideDuration"
         [anchorOrigin]="anchorOrigin"
-        [severity]="severity"
-        [variant]="variant"
         [withCloseIcon]="withCloseIcon"
         (closeHandle)="handleClose()"
       >
@@ -354,8 +274,7 @@ class SnackbarCustomContentWrapperComponent {
     vertical: "bottom",
     horizontal: "left",
   };
-  @Input() severity: SnackbarSeverity = "info";
-  @Input() variant: SnackbarVariant = "filled";
+
   @Input() withCloseIcon: boolean = true;
 
   toggleSnackbar(): void {

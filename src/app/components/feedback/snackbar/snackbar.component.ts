@@ -12,27 +12,14 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
-import { SvgIconComponent } from "./svg-icon/svg-icon.component";
-
-import {
-  SnackbarAnchorOrigin,
-  SnackbarSeverity,
-  SnackbarVariant,
-} from "./snackbar.types";
-import { getSnackbarStyles, getCloseButtonStyles } from "./variants";
-import {
-  SuccessIcon,
-  ErrorIcon,
-  InfoIcon,
-  WarningIcon,
-  CloseIcon,
-} from "./icons";
+import { SnackbarAnchorOrigin } from "./snackbar.types";
+import { getPositionStyles, getVisibilityStyles } from "./variants";
 
 @Component({
   selector: "app-snackbar",
   templateUrl: "./snackbar.component.html",
   standalone: true,
-  imports: [CommonModule, SvgIconComponent],
+  imports: [CommonModule],
 })
 export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   // Required inputs
@@ -47,8 +34,6 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
     horizontal: "left",
   };
   @Input() style: Record<string, string | number> = {};
-  @Input() severity?: SnackbarSeverity = "primary";
-  @Input() variant?: SnackbarVariant = "filled";
   @Input() withCloseIcon: boolean = true;
   @Input() closeIcon?: TemplateRef<unknown>;
   @Input() customIcon?: TemplateRef<unknown>;
@@ -61,10 +46,6 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   closeButtonClass: string = "";
   autoHideTimeoutId?: number;
 
-  // Icons
-  severityIcon: string = "";
-  defaultCloseIcon: string = CloseIcon;
-
   constructor(
     private ngZone: NgZone,
     private sanitizer: DomSanitizer,
@@ -72,13 +53,11 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.updateStyles();
-    this.updateSeverityIcon();
     this.setupAutoHide();
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
     this.updateStyles();
-    this.updateSeverityIcon();
     this.setupAutoHide();
   }
 
@@ -87,37 +66,14 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private updateStyles(): void {
-    this.containerClass = getSnackbarStyles(
-      this.severity || "primary",
-      this.variant || "filled",
-      this.anchorOrigin,
-      this.open,
-    );
+    const baseStyles =
+      "fixed z-50 flex items-center border p-2 rounded-md shadow-lg max-w-md min-w-[300px] transition-all duration-300 ease-in-out bg-white text-black";
+    const positionStyle = getPositionStyles(this.anchorOrigin);
+    const visibilityStyle = getVisibilityStyles(this.open);
 
-    this.closeButtonClass = `ml-2 p-1 rounded-full hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getCloseButtonStyles(
-      this.severity || "primary",
-      this.variant || "filled",
-    )}`;
-  }
-
-  private updateSeverityIcon(): void {
-    switch (this.severity) {
-      case "success":
-        this.severityIcon = SuccessIcon;
-        break;
-      case "error":
-        this.severityIcon = ErrorIcon;
-        break;
-      case "warning":
-        this.severityIcon = WarningIcon;
-        break;
-      case "info":
-        this.severityIcon = InfoIcon;
-        break;
-      default:
-        this.severityIcon = "";
-        break;
-    }
+    this.containerClass = `${baseStyles} ${positionStyle} ${visibilityStyle}`;
+    this.closeButtonClass =
+      "ml-2 p-1 rounded-full hover:bg-opacity-20 hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-white hover:bg-opacity-10 focus:ring-white focus:ring-opacity-50";
   }
 
   private setupAutoHide(): void {

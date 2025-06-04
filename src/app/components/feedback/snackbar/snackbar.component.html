@@ -8,13 +8,7 @@
 >
   <!-- Content area -->
   <div class="flex flex-grow items-center px-2 py-3">
-    <!-- Severity icon - hidden for default severity -->
-    <app-svg-icon
-      *ngIf="!customIcon && severity !== 'primary' && severity !== 'secondary'"
-      [svg]="severityIcon"
-      className="w-5 h-5 mr-3 justify-center align-center flex"
-    >
-    </app-svg-icon>
+    <!-- No severity icons since severity prop is removed -->
 
     <!-- Custom icon if provided -->
     <span
@@ -48,12 +42,6 @@
     (click)="handleClose()"
     aria-label="Close"
   >
-    <app-svg-icon
-      *ngIf="!closeIcon"
-      [svg]="defaultCloseIcon"
-      className="w-5 h-5 justify-center align-center flex"
-    >
-    </app-svg-icon>
     <ng-container *ngIf="closeIcon">
       <ng-container *ngTemplateOutlet="closeIcon"></ng-container>
     </ng-container>

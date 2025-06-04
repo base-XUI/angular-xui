@@ -13,8 +13,6 @@ import { CommonModule } from "@angular/common";
       [message]="message"
       [autoHideDuration]="autoHideDuration"
       [anchorOrigin]="anchorOrigin"
-      [severity]="severity"
-      [variant]="variant"
       [withCloseIcon]="withCloseIcon"
       (closeHandle)="handleClose()"
     >
@@ -26,8 +24,7 @@ class TestHostComponent {
   message = "Test message";
   autoHideDuration = 5000;
   anchorOrigin = { vertical: "bottom", horizontal: "left" };
-  severity = "primary";
-  variant = "filled";
+
   withCloseIcon = true;
 
   handleClose() {
@@ -69,39 +66,6 @@ describe("SnackbarComponent", () => {
     });
   });
 
-  // Severity tests
-  describe("Severity Variants", () => {
-    it("should render with success severity and show icon", () => {
-      mountComponent({ severity: "success" });
-
-      cy.get('app-snackbar div[role="alert"]').should("exist");
-      cy.get("app-snackbar app-svg-icon").should("exist");
-    });
-
-    it("should render with error severity and show icon", () => {
-      mountComponent({ severity: "error" });
-
-      cy.get('app-snackbar div[role="alert"]').should("exist");
-      cy.get("app-snackbar app-svg-icon").should("exist");
-    });
-
-    it("should render with warning severity and show icon", () => {
-      mountComponent({ severity: "warning" });
-
-      cy.get('app-snackbar div[role="alert"]').should("exist");
-      cy.get("app-snackbar app-svg-icon").should("exist");
-    });
-  });
-
-  // Visual variant tests
-  describe("Visual Variants", () => {
-    it("should render with outlined variant", () => {
-      mountComponent({ variant: "outlined" });
-
-      cy.get('app-snackbar div[role="alert"]').should("have.class", "border");
-    });
-  });
-
   // Position tests
   describe("Positioning", () => {
     it("should render at top-right position", () => {
@@ -135,8 +99,6 @@ describe("SnackbarComponent", () => {
           <app-snackbar
             [open]="true"
             [autoHideDuration]="5000"
-            [severity]="'info'"
-            [variant]="'filled'"
             [withCloseIcon]="true"
           >
             <div data-testid="custom-content">Custom projected content</div>
