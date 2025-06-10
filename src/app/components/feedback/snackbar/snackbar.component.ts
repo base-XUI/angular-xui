@@ -14,12 +14,13 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { SnackbarAnchorOrigin } from "./snackbar.types";
 import { getPositionStyles, getVisibilityStyles } from "./variants";
+import { SnackbarContentComponent } from "./snackbar-content.component";
 
 @Component({
   selector: "app-snackbar",
   templateUrl: "./snackbar.component.html",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SnackbarContentComponent],
 })
 export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   // Required inputs

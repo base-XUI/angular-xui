@@ -9,11 +9,12 @@ import { Component, Input, TemplateRef, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { SnackbarAnchorOrigin } from "./snackbar.types";
+import { ButtonComponent } from "../../inputs/button/button.component";
 
 @Component({
   selector: "snackbar-story-wrapper",
   standalone: true,
-  imports: [SnackbarComponent, CommonModule],
+  imports: [SnackbarComponent, CommonModule, ButtonComponent],
   template: `
     <div class="p-4">
       <div class="mb-4 flex gap-2">
@@ -98,12 +99,145 @@ class SnackbarStoryWrapperComponent {
   }
 }
 
+// New component for position demo
+@Component({
+  selector: "snackbar-position-wrapper",
+  standalone: true,
+  imports: [SnackbarComponent, CommonModule, ButtonComponent],
+  template: `
+    <div class="p-4">
+      <div class="m-auto w-[500px]">
+        <!-- Top row -->
+        <div class="mb-8 flex justify-center">
+          <button
+            (click)="showSnackbarAt('top', 'center')"
+            class="rounded bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+          >
+            TOP-CENTER
+          </button>
+        </div>
+        <div class="mb-8 flex justify-between">
+          <button
+            (click)="showSnackbarAt('top', 'left')"
+            class="rounded bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+          >
+            TOP-LEFT
+          </button>
+          <button
+            (click)="showSnackbarAt('top', 'right')"
+            class="rounded bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+          >
+            TOP-RIGHT
+          </button>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="mb-8 flex justify-between">
+          <button
+            (click)="showSnackbarAt('bottom', 'left')"
+            class="rounded bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+          >
+            BOTTOM-LEFT
+          </button>
+
+          <button
+            (click)="showSnackbarAt('bottom', 'right')"
+            class="rounded bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+          >
+            BOTTOM-RIGHT
+          </button>
+        </div>
+        <div class="mb-8 flex justify-center">
+          <button
+            (click)="showSnackbarAt('bottom', 'center')"
+            class="rounded bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
+          >
+            BOTTOM-CENTER
+          </button>
+        </div>
+      </div>
+
+      <ng-template #actionTemplate>
+        <app-button
+          (click)="handleAction()"
+          variant="outlined"
+          color="primary"
+          size="small"
+        >
+          Undo
+        </app-button>
+      </ng-template>
+
+      <app-snackbar
+        [open]="open"
+        [message]="currentMessage"
+        [action]="showAction ? actionTemplate : undefined"
+        [autoHideDuration]="autoHideDuration"
+        [anchorOrigin]="currentPosition"
+        [withCloseIcon]="withCloseIcon"
+        (closeHandle)="handleClose()"
+      >
+      </app-snackbar>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        display: block;
+        min-height: 500px;
+      }
+    `,
+  ],
+})
+class SnackbarPositionWrapperComponent {
+  @ViewChild("actionTemplate") actionTemplate!: TemplateRef<unknown>;
+
+  @Input() showAction: boolean = false;
+  @Input() autoHideDuration: number = 0; // Don't auto-hide for position demo
+  @Input() withCloseIcon: boolean = true;
+
+  open: boolean = false;
+  currentMessage: string = "";
+  currentPosition: SnackbarAnchorOrigin = {
+    vertical: "bottom",
+    horizontal: "left",
+  };
+
+  showSnackbarAt(
+    vertical: "top" | "bottom",
+    horizontal: "left" | "center" | "right",
+  ): void {
+    this.currentPosition = { vertical, horizontal };
+    this.currentMessage = `Snackbar positioned at ${vertical}-${horizontal}`;
+    this.open = true;
+  }
+
+  closeSnackbar(): void {
+    this.open = false;
+  }
+
+  handleClose(): void {
+    this.open = false;
+    console.log("Snackbar closed");
+  }
+
+  handleAction(): void {
+    console.log("Action clicked");
+    this.open = false;
+  }
+}
+
 export default {
   title: "Components/Feedback/Snackbar",
   component: SnackbarComponent,
   decorators: [
     moduleMetadata({
-      imports: [SnackbarComponent, SnackbarStoryWrapperComponent, CommonModule],
+      imports: [
+        SnackbarComponent,
+        SnackbarStoryWrapperComponent,
+        SnackbarPositionWrapperComponent,
+        CommonModule,
+      ],
     }),
     applicationConfig({
       providers: [provideAnimations()],
@@ -173,10 +307,10 @@ The Snackbar component provides brief messages about app processes. They appear 
 
 type Story = StoryObj<SnackbarStoryWrapperComponent>;
 
-export const Default: Story = {
+export const Basic: Story = {
   args: {
     open: true,
-    message: "This is a default snackbar with no icon.",
+    message: "This is a default snackbar",
     showAction: false,
     autoHideDuration: 5000,
     anchorOrigin: { vertical: "bottom", horizontal: "left" },
@@ -184,43 +318,40 @@ export const Default: Story = {
   },
 };
 
-export const WithAction: Story = {
+export const Positions: StoryObj<SnackbarPositionWrapperComponent> = {
+  render: (args) => ({
+    moduleMetadata: {
+      imports: [SnackbarPositionWrapperComponent],
+    },
+    props: args,
+    template: `
+      <snackbar-position-wrapper
+        [showAction]="showAction"
+        [autoHideDuration]="autoHideDuration"
+        [withCloseIcon]="withCloseIcon">
+      </snackbar-position-wrapper>
+    `,
+  }),
   args: {
-    ...Default.args,
-    message: "This is a snackbar with an action.",
-    showAction: true,
+    showAction: false,
+    autoHideDuration: 0, // Don't auto-hide for position demo
+    withCloseIcon: true,
   },
-};
-
-export const TopRight: Story = {
-  args: {
-    ...Default.args,
-    message: "This snackbar appears in the top right.",
-    anchorOrigin: { vertical: "top", horizontal: "right" },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Click the position buttons to see how the snackbar appears in different locations on the screen.",
+      },
+    },
   },
 };
 
 export const BottomCenter: Story = {
   args: {
-    ...Default.args,
+    ...Basic.args,
     message: "This snackbar appears in the bottom center.",
     anchorOrigin: { vertical: "bottom", horizontal: "center" },
-  },
-};
-
-export const NoAutoHide: Story = {
-  args: {
-    ...Default.args,
-    message: "This snackbar will not auto-hide.",
-    autoHideDuration: 0,
-  },
-};
-
-export const WithoutCloseIcon: Story = {
-  args: {
-    ...Default.args,
-    message: "This snackbar has no close icon.",
-    withCloseIcon: false,
   },
 };
 
@@ -305,7 +436,7 @@ export const WithCustomContent: Story = {
     `,
   }),
   args: {
-    ...Default.args,
+    ...Basic.args,
     message: undefined, // No message as we're using custom content
   },
   parameters: {

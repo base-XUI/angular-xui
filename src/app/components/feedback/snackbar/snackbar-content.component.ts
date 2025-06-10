@@ -1,0 +1,32 @@
+import { Component, Input, TemplateRef } from "@angular/core";
+import { CommonModule } from "@angular/common";
+
+@Component({
+  selector: "app-snackbar-content",
+  template: `
+    <div class="flex w-full items-center">
+      <!-- Message or children content -->
+      <div class="flex-grow text-sm font-medium">
+        <ng-container *ngIf="message; else contentTpl">{{
+          message
+        }}</ng-container>
+        <ng-template #contentTpl>
+          <ng-content></ng-content>
+        </ng-template>
+      </div>
+
+      <!-- Action area -->
+      <div *ngIf="action" class="ml-auto pl-3">
+        <ng-container *ngTemplateOutlet="action"></ng-container>
+      </div>
+    </div>
+  `,
+  standalone: true,
+  imports: [CommonModule],
+})
+export class SnackbarContentComponent {
+  // Optional inputs
+  @Input() message?: string;
+  @Input() customIcon?: TemplateRef<unknown>;
+  @Input() action?: TemplateRef<unknown>;
+}

@@ -5,45 +5,12 @@
   [ngStyle]="style"
   role="alert"
   aria-live="assertive"
+  class="min-w-[356px] max-w-md"
 >
   <!-- Content area -->
-  <div class="flex flex-grow items-center px-2 py-3">
-    <!-- No severity icons since severity prop is removed -->
-
-    <!-- Custom icon if provided -->
-    <span
-      *ngIf="customIcon"
-      class="align-center mr-3 flex h-5 w-5 justify-center"
-    >
-      <ng-container *ngTemplateOutlet="customIcon"></ng-container>
-    </span>
-
-    <!-- Message or children content -->
-    <div class="text-sm font-medium">
-      <ng-container *ngIf="message; else contentTpl">{{
-        message
-      }}</ng-container>
-      <ng-template #contentTpl>
-        <ng-content></ng-content>
-      </ng-template>
-    </div>
+  <div class="flex flex-grow items-center p-2">
+    <app-snackbar-content [message]="message" [action]="action">
+      <ng-content></ng-content>
+    </app-snackbar-content>
   </div>
-
-  <!-- Action area -->
-  <div *ngIf="action" class="ml-auto pl-3">
-    <ng-container *ngTemplateOutlet="action"></ng-container>
-  </div>
-
-  <!-- Close button -->
-  <button
-    *ngIf="withCloseIcon"
-    type="button"
-    [ngClass]="closeButtonClass"
-    (click)="handleClose()"
-    aria-label="Close"
-  >
-    <ng-container *ngIf="closeIcon">
-      <ng-container *ngTemplateOutlet="closeIcon"></ng-container>
-    </ng-container>
-  </button>
 </div>

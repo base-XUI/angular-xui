@@ -54,16 +54,6 @@ describe("SnackbarComponent", () => {
         "Test message",
       );
     });
-
-    it("should close when close button is clicked", () => {
-      mountComponent();
-
-      // Click close button
-      cy.get("app-snackbar button").click();
-
-      // Verify snackbar is closed
-      cy.get('app-snackbar div[role="alert"]').should("not.exist");
-    });
   });
 
   // Position tests
