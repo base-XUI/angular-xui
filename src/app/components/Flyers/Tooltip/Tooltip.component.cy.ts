@@ -4,7 +4,6 @@ import { Component, Input } from "@angular/core";
 import { TooltipColor, TooltipPlacement } from "./Tooltip.types";
 import { tooltipVariantsConfig } from "./variants";
 
-// Host component for testing Tooltip with flexible inputs
 @Component({
   selector: "test-tooltip-host",
   standalone: true,
