@@ -1,6 +1,7 @@
 import { SnackbarComponent } from "./snackbar.component";
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { provideAnimations } from "@angular/platform-browser/animations";
 
 // Test host component with all possible inputs
 @Component({
@@ -38,6 +39,7 @@ describe("SnackbarComponent", () => {
   const mountComponent = (props = {}) => {
     return cy.mount(TestHostComponent, {
       componentProperties: props,
+      providers: [provideAnimations()],
     });
   };
 
@@ -48,7 +50,11 @@ describe("SnackbarComponent", () => {
 
       // Check basic structure
       cy.get("app-snackbar").should("exist");
-      cy.get('app-snackbar div[role="alert"]').should("be.visible");
+
+      // Wait for animation to complete and then check for alert div
+      cy.get("app-snackbar")
+        .find('div[role="alert"]', { timeout: 5000 })
+        .should("be.visible");
       cy.get('app-snackbar div[role="alert"]').should(
         "contain.text",
         "Test message",
@@ -64,7 +70,10 @@ describe("SnackbarComponent", () => {
       });
 
       // Verify snackbar exists (positioning is handled by CSS)
-      cy.get('app-snackbar div[role="alert"]').should("exist");
+      // Wait for animation to complete
+      cy.get("app-snackbar")
+        .find('div[role="alert"]', { timeout: 5000 })
+        .should("be.visible");
     });
   });
 
@@ -97,10 +106,14 @@ describe("SnackbarComponent", () => {
       })
       class TestCustomContentHostComponent {}
 
-      cy.mount(TestCustomContentHostComponent, {});
+      cy.mount(TestCustomContentHostComponent, {
+        providers: [provideAnimations()],
+      });
 
-      // Verify custom content is rendered
-      cy.get('[data-testid="custom-content"]').should("exist");
+      // Verify custom content is rendered - wait for animation to complete
+      cy.get("app-snackbar")
+        .find('[data-testid="custom-content"]', { timeout: 5000 })
+        .should("be.visible");
       cy.get('[data-testid="custom-content"]').should(
         "contain.text",
         "Custom projected content",
