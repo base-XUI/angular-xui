@@ -12,8 +12,16 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  AnimationEvent,
+} from "@angular/animations";
 import { SnackbarAnchorOrigin } from "./snackbar.types";
-import { getPositionStyles, getVisibilityStyles } from "./variants";
+import { getPositionStyles } from "./variants";
 import { SnackbarContentComponent } from "./snackbar-content.component";
 
 @Component({
@@ -21,6 +29,44 @@ import { SnackbarContentComponent } from "./snackbar-content.component";
   templateUrl: "./snackbar.component.html",
   standalone: true,
   imports: [CommonModule, SnackbarContentComponent],
+  animations: [
+    trigger("slideFromBottom", [
+      state(
+        "void",
+        style({
+          transform: "translateY(100%) translateX(var(--translate-x, 0))",
+          opacity: 0,
+        }),
+      ),
+      state(
+        "in",
+        style({
+          transform: "translateY(0) translateX(var(--translate-x, 0))",
+          opacity: 1,
+        }),
+      ),
+      transition("void => in", [animate("300ms ease-out")]),
+      transition("in => void", [animate("250ms ease-in")]),
+    ]),
+    trigger("slideFromTop", [
+      state(
+        "void",
+        style({
+          transform: "translateY(-100%) translateX(var(--translate-x, 0))",
+          opacity: 0,
+        }),
+      ),
+      state(
+        "in",
+        style({
+          transform: "translateY(0) translateX(var(--translate-x, 0))",
+          opacity: 1,
+        }),
+      ),
+      transition("void => in", [animate("300ms ease-out")]),
+      transition("in => void", [animate("250ms ease-in")]),
+    ]),
+  ],
 })
 export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   // Required inputs
@@ -46,6 +92,8 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   containerClass: string = "";
   closeButtonClass: string = "";
   autoHideTimeoutId?: number;
+  isVisible: boolean = false;
+  animationTrigger: string = "";
 
   constructor(
     private ngZone: NgZone,
@@ -54,10 +102,15 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.updateStyles();
+    this.updateAnimation();
     this.setupAutoHide();
   }
 
-  ngOnChanges(_changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["open"]) {
+      this.isVisible = this.open;
+      this.updateAnimation();
+    }
     this.updateStyles();
     this.setupAutoHide();
   }
@@ -68,11 +121,19 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   private updateStyles(): void {
     const baseStyles =
-      "fixed z-50 flex max-w-md min-w-[356px] items-center rounded-md bg-white text-black transition-all duration-300 ease-in-out";
+      "fixed z-50 flex max-w-md min-w-[356px] items-center rounded-md bg-white text-black";
     const positionStyle = getPositionStyles(this.anchorOrigin);
-    const visibilityStyle = getVisibilityStyles(this.open);
+    // Remove any call to getVisibilityStyles since we're using animations
+    this.containerClass = `${baseStyles} ${positionStyle}`;
+  }
 
-    this.containerClass = `${baseStyles} ${positionStyle} ${visibilityStyle}`;
+  private updateAnimation(): void {
+    // Simple animation logic based only on vertical position
+    if (this.anchorOrigin.vertical === "top") {
+      this.animationTrigger = "slideFromTop";
+    } else {
+      this.animationTrigger = "slideFromBottom";
+    }
   }
 
   private setupAutoHide(): void {
@@ -98,6 +159,13 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   handleClose(): void {
     this.clearAutoHideTimeout();
-    this.closeHandle.emit();
+    this.isVisible = false;
+  }
+
+  onAnimationDone(event: AnimationEvent): void {
+    if (event.toState === "void" && !this.open) {
+      // Animation finished, emit close event
+      this.closeHandle.emit();
+    }
   }
 }

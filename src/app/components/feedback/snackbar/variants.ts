@@ -17,7 +17,7 @@ export function getPositionStyles(anchorOrigin: SnackbarAnchorOrigin): string {
   if (horizontal === "left") {
     position += "left-4";
   } else if (horizontal === "center") {
-    position += "left-1/2 transform -translate-x-1/2";
+    position += "left-1/2" + ' style="--translate-x: -50%"';
   } else {
     position += "right-4";
   }

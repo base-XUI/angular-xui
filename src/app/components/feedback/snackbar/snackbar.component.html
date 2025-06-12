@@ -1,7 +1,14 @@
-<!-- Snackbar container -->
 <div
-  *ngIf="open"
+  *ngIf="isVisible"
   [ngClass]="containerClass"
+  [@slideFromBottom]="
+    animationTrigger === 'slideFromBottom' && (open ? 'in' : 'void')
+  "
+  [@slideFromTop]="
+    animationTrigger === 'slideFromTop' && (open ? 'in' : 'void')
+  "
+  (@slideFromBottom.done)="onAnimationDone($event)"
+  (@slideFromTop.done)="onAnimationDone($event)"
   role="alert"
   aria-live="assertive"
   class="min-w-[356px] max-w-md"
