@@ -4,7 +4,9 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: "app-snackbar-content",
   template: `
-    <div class="flex w-full items-center">
+    <div
+      class="m-auto flex min-w-[356px] max-w-lg items-center rounded-md p-4 shadow-lg"
+    >
       <!-- Message or children content -->
       <div class="flex-grow text-sm font-medium">
         <ng-container *ngIf="message; else contentTpl">{{

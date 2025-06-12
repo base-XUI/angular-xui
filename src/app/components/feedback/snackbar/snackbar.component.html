@@ -2,15 +2,16 @@
 <div
   *ngIf="open"
   [ngClass]="containerClass"
-  [ngStyle]="style"
   role="alert"
   aria-live="assertive"
   class="min-w-[356px] max-w-md"
 >
   <!-- Content area -->
-  <div class="flex flex-grow items-center p-2">
-    <app-snackbar-content [message]="message" [action]="action">
-      <ng-content></ng-content>
-    </app-snackbar-content>
-  </div>
+  <app-snackbar-content
+    class="m-auto flex w-full"
+    [message]="message"
+    [action]="action"
+  >
+    <ng-content></ng-content>
+  </app-snackbar-content>
 </div>

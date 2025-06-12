@@ -68,13 +68,11 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   private updateStyles(): void {
     const baseStyles =
-      "fixed z-50 flex items-center border p-2 rounded-md shadow-lg max-w-md min-w-[300px] transition-all duration-300 ease-in-out bg-white text-black";
+      "fixed z-50 flex max-w-md min-w-[356px] items-center rounded-md bg-white text-black transition-all duration-300 ease-in-out";
     const positionStyle = getPositionStyles(this.anchorOrigin);
     const visibilityStyle = getVisibilityStyles(this.open);
 
     this.containerClass = `${baseStyles} ${positionStyle} ${visibilityStyle}`;
-    this.closeButtonClass =
-      "ml-2 p-1 rounded-full hover:bg-opacity-20 hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-white hover:bg-opacity-10 focus:ring-white focus:ring-opacity-50";
   }
 
   private setupAutoHide(): void {

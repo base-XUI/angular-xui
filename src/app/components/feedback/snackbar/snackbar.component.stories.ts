@@ -10,6 +10,8 @@ import { CommonModule } from "@angular/common";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { SnackbarAnchorOrigin } from "./snackbar.types";
 import { ButtonComponent } from "../../inputs/button/button.component";
+import { TypographyComponent } from "../../typography/typography.component";
+import { SnackbarContentComponent } from "./snackbar-content.component";
 
 @Component({
   selector: "snackbar-story-wrapper",
@@ -27,13 +29,14 @@ import { ButtonComponent } from "../../inputs/button/button.component";
       </div>
 
       <ng-template #actionTemplate>
-        <button
+        <app-button
           (click)="handleAction()"
-          class="rounded px-2 py-1 text-xs font-medium text-cyan-950 focus:outline-none"
-          [ngClass]="actionButtonClass"
+          variant="outlined"
+          color="primary"
+          size="small"
         >
-          ACTION
-        </button>
+          Undo
+        </app-button>
       </ng-template>
 
       <app-snackbar
@@ -63,15 +66,11 @@ class SnackbarStoryWrapperComponent {
   @Input() open: boolean = false;
   @Input() message: string = "";
   @Input() showAction: boolean = false;
-  @Input() customIcon?: TemplateRef<unknown> = undefined;
   @Input() autoHideDuration: number = 5000;
   @Input() anchorOrigin: SnackbarAnchorOrigin = {
     vertical: "bottom",
     horizontal: "left",
   };
-
-  @Input() withCloseIcon: boolean = true;
-  @Input() closeIcon?: TemplateRef<unknown> = undefined;
 
   get actionButtonClass(): string {
     return "text-white border border-white hover:bg-white hover:bg-opacity-10";
@@ -89,13 +88,6 @@ class SnackbarStoryWrapperComponent {
   handleAction(): void {
     console.log("Action clicked");
     this.open = false;
-  }
-
-  resetAutoHide(): void {
-    this.open = false;
-    setTimeout(() => {
-      this.open = true;
-    }, 100);
   }
 }
 
@@ -171,10 +163,9 @@ class SnackbarStoryWrapperComponent {
       <app-snackbar
         [open]="open"
         [message]="currentMessage"
-        [action]="showAction ? actionTemplate : undefined"
+        [action]="actionTemplate"
         [autoHideDuration]="autoHideDuration"
         [anchorOrigin]="currentPosition"
-        [withCloseIcon]="withCloseIcon"
         (closeHandle)="handleClose()"
       >
       </app-snackbar>
@@ -236,6 +227,7 @@ export default {
         SnackbarComponent,
         SnackbarStoryWrapperComponent,
         SnackbarPositionWrapperComponent,
+        SnackbarContentComponent,
         CommonModule,
       ],
     }),
@@ -314,7 +306,6 @@ export const Basic: Story = {
     showAction: false,
     autoHideDuration: 5000,
     anchorOrigin: { vertical: "bottom", horizontal: "left" },
-    withCloseIcon: true,
   },
 };
 
@@ -347,11 +338,18 @@ export const Positions: StoryObj<SnackbarPositionWrapperComponent> = {
   },
 };
 
-export const BottomCenter: Story = {
+export const AutomaticDismiss: Story = {
   args: {
     ...Basic.args,
-    message: "This snackbar appears in the bottom center.",
-    anchorOrigin: { vertical: "bottom", horizontal: "center" },
+    message: "Automatic dismiss after 3s",
+    autoHideDuration: 3000,
+  },
+};
+export const WithAction: Story = {
+  args: {
+    ...Basic.args,
+    message: "This is a snackbar with an action",
+    showAction: true,
   },
 };
 
@@ -359,7 +357,12 @@ export const BottomCenter: Story = {
 @Component({
   selector: "snackbar-custom-content-wrapper",
   standalone: true,
-  imports: [SnackbarComponent, CommonModule],
+  imports: [
+    SnackbarComponent,
+    CommonModule,
+    TypographyComponent,
+    ButtonComponent,
+  ],
   template: `
     <div class="p-4">
       <div class="mb-4 flex gap-2">
@@ -371,20 +374,33 @@ export const BottomCenter: Story = {
         </button>
       </div>
 
+      <ng-template #actionTemplate>
+        <app-button
+          (click)="handleAction()"
+          variant="contained"
+          color="primary"
+          size="small"
+        >
+          Undo
+        </app-button>
+      </ng-template>
+
       <app-snackbar
         [open]="open"
         [autoHideDuration]="autoHideDuration"
         [anchorOrigin]="anchorOrigin"
-        [withCloseIcon]="withCloseIcon"
         (closeHandle)="handleClose()"
+        [action]="actionTemplate"
       >
         <div>
-          <h3>Custom content title</h3>
-          <div class="flex items-center">
-            <span class="mr-2 text-lg">🎉</span>
-            <span class="font-medium">Custom Content</span>
-            <span class="ml-2 text-sm italic">with rich formatting</span>
-          </div>
+          <app-typography
+            variant="subtitle2"
+            text="Event has been created"
+          ></app-typography>
+          <app-typography
+            variant="caption"
+            text="Sunday, December 03, 2023 at 9:00 AM"
+          ></app-typography>
         </div>
       </app-snackbar>
     </div>
@@ -405,8 +421,6 @@ class SnackbarCustomContentWrapperComponent {
     vertical: "bottom",
     horizontal: "left",
   };
-
-  @Input() withCloseIcon: boolean = true;
 
   toggleSnackbar(): void {
     this.open = !this.open;
@@ -429,7 +443,7 @@ export const WithCustomContent: Story = {
         [open]="open"
         [autoHideDuration]="autoHideDuration"
         [anchorOrigin]="anchorOrigin"
-        [severity]="severity"
+          [severity]="severity"
         [variant]="variant"
         [withCloseIcon]="withCloseIcon">
       </snackbar-custom-content-wrapper>
@@ -444,6 +458,88 @@ export const WithCustomContent: Story = {
       description: {
         story:
           'This example demonstrates how to use custom content projection instead of the "message" property. When content is projected into the component, it takes precedence over the message property.',
+      },
+    },
+  },
+};
+
+// Component for demonstrating SnackbarContent variations
+@Component({
+  selector: "snackbar-content-demo-wrapper",
+  standalone: true,
+  imports: [CommonModule, SnackbarContentComponent, ButtonComponent],
+  template: `
+    <div class="m-auto grid gap-6 p-4">
+      <app-snackbar-content
+        [message]="'I love snacks.'"
+        [action]="actionTemplate"
+      ></app-snackbar-content>
+
+      <app-snackbar-content
+        [message]="
+          'I love candy. I love cookies. I love cupcakes. I love cheesecake. I love chocolate.'
+        "
+      ></app-snackbar-content>
+
+      <app-snackbar-content
+        [message]="'I love candy. I love cookies. I love cupcakes.'"
+        [action]="actionTemplate"
+      ></app-snackbar-content>
+
+      <app-snackbar-content
+        [message]="
+          'I love candy. I love cookies. I love cupcakes. I love cheesecake. I love chocolate.'
+        "
+        [action]="actionTemplate"
+      ></app-snackbar-content>
+
+      <ng-template #actionTemplate>
+        <app-button
+          (click)="handleAction()"
+          variant="outlined"
+          color="primary"
+          size="small"
+        >
+          Action
+        </app-button>
+      </ng-template>
+    </div>
+  `,
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+      .grid {
+        display: grid;
+      }
+      .gap-6 {
+        gap: 1.5rem;
+      }
+    `,
+  ],
+})
+class SnackbarContentDemoWrapperComponent {
+  @ViewChild("actionTemplate") actionTemplate!: TemplateRef<unknown>;
+
+  handleAction(): void {
+    console.log("Action clicked");
+  }
+}
+
+// Story for SnackbarContent component
+export const Content: StoryObj<SnackbarContentDemoWrapperComponent> = {
+  render: () => ({
+    moduleMetadata: {
+      imports: [SnackbarContentDemoWrapperComponent],
+    },
+    template: `<snackbar-content-demo-wrapper></snackbar-content-demo-wrapper>`,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "This example demonstrates different variations of the SnackbarContent component with various message lengths and action buttons.",
       },
     },
   },
