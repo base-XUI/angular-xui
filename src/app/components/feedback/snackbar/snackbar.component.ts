@@ -30,39 +30,45 @@ import { SnackbarContentComponent } from "./snackbar-content.component";
   standalone: true,
   imports: [CommonModule, SnackbarContentComponent],
   animations: [
-    trigger("slideFromBottom", [
-      state(
-        "void",
-        style({
-          transform: "translateY(100%) translateX(var(--translate-x, 0))",
-          opacity: 0,
-        }),
-      ),
-      state(
-        "in",
-        style({
-          transform: "translateY(0) translateX(var(--translate-x, 0))",
-          opacity: 1,
-        }),
-      ),
+    // Top-Left
+    trigger("slideFromTopLeft", [
+      state("void", style({ transform: "translateY(-100%)", opacity: 0 })),
+      state("in", style({ transform: "translateY(0)", opacity: 1 })),
       transition("void => in", [animate("300ms ease-out")]),
       transition("in => void", [animate("250ms ease-in")]),
     ]),
-    trigger("slideFromTop", [
-      state(
-        "void",
-        style({
-          transform: "translateY(-100%) translateX(var(--translate-x, 0))",
-          opacity: 0,
-        }),
-      ),
-      state(
-        "in",
-        style({
-          transform: "translateY(0) translateX(var(--translate-x, 0))",
-          opacity: 1,
-        }),
-      ),
+    // Top-Center
+    trigger("slideFromTopCenter", [
+      state("void", style({ transform: "translate(-50%, -100%)", opacity: 0 })),
+      state("in", style({ transform: "translateX(-50%)", opacity: 1 })),
+      transition("void => in", [animate("300ms ease-out")]),
+      transition("in => void", [animate("250ms ease-in")]),
+    ]),
+    // Top-Right
+    trigger("slideFromTopRight", [
+      state("void", style({ transform: "translateY(-100%)", opacity: 0 })),
+      state("in", style({ transform: "translateY(0)", opacity: 1 })),
+      transition("void => in", [animate("300ms ease-out")]),
+      transition("in => void", [animate("250ms ease-in")]),
+    ]),
+    // Bottom-Left
+    trigger("slideFromBottomLeft", [
+      state("void", style({ transform: "translateY(100%)", opacity: 0 })),
+      state("in", style({ transform: "translateY(0)", opacity: 1 })),
+      transition("void => in", [animate("300ms ease-out")]),
+      transition("in => void", [animate("250ms ease-in")]),
+    ]),
+    // Bottom-Center
+    trigger("slideFromBottomCenter", [
+      state("void", style({ transform: "translate(-50%, 100%)", opacity: 0 })),
+      state("in", style({ transform: "translateX(-50%)", opacity: 1 })),
+      transition("void => in", [animate("300ms ease-out")]),
+      transition("in => void", [animate("250ms ease-in")]),
+    ]),
+    // Bottom-Right
+    trigger("slideFromBottomRight", [
+      state("void", style({ transform: "translateY(100%)", opacity: 0 })),
+      state("in", style({ transform: "translateY(0)", opacity: 1 })),
       transition("void => in", [animate("300ms ease-out")]),
       transition("in => void", [animate("250ms ease-in")]),
     ]),
@@ -75,15 +81,11 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   // Optional inputs with default values
   @Input() message?: string;
   @Input() action?: TemplateRef<unknown>;
-  @Input() autoHideDuration: number = 50000000;
+  @Input() autoHideDuration: number = 5000;
   @Input() anchorOrigin: SnackbarAnchorOrigin = {
     vertical: "bottom",
     horizontal: "left",
   };
-  @Input() style: Record<string, string | number> = {};
-  @Input() withCloseIcon: boolean = true;
-  @Input() closeIcon?: TemplateRef<unknown>;
-  @Input() customIcon?: TemplateRef<unknown>;
 
   // Output events
   @Output() closeHandle = new EventEmitter<void>();
@@ -101,18 +103,21 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   ) {}
 
   ngOnInit(): void {
+    this.isVisible = this.open;
     this.updateStyles();
     this.updateAnimation();
     this.setupAutoHide();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes["open"]) {
-      this.isVisible = this.open;
+    if (changes["open"] || changes["anchorOrigin"]) {
+      if (changes["open"]) {
+        this.isVisible = this.open;
+      }
       this.updateAnimation();
+      this.updateStyles();
+      this.setupAutoHide();
     }
-    this.updateStyles();
-    this.setupAutoHide();
   }
 
   ngOnDestroy(): void {
@@ -128,11 +133,24 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private updateAnimation(): void {
-    // Simple animation logic based only on vertical position
-    if (this.anchorOrigin.vertical === "top") {
-      this.animationTrigger = "slideFromTop";
+    const { vertical, horizontal } = this.anchorOrigin;
+
+    if (vertical === "top") {
+      if (horizontal === "left") {
+        this.animationTrigger = "slideFromTopLeft";
+      } else if (horizontal === "center") {
+        this.animationTrigger = "slideFromTopCenter";
+      } else {
+        this.animationTrigger = "slideFromTopRight";
+      }
     } else {
-      this.animationTrigger = "slideFromBottom";
+      if (horizontal === "left") {
+        this.animationTrigger = "slideFromBottomLeft";
+      } else if (horizontal === "center") {
+        this.animationTrigger = "slideFromBottomCenter";
+      } else {
+        this.animationTrigger = "slideFromBottomRight";
+      }
     }
   }
 

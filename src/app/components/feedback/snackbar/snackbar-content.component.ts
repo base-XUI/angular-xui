@@ -29,6 +29,5 @@ import { CommonModule } from "@angular/common";
 export class SnackbarContentComponent {
   // Optional inputs
   @Input() message?: string;
-  @Input() customIcon?: TemplateRef<unknown>;
   @Input() action?: TemplateRef<unknown>;
 }
