@@ -219,7 +219,7 @@ class SnackbarPositionWrapperComponent {
 }
 
 export default {
-  title: "Components/Feedback/Snackbar",
+  title: "feedback/Snackbar",
   component: SnackbarComponent,
   decorators: [
     moduleMetadata({
@@ -249,24 +249,7 @@ export default {
       </snackbar-story-wrapper>
     `,
   }),
-  parameters: {
-    docs: {
-      description: {
-        component: `
-# Snackbar Component
 
-The Snackbar component provides brief messages about app processes. They appear temporarily at the bottom or top of the screen.
-
-## Features
-
-- Customizable position
-- Auto-hide functionality
-- Custom actions
-- Animation transitions
-`,
-      },
-    },
-  },
   argTypes: {
     message: {
       control: "text",
@@ -276,10 +259,7 @@ The Snackbar component provides brief messages about app processes. They appear 
       control: "boolean",
       description: "Controls the visibility of the snackbar",
     },
-    showAction: {
-      control: "boolean",
-      description: "Whether to show an action button",
-    },
+
     autoHideDuration: {
       control: { type: "number", min: 0, step: 1000 },
       description:
@@ -288,11 +268,6 @@ The Snackbar component provides brief messages about app processes. They appear 
     anchorOrigin: {
       control: "object",
       description: "The position where the snackbar should appear",
-    },
-
-    withCloseIcon: {
-      control: "boolean",
-      description: "Whether to show a close icon",
     },
   },
 } as Meta<SnackbarStoryWrapperComponent>;
