@@ -1,0 +1,29 @@
+<div
+  #tabsRef
+  [class]="generateClasses()"
+  role="tablist"
+  [attr.aria-orientation]="orientation"
+  [attr.data-orientation]="orientation"
+>
+  <ng-content></ng-content>
+
+  <div
+    *ngIf="variant !== 'contained'"
+    class="absolute bottom-0 transition-all duration-300"
+    [class.h-0.5]="orientation === 'horizontal'"
+    [class.w-0.5]="orientation === 'vertical'"
+    [class.left-0]="orientation === 'vertical'"
+    [class.bg-primary]="indicatorColor === 'primary'"
+    [class.bg-secondary]="indicatorColor === 'secondary'"
+    [style.left.px]="
+      orientation === 'horizontal' ? indicatorPosition.left : null
+    "
+    [style.width.px]="
+      orientation === 'horizontal' ? indicatorPosition.width : null
+    "
+    [style.top.px]="orientation === 'vertical' ? indicatorPosition.top : null"
+    [style.height.px]="
+      orientation === 'vertical' ? indicatorPosition.height : null
+    "
+  ></div>
+</div>

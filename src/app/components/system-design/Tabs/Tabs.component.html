@@ -1,0 +1,13 @@
+<div
+  class="w-full"
+  [class.flex]="orientation === 'vertical'"
+  [class.block]="orientation === 'horizontal'"
+  [ngClass]="className"
+  role="tablist"
+  [attr.aria-orientation]="orientation"
+  [attr.aria-label]="ariaLabel"
+  [attr.data-orientation]="orientation"
+  (keydown)="handleKeyDown($event)"
+>
+  <ng-content></ng-content>
+</div>
