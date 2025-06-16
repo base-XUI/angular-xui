@@ -1,0 +1,16 @@
+<div [ngClass]="rootClass">
+  <xui-accordion-summary
+    [id]="id"
+    [expanded]="isOpen"
+    [disabled]="disabled"
+    [expandIcon]="expandIcon"
+    [slots]="slots ?? {}"
+  (click)="handleExpansion($event)"
+>
+    <ng-content></ng-content>
+  </xui-accordion-summary>
+   <xui-accordion-details
+    [id]="id"
+    [expanded]="isOpen"
+    ><ng-content></ng-content></xui-accordion-details>
+</div>
