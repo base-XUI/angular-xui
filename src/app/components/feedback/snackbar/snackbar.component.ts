@@ -75,10 +75,8 @@ import { SnackbarContentComponent } from "./snackbar-content.component";
   ],
 })
 export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
-  // Required inputs
   @Input() open: boolean = false;
 
-  // Optional inputs with default values
   @Input() message?: string;
   @Input() action?: TemplateRef<unknown>;
   @Input() autoHideDuration: number = 5000;
@@ -87,10 +85,8 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
     horizontal: "left",
   };
 
-  // Output events
   @Output() closeHandle = new EventEmitter<void>();
 
-  // Internal properties
   containerClass: string = "";
   closeButtonClass: string = "";
   autoHideTimeoutId?: number;
@@ -128,7 +124,6 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
     const baseStyles =
       "fixed z-50 flex max-w-md min-w-[356px] items-center rounded-md bg-white text-black";
     const positionStyle = getPositionStyles(this.anchorOrigin);
-    // Remove any call to getVisibilityStyles since we're using animations
     this.containerClass = `${baseStyles} ${positionStyle}`;
   }
 
@@ -182,7 +177,6 @@ export class SnackbarComponent implements OnInit, OnDestroy, OnChanges {
 
   onAnimationDone(event: AnimationEvent): void {
     if (event.toState === "void" && !this.open) {
-      // Animation finished, emit close event
       this.closeHandle.emit();
     }
   }

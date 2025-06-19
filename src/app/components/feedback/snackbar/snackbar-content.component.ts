@@ -7,7 +7,6 @@ import { CommonModule } from "@angular/common";
     <div
       class="m-auto flex min-w-[356px] max-w-lg items-center rounded-md p-4 shadow-lg"
     >
-      <!-- Message or children content -->
       <div class="flex-grow text-sm font-medium">
         <ng-container *ngIf="message; else contentTpl">{{
           message
@@ -17,7 +16,6 @@ import { CommonModule } from "@angular/common";
         </ng-template>
       </div>
 
-      <!-- Action area -->
       <div *ngIf="action" class="ml-auto pl-3">
         <ng-container *ngTemplateOutlet="action"></ng-container>
       </div>
@@ -27,7 +25,6 @@ import { CommonModule } from "@angular/common";
   imports: [CommonModule],
 })
 export class SnackbarContentComponent {
-  // Optional inputs
   @Input() message?: string;
   @Input() action?: TemplateRef<unknown>;
 }

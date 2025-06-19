@@ -1,19 +1,16 @@
 import { SnackbarAnchorOrigin } from "./snackbar.types";
 
-// Position styles
 export function getPositionStyles(anchorOrigin: SnackbarAnchorOrigin): string {
   const { vertical, horizontal } = anchorOrigin;
 
   let position = "";
 
-  // Vertical positioning
   if (vertical === "top") {
     position += "top-4 ";
   } else {
     position += "bottom-4 ";
   }
 
-  // Horizontal positioning
   if (horizontal === "left") {
     position += "left-4";
   } else if (horizontal === "center") {
@@ -25,7 +22,6 @@ export function getPositionStyles(anchorOrigin: SnackbarAnchorOrigin): string {
   return position;
 }
 
-// Visibility styles
 export function getVisibilityStyles(open: boolean): string {
   if (!open) {
     return "opacity-0 scale-95 pointer-events-none";

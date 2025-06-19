@@ -91,7 +91,6 @@ class SnackbarStoryWrapperComponent {
   }
 }
 
-// New component for position demo
 @Component({
   selector: "snackbar-position-wrapper",
   standalone: true,
@@ -99,7 +98,6 @@ class SnackbarStoryWrapperComponent {
   template: `
     <div class="p-4">
       <div class="m-auto w-[500px]">
-        <!-- Top row -->
         <div class="mb-8 flex justify-center">
           <button
             (click)="showSnackbarAt('top', 'center')"
@@ -123,7 +121,6 @@ class SnackbarStoryWrapperComponent {
           </button>
         </div>
 
-        <!-- Bottom row -->
         <div class="mb-8 flex justify-between">
           <button
             (click)="showSnackbarAt('bottom', 'left')"
@@ -184,7 +181,7 @@ class SnackbarPositionWrapperComponent {
   @ViewChild("actionTemplate") actionTemplate!: TemplateRef<unknown>;
 
   @Input() showAction: boolean = false;
-  @Input() autoHideDuration: number = 0; // Don't auto-hide for position demo
+  @Input() autoHideDuration: number = 0;
   @Input() withCloseIcon: boolean = true;
 
   open: boolean = false;
@@ -300,7 +297,7 @@ export const Positions: StoryObj<SnackbarPositionWrapperComponent> = {
   }),
   args: {
     showAction: false,
-    autoHideDuration: 0, // Don't auto-hide for position demo
+    autoHideDuration: 0,
     withCloseIcon: true,
   },
   parameters: {
@@ -328,7 +325,6 @@ export const WithAction: Story = {
   },
 };
 
-// Custom story wrapper component for demonstrating content projection
 @Component({
   selector: "snackbar-custom-content-wrapper",
   standalone: true,
@@ -426,7 +422,7 @@ export const WithCustomContent: Story = {
   }),
   args: {
     ...Basic.args,
-    message: undefined, // No message as we're using custom content
+    message: undefined,
   },
   parameters: {
     docs: {
@@ -438,7 +434,6 @@ export const WithCustomContent: Story = {
   },
 };
 
-// Component for demonstrating SnackbarContent variations
 @Component({
   selector: "snackbar-content-demo-wrapper",
   standalone: true,
@@ -502,7 +497,6 @@ class SnackbarContentDemoWrapperComponent {
   }
 }
 
-// Story for SnackbarContent component
 export const Content: StoryObj<SnackbarContentDemoWrapperComponent> = {
   render: () => ({
     moduleMetadata: {

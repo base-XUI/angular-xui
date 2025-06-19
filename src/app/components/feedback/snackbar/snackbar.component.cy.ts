@@ -3,7 +3,6 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { provideAnimations } from "@angular/platform-browser/animations";
 
-// Test host component with all possible inputs
 @Component({
   selector: "test-host",
   standalone: true,
@@ -33,9 +32,7 @@ class TestHostComponent {
   }
 }
 
-// Main test suite
 describe("SnackbarComponent", () => {
-  // Mount options to be reused across tests
   const mountComponent = (props = {}) => {
     return cy.mount(TestHostComponent, {
       componentProperties: props,
@@ -43,15 +40,12 @@ describe("SnackbarComponent", () => {
     });
   };
 
-  // Basic rendering tests
   describe("Basic Rendering", () => {
     it("should render with default props", () => {
       mountComponent();
 
-      // Check basic structure
       cy.get("app-snackbar").should("exist");
 
-      // Wait for animation to complete and then check for alert div
       cy.get("app-snackbar")
         .find('div[role="alert"]', { timeout: 5000 })
         .should("be.visible");
@@ -62,22 +56,18 @@ describe("SnackbarComponent", () => {
     });
   });
 
-  // Position tests
   describe("Positioning", () => {
     it("should render at top-right position", () => {
       mountComponent({
         anchorOrigin: { vertical: "top", horizontal: "right" },
       });
 
-      // Verify snackbar exists (positioning is handled by CSS)
-      // Wait for animation to complete
       cy.get("app-snackbar")
         .find('div[role="alert"]', { timeout: 5000 })
         .should("be.visible");
     });
   });
 
-  // UI element tests
   describe("UI Elements", () => {
     it("should render without close icon when withCloseIcon is false", () => {
       mountComponent({ withCloseIcon: false });
@@ -86,10 +76,8 @@ describe("SnackbarComponent", () => {
     });
   });
 
-  // Content projection tests
   describe("Content Projection", () => {
     it("should render custom content when no message is provided", () => {
-      // Create a test host component with custom content
       @Component({
         selector: "test-custom-content-host",
         standalone: true,
@@ -110,7 +98,6 @@ describe("SnackbarComponent", () => {
         providers: [provideAnimations()],
       });
 
-      // Verify custom content is rendered - wait for animation to complete
       cy.get("app-snackbar")
         .find('[data-testid="custom-content"]', { timeout: 5000 })
         .should("be.visible");
