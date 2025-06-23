@@ -78,12 +78,12 @@ export class TabComponent implements OnInit, AfterViewInit, TabBaseProps {
 
   generateClasses(): string {
     const baseClasses = `ring-offset-background inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all
-                         focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none
-                         ${this.disabled ? "disabled:pointer-events-none disabled:opacity-50" : ""}
-                         ${this.isSelected ? "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow" : ""}
-                         ${this.orientation === "vertical" ? "w-full justify-start" : ""}
-                         ${this.variant === "fullWidth" ? "flex-1" : ""}
-                         ${this.className}`;
+    focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none
+    ${this.disabled ? "disabled:pointer-events-none disabled:opacity-50" : ""}
+    ${this.isSelected ? "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow" : ""}
+    ${this.orientation === "vertical" ? "w-full justify-start" : ""}
+    ${this.variant === "fullWidth" ? "flex-1" : ""}
+    ${this.className}`;
 
     return baseClasses;
   }

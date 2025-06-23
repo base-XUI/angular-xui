@@ -39,8 +39,8 @@ importers:
         specifier: ^0.7.1
         version: 0.7.1
       lucide-angular:
-        specifier: ^0.515.0
-        version: 0.515.0(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))
+        specifier: ^0.522.0
+        version: 0.522.0(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -136,8 +136,8 @@ importers:
         specifier: ^6.11.0
         version: 6.11.0(webpack@5.99.7(esbuild@0.25.3))
       cypress:
-        specifier: ^14.3.2
-        version: 14.3.2
+        specifier: ^14.4.1
+        version: 14.4.1
       eslint:
         specifier: ^8.56.0
         version: 8.57.1
@@ -1037,10 +1037,6 @@ packages:
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
-
-  '@colors/colors@1.5.0':
-    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
-    engines: {node: '>=0.1.90'}
 
   '@commitlint/cli@19.8.0':
     resolution: {integrity: sha512-t/fCrLVu+Ru01h0DtlgHZXbHV2Y8gKocTR5elDOqIRUzQd0/6hpt2VIWOj9b3NDo7y4/gfxeR2zRtXq/qO6iUg==}
@@ -3143,8 +3139,8 @@ packages:
     resolution: {integrity: sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==}
     engines: {node: '>=6'}
 
-  cli-table3@0.6.5:
-    resolution: {integrity: sha512-+W/5efTR7y5HRD7gACw9yQjqMVvEMLBHmboM/kPWam+H+Hmyrgjh6YncVKK122YZkXrLudzTuAukUw9FnMf7IQ==}
+  cli-table3@0.6.1:
+    resolution: {integrity: sha512-w0q/enDHhPLq44ovMGdQeeDLvwxwavsJX7oQGYt/LrBlYsyaxyDnp6z3QzFut/6kLLKnlcUVJLrpB7KBfgG/RA==}
     engines: {node: 10.* || >= 12.*}
 
   cli-truncate@2.1.0:
@@ -3396,8 +3392,8 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  cypress@14.3.2:
-    resolution: {integrity: sha512-n+yGD2ZFFKgy7I3YtVpZ7BcFYrrDMcKj713eOZdtxPttpBjCyw/R8dLlFSsJPouneGN7A/HOSRyPJ5+3/gKDoA==}
+  cypress@14.4.1:
+    resolution: {integrity: sha512-YSGvVXtTqSGRTyHbaxHI5dHU/9xc5ymaTIM4BU85GKhj980y6XgA3fShSpj5DatS8knXMsAvYItQxVQFHGpUtw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
@@ -4819,8 +4815,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-angular@0.515.0:
-    resolution: {integrity: sha512-uXc/VKoB0l2x9wOSZWyrdm99rwtDyGVZAPR1R0zhL4LuDrTB1tUoDc9KPGZTfyeYeBkBVA//HyeyJxRixQDykg==}
+  lucide-angular@0.522.0:
+    resolution: {integrity: sha512-vwwyK9xEPyxxpWBHBsAYpKc7b9AK5mg6p3yvWvdE/AbUCYP/2xhFGV5jO7UzNPCQz2/583/FPMj43Es/vZa6ew==}
     peerDependencies:
       '@angular/common': 13.x - 20.x
       '@angular/core': 13.x - 20.x
@@ -8714,9 +8710,6 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@colors/colors@1.5.0':
-    optional: true
-
   '@commitlint/cli@19.8.0(@types/node@22.15.3)(typescript@5.7.3)':
     dependencies:
       '@commitlint/format': 19.8.0
@@ -10932,11 +10925,11 @@ snapshots:
 
   cli-spinners@2.9.2: {}
 
-  cli-table3@0.6.5:
+  cli-table3@0.6.1:
     dependencies:
       string-width: 4.2.3
     optionalDependencies:
-      '@colors/colors': 1.5.0
+      colors: 1.4.0
 
   cli-truncate@2.1.0:
     dependencies:
@@ -11189,7 +11182,7 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  cypress@14.3.2:
+  cypress@14.4.1:
     dependencies:
       '@cypress/request': 3.0.8
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -11204,7 +11197,7 @@ snapshots:
       check-more-types: 2.24.0
       ci-info: 4.2.0
       cli-cursor: 3.1.0
-      cli-table3: 0.6.5
+      cli-table3: 0.6.1
       commander: 6.2.1
       common-tags: 1.8.2
       dayjs: 1.11.13
@@ -12749,7 +12742,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-angular@0.515.0(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0)):
+  lucide-angular@0.522.0(@angular/common@19.2.9(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0)):
     dependencies:
       '@angular/common': 19.2.9(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
       '@angular/core': 19.2.9(rxjs@7.8.2)(zone.js@0.15.0)
