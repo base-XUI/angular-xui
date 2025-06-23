@@ -132,7 +132,7 @@ export const Contained: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [variant]="variant" [color]="color" (clicked)="clicked()">Contained Button</app-button>`,
+    template: `<xui-button [variant]="variant" [color]="color" (clicked)="clicked()">Contained Button</xui-button>`,
   }),
 };
 
@@ -146,7 +146,7 @@ export const Text: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [variant]="variant" [color]="color" (clicked)="clicked()">Text Button</app-button>`,
+    template: `<xui-button [variant]="variant" [color]="color" (clicked)="clicked()">Text Button</xui-button>`,
   }),
 };
 
@@ -160,7 +160,7 @@ export const Outlined: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [variant]="variant" [color]="color" (clicked)="clicked()">Outlined Button</app-button>`,
+    template: `<xui-button [variant]="variant" [color]="color" (clicked)="clicked()">Outlined Button</xui-button>`,
   }),
 };
 
@@ -174,7 +174,7 @@ export const Success: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [color]="color" (clicked)="clicked()">Success Button</app-button>`,
+    template: `<xui-button [color]="color" (clicked)="clicked()">Success Button</xui-button>`,
   }),
 };
 
@@ -187,7 +187,7 @@ export const Error: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [color]="color" (clicked)="clicked()">Error Button</app-button>`,
+    template: `<xui-button [color]="color" (clicked)="clicked()">Error Button</xui-button>`,
   }),
 };
 
@@ -200,7 +200,7 @@ export const Warning: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [color]="color" (clicked)="clicked()">Warning Button</app-button>`,
+    template: `<xui-button [color]="color" (clicked)="clicked()">Warning Button</xui-button>`,
   }),
 };
 
@@ -213,7 +213,7 @@ export const Info: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [color]="color" (clicked)="clicked()">Info Button</app-button>`,
+    template: `<xui-button [color]="color" (clicked)="clicked()">Info Button</xui-button>`,
   }),
 };
 
@@ -227,7 +227,7 @@ export const Small: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [size]="size" (clicked)="clicked()">Small Button</app-button>`,
+    template: `<xui-button [size]="size" (clicked)="clicked()">Small Button</xui-button>`,
   }),
 };
 
@@ -240,7 +240,7 @@ export const Medium: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [size]="size" (clicked)="clicked()">Medium Button</app-button>`,
+    template: `<xui-button [size]="size" (clicked)="clicked()">Medium Button</xui-button>`,
   }),
 };
 
@@ -253,7 +253,7 @@ export const Large: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [size]="size" (clicked)="clicked()">Large Button</app-button>`,
+    template: `<xui-button [size]="size" (clicked)="clicked()">Large Button</xui-button>`,
   }),
 };
 
@@ -267,7 +267,7 @@ export const Loading: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [loading]="loading" (clicked)="clicked()">Loading Button</app-button>`,
+    template: `<xui-button [loading]="loading" (clicked)="clicked()">Loading Button</xui-button>`,
   }),
 };
 
@@ -281,7 +281,7 @@ export const LoadingStart: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [loading]="loading" [loadingPosition]="loadingPosition" (clicked)="clicked()">Loading Start</app-button>`,
+    template: `<xui-button [loading]="loading" [loadingPosition]="loadingPosition" (clicked)="clicked()">Loading Start</xui-button>`,
   }),
 };
 
@@ -295,7 +295,7 @@ export const LoadingEnd: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [loading]="loading" [loadingPosition]="loadingPosition" (clicked)="clicked()">Loading End</app-button>`,
+    template: `<xui-button [loading]="loading" [loadingPosition]="loadingPosition" (clicked)="clicked()">Loading End</xui-button>`,
   }),
 };
 
@@ -308,7 +308,7 @@ export const Disabled: Story = {
       ...args,
       clicked: () => actionLog("Button clicked"),
     },
-    template: `<app-button [disabled]="disabled" (clicked)="clicked()">Disabled Button</app-button>`,
+    template: `<xui-button [disabled]="disabled" (clicked)="clicked()">Disabled Button</xui-button>`,
   }),
 };
 
@@ -319,9 +319,9 @@ export const DisabledStates: Story = {
     },
     template: `
       <div style="display: flex; gap: 16px;">
-        <app-button disabled variant="contained" (clicked)="clicked()">Contained</app-button>
-        <app-button disabled variant="outlined" (clicked)="clicked()">Outlined</app-button>
-        <app-button disabled variant="text" (clicked)="clicked()">Text</app-button>
+        <xui-button disabled variant="contained" (clicked)="clicked()">Contained</xui-button>
+        <xui-button disabled variant="outlined" (clicked)="clicked()">Outlined</xui-button>
+        <xui-button disabled variant="text" (clicked)="clicked()">Text</xui-button>
       </div>
     `,
   }),
@@ -334,10 +334,10 @@ export const WithStartIcon: Story = {
       clicked: () => actionLog("Button clicked"),
     },
     template: `
-      <app-button (clicked)="clicked()">
+      <xui-button (clicked)="clicked()">
         <ng-template #startIcon>👈</ng-template>
         With Start Icon
-      </app-button>
+      </xui-button>
     `,
   }),
 };
@@ -348,10 +348,10 @@ export const WithEndIcon: Story = {
       clicked: () => actionLog("Button clicked"),
     },
     template: `
-      <app-button (clicked)="clicked()">
+      <xui-button (clicked)="clicked()">
         <ng-template #endIcon>👉</ng-template>
         With End Icon
-      </app-button>
+      </xui-button>
     `,
   }),
 };
@@ -362,11 +362,11 @@ export const WithBothIcons: Story = {
       clicked: () => actionLog("Button clicked"),
     },
     template: `
-      <app-button (clicked)="clicked()">
+      <xui-button (clicked)="clicked()">
         <ng-template #startIcon>👈</ng-template>
         With Both Icons
         <ng-template #endIcon>👉</ng-template>
-      </app-button>
+      </xui-button>
     `,
   }),
 };
@@ -375,9 +375,9 @@ export const WithBothIcons: Story = {
 export const AsLink: Story = {
   render: () => ({
     template: `
-      <app-button component="a" href="https://example.com" target="_blank">
+      <xui-button component="a" href="https://example.com" target="_blank">
         Link Button
-      </app-button>
+      </xui-button>
     `,
   }),
   parameters: {
@@ -393,9 +393,9 @@ export const AsLink: Story = {
 export const CustomElement: Story = {
   render: () => ({
     template: `
-      <app-button component="div" role="button">
+      <xui-button component="div" role="button">
         Custom Div Button
-      </app-button>
+      </xui-button>
     `,
   }),
   parameters: {
@@ -411,9 +411,9 @@ export const CustomElement: Story = {
 export const CustomElementDisabled: Story = {
   render: () => ({
     template: `
-      <app-button component="div" role="button" disabled="true">
+      <xui-button component="div" role="button" disabled="true">
         Disabled Div Button
-      </app-button>
+      </xui-button>
     `,
   }),
   parameters: {
@@ -435,24 +435,24 @@ export const ColorShowcase: Story = {
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; gap: 16px;">
-          <app-button component="a" target="_blank" color="primary" (clicked)="clicked()">Primary</app-button>
-          <app-button color="secondary" (clicked)="clicked()">Secondary</app-button>
-          <app-button color="success" (clicked)="clicked()">Success</app-button>
-          <app-button color="error" (clicked)="clicked()">Error</app-button>
-          <app-button color="warning" (clicked)="clicked()">Warning</app-button>
-          <app-button color="info" (clicked)="clicked()">Info</app-button>
+          <xui-button component="a" target="_blank" color="primary" (clicked)="clicked()">Primary</xui-button>
+          <xui-button color="secondary" (clicked)="clicked()">Secondary</xui-button>
+          <xui-button color="success" (clicked)="clicked()">Success</xui-button>
+          <xui-button color="error" (clicked)="clicked()">Error</xui-button>
+          <xui-button color="warning" (clicked)="clicked()">Warning</xui-button>
+          <xui-button color="info" (clicked)="clicked()">Info</xui-button>
         </div>
 
         <div style="display: flex; gap: 16px;">
-          <app-button variant="outlined" color="primary" (clicked)="clicked()">Primary</app-button>
-          <app-button variant="outlined" color="success" (clicked)="clicked()">Success</app-button>
-          <app-button variant="outlined" color="error" (clicked)="clicked()">Error</app-button>
+          <xui-button variant="outlined" color="primary" (clicked)="clicked()">Primary</xui-button>
+          <xui-button variant="outlined" color="success" (clicked)="clicked()">Success</xui-button>
+          <xui-button variant="outlined" color="error" (clicked)="clicked()">Error</xui-button>
         </div>
 
         <div style="display: flex; gap: 16px;">
-          <app-button variant="text" color="primary" (clicked)="clicked()">Primary</app-button>
-          <app-button variant="text" color="success" (clicked)="clicked()">Success</app-button>
-          <app-button variant="text" color="error" (clicked)="clicked()">Error</app-button>
+          <xui-button variant="text" color="primary" (clicked)="clicked()">Primary</xui-button>
+          <xui-button variant="text" color="success" (clicked)="clicked()">Success</xui-button>
+          <xui-button variant="text" color="error" (clicked)="clicked()">Error</xui-button>
         </div>
       </div>
     `,
@@ -463,9 +463,9 @@ export const LoadingStates: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 16px;">
-        <app-button loading loadingPosition="start">Start</app-button>
-        <app-button loading loadingPosition="center">Center</app-button>
-        <app-button loading loadingPosition="end">End</app-button>
+        <xui-button loading loadingPosition="start">Start</xui-button>
+        <xui-button loading loadingPosition="center">Center</xui-button>
+        <xui-button loading loadingPosition="end">End</xui-button>
       </div>
     `,
   }),
