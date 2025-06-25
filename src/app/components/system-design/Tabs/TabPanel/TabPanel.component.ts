@@ -9,8 +9,7 @@ import {
 import { CommonModule } from "@angular/common";
 import { Subscription } from "rxjs";
 import { TabPanelBaseProps } from "./TabPanel.types";
-import { TABPANEL_ANIMATIONS, TABPANEL_VARIANTS } from "./variants";
-import { TabsService } from "../Tabs";
+import { TABPANEL_ANIMATIONS, TABPANEL_VARIANTS, TabsService } from "..";
 
 @Component({
   selector: "xui-tabpanel",

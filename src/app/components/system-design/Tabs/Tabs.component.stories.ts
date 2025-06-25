@@ -2,9 +2,9 @@ import { moduleMetadata, type Meta, type StoryObj } from "@storybook/angular";
 import { CommonModule } from "@angular/common";
 
 import { TabsComponent } from "./Tabs.component";
-import { TabComponent } from "../Tab/Tab.component";
-import { TabListComponent } from "../TabList/TabList.component";
-import { TabPanelComponent } from "../TabPanel/TabPanel.component";
+import { TabComponent } from "./Tab/Tab.component";
+import { TabListComponent } from "./TabList/TabList.component";
+import { TabPanelComponent } from "./TabPanel/TabPanel.component";
 
 import { LucideAngularModule, Home, User, Settings } from "lucide-angular";
 

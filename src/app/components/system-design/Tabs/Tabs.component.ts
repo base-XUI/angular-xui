@@ -7,14 +7,15 @@ import {
   Output,
   QueryList,
   AfterContentInit,
+  OnChanges,
+  SimpleChanges,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { TabsService } from "./Tabs.service";
 import { TabsBaseProps } from "./Tabs.types";
-
-import { TabListComponent } from "../TabList";
-import { TabPanelComponent } from "../TabPanel";
+import { TabListComponent } from "./TabList/TabList.component";
+import { TabPanelComponent } from "./TabPanel/TabPanel.component";
 
 @Component({
   selector: "xui-tabs",
@@ -23,7 +24,9 @@ import { TabPanelComponent } from "../TabPanel";
   providers: [TabsService],
   templateUrl: "./Tabs.component.html",
 })
-export class TabsComponent implements OnInit, AfterContentInit, TabsBaseProps {
+export class TabsComponent
+  implements OnInit, AfterContentInit, OnChanges, TabsBaseProps
+{
   @Input() value?: any;
   @Input() defaultValue: any = 0;
   @Input() orientation: "horizontal" | "vertical" = "horizontal";
@@ -43,6 +46,7 @@ export class TabsComponent implements OnInit, AfterContentInit, TabsBaseProps {
   ngOnInit(): void {
     const initialValue =
       this.value !== undefined ? this.value : this.defaultValue;
+
     this.tabsService.setValue(initialValue);
     this.tabsService.setOrientation(this.orientation);
     this.tabsService.setVariant(this.variant);
@@ -50,10 +54,14 @@ export class TabsComponent implements OnInit, AfterContentInit, TabsBaseProps {
     this.tabsService.setTextColor(this.textColor);
 
     this.tabsService.value$.subscribe((value) => {
-      if (this.value === undefined) {
-        this.valueChange.emit(value);
-      }
+      this.valueChange.emit(value);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["value"] && changes["value"].currentValue !== undefined) {
+      this.tabsService.setValue(changes["value"].currentValue);
+    }
   }
 
   ngAfterContentInit(): void {
@@ -75,16 +83,19 @@ export class TabsComponent implements OnInit, AfterContentInit, TabsBaseProps {
   }
 
   handleKeyDown(event: KeyboardEvent): void {
-    const tabListComponent = this.tabLists.first;
-    if (!tabListComponent) return;
+    const tabListComponent = this.tabLists?.first;
+    if (!tabListComponent || !tabListComponent.tabs) return;
 
-    const tabs = tabListComponent.tabs?.toArray() || [];
+    const tabs = tabListComponent.tabs.toArray();
     const selectedIndex = tabs.findIndex(
       (tab) => tab.value === this.tabsService.getValue(),
     );
+
+    if (selectedIndex === -1) return;
+
     const tabCount = tabs.length;
-    let nextIndex = selectedIndex;
     const isRtl = document.dir === "rtl";
+    let nextIndex = selectedIndex;
 
     switch (event.key) {
       case "Home":
@@ -95,38 +106,38 @@ export class TabsComponent implements OnInit, AfterContentInit, TabsBaseProps {
         break;
       case "ArrowLeft":
         if (this.orientation === "horizontal") {
-          nextIndex = Math.max(0, selectedIndex + (isRtl ? 1 : -1));
+          nextIndex = (selectedIndex + (isRtl ? 1 : -1) + tabCount) % tabCount;
         }
         break;
       case "ArrowRight":
         if (this.orientation === "horizontal") {
-          nextIndex = Math.min(tabCount - 1, selectedIndex + (isRtl ? -1 : 1));
+          nextIndex = (selectedIndex + (isRtl ? -1 : 1) + tabCount) % tabCount;
         }
         break;
       case "ArrowUp":
         if (this.orientation === "vertical") {
-          nextIndex = Math.max(0, selectedIndex - 1);
+          nextIndex = (selectedIndex - 1 + tabCount) % tabCount;
         }
         break;
       case "ArrowDown":
         if (this.orientation === "vertical") {
-          nextIndex = Math.min(tabCount - 1, selectedIndex + 1);
+          nextIndex = (selectedIndex + 1) % tabCount;
         }
         break;
       default:
         return;
     }
 
-    if (nextIndex !== selectedIndex && nextIndex >= 0 && nextIndex < tabCount) {
+    if (nextIndex !== selectedIndex) {
       event.preventDefault();
       const nextTab = tabs[nextIndex];
       this.tabsService.setValue(nextTab.value);
 
       setTimeout(() => {
-        const tabElement = document.querySelector(
+        const nextEl = document.querySelector(
           `[role="tab"][data-index="${nextIndex}"]`,
         ) as HTMLElement | null;
-        tabElement?.focus();
+        nextEl?.focus();
       });
     }
   }

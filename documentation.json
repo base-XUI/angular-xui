@@ -47,7 +47,7 @@
     {
       "name": "TabBaseProps",
       "id": "interface-TabBaseProps-25783abc85424ac9b950498d074b9479f7e2f419ee2201f341c3f8ac3ddf347df2f221adb1dea8b0013b82ad83e70c66795a18dfdda7376ff95dfb6d871086ab",
-      "file": "src/app/components/system-design/Tab/Tab.types.ts",
+      "file": "src/app/components/system-design/Tabs/Tab/Tab.types.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
@@ -181,7 +181,7 @@
     {
       "name": "TabListBaseProps",
       "id": "interface-TabListBaseProps-063e32dd39c277f9bcba09fd6a075658b696a3cd0bb9d971aeef1ac1f6cc0266f5720160e9deef1a38d3173c23965abb56f60753a1c211de774c02850d2e85d6",
-      "file": "src/app/components/system-design/TabList/TabList.types.ts",
+      "file": "src/app/components/system-design/Tabs/TabList/TabList.types.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
@@ -367,7 +367,7 @@
     {
       "name": "TabPanelBaseProps",
       "id": "interface-TabPanelBaseProps-23aaf0c86205ca47fc9babded85711e6fe54b4921ba0a93e72f8d8a01de850bcbc7fdcc753505683de084213ec6442671700b58876048b218554cb68c6272b15",
-      "file": "src/app/components/system-design/TabPanel/TabPanel.types.ts",
+      "file": "src/app/components/system-design/Tabs/TabPanel/TabPanel.types.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
@@ -1146,18 +1146,18 @@
       "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<div class=\"min-h-screen bg-gray-100 p-8\">\r\n  <h1 class=\"text-4xl font-bold text-blue-600\">Welcome to {{ title }}</h1>\r\n  <p class=\"mt-4 text-gray-600\">Your Angular app with Tailwind CSS is ready!</p>\r\n</div>\r\n<router-outlet />\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n"
     },
     {
-      "name": "BasicTabPanelTestComponent",
-      "id": "component-BasicTabPanelTestComponent-b9e9646040db89323bdea1912a6b2d1e04d4602f4ca24f588f8a891609a548ad63502aa70df4cdf7f42cb4ee757895a40ea8b048b63fbb8fbb172c69689b197c",
-      "file": "src/app/components/system-design/TabPanel/TabPanel.component.cy.ts",
+      "name": "BasicTabsTestComponent",
+      "id": "component-BasicTabsTestComponent-74e920dedc8fd4661402c618269931dac4b5d7d7b3d4a524ffbc1590a5567017d30ca2f37b7c3558571dd9fe947d17154c62f5286a194c2af4811ec5c342ca35",
+      "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
       "providers": [],
-      "selector": "basic-test",
+      "selector": "basic-tabs-test",
       "styleUrls": [],
       "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\">Panel Content 1</xui-tabpanel>\n  <xui-tabpanel [value]=\"1\">Panel Content 2</xui-tabpanel>\n</xui-tabs>\n",
+      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n    <xui-tab [value]=\"2\">Tab 3</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n  <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n  <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n</xui-tabs>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
@@ -1191,7 +1191,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"../Tabs\";\nimport { TabListComponent } from \"../TabList\";\nimport { TabComponent } from \"../Tab/Tab.component\";\nimport { TabPanelComponent } from \"./TabPanel.component\";\n\n@Component({\n  selector: \"basic-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Panel Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Panel Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n})\nclass BasicTabPanelTestComponent {}\n\n@Component({\n  selector: \"custom-class-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\" className=\"custom-class\">\n        Panel Content\n      </xui-tabpanel>\n    </xui-tabs>\n  `,\n})\nclass CustomClassTabPanelTestComponent {}\n\ndescribe(\"TabPanel Component\", () => {\n  it(\"renders tab panel correctly\", () => {\n    cy.mount(BasicTabPanelTestComponent);\n\n    cy.get('[role=\"tabpanel\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Panel Content 1\");\n  });\n\n  it(\"shows the correct panel when tab is selected\", () => {\n    cy.mount(BasicTabPanelTestComponent);\n\n    // Click second tab\n    cy.get('[role=\"tab\"]').eq(1).click();\n\n    // Second panel should be visible\n    cy.get('[role=\"tabpanel\"]').should(\"contain.text\", \"Panel Content 2\");\n  });\n\n  it(\"renders with custom className\", () => {\n    cy.mount(CustomClassTabPanelTestComponent);\n\n    cy.get('[role=\"tabpanel\"]').should(\"have.class\", \"custom-class\");\n  });\n\n  it(\"properly hides inactive panels\", () => {\n    cy.mount(BasicTabPanelTestComponent);\n\n    // First panel should be visible, second hidden\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"not.be.visible\");\n  });\n});\n",
+      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"./Tabs.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { LucideAngularModule } from \"lucide-angular\";\nimport { HomeIcon } from \"lucide-angular\";\nimport { TabComponent, TabListComponent, TabPanelComponent } from \".\";\n\n// Define proper types for tab values\ntype TabValue = number;\n\n@Component({\n  selector: \"basic-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        <xui-tab [value]=\"2\">Tab 3</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass BasicTabsTestComponent {}\n\n@Component({\n  selector: \"controlled-tabs-test\",\n  template: `\n    <div>\n      <xui-tabs [value]=\"activeTab\" (valueChange)=\"onValueChange($event)\">\n        <xui-tablist>\n          <xui-tab [value]=\"0\">Tab 1</xui-tab>\n          <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        </xui-tablist>\n        <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n        <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      </xui-tabs>\n      <div id=\"active-tab-value\">{{ activeTab }}</div>\n      <button\n        id=\"external-control\"\n        (click)=\"setActiveTab(activeTab === 0 ? 1 : 0)\"\n      >\n        Toggle Tab\n      </button>\n    </div>\n  `,\n  standalone: true,\n  imports: [\n    CommonModule,\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n  ],\n})\nclass ControlledTabsTestComponent {\n  activeTab: TabValue = 0;\n\n  onValueChange(value: TabValue): void {\n    this.activeTab = value;\n  }\n\n  setActiveTab(value: TabValue): void {\n    this.activeTab = value;\n  }\n}\n\n@Component({\n  selector: \"orientation-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\" class=\"flex-col\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass OrientationTabsTestComponent {}\n\n@Component({\n  selector: \"variant-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass VariantTabsTestComponent {}\n\n@Component({\n  selector: \"icon-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <div class=\"flex items-center\">\n            <home-icon class=\"mr-2 h-4 w-4\"></home-icon>\n            Home Tab\n          </div>\n        </xui-tab>\n        <xui-tab [value]=\"1\">Regular Tab</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n    LucideAngularModule,\n  ],\n})\nclass IconTabsTestComponent {}\n\ndescribe(\"Tabs Component\", () => {\n  it(\"renders basic tabs correctly\", () => {\n    cy.mount(BasicTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.length\", 3);\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n  });\n\n  it(\"switches tabs when clicked\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"contain.text\", \"Content 2\");\n  });\n\n  it(\"supports controlled mode with external state\", () => {\n    cy.mount(ControlledTabsTestComponent);\n\n    // Initial state\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n\n    // Change through tab click\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"1\");\n\n    // Change through external control\n    cy.get(\"#external-control\").click();\n    // Wait for the active tab value to update before checking aria-selected\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n    // Now check the tab has been selected\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies vertical orientation correctly\", () => {\n    cy.mount(OrientationTabsTestComponent);\n    cy.get(\"xui-tabs\").should(\"have.class\", \"flex-col\");\n    cy.get('[role=\"tablist\"]').should(\n      \"have.attr\",\n      \"aria-orientation\",\n      \"vertical\",\n    );\n  });\n\n  it(\"applies variant-specific styles\", () => {\n    cy.mount(VariantTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n\n  it(\"renders tabs with icons correctly\", () => {\n    cy.mount(IconTabsTestComponent);\n    cy.get(\"home-icon\").should(\"exist\");\n    cy.get('[role=\"tab\"]').first().should(\"contain.text\", \"Home Tab\");\n\n    // Verify icon doesn't affect functionality\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n  });\n\n  it(\"maintains accessibility attributes\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Check tab has proper accessibility attributes\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"tabindex\", \"-1\");\n\n    // Check tabpanel has proper accessibility attributes\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"aria-labelledby\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n  });\n\n  // Type-safe keyboard navigation test\n  it(\"handles keyboard navigation\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Focus the first tab\n    cy.get('[role=\"tab\"]').first().focus();\n\n    // Press right arrow key to move to next tab\n    cy.get('[role=\"tab\"]').first().type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press right arrow key to move to last tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n\n    // Press left arrow key to move back\n    cy.get('[role=\"tab\"]').eq(2).type(\"{leftarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press Home key to move to first tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{home}\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.focus\");\n\n    // Press End key to move to last tab\n    cy.get('[role=\"tab\"]').eq(0).type(\"{end}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n  });\n});\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -1419,18 +1419,143 @@
       "templateData": "<ng-container *ngIf=\"component === 'button' || !component; else customElement\">\r\n  <button\r\n    [type]=\"type\"\r\n    [class]=\"buttonClasses\"\r\n    [disabled]=\"isDisabled\"\r\n    (click)=\"handleClick()\"\r\n  >\r\n    <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\r\n  </button>\r\n</ng-container>\r\n\r\n<ng-template #customElement>\r\n  <ng-container [ngSwitch]=\"component\">\r\n    <a\r\n      *ngSwitchCase=\"'a'\"\r\n      [href]=\"href || '#'\"\r\n      [target]=\"target\"\r\n      [class]=\"buttonClasses\"\r\n      [attr.aria-disabled]=\"isDisabled ? 'true' : null\"\r\n      [attr.role]=\"role || 'button'\"\r\n      (click)=\"isDisabled ? $event.preventDefault() : handleClick()\"\r\n    >\r\n      <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\r\n    </a>\r\n\r\n    <div\r\n      *ngSwitchDefault\r\n      [class]=\"buttonClasses\"\r\n      [attr.aria-disabled]=\"isDisabled ? 'true' : null\"\r\n      [attr.role]=\"role || 'button'\"\r\n      (click)=\"!isDisabled && handleClick()\"\r\n    >\r\n      <ng-container *ngTemplateOutlet=\"contentTemplate\"></ng-container>\r\n    </div>\r\n  </ng-container>\r\n</ng-template>\r\n\r\n<ng-template #contentTemplate>\r\n  <ng-container *ngIf=\"loading && loadingPosition === 'start'\">\r\n    <span class=\"mr-2 inline-flex items-center\">\r\n      <ng-container\r\n        *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\r\n      >\r\n        <ng-container *ngTemplateOutlet=\"customLoadingIndicator\"></ng-container>\r\n      </ng-container>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"!loading && startIcon\">\r\n    <span class=\"mr-2\">\r\n      <ng-container *ngTemplateOutlet=\"startIcon\"></ng-container>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"loading && loadingPosition === 'center'\">\r\n    <span class=\"flex items-center gap-2\">\r\n      <span class=\"inline-flex items-center\">\r\n        <ng-container\r\n          *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"customLoadingIndicator\"\r\n          ></ng-container>\r\n        </ng-container>\r\n      </span>\r\n      <ng-content></ng-content>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"!(loading && loadingPosition === 'center')\">\r\n    <ng-content></ng-content>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"!loading && endIcon\">\r\n    <span class=\"ml-2\">\r\n      <ng-container *ngTemplateOutlet=\"endIcon\"></ng-container>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"loading && loadingPosition === 'end'\">\r\n    <span class=\"ml-2 inline-flex items-center\">\r\n      <ng-container\r\n        *ngIf=\"customLoadingIndicator; else defaultLoadingIndicator\"\r\n      >\r\n        <ng-container *ngTemplateOutlet=\"customLoadingIndicator\"></ng-container>\r\n      </ng-container>\r\n    </span>\r\n  </ng-container>\r\n</ng-template>\r\n\r\n<ng-template #defaultLoadingIndicator>\r\n  <span class=\"h-4 w-4 animate-spin\">⌛</span>\r\n</ng-template>\r\n"
     },
     {
-      "name": "ClickEventTabTestComponent",
-      "id": "component-ClickEventTabTestComponent-81572365346ad6ce2541bca508c2d446392097b50920e29ff48b36332730d8b14cf16a57f11b27ef99b48253a2583faa82115700b3d2c0e492676b41b6287110",
-      "file": "src/app/components/system-design/Tab/Tab.component.cy.ts",
+      "name": "ControlledTabsTestComponent",
+      "id": "component-ControlledTabsTestComponent-74e920dedc8fd4661402c618269931dac4b5d7d7b3d4a524ffbc1590a5567017d30ca2f37b7c3558571dd9fe947d17154c62f5286a194c2af4811ec5c342ca35",
+      "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
       "providers": [],
-      "selector": "click-event-wrapper",
+      "selector": "controlled-tabs-test",
       "styleUrls": [],
       "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
+      "template": "<div>\n  <xui-tabs [value]=\"activeTab\" (valueChange)=\"onValueChange($event)\">\n    <xui-tablist>\n      <xui-tab [value]=\"0\">Tab 1</xui-tab>\n      <xui-tab [value]=\"1\">Tab 2</xui-tab>\n    </xui-tablist>\n    <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n    <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n  </xui-tabs>\n  <div id=\"active-tab-value\">{{ activeTab }}</div>\n  <button\n    id=\"external-control\"\n    (click)=\"setActiveTab(activeTab === 0 ? 1 : 0)\"\n  >\n    Toggle Tab\n  </button>\n</div>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "activeTab",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TabValue",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 61
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "onValueChange",
+          "args": [
+            {
+              "name": "value",
+              "type": "TabValue",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 63,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "value",
+              "type": "TabValue",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setActiveTab",
+          "args": [
+            {
+              "name": "value",
+              "type": "TabValue",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 67,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "value",
+              "type": "TabValue",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "TabsComponent",
+          "type": "component"
+        },
+        {
+          "name": "TabListComponent",
+          "type": "component"
+        },
+        {
+          "name": "TabComponent",
+          "type": "component"
+        },
+        {
+          "name": "TabPanelComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"./Tabs.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { LucideAngularModule } from \"lucide-angular\";\nimport { HomeIcon } from \"lucide-angular\";\nimport { TabComponent, TabListComponent, TabPanelComponent } from \".\";\n\n// Define proper types for tab values\ntype TabValue = number;\n\n@Component({\n  selector: \"basic-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        <xui-tab [value]=\"2\">Tab 3</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass BasicTabsTestComponent {}\n\n@Component({\n  selector: \"controlled-tabs-test\",\n  template: `\n    <div>\n      <xui-tabs [value]=\"activeTab\" (valueChange)=\"onValueChange($event)\">\n        <xui-tablist>\n          <xui-tab [value]=\"0\">Tab 1</xui-tab>\n          <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        </xui-tablist>\n        <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n        <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      </xui-tabs>\n      <div id=\"active-tab-value\">{{ activeTab }}</div>\n      <button\n        id=\"external-control\"\n        (click)=\"setActiveTab(activeTab === 0 ? 1 : 0)\"\n      >\n        Toggle Tab\n      </button>\n    </div>\n  `,\n  standalone: true,\n  imports: [\n    CommonModule,\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n  ],\n})\nclass ControlledTabsTestComponent {\n  activeTab: TabValue = 0;\n\n  onValueChange(value: TabValue): void {\n    this.activeTab = value;\n  }\n\n  setActiveTab(value: TabValue): void {\n    this.activeTab = value;\n  }\n}\n\n@Component({\n  selector: \"orientation-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\" class=\"flex-col\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass OrientationTabsTestComponent {}\n\n@Component({\n  selector: \"variant-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass VariantTabsTestComponent {}\n\n@Component({\n  selector: \"icon-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <div class=\"flex items-center\">\n            <home-icon class=\"mr-2 h-4 w-4\"></home-icon>\n            Home Tab\n          </div>\n        </xui-tab>\n        <xui-tab [value]=\"1\">Regular Tab</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n    LucideAngularModule,\n  ],\n})\nclass IconTabsTestComponent {}\n\ndescribe(\"Tabs Component\", () => {\n  it(\"renders basic tabs correctly\", () => {\n    cy.mount(BasicTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.length\", 3);\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n  });\n\n  it(\"switches tabs when clicked\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"contain.text\", \"Content 2\");\n  });\n\n  it(\"supports controlled mode with external state\", () => {\n    cy.mount(ControlledTabsTestComponent);\n\n    // Initial state\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n\n    // Change through tab click\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"1\");\n\n    // Change through external control\n    cy.get(\"#external-control\").click();\n    // Wait for the active tab value to update before checking aria-selected\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n    // Now check the tab has been selected\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies vertical orientation correctly\", () => {\n    cy.mount(OrientationTabsTestComponent);\n    cy.get(\"xui-tabs\").should(\"have.class\", \"flex-col\");\n    cy.get('[role=\"tablist\"]').should(\n      \"have.attr\",\n      \"aria-orientation\",\n      \"vertical\",\n    );\n  });\n\n  it(\"applies variant-specific styles\", () => {\n    cy.mount(VariantTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n\n  it(\"renders tabs with icons correctly\", () => {\n    cy.mount(IconTabsTestComponent);\n    cy.get(\"home-icon\").should(\"exist\");\n    cy.get('[role=\"tab\"]').first().should(\"contain.text\", \"Home Tab\");\n\n    // Verify icon doesn't affect functionality\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n  });\n\n  it(\"maintains accessibility attributes\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Check tab has proper accessibility attributes\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"tabindex\", \"-1\");\n\n    // Check tabpanel has proper accessibility attributes\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"aria-labelledby\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n  });\n\n  // Type-safe keyboard navigation test\n  it(\"handles keyboard navigation\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Focus the first tab\n    cy.get('[role=\"tab\"]').first().focus();\n\n    // Press right arrow key to move to next tab\n    cy.get('[role=\"tab\"]').first().type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press right arrow key to move to last tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n\n    // Press left arrow key to move back\n    cy.get('[role=\"tab\"]').eq(2).type(\"{leftarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press Home key to move to first tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{home}\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.focus\");\n\n    // Press End key to move to last tab\n    cy.get('[role=\"tab\"]').eq(0).type(\"{end}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n  });\n});\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    },
+    {
+      "name": "IconTabsTestComponent",
+      "id": "component-IconTabsTestComponent-74e920dedc8fd4661402c618269931dac4b5d7d7b3d4a524ffbc1590a5567017d30ca2f37b7c3558571dd9fe947d17154c62f5286a194c2af4811ec5c342ca35",
+      "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "icon-tabs-test",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">\n      <div class=\"flex items-center\">\n        <home-icon class=\"mr-2 h-4 w-4\"></home-icon>\n        Home Tab\n      </div>\n    </xui-tab>\n    <xui-tab [value]=\"1\">Regular Tab</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n  <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n</xui-tabs>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
@@ -1449,84 +1574,44 @@
           "type": "component"
         },
         {
-          "name": "TabComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\n\nimport { TabsComponent } from \"../Tabs\";\nimport { TabComponent } from \"./Tab.component\";\nimport { TabListComponent } from \"../TabList\";\n\n@Component({\n  selector: \"test-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Standard Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabTestComponent {}\n\n@Component({\n  selector: \"icon-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <span data-testid=\"icon\">🏠</span>\n          With Icon\n        </xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass IconTabTestComponent {}\n\n@Component({\n  selector: \"disabled-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\" [disabled]=\"true\">Disabled Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass DisabledTabTestComponent {}\n\n@Component({\n  selector: \"click-event-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass ClickEventTabTestComponent {}\n\ndescribe(\"TabComponent\", () => {\n  it(\"renders standard tab correctly\", () => {\n    cy.mount(StandardTabTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"exist\").and(\"contain.text\", \"Standard Tab\");\n    cy.get('[role=\"tab\"]').should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"renders tab with icon\", () => {\n    cy.mount(IconTabTestComponent);\n\n    cy.get('[data-testid=\"icon\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"contain.text\", \"With Icon\");\n  });\n\n  it(\"renders disabled tab\", () => {\n    cy.mount(DisabledTabTestComponent);\n\n    cy.get('[role=\"tab\"]')\n      .eq(1)\n      .should(\"have.attr\", \"aria-disabled\", \"true\")\n      .should(\"have.attr\", \"tabindex\", \"-1\");\n  });\n\n  it(\"handles click events\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies appropriate styles based on state\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"][aria-selected=\"true\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 1\");\n\n    cy.get('[role=\"tab\"][aria-selected=\"false\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 2\");\n  });\n});\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "CustomClassTabListTestComponent",
-      "id": "component-CustomClassTabListTestComponent-076cafcdea306e22438e538107dd74f46a560afca33ed0dd598445fbcedeaf5c91983e6cc1040a8e74deab4782d142b5aa2ee5733e37171e498cc346a06d1378",
-      "file": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "custom-class-test",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist className=\"custom-class\">\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
           "name": "TabListComponent",
           "type": "component"
         },
         {
           "name": "TabComponent",
           "type": "component"
+        },
+        {
+          "name": "TabPanelComponent",
+          "type": "component"
+        },
+        {
+          "name": "LucideAngularModule",
+          "type": "module"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"../Tabs\";\nimport { TabListComponent } from \"./TabList.component\";\nimport { TabComponent } from \"../Tab/Tab.component\";\n\n@Component({\n  selector: \"standard-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabListTestComponent {}\n\n@Component({\n  selector: \"vertical-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass VerticalTabListTestComponent {}\n\n@Component({\n  selector: \"custom-class-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist className=\"custom-class\">\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass CustomClassTabListTestComponent {}\n\n@Component({\n  selector: \"fullwidth-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass FullWidthTabListTestComponent {}\n\ndescribe(\"TabList Component\", () => {\n  it(\"renders standard tab list correctly\", () => {\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"have.length\", 2);\n  });\n\n  it(\"aligns tabs based on orientation\", () => {\n    cy.mount(VerticalTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"flex-col\");\n\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"not.have.class\", \"flex-col\");\n  });\n\n  it(\"renders with custom className\", () => {\n    cy.mount(CustomClassTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"custom-class\");\n  });\n\n  it(\"applies fullWidth styling when tab variant is fullWidth\", () => {\n    cy.mount(FullWidthTabListTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n});\n",
+      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"./Tabs.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { LucideAngularModule } from \"lucide-angular\";\nimport { HomeIcon } from \"lucide-angular\";\nimport { TabComponent, TabListComponent, TabPanelComponent } from \".\";\n\n// Define proper types for tab values\ntype TabValue = number;\n\n@Component({\n  selector: \"basic-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        <xui-tab [value]=\"2\">Tab 3</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass BasicTabsTestComponent {}\n\n@Component({\n  selector: \"controlled-tabs-test\",\n  template: `\n    <div>\n      <xui-tabs [value]=\"activeTab\" (valueChange)=\"onValueChange($event)\">\n        <xui-tablist>\n          <xui-tab [value]=\"0\">Tab 1</xui-tab>\n          <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        </xui-tablist>\n        <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n        <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      </xui-tabs>\n      <div id=\"active-tab-value\">{{ activeTab }}</div>\n      <button\n        id=\"external-control\"\n        (click)=\"setActiveTab(activeTab === 0 ? 1 : 0)\"\n      >\n        Toggle Tab\n      </button>\n    </div>\n  `,\n  standalone: true,\n  imports: [\n    CommonModule,\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n  ],\n})\nclass ControlledTabsTestComponent {\n  activeTab: TabValue = 0;\n\n  onValueChange(value: TabValue): void {\n    this.activeTab = value;\n  }\n\n  setActiveTab(value: TabValue): void {\n    this.activeTab = value;\n  }\n}\n\n@Component({\n  selector: \"orientation-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\" class=\"flex-col\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass OrientationTabsTestComponent {}\n\n@Component({\n  selector: \"variant-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass VariantTabsTestComponent {}\n\n@Component({\n  selector: \"icon-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <div class=\"flex items-center\">\n            <home-icon class=\"mr-2 h-4 w-4\"></home-icon>\n            Home Tab\n          </div>\n        </xui-tab>\n        <xui-tab [value]=\"1\">Regular Tab</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n    LucideAngularModule,\n  ],\n})\nclass IconTabsTestComponent {}\n\ndescribe(\"Tabs Component\", () => {\n  it(\"renders basic tabs correctly\", () => {\n    cy.mount(BasicTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.length\", 3);\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n  });\n\n  it(\"switches tabs when clicked\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"contain.text\", \"Content 2\");\n  });\n\n  it(\"supports controlled mode with external state\", () => {\n    cy.mount(ControlledTabsTestComponent);\n\n    // Initial state\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n\n    // Change through tab click\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"1\");\n\n    // Change through external control\n    cy.get(\"#external-control\").click();\n    // Wait for the active tab value to update before checking aria-selected\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n    // Now check the tab has been selected\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies vertical orientation correctly\", () => {\n    cy.mount(OrientationTabsTestComponent);\n    cy.get(\"xui-tabs\").should(\"have.class\", \"flex-col\");\n    cy.get('[role=\"tablist\"]').should(\n      \"have.attr\",\n      \"aria-orientation\",\n      \"vertical\",\n    );\n  });\n\n  it(\"applies variant-specific styles\", () => {\n    cy.mount(VariantTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n\n  it(\"renders tabs with icons correctly\", () => {\n    cy.mount(IconTabsTestComponent);\n    cy.get(\"home-icon\").should(\"exist\");\n    cy.get('[role=\"tab\"]').first().should(\"contain.text\", \"Home Tab\");\n\n    // Verify icon doesn't affect functionality\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n  });\n\n  it(\"maintains accessibility attributes\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Check tab has proper accessibility attributes\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"tabindex\", \"-1\");\n\n    // Check tabpanel has proper accessibility attributes\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"aria-labelledby\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n  });\n\n  // Type-safe keyboard navigation test\n  it(\"handles keyboard navigation\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Focus the first tab\n    cy.get('[role=\"tab\"]').first().focus();\n\n    // Press right arrow key to move to next tab\n    cy.get('[role=\"tab\"]').first().type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press right arrow key to move to last tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n\n    // Press left arrow key to move back\n    cy.get('[role=\"tab\"]').eq(2).type(\"{leftarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press Home key to move to first tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{home}\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.focus\");\n\n    // Press End key to move to last tab\n    cy.get('[role=\"tab\"]').eq(0).type(\"{end}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n  });\n});\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": []
     },
     {
-      "name": "CustomClassTabPanelTestComponent",
-      "id": "component-CustomClassTabPanelTestComponent-b9e9646040db89323bdea1912a6b2d1e04d4602f4ca24f588f8a891609a548ad63502aa70df4cdf7f42cb4ee757895a40ea8b048b63fbb8fbb172c69689b197c",
-      "file": "src/app/components/system-design/TabPanel/TabPanel.component.cy.ts",
+      "name": "OrientationTabsTestComponent",
+      "id": "component-OrientationTabsTestComponent-74e920dedc8fd4661402c618269931dac4b5d7d7b3d4a524ffbc1590a5567017d30ca2f37b7c3558571dd9fe947d17154c62f5286a194c2af4811ec5c342ca35",
+      "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
       "providers": [],
-      "selector": "custom-class-test",
+      "selector": "orientation-tabs-test",
       "styleUrls": [],
       "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\" className=\"custom-class\">\n    Panel Content\n  </xui-tabpanel>\n</xui-tabs>\n",
+      "template": "<xui-tabs [defaultValue]=\"0\" orientation=\"vertical\" class=\"flex-col\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n  <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n</xui-tabs>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
@@ -1560,247 +1645,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"../Tabs\";\nimport { TabListComponent } from \"../TabList\";\nimport { TabComponent } from \"../Tab/Tab.component\";\nimport { TabPanelComponent } from \"./TabPanel.component\";\n\n@Component({\n  selector: \"basic-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Panel Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Panel Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n})\nclass BasicTabPanelTestComponent {}\n\n@Component({\n  selector: \"custom-class-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\" className=\"custom-class\">\n        Panel Content\n      </xui-tabpanel>\n    </xui-tabs>\n  `,\n})\nclass CustomClassTabPanelTestComponent {}\n\ndescribe(\"TabPanel Component\", () => {\n  it(\"renders tab panel correctly\", () => {\n    cy.mount(BasicTabPanelTestComponent);\n\n    cy.get('[role=\"tabpanel\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Panel Content 1\");\n  });\n\n  it(\"shows the correct panel when tab is selected\", () => {\n    cy.mount(BasicTabPanelTestComponent);\n\n    // Click second tab\n    cy.get('[role=\"tab\"]').eq(1).click();\n\n    // Second panel should be visible\n    cy.get('[role=\"tabpanel\"]').should(\"contain.text\", \"Panel Content 2\");\n  });\n\n  it(\"renders with custom className\", () => {\n    cy.mount(CustomClassTabPanelTestComponent);\n\n    cy.get('[role=\"tabpanel\"]').should(\"have.class\", \"custom-class\");\n  });\n\n  it(\"properly hides inactive panels\", () => {\n    cy.mount(BasicTabPanelTestComponent);\n\n    // First panel should be visible, second hidden\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"not.be.visible\");\n  });\n});\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "DisabledTabTestComponent",
-      "id": "component-DisabledTabTestComponent-81572365346ad6ce2541bca508c2d446392097b50920e29ff48b36332730d8b14cf16a57f11b27ef99b48253a2583faa82115700b3d2c0e492676b41b6287110",
-      "file": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "disabled-tab-wrapper",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\" [disabled]=\"true\">Disabled Tab</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\n\nimport { TabsComponent } from \"../Tabs\";\nimport { TabComponent } from \"./Tab.component\";\nimport { TabListComponent } from \"../TabList\";\n\n@Component({\n  selector: \"test-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Standard Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabTestComponent {}\n\n@Component({\n  selector: \"icon-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <span data-testid=\"icon\">🏠</span>\n          With Icon\n        </xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass IconTabTestComponent {}\n\n@Component({\n  selector: \"disabled-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\" [disabled]=\"true\">Disabled Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass DisabledTabTestComponent {}\n\n@Component({\n  selector: \"click-event-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass ClickEventTabTestComponent {}\n\ndescribe(\"TabComponent\", () => {\n  it(\"renders standard tab correctly\", () => {\n    cy.mount(StandardTabTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"exist\").and(\"contain.text\", \"Standard Tab\");\n    cy.get('[role=\"tab\"]').should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"renders tab with icon\", () => {\n    cy.mount(IconTabTestComponent);\n\n    cy.get('[data-testid=\"icon\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"contain.text\", \"With Icon\");\n  });\n\n  it(\"renders disabled tab\", () => {\n    cy.mount(DisabledTabTestComponent);\n\n    cy.get('[role=\"tab\"]')\n      .eq(1)\n      .should(\"have.attr\", \"aria-disabled\", \"true\")\n      .should(\"have.attr\", \"tabindex\", \"-1\");\n  });\n\n  it(\"handles click events\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies appropriate styles based on state\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"][aria-selected=\"true\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 1\");\n\n    cy.get('[role=\"tab\"][aria-selected=\"false\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 2\");\n  });\n});\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "FullWidthTabListTestComponent",
-      "id": "component-FullWidthTabListTestComponent-076cafcdea306e22438e538107dd74f46a560afca33ed0dd598445fbcedeaf5c91983e6cc1040a8e74deab4782d142b5aa2ee5733e37171e498cc346a06d1378",
-      "file": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "fullwidth-test",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"../Tabs\";\nimport { TabListComponent } from \"./TabList.component\";\nimport { TabComponent } from \"../Tab/Tab.component\";\n\n@Component({\n  selector: \"standard-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabListTestComponent {}\n\n@Component({\n  selector: \"vertical-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass VerticalTabListTestComponent {}\n\n@Component({\n  selector: \"custom-class-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist className=\"custom-class\">\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass CustomClassTabListTestComponent {}\n\n@Component({\n  selector: \"fullwidth-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass FullWidthTabListTestComponent {}\n\ndescribe(\"TabList Component\", () => {\n  it(\"renders standard tab list correctly\", () => {\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"have.length\", 2);\n  });\n\n  it(\"aligns tabs based on orientation\", () => {\n    cy.mount(VerticalTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"flex-col\");\n\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"not.have.class\", \"flex-col\");\n  });\n\n  it(\"renders with custom className\", () => {\n    cy.mount(CustomClassTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"custom-class\");\n  });\n\n  it(\"applies fullWidth styling when tab variant is fullWidth\", () => {\n    cy.mount(FullWidthTabListTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n});\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "IconTabTestComponent",
-      "id": "component-IconTabTestComponent-81572365346ad6ce2541bca508c2d446392097b50920e29ff48b36332730d8b14cf16a57f11b27ef99b48253a2583faa82115700b3d2c0e492676b41b6287110",
-      "file": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "icon-tab-wrapper",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">\n      <span data-testid=\"icon\">🏠</span>\n      With Icon\n    </xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\n\nimport { TabsComponent } from \"../Tabs\";\nimport { TabComponent } from \"./Tab.component\";\nimport { TabListComponent } from \"../TabList\";\n\n@Component({\n  selector: \"test-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Standard Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabTestComponent {}\n\n@Component({\n  selector: \"icon-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <span data-testid=\"icon\">🏠</span>\n          With Icon\n        </xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass IconTabTestComponent {}\n\n@Component({\n  selector: \"disabled-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\" [disabled]=\"true\">Disabled Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass DisabledTabTestComponent {}\n\n@Component({\n  selector: \"click-event-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass ClickEventTabTestComponent {}\n\ndescribe(\"TabComponent\", () => {\n  it(\"renders standard tab correctly\", () => {\n    cy.mount(StandardTabTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"exist\").and(\"contain.text\", \"Standard Tab\");\n    cy.get('[role=\"tab\"]').should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"renders tab with icon\", () => {\n    cy.mount(IconTabTestComponent);\n\n    cy.get('[data-testid=\"icon\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"contain.text\", \"With Icon\");\n  });\n\n  it(\"renders disabled tab\", () => {\n    cy.mount(DisabledTabTestComponent);\n\n    cy.get('[role=\"tab\"]')\n      .eq(1)\n      .should(\"have.attr\", \"aria-disabled\", \"true\")\n      .should(\"have.attr\", \"tabindex\", \"-1\");\n  });\n\n  it(\"handles click events\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies appropriate styles based on state\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"][aria-selected=\"true\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 1\");\n\n    cy.get('[role=\"tab\"][aria-selected=\"false\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 2\");\n  });\n});\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "StandardTabListTestComponent",
-      "id": "component-StandardTabListTestComponent-076cafcdea306e22438e538107dd74f46a560afca33ed0dd598445fbcedeaf5c91983e6cc1040a8e74deab4782d142b5aa2ee5733e37171e498cc346a06d1378",
-      "file": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "standard-test",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"../Tabs\";\nimport { TabListComponent } from \"./TabList.component\";\nimport { TabComponent } from \"../Tab/Tab.component\";\n\n@Component({\n  selector: \"standard-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabListTestComponent {}\n\n@Component({\n  selector: \"vertical-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass VerticalTabListTestComponent {}\n\n@Component({\n  selector: \"custom-class-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist className=\"custom-class\">\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass CustomClassTabListTestComponent {}\n\n@Component({\n  selector: \"fullwidth-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass FullWidthTabListTestComponent {}\n\ndescribe(\"TabList Component\", () => {\n  it(\"renders standard tab list correctly\", () => {\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"have.length\", 2);\n  });\n\n  it(\"aligns tabs based on orientation\", () => {\n    cy.mount(VerticalTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"flex-col\");\n\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"not.have.class\", \"flex-col\");\n  });\n\n  it(\"renders with custom className\", () => {\n    cy.mount(CustomClassTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"custom-class\");\n  });\n\n  it(\"applies fullWidth styling when tab variant is fullWidth\", () => {\n    cy.mount(FullWidthTabListTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n});\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
-      "name": "StandardTabTestComponent",
-      "id": "component-StandardTabTestComponent-81572365346ad6ce2541bca508c2d446392097b50920e29ff48b36332730d8b14cf16a57f11b27ef99b48253a2583faa82115700b3d2c0e492676b41b6287110",
-      "file": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "test-wrapper",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Standard Tab</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\n\nimport { TabsComponent } from \"../Tabs\";\nimport { TabComponent } from \"./Tab.component\";\nimport { TabListComponent } from \"../TabList\";\n\n@Component({\n  selector: \"test-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Standard Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabTestComponent {}\n\n@Component({\n  selector: \"icon-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <span data-testid=\"icon\">🏠</span>\n          With Icon\n        </xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass IconTabTestComponent {}\n\n@Component({\n  selector: \"disabled-tab-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\" [disabled]=\"true\">Disabled Tab</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass DisabledTabTestComponent {}\n\n@Component({\n  selector: \"click-event-wrapper\",\n  standalone: true,\n  imports: [TabsComponent, TabComponent, TabListComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass ClickEventTabTestComponent {}\n\ndescribe(\"TabComponent\", () => {\n  it(\"renders standard tab correctly\", () => {\n    cy.mount(StandardTabTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"exist\").and(\"contain.text\", \"Standard Tab\");\n    cy.get('[role=\"tab\"]').should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"renders tab with icon\", () => {\n    cy.mount(IconTabTestComponent);\n\n    cy.get('[data-testid=\"icon\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"contain.text\", \"With Icon\");\n  });\n\n  it(\"renders disabled tab\", () => {\n    cy.mount(DisabledTabTestComponent);\n\n    cy.get('[role=\"tab\"]')\n      .eq(1)\n      .should(\"have.attr\", \"aria-disabled\", \"true\")\n      .should(\"have.attr\", \"tabindex\", \"-1\");\n  });\n\n  it(\"handles click events\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies appropriate styles based on state\", () => {\n    cy.mount(ClickEventTabTestComponent);\n\n    cy.get('[role=\"tab\"][aria-selected=\"true\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 1\");\n\n    cy.get('[role=\"tab\"][aria-selected=\"false\"]')\n      .should(\"exist\")\n      .and(\"contain.text\", \"Tab 2\");\n  });\n});\n",
+      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"./Tabs.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { LucideAngularModule } from \"lucide-angular\";\nimport { HomeIcon } from \"lucide-angular\";\nimport { TabComponent, TabListComponent, TabPanelComponent } from \".\";\n\n// Define proper types for tab values\ntype TabValue = number;\n\n@Component({\n  selector: \"basic-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        <xui-tab [value]=\"2\">Tab 3</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass BasicTabsTestComponent {}\n\n@Component({\n  selector: \"controlled-tabs-test\",\n  template: `\n    <div>\n      <xui-tabs [value]=\"activeTab\" (valueChange)=\"onValueChange($event)\">\n        <xui-tablist>\n          <xui-tab [value]=\"0\">Tab 1</xui-tab>\n          <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        </xui-tablist>\n        <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n        <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      </xui-tabs>\n      <div id=\"active-tab-value\">{{ activeTab }}</div>\n      <button\n        id=\"external-control\"\n        (click)=\"setActiveTab(activeTab === 0 ? 1 : 0)\"\n      >\n        Toggle Tab\n      </button>\n    </div>\n  `,\n  standalone: true,\n  imports: [\n    CommonModule,\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n  ],\n})\nclass ControlledTabsTestComponent {\n  activeTab: TabValue = 0;\n\n  onValueChange(value: TabValue): void {\n    this.activeTab = value;\n  }\n\n  setActiveTab(value: TabValue): void {\n    this.activeTab = value;\n  }\n}\n\n@Component({\n  selector: \"orientation-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\" class=\"flex-col\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass OrientationTabsTestComponent {}\n\n@Component({\n  selector: \"variant-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass VariantTabsTestComponent {}\n\n@Component({\n  selector: \"icon-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <div class=\"flex items-center\">\n            <home-icon class=\"mr-2 h-4 w-4\"></home-icon>\n            Home Tab\n          </div>\n        </xui-tab>\n        <xui-tab [value]=\"1\">Regular Tab</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n    LucideAngularModule,\n  ],\n})\nclass IconTabsTestComponent {}\n\ndescribe(\"Tabs Component\", () => {\n  it(\"renders basic tabs correctly\", () => {\n    cy.mount(BasicTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.length\", 3);\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n  });\n\n  it(\"switches tabs when clicked\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"contain.text\", \"Content 2\");\n  });\n\n  it(\"supports controlled mode with external state\", () => {\n    cy.mount(ControlledTabsTestComponent);\n\n    // Initial state\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n\n    // Change through tab click\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"1\");\n\n    // Change through external control\n    cy.get(\"#external-control\").click();\n    // Wait for the active tab value to update before checking aria-selected\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n    // Now check the tab has been selected\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies vertical orientation correctly\", () => {\n    cy.mount(OrientationTabsTestComponent);\n    cy.get(\"xui-tabs\").should(\"have.class\", \"flex-col\");\n    cy.get('[role=\"tablist\"]').should(\n      \"have.attr\",\n      \"aria-orientation\",\n      \"vertical\",\n    );\n  });\n\n  it(\"applies variant-specific styles\", () => {\n    cy.mount(VariantTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n\n  it(\"renders tabs with icons correctly\", () => {\n    cy.mount(IconTabsTestComponent);\n    cy.get(\"home-icon\").should(\"exist\");\n    cy.get('[role=\"tab\"]').first().should(\"contain.text\", \"Home Tab\");\n\n    // Verify icon doesn't affect functionality\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n  });\n\n  it(\"maintains accessibility attributes\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Check tab has proper accessibility attributes\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"tabindex\", \"-1\");\n\n    // Check tabpanel has proper accessibility attributes\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"aria-labelledby\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n  });\n\n  // Type-safe keyboard navigation test\n  it(\"handles keyboard navigation\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Focus the first tab\n    cy.get('[role=\"tab\"]').first().focus();\n\n    // Press right arrow key to move to next tab\n    cy.get('[role=\"tab\"]').first().type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press right arrow key to move to last tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n\n    // Press left arrow key to move back\n    cy.get('[role=\"tab\"]').eq(2).type(\"{leftarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press Home key to move to first tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{home}\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.focus\");\n\n    // Press End key to move to last tab\n    cy.get('[role=\"tab\"]').eq(0).type(\"{end}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n  });\n});\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -1808,8 +1653,8 @@
     },
     {
       "name": "TabComponent",
-      "id": "component-TabComponent-7c9ad129fd1243554e3ac043b7b5fb45acab89f3b2bae9def56ceae4ca0b6db590944e62e97c4ff01b70c275f1f7629023f6c3ed8ee663ffa82f5f340d6ad299",
-      "file": "src/app/components/system-design/Tab/Tab.component.ts",
+      "id": "component-TabComponent-0bfa3dce361734c2930307f1641bdf32e5a72926b1345c718eda25c6c77b4473612fd8a9a7049f46d330ec008b69fcc2b82d9727214c7ccd14d2ce16830adee1",
+      "file": "src/app/components/system-design/Tabs/Tab/Tab.component.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -2058,7 +1903,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  ElementRef,\n  Input,\n  OnInit,\n  HostListener,\n  TemplateRef,\n  ViewChild,\n  AfterViewInit,\n  ContentChild,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\nimport { TabsService } from \"../Tabs\";\nimport { TabBaseProps } from \"./Tab.types\";\n\n@Component({\n  selector: \"xui-tab\",\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: \"./Tab.component.html\",\n})\nexport class TabComponent implements OnInit, AfterViewInit, TabBaseProps {\n  @Input() value!: any;\n  @Input() disabled = false;\n  @Input() icon: TemplateRef<any> | null = null;\n  @Input() label?: string;\n  @Input() className = \"\";\n  @Input() disableRipple = false;\n  @Input() disableFocusRipple = false;\n\n  @ViewChild(\"tabButton\") tabButtonRef!: ElementRef<HTMLButtonElement>;\n  @ContentChild(\"iconTemplate\") iconRef?: TemplateRef<any>;\n\n  isSelected = false;\n  index = 0;\n  orientation: \"horizontal\" | \"vertical\" = \"horizontal\";\n  variant: \"standard\" | \"scrollable\" | \"fullWidth\" = \"standard\";\n\n  constructor(\n    private tabsService: TabsService,\n    public elementRef: ElementRef,\n  ) {}\n\n  ngOnInit(): void {\n    this.tabsService.value$.subscribe((value) => {\n      this.isSelected = this.value === value;\n    });\n\n    this.tabsService.orientation$.subscribe((orientation) => {\n      this.orientation = orientation;\n    });\n\n    this.tabsService.variant$.subscribe((variant) => {\n      this.variant = variant;\n    });\n  }\n\n  ngAfterViewInit(): void {\n    // Focus the selected tab initially\n    if (this.isSelected) {\n      setTimeout(() => this.tabButtonRef.nativeElement.focus());\n    }\n  }\n\n  @HostListener(\"focus\")\n  onFocus(): void {\n    if (!this.disabled) {\n      this.tabButtonRef.nativeElement.focus();\n    }\n  }\n\n  handleClick(): void {\n    if (!this.disabled) {\n      this.tabsService.setValue(this.value);\n    }\n  }\n\n  generateClasses(): string {\n    const baseClasses = `ring-offset-background inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all\n    focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none\n    ${this.disabled ? \"disabled:pointer-events-none disabled:opacity-50\" : \"\"}\n    ${this.isSelected ? \"data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow\" : \"\"}\n    ${this.orientation === \"vertical\" ? \"w-full justify-start\" : \"\"}\n    ${this.variant === \"fullWidth\" ? \"flex-1\" : \"\"}\n    ${this.className}`;\n\n    return baseClasses;\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  ElementRef,\n  Input,\n  OnInit,\n  HostListener,\n  TemplateRef,\n  ViewChild,\n  AfterViewInit,\n  ContentChild,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\nimport { TabsService } from \"..\";\nimport { TabBaseProps } from \"./Tab.types\";\n\n@Component({\n  selector: \"xui-tab\",\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: \"./Tab.component.html\",\n})\nexport class TabComponent implements OnInit, AfterViewInit, TabBaseProps {\n  @Input() value!: any;\n  @Input() disabled = false;\n  @Input() icon: TemplateRef<any> | null = null;\n  @Input() label?: string;\n  @Input() className = \"\";\n  @Input() disableRipple = false;\n  @Input() disableFocusRipple = false;\n\n  @ViewChild(\"tabButton\") tabButtonRef!: ElementRef<HTMLButtonElement>;\n  @ContentChild(\"iconTemplate\") iconRef?: TemplateRef<any>;\n\n  isSelected = false;\n  index = 0;\n  orientation: \"horizontal\" | \"vertical\" = \"horizontal\";\n  variant: \"standard\" | \"scrollable\" | \"fullWidth\" = \"standard\";\n\n  constructor(\n    private tabsService: TabsService,\n    public elementRef: ElementRef,\n  ) {}\n\n  ngOnInit(): void {\n    this.tabsService.value$.subscribe((value) => {\n      this.isSelected = this.value === value;\n    });\n\n    this.tabsService.orientation$.subscribe((orientation) => {\n      this.orientation = orientation;\n    });\n\n    this.tabsService.variant$.subscribe((variant) => {\n      this.variant = variant;\n    });\n  }\n\n  ngAfterViewInit(): void {\n    // Focus the selected tab initially\n    if (this.isSelected) {\n      setTimeout(() => this.tabButtonRef.nativeElement.focus());\n    }\n  }\n\n  @HostListener(\"focus\")\n  onFocus(): void {\n    if (!this.disabled) {\n      this.tabButtonRef.nativeElement.focus();\n    }\n  }\n\n  handleClick(): void {\n    if (!this.disabled) {\n      this.tabsService.setValue(this.value);\n    }\n  }\n\n  generateClasses(): string {\n    const baseClasses = `ring-offset-background inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all\n    focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none\n    ${this.disabled ? \"disabled:pointer-events-none disabled:opacity-50\" : \"\"}\n    ${this.isSelected ? \"data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow\" : \"\"}\n    ${this.orientation === \"vertical\" ? \"w-full justify-start\" : \"\"}\n    ${this.variant === \"fullWidth\" ? \"flex-1\" : \"\"}\n    ${this.className}`;\n\n    return baseClasses;\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2109,8 +1954,8 @@
     },
     {
       "name": "TabListComponent",
-      "id": "component-TabListComponent-85c8361caa89c6afe202a6fad255358af5ad69eb320105d941b048bda97d5489532346ea9f564c3fae2a215b903ee01b57168df66b668e3321fc03db26068140",
-      "file": "src/app/components/system-design/TabList/TabList.component.ts",
+      "id": "component-TabListComponent-4fa75d0b52b25dea272d2f0dc9d3e2e6f89cfa3f41618be19b6454b0ac9ce1cd7512e2c70e65469adc0ad82e59b5f637664610f27f35bfb2caca8ba3f8bf7a97",
+      "file": "src/app/components/system-design/Tabs/TabList/TabList.component.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -2128,7 +1973,7 @@
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 35,
+          "line": 34,
           "type": "boolean",
           "decorators": []
         },
@@ -2137,7 +1982,7 @@
           "defaultValue": "\"\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 33,
+          "line": 32,
           "type": "string",
           "decorators": []
         },
@@ -2146,7 +1991,7 @@
           "defaultValue": "\"md\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 32,
+          "line": 31,
           "type": "",
           "decorators": []
         },
@@ -2155,7 +2000,7 @@
           "defaultValue": "\"standard\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 31,
+          "line": 30,
           "type": "",
           "decorators": []
         },
@@ -2164,7 +2009,7 @@
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 34,
+          "line": 33,
           "type": "boolean",
           "decorators": []
         }
@@ -2180,7 +2025,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 43
+          "line": 42
         },
         {
           "name": "elementRef",
@@ -2190,7 +2035,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 50,
+          "line": 49,
           "modifierKind": [125]
         },
         {
@@ -2202,7 +2047,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 42
+          "line": 41
         },
         {
           "name": "indicatorPosition",
@@ -2213,7 +2058,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 45
+          "line": 44
         },
         {
           "name": "orientation",
@@ -2224,7 +2069,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 40
+          "line": 39
         },
         {
           "name": "subscriptions",
@@ -2235,7 +2080,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 46,
+          "line": 45,
           "modifierKind": [123]
         },
         {
@@ -2246,7 +2091,7 @@
           "indexKey": "",
           "optional": true,
           "description": "",
-          "line": 37,
+          "line": 36,
           "decorators": [
             {
               "name": "ContentChildren",
@@ -2263,7 +2108,7 @@
           "indexKey": "",
           "optional": true,
           "description": "",
-          "line": 38,
+          "line": 37,
           "decorators": [
             {
               "name": "ViewChild",
@@ -2281,7 +2126,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 41
+          "line": 40
         }
       ],
       "methodsClass": [
@@ -2298,7 +2143,7 @@
           "optional": false,
           "returnType": "HTMLElement | undefined",
           "typeParameters": [],
-          "line": 158,
+          "line": 157,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -2320,7 +2165,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 138,
+          "line": 137,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2330,7 +2175,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 166,
+          "line": 165,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2340,7 +2185,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 213,
+          "line": 212,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2351,7 +2196,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 200,
+          "line": 199,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2362,7 +2207,7 @@
           "optional": false,
           "returnType": "Element[]",
           "typeParameters": [],
-          "line": 151,
+          "line": 150,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2373,7 +2218,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 188,
+          "line": 187,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2384,7 +2229,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 92,
+          "line": 91,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2395,7 +2240,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 80,
+          "line": 79,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2405,7 +2250,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 102,
+          "line": 101,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2415,7 +2260,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 53,
+          "line": 52,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2425,7 +2270,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 57,
+          "line": 56,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2436,7 +2281,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 106,
+          "line": 105,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -2455,7 +2300,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  ContentChildren,\n  AfterContentInit,\n  QueryList,\n  Input,\n  OnInit,\n  ElementRef,\n  OnDestroy,\n  ViewChild,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\nimport { Subscription } from \"rxjs\";\nimport { TabsService } from \"../Tabs\";\n\nimport { TabComponent } from \"../Tab/Tab.component\";\n\nimport { TabListBaseProps } from \"./TabList.types\";\nimport { TABLIST_SIZES, TABLIST_VARIANTS } from \"./variants\";\n\n@Component({\n  selector: \"xui-tablist\",\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: \"./TabList.component.html\",\n})\nexport class TabListComponent\n  implements OnInit, AfterContentInit, OnDestroy, TabListBaseProps\n{\n  @Input() variant: keyof typeof TABLIST_VARIANTS = \"standard\";\n  @Input() size: keyof typeof TABLIST_SIZES = \"md\";\n  @Input() className = \"\";\n  @Input() visibleScrollbar = false;\n  @Input() centered = false;\n\n  @ContentChildren(TabComponent) tabs?: QueryList<TabComponent>;\n  @ViewChild(\"tabsRef\") tabsRef?: ElementRef<HTMLDivElement>;\n\n  orientation: \"horizontal\" | \"vertical\" = \"horizontal\";\n  tabsVariant: \"standard\" | \"scrollable\" | \"fullWidth\" = \"standard\";\n  indicatorColor: \"primary\" | \"secondary\" = \"primary\";\n  currentValue: any = null;\n\n  indicatorPosition = { left: 0, width: 0, top: 0, height: 0 };\n  private subscriptions: Subscription[] = [];\n\n  constructor(\n    private tabsService: TabsService,\n    public elementRef: ElementRef,\n  ) {}\n\n  ngOnInit(): void {\n    this.subscribeToTabsService();\n  }\n\n  private subscribeToTabsService(): void {\n    this.subscriptions.push(\n      this.tabsService.orientation$.subscribe((orientation) => {\n        this.orientation = orientation;\n        setTimeout(() => this.updateIndicator());\n      }),\n\n      this.tabsService.variant$.subscribe((variant) => {\n        this.tabsVariant = variant;\n      }),\n\n      this.tabsService.indicatorColor$.subscribe((color) => {\n        this.indicatorColor = color;\n      }),\n\n      this.tabsService.value$.subscribe((value) => {\n        this.currentValue = value;\n        setTimeout(() => this.updateIndicator());\n        this.focusSelectedTab();\n      }),\n    );\n  }\n\n  ngAfterContentInit(): void {\n    if (!this.tabs) return;\n\n    this.initializeTabs();\n\n    this.subscriptions.push(\n      this.tabs.changes.subscribe(() => {\n        this.initializeTabs();\n      }),\n    );\n  }\n\n  private initializeTabs(): void {\n    if (!this.tabs) return;\n\n    this.tabs.forEach((tab, index) => {\n      tab.index = index;\n    });\n\n    setTimeout(() => this.updateIndicator());\n  }\n\n  ngOnDestroy(): void {\n    this.subscriptions.forEach((sub) => sub.unsubscribe());\n  }\n\n  updateIndicator(): void {\n    if (!this.tabs) return;\n\n    const selectedTab = this.tabs.find(\n      (tab) => tab.value === this.currentValue,\n    );\n\n    if (!selectedTab || !selectedTab.elementRef?.nativeElement) return;\n\n    const tabElement = selectedTab.elementRef.nativeElement;\n    const listRect = tabElement.parentElement?.getBoundingClientRect();\n\n    if (!listRect) return;\n\n    const tabRect = tabElement.getBoundingClientRect();\n\n    this.indicatorPosition =\n      this.orientation === \"horizontal\"\n        ? {\n            left: tabRect.left - listRect.left,\n            width: tabRect.width,\n            top: 0,\n            height: 0,\n          }\n        : {\n            left: 0,\n            width: 0,\n            top: tabRect.top - listRect.top,\n            height: tabRect.height,\n          };\n  }\n\n  focusSelectedTab(): void {\n    if (!this.tabs || !this.tabsRef) return;\n\n    setTimeout(() => {\n      const tabElements = this.getTabElements();\n      const selectedTab = this.findSelectedTabElement(tabElements);\n\n      if (selectedTab instanceof HTMLElement) {\n        selectedTab.focus();\n      }\n    });\n  }\n\n  private getTabElements(): Element[] {\n    return Array.from(this.tabsRef?.nativeElement.children || []).filter(\n      (child) =>\n        child instanceof HTMLElement && child.getAttribute(\"role\") === \"tab\",\n    );\n  }\n\n  private findSelectedTabElement(elements: Element[]): HTMLElement | undefined {\n    return elements.find(\n      (tab) =>\n        tab instanceof HTMLElement &&\n        tab.getAttribute(\"aria-selected\") === \"true\",\n    ) as HTMLElement | undefined;\n  }\n\n  generateClasses(): string {\n    const orientationClass =\n      this.orientation === \"vertical\"\n        ? \"h-full flex-col rounded-md\"\n        : \"h-10 rounded-md\";\n\n    const variantClass = this.getVariantClass();\n    const sizeClass = this.getSizeClass();\n    const layoutClasses = this.getLayoutClasses();\n\n    return [\n      \"bg-muted inline-flex items-center justify-center rounded-md p-1\",\n      orientationClass,\n      variantClass,\n      sizeClass,\n      layoutClasses,\n      this.className,\n    ]\n      .filter(Boolean)\n      .join(\" \");\n  }\n\n  private getVariantClass(): string {\n    switch (this.variant) {\n      case \"standard\":\n        return \"border-b border-gray-200\";\n      case \"contained\":\n      case \"borderless\":\n        return \"border-none\";\n      default:\n        return \"\";\n    }\n  }\n\n  private getSizeClass(): string {\n    switch (this.size) {\n      case \"sm\":\n        return \"gap-1\";\n      case \"md\":\n        return \"gap-2\";\n      case \"lg\":\n        return \"gap-4\";\n      default:\n        return \"\";\n    }\n  }\n\n  private getLayoutClasses(): string {\n    const classes = [];\n\n    if (this.tabsVariant === \"fullWidth\") {\n      classes.push(\"w-full\");\n    }\n\n    if (this.tabsVariant === \"scrollable\") {\n      if (!this.visibleScrollbar) {\n        classes.push(\"scrollbar-none\");\n      }\n    }\n\n    if (this.centered) {\n      classes.push(\"justify-center\");\n    }\n\n    return classes.join(\" \");\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  ContentChildren,\n  AfterContentInit,\n  QueryList,\n  Input,\n  OnInit,\n  ElementRef,\n  OnDestroy,\n  ViewChild,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\nimport { Subscription } from \"rxjs\";\nimport { TABLIST_SIZES, TABLIST_VARIANTS, TabsService } from \"..\";\n\nimport { TabComponent } from \"../Tab/Tab.component\";\n\nimport { TabListBaseProps } from \"./TabList.types\";\n\n@Component({\n  selector: \"xui-tablist\",\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: \"./TabList.component.html\",\n})\nexport class TabListComponent\n  implements OnInit, AfterContentInit, OnDestroy, TabListBaseProps\n{\n  @Input() variant: keyof typeof TABLIST_VARIANTS = \"standard\";\n  @Input() size: keyof typeof TABLIST_SIZES = \"md\";\n  @Input() className = \"\";\n  @Input() visibleScrollbar = false;\n  @Input() centered = false;\n\n  @ContentChildren(TabComponent) tabs?: QueryList<TabComponent>;\n  @ViewChild(\"tabsRef\") tabsRef?: ElementRef<HTMLDivElement>;\n\n  orientation: \"horizontal\" | \"vertical\" = \"horizontal\";\n  tabsVariant: \"standard\" | \"scrollable\" | \"fullWidth\" = \"standard\";\n  indicatorColor: \"primary\" | \"secondary\" = \"primary\";\n  currentValue: any = null;\n\n  indicatorPosition = { left: 0, width: 0, top: 0, height: 0 };\n  private subscriptions: Subscription[] = [];\n\n  constructor(\n    private tabsService: TabsService,\n    public elementRef: ElementRef,\n  ) {}\n\n  ngOnInit(): void {\n    this.subscribeToTabsService();\n  }\n\n  private subscribeToTabsService(): void {\n    this.subscriptions.push(\n      this.tabsService.orientation$.subscribe((orientation) => {\n        this.orientation = orientation;\n        setTimeout(() => this.updateIndicator());\n      }),\n\n      this.tabsService.variant$.subscribe((variant) => {\n        this.tabsVariant = variant;\n      }),\n\n      this.tabsService.indicatorColor$.subscribe((color) => {\n        this.indicatorColor = color;\n      }),\n\n      this.tabsService.value$.subscribe((value) => {\n        this.currentValue = value;\n        setTimeout(() => this.updateIndicator());\n        this.focusSelectedTab();\n      }),\n    );\n  }\n\n  ngAfterContentInit(): void {\n    if (!this.tabs) return;\n\n    this.initializeTabs();\n\n    this.subscriptions.push(\n      this.tabs.changes.subscribe(() => {\n        this.initializeTabs();\n      }),\n    );\n  }\n\n  private initializeTabs(): void {\n    if (!this.tabs) return;\n\n    this.tabs.forEach((tab, index) => {\n      tab.index = index;\n    });\n\n    setTimeout(() => this.updateIndicator());\n  }\n\n  ngOnDestroy(): void {\n    this.subscriptions.forEach((sub) => sub.unsubscribe());\n  }\n\n  updateIndicator(): void {\n    if (!this.tabs) return;\n\n    const selectedTab = this.tabs.find(\n      (tab) => tab.value === this.currentValue,\n    );\n\n    if (!selectedTab || !selectedTab.elementRef?.nativeElement) return;\n\n    const tabElement = selectedTab.elementRef.nativeElement;\n    const listRect = tabElement.parentElement?.getBoundingClientRect();\n\n    if (!listRect) return;\n\n    const tabRect = tabElement.getBoundingClientRect();\n\n    this.indicatorPosition =\n      this.orientation === \"horizontal\"\n        ? {\n            left: tabRect.left - listRect.left,\n            width: tabRect.width,\n            top: 0,\n            height: 0,\n          }\n        : {\n            left: 0,\n            width: 0,\n            top: tabRect.top - listRect.top,\n            height: tabRect.height,\n          };\n  }\n\n  focusSelectedTab(): void {\n    if (!this.tabs || !this.tabsRef) return;\n\n    setTimeout(() => {\n      const tabElements = this.getTabElements();\n      const selectedTab = this.findSelectedTabElement(tabElements);\n\n      if (selectedTab instanceof HTMLElement) {\n        selectedTab.focus();\n      }\n    });\n  }\n\n  private getTabElements(): Element[] {\n    return Array.from(this.tabsRef?.nativeElement.children || []).filter(\n      (child) =>\n        child instanceof HTMLElement && child.getAttribute(\"role\") === \"tab\",\n    );\n  }\n\n  private findSelectedTabElement(elements: Element[]): HTMLElement | undefined {\n    return elements.find(\n      (tab) =>\n        tab instanceof HTMLElement &&\n        tab.getAttribute(\"aria-selected\") === \"true\",\n    ) as HTMLElement | undefined;\n  }\n\n  generateClasses(): string {\n    const orientationClass =\n      this.orientation === \"vertical\"\n        ? \"h-full flex-col rounded-md\"\n        : \"h-10 rounded-md\";\n\n    const variantClass = this.getVariantClass();\n    const sizeClass = this.getSizeClass();\n    const layoutClasses = this.getLayoutClasses();\n\n    return [\n      \"bg-muted inline-flex items-center justify-center rounded-md p-1\",\n      orientationClass,\n      variantClass,\n      sizeClass,\n      layoutClasses,\n      this.className,\n    ]\n      .filter(Boolean)\n      .join(\" \");\n  }\n\n  private getVariantClass(): string {\n    switch (this.variant) {\n      case \"standard\":\n        return \"border-b border-gray-200\";\n      case \"contained\":\n      case \"borderless\":\n        return \"border-none\";\n      default:\n        return \"\";\n    }\n  }\n\n  private getSizeClass(): string {\n    switch (this.size) {\n      case \"sm\":\n        return \"gap-1\";\n      case \"md\":\n        return \"gap-2\";\n      case \"lg\":\n        return \"gap-4\";\n      default:\n        return \"\";\n    }\n  }\n\n  private getLayoutClasses(): string {\n    const classes = [];\n\n    if (this.tabsVariant === \"fullWidth\") {\n      classes.push(\"w-full\");\n    }\n\n    if (this.tabsVariant === \"scrollable\") {\n      if (!this.visibleScrollbar) {\n        classes.push(\"scrollbar-none\");\n      }\n    }\n\n    if (this.centered) {\n      classes.push(\"justify-center\");\n    }\n\n    return classes.join(\" \");\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2478,7 +2323,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 46,
+        "line": 45,
         "jsdoctags": [
           {
             "name": "tabsService",
@@ -2511,8 +2356,8 @@
     },
     {
       "name": "TabPanelComponent",
-      "id": "component-TabPanelComponent-cc3cdc83ecfe5fc6361d36d872a9495081104334152d4251b906bd195c9fb06b1acf8cb3eecb27c28a2bf0464b29a6f99fbff75f05d7591f41031e314a48ed69",
-      "file": "src/app/components/system-design/TabPanel/TabPanel.component.ts",
+      "id": "component-TabPanelComponent-8f8b040e28ec7c68a8bb467096df491ad63cd6f47c4369d64a4caaa7930e1e5fbd3fb16ddcc3240c10108868dc8262c1dc705a18568cca499052fa06e28985c5",
+      "file": "src/app/components/system-design/Tabs/TabPanel/TabPanel.component.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -2530,7 +2375,7 @@
           "defaultValue": "true",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 25,
+          "line": 24,
           "type": "boolean",
           "decorators": []
         },
@@ -2539,7 +2384,7 @@
           "defaultValue": "\"fade\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 28,
+          "line": 27,
           "type": "",
           "decorators": []
         },
@@ -2548,7 +2393,7 @@
           "defaultValue": "\"\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 23,
+          "line": 22,
           "type": "string",
           "decorators": []
         },
@@ -2556,7 +2401,7 @@
           "name": "id",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 24,
+          "line": 23,
           "type": "string",
           "decorators": []
         },
@@ -2565,7 +2410,7 @@
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 26,
+          "line": 25,
           "type": "boolean",
           "decorators": []
         },
@@ -2573,7 +2418,7 @@
           "name": "value",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 22,
+          "line": 21,
           "type": "any",
           "decorators": []
         },
@@ -2582,7 +2427,7 @@
           "defaultValue": "\"standard\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 27,
+          "line": 26,
           "type": "",
           "decorators": []
         }
@@ -2598,7 +2443,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 30
+          "line": 29
         },
         {
           "name": "subscription",
@@ -2608,7 +2453,7 @@
           "indexKey": "",
           "optional": true,
           "description": "",
-          "line": 31,
+          "line": 30,
           "modifierKind": [123]
         }
       ],
@@ -2619,7 +2464,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 63,
+          "line": 62,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2629,7 +2474,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 54,
+          "line": 53,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2639,7 +2484,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 39,
+          "line": 38,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2649,7 +2494,7 @@
           "optional": true,
           "returnType": "void",
           "typeParameters": [],
-          "line": 60,
+          "line": 59,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2659,7 +2504,7 @@
           "optional": true,
           "returnType": "void",
           "typeParameters": [],
-          "line": 61,
+          "line": 60,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -2678,7 +2523,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  OnDestroy,\n  ElementRef,\n  ChangeDetectorRef,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { Subscription } from \"rxjs\";\nimport { TabPanelBaseProps } from \"./TabPanel.types\";\nimport { TABPANEL_ANIMATIONS, TABPANEL_VARIANTS } from \"./variants\";\nimport { TabsService } from \"../Tabs\";\n\n@Component({\n  selector: \"xui-tabpanel\",\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: \"./TabPanel.component.html\",\n})\nexport class TabPanelComponent implements OnInit, OnDestroy, TabPanelBaseProps {\n  @Input() value!: any;\n  @Input() className: string = \"\";\n  @Input() id?: string;\n  @Input() animate: boolean = true;\n  @Input() keepMounted: boolean = false;\n  @Input() variant: keyof typeof TABPANEL_VARIANTS = \"standard\";\n  @Input() animation: keyof typeof TABPANEL_ANIMATIONS = \"fade\";\n\n  active = false;\n  private subscription?: Subscription;\n\n  constructor(\n    private tabsService: TabsService,\n    private elementRef: ElementRef,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  ngOnInit(): void {\n    this.subscription = this.tabsService.value$.subscribe((value) => {\n      const wasActive = this.active;\n      this.active = this.value === value;\n\n      if (this.active && !wasActive && this.onEnter) {\n        this.onEnter();\n      } else if (!this.active && wasActive && this.onExit) {\n        this.onExit();\n      }\n\n      this.cdr.detectChanges();\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.subscription) {\n      this.subscription.unsubscribe();\n    }\n  }\n\n  onEnter?(): void;\n  onExit?(): void;\n\n  generateClasses(): string {\n    const baseClasses = `\n      ring-offset-background \n      ${this.active ? \"data-[state=active]:animate-in data-[state=active]:fade-in\" : \"data-[state=inactive]:animate-out data-[state=inactive]:fade-out\"} \n      mt-2\n      focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none\n      ${this.className}`;\n\n    // Add variant classes\n    let variantClass = \"\";\n    switch (this.variant) {\n      case \"standard\":\n        variantClass = \"p-4\";\n        break;\n      case \"boxed\":\n        variantClass = \"p-4 border rounded-lg\";\n        break;\n      case \"borderless\":\n        variantClass = \"p-4 border-0\";\n        break;\n    }\n\n    // Add animation classes\n    let animationClass = \"\";\n    if (this.animate) {\n      switch (this.animation) {\n        case \"fade\":\n          animationClass = \"transition-opacity duration-200\";\n          break;\n        case \"slide\":\n          animationClass = \"transition-transform duration-200\";\n          break;\n        case \"none\":\n          animationClass = \"\";\n          break;\n      }\n    }\n\n    return `${baseClasses} ${variantClass} ${animationClass}`.trim();\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  OnDestroy,\n  ElementRef,\n  ChangeDetectorRef,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { Subscription } from \"rxjs\";\nimport { TabPanelBaseProps } from \"./TabPanel.types\";\nimport { TABPANEL_ANIMATIONS, TABPANEL_VARIANTS, TabsService } from \"..\";\n\n@Component({\n  selector: \"xui-tabpanel\",\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: \"./TabPanel.component.html\",\n})\nexport class TabPanelComponent implements OnInit, OnDestroy, TabPanelBaseProps {\n  @Input() value!: any;\n  @Input() className: string = \"\";\n  @Input() id?: string;\n  @Input() animate: boolean = true;\n  @Input() keepMounted: boolean = false;\n  @Input() variant: keyof typeof TABPANEL_VARIANTS = \"standard\";\n  @Input() animation: keyof typeof TABPANEL_ANIMATIONS = \"fade\";\n\n  active = false;\n  private subscription?: Subscription;\n\n  constructor(\n    private tabsService: TabsService,\n    private elementRef: ElementRef,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  ngOnInit(): void {\n    this.subscription = this.tabsService.value$.subscribe((value) => {\n      const wasActive = this.active;\n      this.active = this.value === value;\n\n      if (this.active && !wasActive && this.onEnter) {\n        this.onEnter();\n      } else if (!this.active && wasActive && this.onExit) {\n        this.onExit();\n      }\n\n      this.cdr.detectChanges();\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.subscription) {\n      this.subscription.unsubscribe();\n    }\n  }\n\n  onEnter?(): void;\n  onExit?(): void;\n\n  generateClasses(): string {\n    const baseClasses = `\n      ring-offset-background \n      ${this.active ? \"data-[state=active]:animate-in data-[state=active]:fade-in\" : \"data-[state=inactive]:animate-out data-[state=inactive]:fade-out\"} \n      mt-2\n      focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none\n      ${this.className}`;\n\n    // Add variant classes\n    let variantClass = \"\";\n    switch (this.variant) {\n      case \"standard\":\n        variantClass = \"p-4\";\n        break;\n      case \"boxed\":\n        variantClass = \"p-4 border rounded-lg\";\n        break;\n      case \"borderless\":\n        variantClass = \"p-4 border-0\";\n        break;\n    }\n\n    // Add animation classes\n    let animationClass = \"\";\n    if (this.animate) {\n      switch (this.animation) {\n        case \"fade\":\n          animationClass = \"transition-opacity duration-200\";\n          break;\n        case \"slide\":\n          animationClass = \"transition-transform duration-200\";\n          break;\n        case \"none\":\n          animationClass = \"\";\n          break;\n      }\n    }\n\n    return `${baseClasses} ${variantClass} ${animationClass}`.trim();\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2707,7 +2552,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 31,
+        "line": 30,
         "jsdoctags": [
           {
             "name": "tabsService",
@@ -2744,7 +2589,7 @@
     },
     {
       "name": "TabsComponent",
-      "id": "component-TabsComponent-b7d76733835a10b5e4fed1bc62d50a7d93bf61b74b1f5b92635b5e89f754c5bed9b2da4f47bf4363de2f084a4e7cdad94f767461095d8f6604b95e3f8531dbec",
+      "id": "component-TabsComponent-c951caabc63f9d744f73f751743ed1668cc34498d6c0a8bc0a18f3256533711b0f8e7238fcf5548ecc397836133329a1eb488384c6d9eac5f1da6ee4581eade1",
       "file": "src/app/components/system-design/Tabs/Tabs.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -2768,7 +2613,7 @@
           "defaultValue": "null",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 34,
+          "line": 37,
           "type": "string | null",
           "decorators": []
         },
@@ -2777,7 +2622,7 @@
           "defaultValue": "\"\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 33,
+          "line": 36,
           "type": "string",
           "decorators": []
         },
@@ -2786,7 +2631,7 @@
           "defaultValue": "0",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 28,
+          "line": 31,
           "type": "any",
           "decorators": []
         },
@@ -2795,7 +2640,7 @@
           "defaultValue": "\"primary\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 31,
+          "line": 34,
           "type": "\"primary\" | \"secondary\"",
           "decorators": []
         },
@@ -2804,7 +2649,7 @@
           "defaultValue": "\"horizontal\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 29,
+          "line": 32,
           "type": "\"horizontal\" | \"vertical\"",
           "decorators": []
         },
@@ -2813,7 +2658,7 @@
           "defaultValue": "\"inherit\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 32,
+          "line": 35,
           "type": "\"inherit\" | \"primary\" | \"secondary\"",
           "decorators": []
         },
@@ -2821,7 +2666,7 @@
           "name": "value",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 27,
+          "line": 30,
           "type": "any",
           "decorators": []
         },
@@ -2830,7 +2675,7 @@
           "defaultValue": "\"standard\"",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 30,
+          "line": 33,
           "type": "\"standard\" | \"scrollable\" | \"fullWidth\"",
           "decorators": []
         }
@@ -2841,7 +2686,7 @@
           "defaultValue": "new EventEmitter<any>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 36,
+          "line": 39,
           "type": "EventEmitter"
         }
       ],
@@ -2854,7 +2699,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 38,
+          "line": 41,
           "decorators": [
             {
               "name": "ContentChildren",
@@ -2871,7 +2716,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 39,
+          "line": 42,
           "decorators": [
             {
               "name": "ContentChildren",
@@ -2895,7 +2740,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 77,
+          "line": 85,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2916,9 +2761,37 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 59,
+          "line": 67,
           "deprecated": false,
           "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnChanges",
+          "args": [
+            {
+              "name": "changes",
+              "type": "SimpleChanges",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 61,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "changes",
+              "type": "SimpleChanges",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
         },
         {
           "name": "ngOnInit",
@@ -2926,7 +2799,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 43,
+          "line": 46,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -2936,7 +2809,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 67,
+          "line": 75,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -2955,7 +2828,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  ContentChildren,\n  EventEmitter,\n  Input,\n  OnInit,\n  Output,\n  QueryList,\n  AfterContentInit,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\nimport { TabsService } from \"./Tabs.service\";\nimport { TabsBaseProps } from \"./Tabs.types\";\n\nimport { TabListComponent } from \"../TabList\";\nimport { TabPanelComponent } from \"../TabPanel\";\n\n@Component({\n  selector: \"xui-tabs\",\n  standalone: true,\n  imports: [CommonModule],\n  providers: [TabsService],\n  templateUrl: \"./Tabs.component.html\",\n})\nexport class TabsComponent implements OnInit, AfterContentInit, TabsBaseProps {\n  @Input() value?: any;\n  @Input() defaultValue: any = 0;\n  @Input() orientation: \"horizontal\" | \"vertical\" = \"horizontal\";\n  @Input() variant: \"standard\" | \"scrollable\" | \"fullWidth\" = \"standard\";\n  @Input() indicatorColor: \"primary\" | \"secondary\" = \"primary\";\n  @Input() textColor: \"inherit\" | \"primary\" | \"secondary\" = \"inherit\";\n  @Input() className: string = \"\";\n  @Input(\"aria-label\") ariaLabel: string | null = null;\n\n  @Output() valueChange = new EventEmitter<any>();\n\n  @ContentChildren(TabListComponent) tabLists!: QueryList<TabListComponent>;\n  @ContentChildren(TabPanelComponent) tabPanels!: QueryList<TabPanelComponent>;\n\n  constructor(private tabsService: TabsService) {}\n\n  ngOnInit(): void {\n    const initialValue =\n      this.value !== undefined ? this.value : this.defaultValue;\n    this.tabsService.setValue(initialValue);\n    this.tabsService.setOrientation(this.orientation);\n    this.tabsService.setVariant(this.variant);\n    this.tabsService.setIndicatorColor(this.indicatorColor);\n    this.tabsService.setTextColor(this.textColor);\n\n    this.tabsService.value$.subscribe((value) => {\n      if (this.value === undefined) {\n        this.valueChange.emit(value);\n      }\n    });\n  }\n\n  ngAfterContentInit(): void {\n    this.updateChildren();\n\n    this.tabsService.value$.subscribe(() => {\n      this.updateChildren();\n    });\n  }\n\n  updateChildren(): void {\n    const currentValue = this.tabsService.getValue();\n\n    if (this.tabPanels) {\n      this.tabPanels.forEach((panel) => {\n        panel.active = panel.value === currentValue;\n      });\n    }\n  }\n\n  handleKeyDown(event: KeyboardEvent): void {\n    const tabListComponent = this.tabLists.first;\n    if (!tabListComponent) return;\n\n    const tabs = tabListComponent.tabs?.toArray() || [];\n    const selectedIndex = tabs.findIndex(\n      (tab) => tab.value === this.tabsService.getValue(),\n    );\n    const tabCount = tabs.length;\n    let nextIndex = selectedIndex;\n    const isRtl = document.dir === \"rtl\";\n\n    switch (event.key) {\n      case \"Home\":\n        nextIndex = 0;\n        break;\n      case \"End\":\n        nextIndex = tabCount - 1;\n        break;\n      case \"ArrowLeft\":\n        if (this.orientation === \"horizontal\") {\n          nextIndex = Math.max(0, selectedIndex + (isRtl ? 1 : -1));\n        }\n        break;\n      case \"ArrowRight\":\n        if (this.orientation === \"horizontal\") {\n          nextIndex = Math.min(tabCount - 1, selectedIndex + (isRtl ? -1 : 1));\n        }\n        break;\n      case \"ArrowUp\":\n        if (this.orientation === \"vertical\") {\n          nextIndex = Math.max(0, selectedIndex - 1);\n        }\n        break;\n      case \"ArrowDown\":\n        if (this.orientation === \"vertical\") {\n          nextIndex = Math.min(tabCount - 1, selectedIndex + 1);\n        }\n        break;\n      default:\n        return;\n    }\n\n    if (nextIndex !== selectedIndex && nextIndex >= 0 && nextIndex < tabCount) {\n      event.preventDefault();\n      const nextTab = tabs[nextIndex];\n      this.tabsService.setValue(nextTab.value);\n\n      setTimeout(() => {\n        const tabElement = document.querySelector(\n          `[role=\"tab\"][data-index=\"${nextIndex}\"]`,\n        ) as HTMLElement | null;\n        tabElement?.focus();\n      });\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  ContentChildren,\n  EventEmitter,\n  Input,\n  OnInit,\n  Output,\n  QueryList,\n  AfterContentInit,\n  OnChanges,\n  SimpleChanges,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\n\nimport { TabsService } from \"./Tabs.service\";\nimport { TabsBaseProps } from \"./Tabs.types\";\nimport { TabListComponent } from \"./TabList/TabList.component\";\nimport { TabPanelComponent } from \"./TabPanel/TabPanel.component\";\n\n@Component({\n  selector: \"xui-tabs\",\n  standalone: true,\n  imports: [CommonModule],\n  providers: [TabsService],\n  templateUrl: \"./Tabs.component.html\",\n})\nexport class TabsComponent\n  implements OnInit, AfterContentInit, OnChanges, TabsBaseProps\n{\n  @Input() value?: any;\n  @Input() defaultValue: any = 0;\n  @Input() orientation: \"horizontal\" | \"vertical\" = \"horizontal\";\n  @Input() variant: \"standard\" | \"scrollable\" | \"fullWidth\" = \"standard\";\n  @Input() indicatorColor: \"primary\" | \"secondary\" = \"primary\";\n  @Input() textColor: \"inherit\" | \"primary\" | \"secondary\" = \"inherit\";\n  @Input() className: string = \"\";\n  @Input(\"aria-label\") ariaLabel: string | null = null;\n\n  @Output() valueChange = new EventEmitter<any>();\n\n  @ContentChildren(TabListComponent) tabLists!: QueryList<TabListComponent>;\n  @ContentChildren(TabPanelComponent) tabPanels!: QueryList<TabPanelComponent>;\n\n  constructor(private tabsService: TabsService) {}\n\n  ngOnInit(): void {\n    const initialValue =\n      this.value !== undefined ? this.value : this.defaultValue;\n\n    this.tabsService.setValue(initialValue);\n    this.tabsService.setOrientation(this.orientation);\n    this.tabsService.setVariant(this.variant);\n    this.tabsService.setIndicatorColor(this.indicatorColor);\n    this.tabsService.setTextColor(this.textColor);\n\n    this.tabsService.value$.subscribe((value) => {\n      this.valueChange.emit(value);\n    });\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (changes[\"value\"] && changes[\"value\"].currentValue !== undefined) {\n      this.tabsService.setValue(changes[\"value\"].currentValue);\n    }\n  }\n\n  ngAfterContentInit(): void {\n    this.updateChildren();\n\n    this.tabsService.value$.subscribe(() => {\n      this.updateChildren();\n    });\n  }\n\n  updateChildren(): void {\n    const currentValue = this.tabsService.getValue();\n\n    if (this.tabPanels) {\n      this.tabPanels.forEach((panel) => {\n        panel.active = panel.value === currentValue;\n      });\n    }\n  }\n\n  handleKeyDown(event: KeyboardEvent): void {\n    const tabListComponent = this.tabLists.first;\n    if (!tabListComponent) return;\n\n    const tabs = tabListComponent.tabs?.toArray() || [];\n    const selectedIndex = tabs.findIndex(\n      (tab) => tab.value === this.tabsService.getValue(),\n    );\n    const tabCount = tabs.length;\n    let nextIndex = selectedIndex;\n    const isRtl = document.dir === \"rtl\";\n\n    switch (event.key) {\n      case \"Home\":\n        nextIndex = 0;\n        break;\n      case \"End\":\n        nextIndex = tabCount - 1;\n        break;\n      case \"ArrowLeft\":\n        if (this.orientation === \"horizontal\") {\n          nextIndex = Math.max(0, selectedIndex + (isRtl ? 1 : -1));\n        }\n        break;\n      case \"ArrowRight\":\n        if (this.orientation === \"horizontal\") {\n          nextIndex = Math.min(tabCount - 1, selectedIndex + (isRtl ? -1 : 1));\n        }\n        break;\n      case \"ArrowUp\":\n        if (this.orientation === \"vertical\") {\n          nextIndex = Math.max(0, selectedIndex - 1);\n        }\n        break;\n      case \"ArrowDown\":\n        if (this.orientation === \"vertical\") {\n          nextIndex = Math.min(tabCount - 1, selectedIndex + 1);\n        }\n        break;\n      default:\n        return;\n    }\n\n    if (nextIndex !== selectedIndex && nextIndex >= 0 && nextIndex < tabCount) {\n      event.preventDefault();\n      const nextTab = tabs[nextIndex];\n      this.tabsService.setValue(nextTab.value);\n\n      setTimeout(() => {\n        const tabElement = document.querySelector(\n          `[role=\"tab\"][data-index=\"${nextIndex}\"]`,\n        ) as HTMLElement | null;\n        tabElement?.focus();\n      });\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2972,7 +2845,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 39,
+        "line": 42,
         "jsdoctags": [
           {
             "name": "tabsService",
@@ -2986,7 +2859,12 @@
         ]
       },
       "extends": [],
-      "implements": ["OnInit", "AfterContentInit", "TabsBaseProps"],
+      "implements": [
+        "OnInit",
+        "AfterContentInit",
+        "OnChanges",
+        "TabsBaseProps"
+      ],
       "templateData": "<div\r\n  class=\"w-full\"\r\n  [class.flex]=\"orientation === 'vertical'\"\r\n  [class.block]=\"orientation === 'horizontal'\"\r\n  [ngClass]=\"className\"\r\n  role=\"tablist\"\r\n  [attr.aria-orientation]=\"orientation\"\r\n  [attr.aria-label]=\"ariaLabel\"\r\n  [attr.data-orientation]=\"orientation\"\r\n  (keydown)=\"handleKeyDown($event)\"\r\n>\r\n  <ng-content></ng-content>\r\n</div>\r\n"
     },
     {
@@ -3281,58 +3159,6 @@
       "extends": []
     },
     {
-      "name": "TestTabsComponent",
-      "id": "component-TestTabsComponent-b8bb300a92a0090cafb6f3e9583b5d6f2f53f5360c13cf5786d38e566f5a9223a521e7953e81c3b9875ef54b46ad28095bafb48d5bbba057503e11305c601eb3",
-      "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "test-tabs",
-      "styleUrls": [],
-      "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n    <xui-tab [value]=\"2\">Tab 3</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n  <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n  <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n</xui-tabs>\n",
-      "templateUrl": [],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": true,
-      "imports": [
-        {
-          "name": "TabsComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabListComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabComponent",
-          "type": "component"
-        },
-        {
-          "name": "TabPanelComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { ComponentFixture, TestBed } from \"@angular/core/testing\";\nimport { TabsComponent } from \"./Tabs.component\";\nimport { TabComponent } from \"../Tab/Tab.component\";\nimport { TabListComponent } from \"../TabList/TabList.component\";\nimport { TabPanelComponent } from \"../TabPanel/TabPanel.component\";\nimport { CommonModule } from \"@angular/common\";\n\ndescribe(\"Tabs Component\", () => {\n  let component: TestTabsComponent;\n  let fixture: ComponentFixture<TestTabsComponent>;\n\n  beforeEach(() => {\n    TestBed.configureTestingModule({\n      // Change declarations to imports for standalone components\n      imports: [\n        CommonModule,\n        TabsComponent,\n        TabComponent,\n        TabListComponent,\n        TabPanelComponent,\n        TestTabsComponent, // Add the test component to imports instead of declarations\n      ],\n      // No need for declarations array since all components are standalone\n    });\n\n    fixture = TestBed.createComponent(TestTabsComponent);\n    component = fixture.componentInstance;\n    fixture.detectChanges();\n  });\n\n  it(\"renders basic tabs correctly\", () => {\n    // Your test code\n    cy.get(\"xui-tabs\").should(\"exist\");\n    cy.get(\"xui-tablist\").should(\"exist\");\n    cy.get(\"xui-tab\").should(\"have.length\", 3);\n    cy.get(\"xui-tabpanel\").should(\"exist\");\n  });\n\n  // Rest of your tests...\n});\n\n// Make sure the test component is also standalone\nimport { Component } from \"@angular/core\";\n\n@Component({\n  selector: \"test-tabs\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        <xui-tab [value]=\"2\">Tab 3</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass TestTabsComponent {}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": []
-    },
-    {
       "name": "TypographyComponent",
       "id": "component-TypographyComponent-534cd32b82e8f4fef24ee2791c19262023b947d6259b656888a73e3d63f508659a9bb1621b01eb25987e984c39db697f9e919f886cd298b4ee9c957c746f84f2",
       "file": "src/app/components/typography/typography.component.ts",
@@ -3403,18 +3229,18 @@
       }
     },
     {
-      "name": "VerticalTabListTestComponent",
-      "id": "component-VerticalTabListTestComponent-076cafcdea306e22438e538107dd74f46a560afca33ed0dd598445fbcedeaf5c91983e6cc1040a8e74deab4782d142b5aa2ee5733e37171e498cc346a06d1378",
-      "file": "src/app/components/system-design/TabList/TabList.component.cy.ts",
+      "name": "VariantTabsTestComponent",
+      "id": "component-VariantTabsTestComponent-74e920dedc8fd4661402c618269931dac4b5d7d7b3d4a524ffbc1590a5567017d30ca2f37b7c3558571dd9fe947d17154c62f5286a194c2af4811ec5c342ca35",
+      "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
       "providers": [],
-      "selector": "vertical-test",
+      "selector": "variant-tabs-test",
       "styleUrls": [],
       "styles": [],
-      "template": "<xui-tabs [defaultValue]=\"0\" orientation=\"vertical\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n</xui-tabs>\n",
+      "template": "<xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n  <xui-tablist>\n    <xui-tab [value]=\"0\">Tab 1</xui-tab>\n    <xui-tab [value]=\"1\">Tab 2</xui-tab>\n  </xui-tablist>\n  <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n  <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n</xui-tabs>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
@@ -3439,12 +3265,16 @@
         {
           "name": "TabComponent",
           "type": "component"
+        },
+        {
+          "name": "TabPanelComponent",
+          "type": "component"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"../Tabs\";\nimport { TabListComponent } from \"./TabList.component\";\nimport { TabComponent } from \"../Tab/Tab.component\";\n\n@Component({\n  selector: \"standard-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass StandardTabListTestComponent {}\n\n@Component({\n  selector: \"vertical-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass VerticalTabListTestComponent {}\n\n@Component({\n  selector: \"custom-class-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist className=\"custom-class\">\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass CustomClassTabListTestComponent {}\n\n@Component({\n  selector: \"fullwidth-test\",\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent],\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n    </xui-tabs>\n  `,\n})\nclass FullWidthTabListTestComponent {}\n\ndescribe(\"TabList Component\", () => {\n  it(\"renders standard tab list correctly\", () => {\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"exist\");\n    cy.get('[role=\"tab\"]').should(\"have.length\", 2);\n  });\n\n  it(\"aligns tabs based on orientation\", () => {\n    cy.mount(VerticalTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"flex-col\");\n\n    cy.mount(StandardTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"not.have.class\", \"flex-col\");\n  });\n\n  it(\"renders with custom className\", () => {\n    cy.mount(CustomClassTabListTestComponent);\n\n    cy.get('[role=\"tablist\"]').should(\"have.class\", \"custom-class\");\n  });\n\n  it(\"applies fullWidth styling when tab variant is fullWidth\", () => {\n    cy.mount(FullWidthTabListTestComponent);\n\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n});\n",
+      "sourceCode": "import { Component } from \"@angular/core\";\nimport { TabsComponent } from \"./Tabs.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { LucideAngularModule } from \"lucide-angular\";\nimport { HomeIcon } from \"lucide-angular\";\nimport { TabComponent, TabListComponent, TabPanelComponent } from \".\";\n\n// Define proper types for tab values\ntype TabValue = number;\n\n@Component({\n  selector: \"basic-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        <xui-tab [value]=\"2\">Tab 3</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      <xui-tabpanel [value]=\"2\">Content 3</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass BasicTabsTestComponent {}\n\n@Component({\n  selector: \"controlled-tabs-test\",\n  template: `\n    <div>\n      <xui-tabs [value]=\"activeTab\" (valueChange)=\"onValueChange($event)\">\n        <xui-tablist>\n          <xui-tab [value]=\"0\">Tab 1</xui-tab>\n          <xui-tab [value]=\"1\">Tab 2</xui-tab>\n        </xui-tablist>\n        <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n        <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n      </xui-tabs>\n      <div id=\"active-tab-value\">{{ activeTab }}</div>\n      <button\n        id=\"external-control\"\n        (click)=\"setActiveTab(activeTab === 0 ? 1 : 0)\"\n      >\n        Toggle Tab\n      </button>\n    </div>\n  `,\n  standalone: true,\n  imports: [\n    CommonModule,\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n  ],\n})\nclass ControlledTabsTestComponent {\n  activeTab: TabValue = 0;\n\n  onValueChange(value: TabValue): void {\n    this.activeTab = value;\n  }\n\n  setActiveTab(value: TabValue): void {\n    this.activeTab = value;\n  }\n}\n\n@Component({\n  selector: \"orientation-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" orientation=\"vertical\" class=\"flex-col\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass OrientationTabsTestComponent {}\n\n@Component({\n  selector: \"variant-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\" variant=\"fullWidth\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">Tab 1</xui-tab>\n        <xui-tab [value]=\"1\">Tab 2</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [TabsComponent, TabListComponent, TabComponent, TabPanelComponent],\n})\nclass VariantTabsTestComponent {}\n\n@Component({\n  selector: \"icon-tabs-test\",\n  template: `\n    <xui-tabs [defaultValue]=\"0\">\n      <xui-tablist>\n        <xui-tab [value]=\"0\">\n          <div class=\"flex items-center\">\n            <home-icon class=\"mr-2 h-4 w-4\"></home-icon>\n            Home Tab\n          </div>\n        </xui-tab>\n        <xui-tab [value]=\"1\">Regular Tab</xui-tab>\n      </xui-tablist>\n      <xui-tabpanel [value]=\"0\">Content 1</xui-tabpanel>\n      <xui-tabpanel [value]=\"1\">Content 2</xui-tabpanel>\n    </xui-tabs>\n  `,\n  standalone: true,\n  imports: [\n    TabsComponent,\n    TabListComponent,\n    TabComponent,\n    TabPanelComponent,\n    LucideAngularModule,\n  ],\n})\nclass IconTabsTestComponent {}\n\ndescribe(\"Tabs Component\", () => {\n  it(\"renders basic tabs correctly\", () => {\n    cy.mount(BasicTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.length\", 3);\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"be.visible\");\n  });\n\n  it(\"switches tabs when clicked\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.attr\", \"aria-selected\", \"false\");\n\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"contain.text\", \"Content 2\");\n  });\n\n  it(\"supports controlled mode with external state\", () => {\n    cy.mount(ControlledTabsTestComponent);\n\n    // Initial state\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n\n    // Change through tab click\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"1\");\n\n    // Change through external control\n    cy.get(\"#external-control\").click();\n    // Wait for the active tab value to update before checking aria-selected\n    cy.get(\"#active-tab-value\").should(\"contain.text\", \"0\");\n    // Now check the tab has been selected\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n  });\n\n  it(\"applies vertical orientation correctly\", () => {\n    cy.mount(OrientationTabsTestComponent);\n    cy.get(\"xui-tabs\").should(\"have.class\", \"flex-col\");\n    cy.get('[role=\"tablist\"]').should(\n      \"have.attr\",\n      \"aria-orientation\",\n      \"vertical\",\n    );\n  });\n\n  it(\"applies variant-specific styles\", () => {\n    cy.mount(VariantTabsTestComponent);\n    cy.get('[role=\"tab\"]').should(\"have.class\", \"flex-1\");\n  });\n\n  it(\"renders tabs with icons correctly\", () => {\n    cy.mount(IconTabsTestComponent);\n    cy.get(\"home-icon\").should(\"exist\");\n    cy.get('[role=\"tab\"]').first().should(\"contain.text\", \"Home Tab\");\n\n    // Verify icon doesn't affect functionality\n    cy.get('[role=\"tab\"]').eq(1).click();\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tabpanel\"]').eq(1).should(\"be.visible\");\n  });\n\n  it(\"maintains accessibility attributes\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Check tab has proper accessibility attributes\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"aria-selected\", \"true\");\n    cy.get('[role=\"tab\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.attr\", \"tabindex\", \"-1\");\n\n    // Check tabpanel has proper accessibility attributes\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"aria-labelledby\");\n    cy.get('[role=\"tabpanel\"]').first().should(\"have.attr\", \"tabindex\", \"0\");\n  });\n\n  // Type-safe keyboard navigation test\n  it(\"handles keyboard navigation\", () => {\n    cy.mount(BasicTabsTestComponent);\n\n    // Focus the first tab\n    cy.get('[role=\"tab\"]').first().focus();\n\n    // Press right arrow key to move to next tab\n    cy.get('[role=\"tab\"]').first().type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press right arrow key to move to last tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{rightarrow}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n\n    // Press left arrow key to move back\n    cy.get('[role=\"tab\"]').eq(2).type(\"{leftarrow}\");\n    cy.get('[role=\"tab\"]').eq(1).should(\"have.focus\");\n\n    // Press Home key to move to first tab\n    cy.get('[role=\"tab\"]').eq(1).type(\"{home}\");\n    cy.get('[role=\"tab\"]').eq(0).should(\"have.focus\");\n\n    // Press End key to move to last tab\n    cy.get('[role=\"tab\"]').eq(0).type(\"{end}\");\n    cy.get('[role=\"tab\"]').eq(2).should(\"have.focus\");\n  });\n});\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -3498,7 +3328,7 @@
         "name": "TAB_COLORS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/Tab/tab.variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3508,7 +3338,7 @@
         "name": "TAB_STATES",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/Tab/tab.variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3518,7 +3348,7 @@
         "name": "TAB_VARIANTS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/Tab/tab.variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3528,7 +3358,7 @@
         "name": "TABLIST_ORIENTATIONS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/TabList/variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3538,7 +3368,7 @@
         "name": "TABLIST_SIZES",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/TabList/variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3548,7 +3378,7 @@
         "name": "TABLIST_VARIANTS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/TabList/variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3558,7 +3388,7 @@
         "name": "TABPANEL_ANIMATIONS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/TabPanel/variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3568,7 +3398,7 @@
         "name": "TABPANEL_VARIANTS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/TabPanel/variants.ts",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3737,6 +3567,138 @@
         "deprecationMessage": "",
         "description": "",
         "kind": 192
+      },
+      {
+        "name": "TabColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabListOrientation",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabListSize",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabListVariant",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabPanelAnimation",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabPanelVariant",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabsColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabsOrientation",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabState",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabsVariant",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
+      },
+      {
+        "name": "TabValue",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "number",
+        "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 150
+      },
+      {
+        "name": "TabVariant",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 198
       }
     ],
     "enumerations": [],
@@ -3787,12 +3749,12 @@
           "defaultValue": "{\r\n  // Dashboard icons\r\n  dashboard: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"/>\r\n  </svg>`,\r\n\r\n  // User/Team icons\r\n  users: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z\"/>\r\n  </svg>`,\r\n\r\n  // Project icons\r\n  folder: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z\"/>\r\n  </svg>`,\r\n\r\n  // Settings icon\r\n  settings: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z\"/>\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\"/>\r\n  </svg>`,\r\n\r\n  // Additional icons\r\n  home: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"/>\r\n  </svg>`,\r\n\r\n  calendar: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z\"/>\r\n  </svg>`,\r\n\r\n  chart: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\"/>\r\n  </svg>`,\r\n\r\n  document: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"/>\r\n  </svg>`,\r\n\r\n  // New icons\r\n  bell: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9\"/>\r\n  </svg>`,\r\n\r\n  inbox: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4\"/>\r\n  </svg>`,\r\n\r\n  message: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z\"/>\r\n  </svg>`,\r\n\r\n  notification: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z\"/>\r\n  </svg>`,\r\n\r\n  // List item icons\r\n  chevronRight: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5l7 7-7 7\"/>\r\n  </svg>`,\r\n\r\n  arrowRight: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M14 5l7 7m0 0l-7 7m7-7H3\"/>\r\n  </svg>`,\r\n\r\n  dot: `<svg class=\"w-2 h-2\" fill=\"currentColor\" viewBox=\"0 0 8 8\">\r\n    <circle cx=\"4\" cy=\"4\" r=\"3\"/>\r\n  </svg>`,\r\n\r\n  star: `<svg class=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z\"/>\r\n  </svg>`,\r\n\r\n  // Add these missing icons\r\n  clock: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z\"/>\r\n  </svg>`,\r\n\r\n  download: `<svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\r\n    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4\"/>\r\n  </svg>`,\r\n}"
         }
       ],
-      "src/app/components/system-design/Tab/tab.variants.ts": [
+      "src/app/components/system-design/Tabs/variants.ts": [
         {
           "name": "TAB_COLORS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/Tab/tab.variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -3802,7 +3764,7 @@
           "name": "TAB_STATES",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/Tab/tab.variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -3812,19 +3774,17 @@
           "name": "TAB_VARIANTS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/Tab/tab.variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
           "defaultValue": "{\n  standard: \"px-4 py-2 transition-all duration-200\",\n  fullWidth: \"flex-1 px-4 py-2 transition-all duration-200\",\n} as const"
-        }
-      ],
-      "src/app/components/system-design/TabList/variants.ts": [
+        },
         {
           "name": "TABLIST_ORIENTATIONS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/TabList/variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -3834,7 +3794,7 @@
           "name": "TABLIST_SIZES",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/TabList/variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -3844,19 +3804,17 @@
           "name": "TABLIST_VARIANTS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/TabList/variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
           "defaultValue": "{\n  standard: \"border-b border-gray-200\",\n  contained: \"border-none\",\n  borderless: \"border-none\",\n} as const"
-        }
-      ],
-      "src/app/components/system-design/TabPanel/variants.ts": [
+        },
         {
           "name": "TABPANEL_ANIMATIONS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/TabPanel/variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -3866,14 +3824,12 @@
           "name": "TABPANEL_VARIANTS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/app/components/system-design/TabPanel/variants.ts",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
           "defaultValue": "{\n  standard: \"p-4\",\n  boxed: \"p-4 border rounded-lg\",\n  borderless: \"p-4 border-0\",\n} as const"
-        }
-      ],
-      "src/app/components/system-design/Tabs/variants.ts": [
+        },
         {
           "name": "TABS_COLORS",
           "ctype": "miscellaneous",
@@ -4045,12 +4001,148 @@
           "description": "",
           "kind": 192
         }
+      ],
+      "src/app/components/system-design/Tabs/variants.ts": [
+        {
+          "name": "TabColor",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabListOrientation",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabListSize",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabListVariant",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabPanelAnimation",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabPanelVariant",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabsColor",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabsOrientation",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabState",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabsVariant",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        },
+        {
+          "name": "TabVariant",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/system-design/Tabs/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 198
+        }
+      ],
+      "src/app/components/system-design/Tabs/Tabs.component.cy.ts": [
+        {
+          "name": "TabValue",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "number",
+          "file": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 150
+        }
       ]
     }
   },
   "routes": [],
   "coverage": {
-    "count": 13,
+    "count": 11,
     "status": "low",
     "files": [
       {
@@ -4151,43 +4243,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "ClickEventTabTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "DisabledTabTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "IconTabTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/Tab/Tab.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "StandardTabTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/Tab/Tab.component.ts",
+        "filePath": "src/app/components/system-design/Tabs/Tab/Tab.component.ts",
         "type": "component",
         "linktype": "component",
         "name": "TabComponent",
@@ -4196,7 +4252,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/system-design/Tab/Tab.types.ts",
+        "filePath": "src/app/components/system-design/Tabs/Tab/Tab.types.ts",
         "type": "interface",
         "linktype": "interface",
         "name": "TabBaseProps",
@@ -4205,73 +4261,7 @@
         "status": "very-good"
       },
       {
-        "filePath": "src/app/components/system-design/Tab/tab.variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TAB_COLORS",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/Tab/tab.variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TAB_STATES",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/Tab/tab.variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TAB_VARIANTS",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "CustomClassTabListTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "FullWidthTabListTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "StandardTabListTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/TabList.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "VerticalTabListTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/TabList.component.ts",
+        "filePath": "src/app/components/system-design/Tabs/TabList/TabList.component.ts",
         "type": "component",
         "linktype": "component",
         "name": "TabListComponent",
@@ -4280,7 +4270,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/system-design/TabList/TabList.types.ts",
+        "filePath": "src/app/components/system-design/Tabs/TabList/TabList.types.ts",
         "type": "interface",
         "linktype": "interface",
         "name": "TabListBaseProps",
@@ -4289,55 +4279,7 @@
         "status": "very-good"
       },
       {
-        "filePath": "src/app/components/system-design/TabList/variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TABLIST_ORIENTATIONS",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TABLIST_SIZES",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabList/variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TABLIST_VARIANTS",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabPanel/TabPanel.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "BasicTabPanelTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabPanel/TabPanel.component.cy.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "CustomClassTabPanelTestComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabPanel/TabPanel.component.ts",
+        "filePath": "src/app/components/system-design/Tabs/TabPanel/TabPanel.component.ts",
         "type": "component",
         "linktype": "component",
         "name": "TabPanelComponent",
@@ -4346,7 +4288,7 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/components/system-design/TabPanel/TabPanel.types.ts",
+        "filePath": "src/app/components/system-design/Tabs/TabPanel/TabPanel.types.ts",
         "type": "interface",
         "linktype": "interface",
         "name": "TabPanelBaseProps",
@@ -4355,21 +4297,10 @@
         "status": "very-good"
       },
       {
-        "filePath": "src/app/components/system-design/TabPanel/variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TABPANEL_ANIMATIONS",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/system-design/TabPanel/variants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "TABPANEL_VARIANTS",
+        "filePath": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BasicTabsTestComponent",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4378,7 +4309,44 @@
         "filePath": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
         "type": "component",
         "linktype": "component",
-        "name": "TestTabsComponent",
+        "name": "ControlledTabsTestComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "IconTabsTestComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "OrientationTabsTestComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "VariantTabsTestComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/Tabs.component.cy.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabValue",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -4389,7 +4357,7 @@
         "linktype": "component",
         "name": "TabsComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/17",
+        "coverageCount": "0/18",
         "status": "low"
       },
       {
@@ -4409,6 +4377,86 @@
         "coveragePercent": 90,
         "coverageCount": "9/10",
         "status": "very-good"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TAB_COLORS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TAB_STATES",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TAB_VARIANTS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TABLIST_ORIENTATIONS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TABLIST_SIZES",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TABLIST_VARIANTS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TABPANEL_ANIMATIONS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "TABPANEL_VARIANTS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
       },
       {
         "filePath": "src/app/components/system-design/Tabs/variants.ts",
@@ -4436,6 +4484,116 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "TABS_VARIANTS",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabColor",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabListOrientation",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabListSize",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabListVariant",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabPanelAnimation",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabPanelVariant",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabsColor",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabsOrientation",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabState",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabsVariant",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/system-design/Tabs/variants.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "TabVariant",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

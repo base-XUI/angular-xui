@@ -11,7 +11,7 @@ import {
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { TabsService } from "../Tabs";
+import { TabsService } from "..";
 import { TabBaseProps } from "./Tab.types";
 
 @Component({

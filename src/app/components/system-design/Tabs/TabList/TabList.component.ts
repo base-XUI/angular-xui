@@ -12,12 +12,11 @@ import {
 import { CommonModule } from "@angular/common";
 
 import { Subscription } from "rxjs";
-import { TabsService } from "../Tabs";
+import { TABLIST_SIZES, TABLIST_VARIANTS, TabsService } from "..";
 
 import { TabComponent } from "../Tab/Tab.component";
 
 import { TabListBaseProps } from "./TabList.types";
-import { TABLIST_SIZES, TABLIST_VARIANTS } from "./variants";
 
 @Component({
   selector: "xui-tablist",
