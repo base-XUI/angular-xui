@@ -1,0 +1,25 @@
+<label
+  [attr.for]="resolvedElementId()"
+  [class]="checkboxContainerClasses()"
+>
+  <input
+    type="checkbox"
+    class="absolute inset-0 h-full w-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+    [id]="resolvedElementId()"
+    [name]="name"
+    [value]="value"
+    [checked]="_currentRenderedCheckedState()"
+    [disabled]="disabled"
+    [required]="required"
+    [attr.aria-checked]="ariaCheckedAttribute()"
+    (change)="handleNativeInputChange($event)"
+  />
+  @if (iconNameToDisplay()) {
+    <div class="pointer-events-none">
+      <lucide-icon
+        [name]="iconNameToDisplay()!"
+        [size]="iconDisplaySize()"
+      ></lucide-icon>
+    </div>
+  }
+</label>
