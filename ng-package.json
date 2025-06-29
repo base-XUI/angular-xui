@@ -16,10 +16,10 @@
     "@angular/router",
     "@angular/compiler",
     "@changesets/changelog-github",
+    "@base-xui/angular-xui",
     "class-variance-authority",
     "rxjs",
     "zone.js",
-    "@base-xui/angular-xui",
-    "tslib"
+    "lucide-angular"
   ]
 }
