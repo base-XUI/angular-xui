@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { cva } from "class-variance-authority";
 @Component({
   selector: "xui-accordion-details",
   standalone: true,
@@ -10,6 +9,7 @@ import { cva } from "class-variance-authority";
       [attr.aria-labelledby]="id + '-summary'"
       [id]="id + '-details'"
       [attr.aria-expanded]="expanded"
+      [class]="detailsClass"
     >
       <ng-content></ng-content>
     </div>
@@ -17,21 +17,16 @@ import { cva } from "class-variance-authority";
   styleUrls: ["./accordion.component.scss"],
 })
 export class AccordionDetailsComponent {
-  @Input() id: string = "accordion";
+  @Input() id?: string;
   @Input() role: string = "region";
-  @Input() expanded: boolean = false;
-  @Input() classes?: { root: string; details: string; summary: string };
+  @Input() expanded!: boolean;
+  @Input() classes?: { root?: string; details?: string; summary?: string };
+
   get detailsClass(): string {
     return [
-      cva(
-        [
-          "px-4 py-3",
-          this.expanded ? "accordion" : "accordion-up",
-          this.classes?.details,
-        ]
-          .filter(Boolean)
-          .join(" "),
-      ),
+      "px-1 py-2",
+      this.expanded ? "accordion" : "accordion-up",
+      this.classes?.details,
     ].join(" ");
   }
 }

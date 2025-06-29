@@ -8,7 +8,7 @@ export const accordionVariantsConfig = {
       true: "mb-0",
     },
     square: { true: "rounded-none shadow px-1", false: "border-b-1" },
-    defaultExpanded: { true: "expanded" },
+    defaultExpanded: { true: "expanded bg-success", false: "bg-success" },
     expanded: { true: "expanded" },
   },
   defaultVariants: {
@@ -16,15 +16,13 @@ export const accordionVariantsConfig = {
     expanded: false,
     disabled: false,
     disableGutters: false,
-    square: false,
   },
-  component: "div",
-  slots: {} as const,
-  classes: {} as const,
-  id: `accordion-${Math.random().toString(36).substr(2, 9)}`,
 };
 
-export const accordionVariants = cva("bg-white text-black border-b-gray-200", {
-  variants: accordionVariantsConfig.variants,
-  defaultVariants: accordionVariantsConfig.defaultVariants,
-});
+export const accordionVariants = cva(
+  "bg-success text-black border-b-5 border-b-gray-200",
+  {
+    variants: accordionVariantsConfig.variants,
+    defaultVariants: accordionVariantsConfig.defaultVariants,
+  },
+);

@@ -1,70 +1,83 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { LucideAngularModule, ChevronDownIcon } from "lucide-angular"; // Import LucideAngularModule and ChevronDownIcon
-import { cva } from "class-variance-authority";
 
 @Component({
   selector: "xui-accordion-summary",
   imports: [CommonModule, LucideAngularModule],
   template: `
-    <button
-      type="button"
-      [attr.aria-expanded]="expanded"
-      [attr.aria-controls]="id + '-details'"
-      [id]="id + '-summary'"
-      [class]="summaryClass"
-      [disabled]="disabled"
-      (click)="click?.()"
-      [attr.role]="role"
-    >
-      <ng-container *ngIf="Heading as headingTag">
-        <ng-container [ngSwitch]="headingTag">
-          <h1 *ngSwitchCase="'h1'"><ng-content></ng-content></h1>
-          <h2 *ngSwitchCase="'h2'"><ng-content></ng-content></h2>
-          <h3 *ngSwitchCase="'h3'"><ng-content></ng-content></h3>
-          <h4 *ngSwitchCase="'h4'"><ng-content></ng-content></h4>
-          <h5 *ngSwitchCase="'h5'"><ng-content></ng-content></h5>
-          <h6 *ngSwitchCase="'h6'"><ng-content></ng-content></h6>
-          <span *ngSwitchDefault><ng-content></ng-content></span>
-        </ng-container>
+    <ng-container *ngIf="Heading as headingTag">
+      <ng-container [ngSwitch]="headingTag">
+        <h1 *ngSwitchCase="'h1'" [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </h1>
+        <h2 *ngSwitchCase="'h2'" [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </h2>
+        <h3 *ngSwitchCase="'h3'" [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </h3>
+        <h4 *ngSwitchCase="'h4'" [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </h4>
+        <h5 *ngSwitchCase="'h5'" [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </h5>
+        <h6 *ngSwitchCase="'h6'" [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </h6>
+        <div *ngSwitchDefault [attr.id]="id + '-heading'">
+          <ng-container *ngTemplateOutlet="buttonTpl"></ng-container>
+        </div>
       </ng-container>
-      <span class="ml-2 transition-transform" [class.rotate-180]="expanded">
-        <span-lucide
-          [name]="expandIcon || 'chevron-down'"
-          [size]="18"
-        ></span-lucide>
-      </span>
-    </button>
+
+      <ng-template #buttonTpl>
+        <button
+          type="button"
+          [class]="summaryClass"
+          [attr.aria-expanded]="expanded"
+          [attr.aria-controls]="id + '-details'"
+          [id]="id + '-summary'"
+          [disabled]="disabled"
+          (click)="toggle.emit($event)"
+        >
+          <span>
+            <ng-content></ng-content>
+          </span>
+          <span class="transition-transform" [class.rotate-180]="expanded">
+            <ng-container *ngIf="expandIcon; else defaultIcon">
+              {{ expandIcon }}
+            </ng-container>
+
+            <ng-template #defaultIcon>
+              <span-lucide [name]="defaultIconValue" [size]="18"></span-lucide>
+            </ng-template>
+          </span>
+        </button>
+      </ng-template>
+    </ng-container>
   `,
   styleUrls: ["./accordion.component.scss"],
 })
 export class AccordionSummaryComponent {
-  @Input() id: string = "accordion";
-  @Input() expanded: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() expandIcon: any = ChevronDownIcon; // eslint-disable-line @typescript-eslint/no-explicit-any
-  @Input() role: string = "button";
-  @Input() slots: { heading?: { component?: string } } = {
-    heading: { component: "h3" },
-  };
-  @Input() click?: () => void;
+  @Input() id!: string;
+  @Input() expanded!: boolean;
+  @Input() disabled!: boolean;
+  @Input() expandIcon?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  @Input() slots?: { heading?: { component?: string } };
   @Input() classes?: { root: string; details: string; summary: string };
+  @Input() defaultIconValue: any = ChevronDownIcon; // eslint-disable-line @typescript-eslint/no-explicit-any
+  @Output() toggle = new EventEmitter<Event>();
 
   get Heading(): string {
     return this.slots?.heading?.component || "h3";
   }
+
   get summaryClass(): string {
     return [
-      cva(
-        [
-          "flex w-full justify-between px-4 py-3 text-left font-semibold",
-          this.expanded ? "bg-gray-100" : "",
-          this.disabled ? "cursor-default opacity-50" : "cursor-pointer",
-          this.classes?.summary,
-        ]
-          .filter(Boolean)
-          .join(" "),
-      ),
+      "flex w-full justify-between px-1 py-3 text-left text-sm font-semibold transition-all",
+      this.disabled ? "cursor-default opacity-50" : "cursor-pointer",
+      this.classes?.summary || "",
     ].join(" ");
   }
 }

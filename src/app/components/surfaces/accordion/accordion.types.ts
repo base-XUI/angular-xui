@@ -9,7 +9,7 @@ export type AccordionBaseProps = {
   /**
    * The content of the accordion.
    */
-  children: TemplateRef<any>; //eslint-disable-line @typescript-eslint/no-explicit-any
+  children?: TemplateRef<any>; //eslint-disable-line @typescript-eslint/no-explicit-any
   /**
    * The component used for the root node.
    * Either a string to use as an HTML element or a component reference.
@@ -24,6 +24,10 @@ export type AccordionBaseProps = {
    */
   expandIcon?: TemplateRef<any>; //eslint-disable-line @typescript-eslint/no-explicit-any
   /**
+   * The icon element to display as the expand/collapse indicator.
+   */
+  defaultIconValue?: TemplateRef<any>; //eslint-disable-line @typescript-eslint/no-explicit-any
+  /**
    * If true, expands the accordion by default.
    */
   defaultExpanded?: boolean;
@@ -31,7 +35,7 @@ export type AccordionBaseProps = {
    * Callback fired when the accordion is expanded/collapsed.
    *  Uncontrolled mode
    */
-  onChange?: (event: Event, expanded: boolean) => void;
+  changed?: (event: Event, expanded: boolean) => void;
   /**
    * If true, removes the default gutters (padding) from the accordion.
    */
@@ -47,7 +51,7 @@ export type AccordionBaseProps = {
   /**
    * Additional class name(s) for custom styling.
    */
-  classes?: { root: string; details: string; summary: string };
+  classes?: { root?: string; details?: string; summary?: string };
   /**
   /**
    * The id of the accordion element.

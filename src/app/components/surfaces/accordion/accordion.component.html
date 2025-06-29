@@ -1,16 +1,22 @@
-<div [ngClass]="rootClass">
-  <xui-accordion-summary
-    [id]="id"
-    [expanded]="isOpen"
-    [disabled]="disabled"
-    [expandIcon]="expandIcon"
-    [slots]="slots ?? {}"
-  (click)="handleExpansion($event)"
->
-    <ng-content></ng-content>
-  </xui-accordion-summary>
-   <xui-accordion-details
-    [id]="id"
-    [expanded]="isOpen"
-    ><ng-content></ng-content></xui-accordion-details>
-</div>
+<ng-container [class]="classes?.root">
+  <div>
+    <xui-accordion-summary
+      [expanded]="isOpen"
+      [expandIcon]="expandIcon"
+      [disabled]="disabled"
+      [slots]="slots"
+      [id]="id"
+      (toggle)="handleExpansion($event)"
+    >
+      Accordion {{ index }}
+    </xui-accordion-summary>
+    <xui-accordion-details
+      [expanded]="isOpen"
+      [role]="role"
+      [id]="id"
+      [classes]="classes"
+    >
+      this is content of accordion {{ index }}
+    </xui-accordion-details>
+  </div>
+</ng-container>
