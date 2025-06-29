@@ -61,6 +61,7 @@
     "@angular/router": "^19.1.0",
     "@changesets/changelog-github": "^0.5.1",
     "class-variance-authority": "^0.7.1",
+    "lucide-angular": "^0.522.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -95,7 +96,7 @@
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
     "css-loader": "^6.11.0",
-    "cypress": "^14.3.1",
+    "cypress": "^14.4.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",

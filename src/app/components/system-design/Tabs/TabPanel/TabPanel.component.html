@@ -1,0 +1,11 @@
+<div
+  role="tabpanel"
+  [attr.data-state]="active ? 'active' : 'inactive'"
+  [hidden]="!active && !keepMounted"
+  [class]="generateClasses()"
+  [id]="id || 'tabpanel-' + value"
+  [attr.aria-labelledby]="'tab-' + value"
+  [attr.tabindex]="active ? 0 : -1"
+>
+  <ng-content></ng-content>
+</div>

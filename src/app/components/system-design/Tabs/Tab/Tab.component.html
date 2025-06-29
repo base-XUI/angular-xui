@@ -1,0 +1,23 @@
+<button
+  #tabButton
+  type="button"
+  role="tab"
+  [attr.aria-selected]="isSelected"
+  [attr.aria-disabled]="disabled ? 'true' : undefined"
+  [disabled]="disabled"
+  [attr.data-state]="isSelected ? 'active' : 'inactive'"
+  [attr.data-orientation]="orientation"
+  [class]="generateClasses()"
+  [attr.tabindex]="isSelected ? 0 : -1"
+  [attr.data-index]="index"
+  (click)="handleClick()"
+>
+  <span *ngIf="icon || iconRef" class="mr-2">
+    <ng-container
+      *ngIf="icon"
+      [ngTemplateOutlet]="iconRef || icon"
+    ></ng-container>
+  </span>
+  <ng-content></ng-content>
+  {{ label }}
+</button>
