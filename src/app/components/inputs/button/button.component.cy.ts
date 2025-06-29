@@ -20,7 +20,7 @@ import { Component, TemplateRef, ViewChild } from "@angular/core";
       <span data-testid="custom-loader">Loading...</span>
     </ng-template>
 
-    <app-button
+    <xui-button
       [variant]="variant"
       [color]="color"
       [size]="size"
@@ -40,7 +40,7 @@ import { Component, TemplateRef, ViewChild } from "@angular/core";
       (clicked)="onClick()"
     >
       {{ content }}
-    </app-button>
+    </xui-button>
   `,
 })
 class TestButtonHostComponent {

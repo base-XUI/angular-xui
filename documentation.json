@@ -1207,7 +1207,7 @@
       "inputs": [],
       "outputs": [],
       "providers": [],
-      "selector": "app-button",
+      "selector": "xui-button",
       "styleUrls": [],
       "styles": [],
       "templateUrl": ["./button.component.html"],
@@ -2879,7 +2879,7 @@
       "selector": "test-button-host",
       "styleUrls": [],
       "styles": [],
-      "template": "<ng-template #startIconTpl>\n  <span data-testid=\"start-icon\">→</span>\n</ng-template>\n\n<ng-template #endIconTpl>\n  <span data-testid=\"end-icon\">←</span>\n</ng-template>\n\n<ng-template #customLoaderTpl>\n  <span data-testid=\"custom-loader\">Loading...</span>\n</ng-template>\n\n<app-button\n  [variant]=\"variant\"\n  [color]=\"color\"\n  [size]=\"size\"\n  [disabled]=\"disabled\"\n  [loading]=\"loading\"\n  [loadingPosition]=\"loadingPosition\"\n  [fullWidth]=\"fullWidth\"\n  [disableElevation]=\"disableElevation\"\n  [component]=\"component\"\n  [href]=\"href\"\n  [target]=\"target\"\n  [type]=\"type\"\n  [role]=\"role\"\n  [startIcon]=\"startIcon ? startIconTpl : null\"\n  [endIcon]=\"endIcon ? endIconTpl : null\"\n  [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n  (clicked)=\"onClick()\"\n>\n  {{ content }}\n</app-button>\n",
+      "template": "<ng-template #startIconTpl>\n  <span data-testid=\"start-icon\">→</span>\n</ng-template>\n\n<ng-template #endIconTpl>\n  <span data-testid=\"end-icon\">←</span>\n</ng-template>\n\n<ng-template #customLoaderTpl>\n  <span data-testid=\"custom-loader\">Loading...</span>\n</ng-template>\n\n<xui-button\n  [variant]=\"variant\"\n  [color]=\"color\"\n  [size]=\"size\"\n  [disabled]=\"disabled\"\n  [loading]=\"loading\"\n  [loadingPosition]=\"loadingPosition\"\n  [fullWidth]=\"fullWidth\"\n  [disableElevation]=\"disableElevation\"\n  [component]=\"component\"\n  [href]=\"href\"\n  [target]=\"target\"\n  [type]=\"type\"\n  [role]=\"role\"\n  [startIcon]=\"startIcon ? startIconTpl : null\"\n  [endIcon]=\"endIcon ? endIconTpl : null\"\n  [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n  (clicked)=\"onClick()\"\n>\n  {{ content }}\n</xui-button>\n",
       "templateUrl": [],
       "viewProviders": [],
       "hostDirectives": [],
@@ -3425,14 +3425,24 @@
         "defaultValue": "{\n  horizontal: \"flex-row\",\n  vertical: \"flex-col\",\n} as const"
       },
       {
-        "name": "TABS_VARIANTS",
+        "name": "LinkVariants",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "file": "src/app/components/navigations/Link/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "{\n  standard: \"flex relative\",\n  scrollable: \"flex relative overflow-x-auto scrollbar-thin\",\n  fullWidth: \"flex relative w-full\",\n} as const"
+        "defaultValue": "cva(\n  \"inline-flex items-center justify-center font-medium transition-colors cursor-pointer\",\n  {\n    variants: linkVariantsConfig.variants,\n    defaultVariants: {\n      color: \"primary\" as LinkColor,\n      underline: \"always\" as LinkUnderline,\n      variant: \"inherit\",\n    },\n  },\n)"
+      },
+      {
+        "name": "linkVariantsConfig",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/components/navigations/Link/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "{\n  variants: {\n    variant: {\n      inherit: \"inherit\",\n      h1: \"text-7xl font-bold\",\n      h2: \"text-6xl font-bold\",\n      h3: \"text-5xl font-bold\",\n      h4: \"text-4xl font-bold\",\n      h5: \"text-2xl font-bold\",\n      h6: \"text-2xl font-bold\",\n      subtitle1: \"text-xl font-semibold\",\n      subtitle2: \"text-lg font-semibold\",\n      body1: \"text-xl font-normal\",\n      body2: \"text-lg font-normal\",\n      body3: \"text-base font-normal\",\n      caption: \"text-xs font-normal\",\n    },\n    underline: {\n      always: \"underline\",\n      hover: \"hover:underline\",\n      none: \"no-underline\",\n    },\n    color: {\n      inherit: \"inherit\",\n      primary: \"text-primary decoration-primary/40 hover:decoration-primary\",\n      secondary:\n        \"text-secondary decoration-secondary/40 hover:decoration-secondary\",\n      success: \"text-success decoration-success/40  hover:decoration-success\",\n      error: \"text-error decoration-error/40 hover:decoration-error\",\n      info: \"text-info decoration-info/40 hover:decoration-info\",\n      warning: \"text-warning decoration-warning/40 hover:decoration-warning\",\n    },\n  },\n  defaultVariants: {\n    variant: \"inherit\",\n    color: \"primary\",\n    underline: \"always\",\n  },\n} as const"
       }
     ],
     "functions": [
@@ -3690,15 +3700,37 @@
         "kind": 150
       },
       {
-        "name": "TabVariant",
+        "name": "LinkBaseProps",
         "ctype": "miscellaneous",
         "subtype": "typealias",
         "rawtype": "",
-        "file": "src/app/components/system-design/Tabs/variants.ts",
+        "file": "src/app/components/navigations/Link/link.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "<p>Base props for the Link component</p>\n",
+        "kind": 193
+      },
+      {
+        "name": "LinkColor",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+        "file": "src/app/components/navigations/Link/variants.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
-        "kind": 198
+        "kind": 192
+      },
+      {
+        "name": "LinkUnderline",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"always\" | \"hover\" | \"none\"",
+        "file": "src/app/components/navigations/Link/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
       }
     ],
     "enumerations": [],
