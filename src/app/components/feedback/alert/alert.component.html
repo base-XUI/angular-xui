@@ -1,0 +1,59 @@
+<div [class]="alertClasses" role="alert" [attr.tabindex]="action ? '0' : null">
+  <ng-container *ngIf="showIcon">
+    <ng-container *ngIf="customIcon; else defaultIcon">
+      <ng-container *ngTemplateOutlet="customIcon"></ng-container>
+    </ng-container>
+    <ng-template #defaultIcon>
+      <span [class]="iconClasses">
+        <ng-container [ngSwitch]="effectiveSeverity">
+          <lucide-angular
+            [img]="CheckCircle"
+            *ngSwitchCase="'success'"
+            size="16"
+          ></lucide-angular>
+          <lucide-angular
+            [img]="AlertCircle"
+            *ngSwitchCase="'info'"
+            size="16"
+          ></lucide-angular>
+          <lucide-angular
+            [img]="AlertTriangle"
+            *ngSwitchCase="'warning'"
+            size="16"
+          ></lucide-angular>
+          <lucide-angular
+            [img]="XCircle"
+            *ngSwitchCase="'error'"
+            size="16"
+          ></lucide-angular>
+        </ng-container>
+      </span>
+    </ng-template>
+  </ng-container>
+
+  <div class="flex-1">
+    <ng-content></ng-content>
+  </div>
+
+  <ng-container *ngIf="action || closeHandle">
+    <div [class]="actionClasses">
+      <ng-container *ngIf="action; else closeButton">
+        <ng-container *ngTemplateOutlet="action"></ng-container>
+      </ng-container>
+      <ng-template #closeButton>
+        <button
+          *ngIf="closeHandle"
+          type="button"
+          class="inline-flex h-4 w-4 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          (click)="handleClose()"
+          aria-label="Close"
+        >
+          <!-- <x size="14" /> -->
+          <lucide-angular [img]="XCircle" size="14"></lucide-angular>
+
+          <span class="sr-only">Close</span>
+        </button>
+      </ng-template>
+    </div>
+  </ng-container>
+</div>
