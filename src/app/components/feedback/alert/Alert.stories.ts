@@ -4,6 +4,7 @@ import { AlertComponent } from "./alert.component";
 import { AlertTitleComponent } from "./alert-title.component";
 import { CommonModule } from "@angular/common";
 import {
+  LucideAngularModule,
   CheckCircle,
   AlertCircle,
   AlertTriangle,
@@ -45,10 +46,13 @@ const meta: Meta<AlertComponent> = {
         CommonModule,
         AlertTitleComponent,
         ButtonComponent,
-        CheckCircle,
-        AlertCircle,
-        AlertTriangle,
-        XCircle,
+        LucideAngularModule.pick({
+          CheckCircle,
+          AlertCircle,
+          AlertTriangle,
+          XCircle,
+          X,
+        }),
       ],
     }),
   ],
@@ -86,43 +90,19 @@ export default meta;
 type Story = StoryObj<AlertComponent>;
 
 // Severity Stories
-export const Success: Story = {
+export const Severity: Story = {
   args: {
     severity: "success",
   },
   render: (args) => ({
     props: args,
-    template: `<xui-alert [severity]="severity">This is a success Alert.</xui-alert>`,
-  }),
-};
-
-export const Info: Story = {
-  args: {
-    severity: "info",
-  },
-  render: (args) => ({
-    props: args,
-    template: `<xui-alert [severity]="severity">This is an info Alert.</xui-alert>`,
-  }),
-};
-
-export const Warning: Story = {
-  args: {
-    severity: "warning",
-  },
-  render: (args) => ({
-    props: args,
-    template: `<xui-alert [severity]="severity">This is a warning Alert.</xui-alert>`,
-  }),
-};
-
-export const Error: Story = {
-  args: {
-    severity: "error",
-  },
-  render: (args) => ({
-    props: args,
-    template: `<xui-alert [severity]="severity">This is an error Alert.</xui-alert>`,
+    template: `<div class='flex w-[500px] m-auto flex-col gap-4'>
+    <xui-alert severity="success">This is a success Alert.</xui-alert>
+    <xui-alert severity="info">This is a info Alert.</xui-alert>
+    <xui-alert severity="warning">This is a warning Alert.</xui-alert>
+    <xui-alert severity="error">This is a error Alert.</xui-alert>
+    
+    </div>`,
   }),
 };
 
@@ -130,7 +110,7 @@ export const Error: Story = {
 export const FilledVariants: Story = {
   render: () => ({
     template: `
-      <div class="flex flex-col gap-4">
+      <div class="flex w-[500px] m-auto flex-col gap-4">
         <xui-alert variant="filled" severity="success">This is a filled success Alert.</xui-alert>
         <xui-alert variant="filled" severity="info">This is a filled info Alert.</xui-alert>
         <xui-alert variant="filled" severity="warning">This is a filled warning Alert.</xui-alert>
@@ -143,7 +123,7 @@ export const FilledVariants: Story = {
 export const OutlinedVariants: Story = {
   render: () => ({
     template: `
-      <div class="flex flex-col gap-4">
+      <div class="flex w-[500px] m-auto flex-col gap-4">
         <xui-alert variant="outlined" severity="success">This is an outlined success Alert.</xui-alert>
         <xui-alert variant="outlined" severity="info">This is an outlined info Alert.</xui-alert>
         <xui-alert variant="outlined" severity="warning">This is an outlined warning Alert.</xui-alert>
@@ -161,21 +141,29 @@ export const ColorOverride: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<xui-alert [severity]="severity" [color]="color">This is a success Alert with warning colors.</xui-alert>`,
+    template: `<div class='flex w-[500px] m-auto flex-col gap-4'>
+    <xui-alert [severity]="severity" [color]="color">This is a success Alert with warning colors.</xui-alert>,
+    </div>`,
   }),
 };
 
 // Actions Story
 export const WithActions: Story = {
   render: () => ({
+    props: {
+      onCloseHandler: () => {
+        console.log("Alert closed");
+      },
+    },
     template: `
-      <div class="flex flex-col gap-4">
-        <xui-alert severity="warning" [onClose]="() => {}">This Alert displays the default close icon.</xui-alert>
-        <xui-alert severity="success">
-          This Alert uses a Button component for its action.
-          <ng-template #action>
-            <button-wrapper>UNDO</button-wrapper>
+      <div class="flex w-[500px] m-auto flex-col gap-4">
+      <ng-template #actionTpl>
+            <button-wrapper color="primary" size="small">Undo</button-wrapper>
           </ng-template>
+        <xui-alert severity="warning" (closeHandle)="onCloseHandler()">This Alert displays the default close icon.</xui-alert>
+        <xui-alert severity="success" [action]="actionTpl">
+          This Alert uses a Button component for its action.
+          
         </xui-alert>
       </div>
     `,
@@ -186,7 +174,7 @@ export const WithActions: Story = {
 export const IconsOverride: Story = {
   render: () => ({
     template: `
-      <div class="flex flex-col gap-4">
+      <div class='flex w-[500px] m-auto flex-col gap-4'>
         <xui-alert severity="success">
           This is a success Alert with default icon.
         </xui-alert>
@@ -196,7 +184,7 @@ export const IconsOverride: Story = {
         <xui-alert severity="info">
           This Alert uses a custom icon.
           <ng-template #icon>
-            <check-circle size="16" class="text-blue-600" />
+            <lucide-icon name="check-circle" [size]="16" class="text-blue-600"></lucide-icon>
           </ng-template>
         </xui-alert>
       </div>
@@ -208,7 +196,7 @@ export const IconsOverride: Story = {
 export const WithTitles: Story = {
   render: () => ({
     template: `
-      <div class="flex flex-col gap-4">
+      <div class='flex w-[500px] m-auto flex-col gap-4'>
         <xui-alert severity="success">
           <xui-alert-title>Success</xui-alert-title>
           This is a success Alert with an encouraging title.

@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 flex items-center gap-2",
+  "relative w-full rounded-lg border px-4 py-3 flex justify-between  gap-2",
   {
     variants: {
       variant: {

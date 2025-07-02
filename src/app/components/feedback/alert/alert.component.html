@@ -9,22 +9,22 @@
           <lucide-angular
             [img]="CheckCircle"
             *ngSwitchCase="'success'"
-            size="16"
+            class="mt-0.5 h-5 w-5"
           ></lucide-angular>
           <lucide-angular
             [img]="AlertCircle"
             *ngSwitchCase="'info'"
-            size="16"
+            class="mt-0.5 h-5 w-5"
           ></lucide-angular>
           <lucide-angular
             [img]="AlertTriangle"
             *ngSwitchCase="'warning'"
-            size="16"
+            class="mt-0.5 h-5 w-5"
           ></lucide-angular>
           <lucide-angular
             [img]="XCircle"
             *ngSwitchCase="'error'"
-            size="16"
+            class="mt-0.5 h-5 w-5"
           ></lucide-angular>
         </ng-container>
       </span>
@@ -35,25 +35,22 @@
     <ng-content></ng-content>
   </div>
 
-  <ng-container *ngIf="action || closeHandle">
-    <div [class]="actionClasses">
-      <ng-container *ngIf="action; else closeButton">
-        <ng-container *ngTemplateOutlet="action"></ng-container>
-      </ng-container>
-      <ng-template #closeButton>
-        <button
-          *ngIf="closeHandle"
-          type="button"
-          class="inline-flex h-4 w-4 items-center justify-center rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-          (click)="handleClose()"
-          aria-label="Close"
-        >
-          <!-- <x size="14" /> -->
-          <lucide-angular [img]="XCircle" size="14"></lucide-angular>
+  <div [class]="actionClasses" class="flex">
+    <!-- Action button on the left side -->
+    <ng-container *ngIf="action">
+      <ng-container *ngTemplateOutlet="action"></ng-container>
+    </ng-container>
 
-          <span class="sr-only">Close</span>
-        </button>
-      </ng-template>
-    </div>
-  </ng-container>
+    <!-- Close button only if closeHandle exists and no action -->
+    <button
+      *ngIf="closeHandle && !action"
+      type="button"
+      class="ml-auto inline-flex h-6 w-6 items-center justify-center rounded-full p-1 hover:cursor-pointer hover:bg-black/5"
+      (click)="handleClose()"
+      aria-label="Close"
+    >
+      <lucide-angular [img]="X" class="h-4 w-4"></lucide-angular>
+      <span class="sr-only">Close</span>
+    </button>
+  </div>
 </div>
