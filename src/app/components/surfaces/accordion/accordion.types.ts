@@ -22,22 +22,18 @@ export type AccordionBaseProps = {
   /**
    * The icon element to display as the expand/collapse indicator.
    */
-  expandIcon?: TemplateRef<any>; //eslint-disable-line @typescript-eslint/no-explicit-any
+  expandIcon?: TemplateRef<unknown>;
   /**
    * The icon element to display as the expand/collapse indicator.
    */
-  defaultIconValue?: TemplateRef<any>; //eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultIconValue?: TemplateRef<unknown>;
   /**
    * If true, expands the accordion by default.
    */
   defaultExpanded?: boolean;
+
   /**
-   * Callback fired when the accordion is expanded/collapsed.
-   *  Uncontrolled mode
-   */
-  changed?: (event: Event, expanded: boolean) => void;
-  /**
-   * If true, removes the default gutters (padding) from the accordion.
+   * If true, removes the default gutters (margin) from the accordion.
    */
   disableGutters?: boolean;
   /**
@@ -51,7 +47,11 @@ export type AccordionBaseProps = {
   /**
    * Additional class name(s) for custom styling.
    */
-  classes?: { root?: string; details?: string; summary?: string };
+  classes?: {
+    root?: string;
+    summary?: { btn?: string; expandIcon?: string; content?: string };
+    details?: string;
+  };
   /**
   /**
    * The id of the accordion element.
@@ -63,9 +63,4 @@ export type AccordionBaseProps = {
   slots?: {
     heading?: { component?: string };
   };
-  /**
-   * The position of the icon relative to the summary text.
-   * Can be "left" or "right".
-   */
-  iconPosition?: "left" | "right";
 } & VariantProps<typeof accordionVariants>;

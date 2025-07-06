@@ -3,7 +3,9 @@ import { moduleMetadata } from "@storybook/angular";
 import { AccordionComponent } from "./accordion.component";
 import { AccordionSummaryComponent } from "./accordion-summary.component";
 import { AccordionDetailsComponent } from "./accordion-details.component";
-import { ArrowDown } from "lucide-angular";
+import { LucideAngularModule, icons } from "lucide-angular";
+import { action } from "@storybook/addon-actions";
+
 // main template
 const getAccordionRender = (
   args: any, // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -16,7 +18,7 @@ const getAccordionRender = (
     return item;
   },
   template: `
-    <div *ngFor="let index of accordionList ; trackBy: trackByIndex" class="w-80 max-w-xs mx-auto">
+    <div *ngFor="let index of accordionList ; trackBy: trackByIndex">
       <app-accordion
         [defaultExpanded]="defaultExpanded ? index === 1 : false"
         [expanded]="expanded"
@@ -25,14 +27,21 @@ const getAccordionRender = (
         [disableGutters]="disableGutters"
         [slots]="slots"
         [index]="index"
-        (changed)="changed()"
+        [classes]="classes"
+        [expandIcon]="expandIcon !== undefined && index === 1 ? expandIcon : undefined"
+        (changed)="changed($event)"
       >
         <xui-accordion-summary
-          [expandIcon]="expandIcon !== undefined && index === 1 ? expandIcon : undefined"
+        [aria-controls]="('panel' + index)-content"
+        [id]="('panel' + index)-summary"
         >
           Accordion {{index}}
         </xui-accordion-summary>
-        <xui-accordion-details [role]="region">
+        <xui-accordion-details
+        [role]="region"
+        [id]="('panel' + index)-details"
+        [aria-labelledby]="('panel' + index)-summary"
+        >
           this is content of accordion {{index}}
         </xui-accordion-details>
       </app-accordion>
@@ -40,7 +49,7 @@ const getAccordionRender = (
   `,
 });
 
-const meta: Meta<AccordionComponent> = {
+const meta: Meta<AccordionComponent | AccordionSummaryComponent> = {
   title: "surfaces/Accordion",
   component: AccordionComponent,
   decorators: [
@@ -49,6 +58,7 @@ const meta: Meta<AccordionComponent> = {
         AccordionComponent,
         AccordionSummaryComponent,
         AccordionDetailsComponent,
+        LucideAngularModule,
       ],
     }),
   ],
@@ -103,10 +113,8 @@ const meta: Meta<AccordionComponent> = {
       description:
         "If true, removes the default gutters (margin) from the accordion.",
       control: "boolean",
-
       table: {
         type: { summary: "boolean" },
-
         defaultValue: { summary: "false" },
       },
     },
@@ -122,7 +130,7 @@ const meta: Meta<AccordionComponent> = {
     expandIcon: {
       description:
         "The icon element to display as the expand/collapse indicator.",
-      control: "object",
+      control: false,
       table: {
         type: { summary: "<TemplateRef>" },
       },
@@ -155,7 +163,7 @@ const meta: Meta<AccordionComponent> = {
       description: "Override or extend the styles applied to the component.",
       control: false,
       table: {
-        type: { summary: "{ root,summary,details}" },
+        type: { summary: "{ root,summary:{btn,expandIcon,content},details}" },
       },
     },
   },
@@ -167,18 +175,58 @@ type Story = StoryObj<AccordionComponent>;
 
 // Basic variants
 export const Basic: Story = {
-  args: {
-    changed: (event: Event, isExpanded: boolean | string) => {
-      console.log("changed called:", event, isExpanded);
-    },
-  },
+  args: {},
 };
+
 //expanded Icon variant
 export const ExpandedIcon: Story = {
-  args: {
-    expandIcon: ArrowDown,
-  },
-  render: getAccordionRender,
+  render: (args) => ({
+    props: {
+      ...args,
+      accordionList: [1, 2, 3],
+      icons: icons,
+    },
+    trackByIndex(item: number): number {
+      return item;
+    },
+    template: `
+      <ng-template #customExpandIcon>
+      <lucide-angular
+        [img]='icons.ArrowDown'
+        class="stroke-muted-foreground"
+        [size]="18"
+        ></lucide-angular>
+      </ng-template>
+
+      <div *ngFor="let index of accordionList ; trackBy: trackByIndex" class="max-w-xs mx-auto">
+        <app-accordion
+          [defaultExpanded]="defaultExpanded ? index === 1 : false"
+          [expanded]="expanded"
+          [disabled]="disabled ? index === 3 : false"
+          [square]="square"
+          [disableGutters]="disableGutters"
+          [slots]="slots"
+          [index]="index"
+          [expandIcon]="index === 1 ? customExpandIcon : undefined"
+          (changed)="changed($event)"
+        >
+          <xui-accordion-summary
+            [aria-controls]="('panel' + index)-content"
+            [id]="('panel' + index)-summary"
+          >
+          Accordion {{index}}
+          </xui-accordion-summary>
+          <xui-accordion-details
+            [role]="region"
+            [id]="('panel' + index)-details"
+            [aria-labelledby]="('panel' + index)-summary"
+          >
+            this is content of accordion {{index}}
+          </xui-accordion-details>
+        </app-accordion>
+      </div>
+    `,
+  }),
 };
 
 // DefaultExpanded variant
@@ -196,7 +244,159 @@ export const Disabled: Story = {
   },
   render: getAccordionRender,
 };
+// controlled mode
+export const Controlled: Story = {
+  args: {
+    expanded: true,
+    changed: action("changed toggle"),
+  },
+  render: (args) => {
+    return {
+      props: {
+        ...args,
+        currentExpanded: null as string | null,
+        accordionList: [1, 2, 3],
 
+        handleChange: function (
+          data: { event: Event; expanded: boolean },
+          panelId: string,
+        ) {
+          if (args.changed) {
+            args.changed(data);
+          }
+          // Update currentExpanded
+          this["currentExpanded"] = data.expanded ? panelId : null;
+        },
+      },
+      template: `
+          <div *ngFor="let index of accordionList" class="max-w-xs mx-auto">
+            <app-accordion
+              [expanded]="currentExpanded === ('panel' + index)"
+              [disabled]="disabled && index === 3"
+              [square]="square"
+              [disableGutters]="disableGutters"
+              [slots]="slots"
+              [index]="index"
+              (changed)="handleChange($event, 'panel' + index)"
+              [classes]="classes"
+            >
+              <xui-accordion-summary
+                [aria-controls]="('panel' + index)-content"
+                [id]="('panel' + index)-summary"
+                >
+                  Accordion {{index}}
+              </xui-accordion-summary>
+              <xui-accordion-details
+                [role]="region"
+                [id]="('panel' + index)-details"
+                [aria-labelledby]="('panel' + index)-summary"
+              >
+                this is content of accordion {{index}}
+              </xui-accordion-details>
+            </app-accordion>
+          </div>
+      `,
+    };
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `-This story demonstrates a controlled accordion implementation where the expanded state 
+              is managed externally.
+            It showcases how to handle multiple accordion panels with programmatic control over which panel is currently expanded
+            \nExternal State Management: The currentExpanded property tracks which panel is open
+            \nEvent Handling: Custom handleChang function manages expansion state`,
+      },
+    },
+  },
+};
+// Customization Accordion
+export const Customization: Story = {
+  args: {
+    expanded: true,
+    classes: {
+      root: "",
+      summary: {
+        btn: "flex-row-reverse hover:bg-gray-50 rounded ",
+        expandIcon: "expanded:90deg",
+        content: "text-blue-500",
+      },
+      details: "",
+    },
+  },
+  render: (args) => {
+    return {
+      props: {
+        ...args,
+        currentExpanded: null as string | null,
+        accordionList: [1, 2, 3],
+        icons: icons,
+        handleChange: function (
+          data: { event: Event; expanded: boolean },
+          panelId: string,
+        ) {
+          if (args.changed) {
+            args.changed(data);
+          }
+          // Update currentExpanded
+          this["currentExpanded"] = data.expanded ? panelId : null;
+        },
+      },
+      template: `
+        <ng-template #customExpandIcon>
+          <lucide-angular
+            [img]='icons.ChevronRight'
+            class="stroke-blue-400"
+            [size]="18"
+            ></lucide-angular>
+        </ng-template>
+        <div *ngFor="let index of accordionList" class="max-w-xs mx-auto">
+          <app-accordion
+            [expanded]="currentExpanded === ('panel' + index)"
+            [disabled]="disabled && index === 3"
+            [square]="square"
+            [disableGutters]="disableGutters"
+            [slots]="slots"
+            [index]="index"
+            [expandIcon]="customExpandIcon"
+            (changed)="handleChange($event, 'panel' + index)"
+            [classes]="classes"
+          >
+            <xui-accordion-summary
+            [aria-controls]="('panel' + index)-content"
+            [id]="('panel' + index)-summary"
+            >
+              Accordion {{index}}
+            </xui-accordion-summary>
+            <xui-accordion-details
+            [role]="region"
+            [id]="('panel' + index)-details"
+            [aria-labelledby]="('panel' + index)-summary"
+            >
+              this is content of accordion {{index}}
+            </xui-accordion-details>
+          </app-accordion>
+        </div>
+      `,
+    };
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `-This story demonstrates custom styling capabilities of the accordion component.
+            \nEx: classes: {
+                root: "",
+                summary: {
+                  btn: "flex-row-reverse hover:bg-gray-50 rounded ",
+                  expandIcon: "",
+                  content: "text-blue-500",
+                },
+                details: "",
+              },`,
+      },
+    },
+  },
+};
 // DisableGutters variant
 export const DisableGutters: Story = {
   args: {
@@ -205,46 +405,8 @@ export const DisableGutters: Story = {
   },
   render: getAccordionRender,
 };
-// controlled mode
-export const controlled: Story = {
-  args: {
-    expanded: true,
-  },
-  render: (args) => ({
-    props: {
-      ...args,
-      accordionList: [1, 2, 3],
-      currentExpanded: false as string | false,
-    },
 
-    trackByIndex(item: number): number {
-      return item;
-    },
-    template: `
-    <div *ngFor="let index of accordionList ; trackBy: trackByIndex" class="w-80 max-w-xs mx-auto">
-      <app-accordion
-        [expanded]="currentExpanded === ('panel' + index)"
-        [disabled]="disabled ? index === 3 : false"
-        [defaultExpanded]="defaultExpanded && index === 1"
-        [square]="square"
-        [disableGutters]="disableGutters"
-        [slots]="slots"
-        [index]="index"
-      >
-        <xui-accordion-summary
-          [expandIcon]="expandIcon !== undefined && index === 1 ? expandIcon : undefined"
-        >
-          Accordion {{index}}
-        </xui-accordion-summary>
-        <xui-accordion-details>
-          This is content of accordion {{index}}
-        </xui-accordion-details>
-      </app-accordion>
-    </div>
-  `,
-  }),
-};
-// Squared variant
+// Squared variant remove margin between accordion item
 export const Squared: Story = {
   args: {
     square: true,
@@ -258,4 +420,12 @@ export const ChangingHeadingLevel: Story = {
     slots: { heading: { component: "h5" } },
   },
   render: getAccordionRender,
+  parameters: {
+    docs: {
+      description: {
+        story: ` This story demonstrates how to customize the semantic heading level of accordion summary elements
+         by changing the default heading tag "h3" to through the "slots".`,
+      },
+    },
+  },
 };

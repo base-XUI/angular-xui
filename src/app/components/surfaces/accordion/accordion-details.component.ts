@@ -20,7 +20,11 @@ export class AccordionDetailsComponent {
   @Input() id?: string;
   @Input() role: string = "region";
   @Input() expanded!: boolean;
-  @Input() classes?: { root?: string; details?: string; summary?: string };
+  @Input() classes?: {
+    root?: string;
+    summary?: { btn?: string; expandIcon?: string; content?: string };
+    details?: string;
+  };
 
   get detailsClass(): string {
     return [

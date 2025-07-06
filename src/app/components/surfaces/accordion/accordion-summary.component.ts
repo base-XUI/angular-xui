@@ -1,7 +1,13 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { LucideAngularModule, ChevronDownIcon } from "lucide-angular"; // Import LucideAngularModule and ChevronDownIcon
-
+import { LucideAngularModule, icons } from "lucide-angular";
+import { AccordionBaseProps } from "./accordion.types";
 @Component({
   selector: "xui-accordion-summary",
   imports: [CommonModule, LucideAngularModule],
@@ -41,16 +47,19 @@ import { LucideAngularModule, ChevronDownIcon } from "lucide-angular"; // Import
           [disabled]="disabled"
           (click)="toggle.emit($event)"
         >
-          <span>
+          <span [class]="contentClasses">
             <ng-content></ng-content>
           </span>
-          <span class="transition-transform" [class.rotate-180]="expanded">
+          <span [class]="expandIconClasses" [class.rotate-180]="expanded">
             <ng-container *ngIf="expandIcon; else defaultIcon">
-              {{ expandIcon }}
+              <ng-container *ngTemplateOutlet="expandIcon"></ng-container>
             </ng-container>
-
             <ng-template #defaultIcon>
-              <span-lucide [name]="defaultIconValue" [size]="18"></span-lucide>
+              <lucide-angular
+                [img]="icons.ChevronDown"
+                class="stroke-muted-foreground"
+                [size]="18"
+              ></lucide-angular>
             </ng-template>
           </span>
         </button>
@@ -59,14 +68,18 @@ import { LucideAngularModule, ChevronDownIcon } from "lucide-angular"; // Import
   `,
   styleUrls: ["./accordion.component.scss"],
 })
-export class AccordionSummaryComponent {
+export class AccordionSummaryComponent implements AccordionBaseProps {
   @Input() id!: string;
   @Input() expanded!: boolean;
   @Input() disabled!: boolean;
-  @Input() expandIcon?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  @Input() expandIcon?: TemplateRef<unknown>;
   @Input() slots?: { heading?: { component?: string } };
-  @Input() classes?: { root: string; details: string; summary: string };
-  @Input() defaultIconValue: any = ChevronDownIcon; // eslint-disable-line @typescript-eslint/no-explicit-any
+  @Input() classes?: {
+    root?: string;
+    summary?: { btn?: string; expandIcon?: string; content?: string };
+    details?: string;
+  };
+  @Input() icons: any = icons; // eslint-disable-line @typescript-eslint/no-explicit-any
   @Output() toggle = new EventEmitter<Event>();
 
   get Heading(): string {
@@ -75,9 +88,19 @@ export class AccordionSummaryComponent {
 
   get summaryClass(): string {
     return [
-      "flex w-full justify-between px-1 py-3 text-left text-sm font-semibold transition-all",
+      "flex items-center w-full px-1 py-3 text-left text-sm font-semibold transition-all ",
       this.disabled ? "cursor-default opacity-50" : "cursor-pointer",
-      this.classes?.summary || "",
+      this.classes?.summary?.btn || "",
     ].join(" ");
+  }
+
+  get expandIconClasses(): string {
+    return [
+      "transition-transform",
+      this.classes?.summary?.expandIcon || "",
+    ].join(" ");
+  }
+  get contentClasses(): string {
+    return ["flex-1", this.classes?.summary?.content || ""].join(" ");
   }
 }
