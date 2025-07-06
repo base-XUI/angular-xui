@@ -43,7 +43,7 @@
 
     <!-- Close button only if closeHandle exists and no action -->
     <button
-      *ngIf="closeHandle && !action"
+      *ngIf="closeHandle.observers.length > 0 && !action"
       type="button"
       class="ml-auto inline-flex h-6 w-6 items-center justify-center rounded-full p-1 hover:cursor-pointer hover:bg-black/5"
       (click)="handleClose()"
