@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   XCircle,
   X,
+  Popcorn,
 } from "lucide-angular";
 
 @Component({
@@ -52,6 +53,7 @@ const meta: Meta<AlertComponent> = {
           AlertTriangle,
           XCircle,
           X,
+          Popcorn,
         }),
       ],
     }),
@@ -148,7 +150,7 @@ export const ColorOverride: Story = {
 };
 
 // Actions Story
-export const WithActions: Story = {
+export const Actions: Story = {
   render: () => ({
     props: {
       onCloseHandler: () => {
@@ -171,7 +173,7 @@ export const WithActions: Story = {
 };
 
 // Icons Story
-export const IconsOverride: Story = {
+export const Icons: Story = {
   render: () => ({
     template: `
       <div class='flex w-[500px] m-auto flex-col gap-4'>
@@ -184,7 +186,7 @@ export const IconsOverride: Story = {
         <xui-alert severity="info">
           This Alert uses a custom icon.
           <ng-template #icon>
-            <lucide-icon name="check-circle" [size]="16" class="text-blue-600"></lucide-icon>
+            😎
           </ng-template>
         </xui-alert>
       </div>
@@ -193,7 +195,7 @@ export const IconsOverride: Story = {
 };
 
 // Titles Story
-export const WithTitles: Story = {
+export const Titles: Story = {
   render: () => ({
     template: `
       <div class='flex w-[500px] m-auto flex-col gap-4'>
@@ -212,6 +214,34 @@ export const WithTitles: Story = {
         <xui-alert severity="error">
           <xui-alert-title>Error</xui-alert-title>
           This is an error Alert with a scary title.
+        </xui-alert>
+      </div>
+    `,
+  }),
+};
+export const ShadeCNLike: Story = {
+  render: () => ({
+    template: `
+      <div class='flex w-[500px] m-auto flex-col gap-4'>
+        <xui-alert severity="success" variant="outlined">
+          <xui-alert-title>Success! Your changes have been saved</xui-alert-title>
+          This is an alert with icon, title and description.
+        </xui-alert>
+        <xui-alert severity="success" variant="outlined">
+            <xui-alert-title>This Alert has a title and an icon. No description.</xui-alert-title>
+          <ng-template #icon>
+              <lucide-icon name="Popcorn" class="text-green-600 mt-0.5 h-5 w-5"></lucide-icon>          
+          </ng-template>
+        </xui-alert>
+
+        <xui-alert severity="error" variant='outlined'>
+          <xui-alert-title>Unable to process your payment.</xui-alert-title>
+            <p className="mt-4">Please verify your billing information and try again.</p>
+            <ul className="mt-2 list-inside list-disc text-sm">
+              <li>Check your card details</li>
+              <li>Ensure sufficient funds</li>
+              <li>Verify billing address</li>
+            </ul>
         </xui-alert>
       </div>
     `,

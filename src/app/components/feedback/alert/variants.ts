@@ -21,64 +21,64 @@ export const alertVariants = cva(
       {
         variant: "default",
         severity: "success",
-        className: "bg-green-50 text-green-800 border-green-100",
+        className: "bg-success/5 text-success ",
       },
       {
         variant: "default",
         severity: "info",
-        className: "bg-blue-50 text-blue-800 border-blue-100",
+        className: "bg-info/5 text-info ",
       },
       {
         variant: "default",
         severity: "warning",
-        className: "bg-amber-50 text-amber-800 border-amber-100",
+        className: "bg-warning/5 text-warning ",
       },
       {
         variant: "default",
         severity: "error",
-        className: "bg-red-50 text-red-800 border-red-100",
+        className: "bg-error/5 text-error",
       },
       // Filled variant with different severities
       {
         variant: "filled",
         severity: "success",
-        className: "bg-green-600 text-white",
+        className: "bg-success text-success-foreground",
       },
       {
         variant: "filled",
         severity: "info",
-        className: "bg-blue-600 text-white",
+        className: "bg-info text-info-foreground",
       },
       {
         variant: "filled",
         severity: "warning",
-        className: "bg-amber-600 text-white",
+        className: "bg-warning text-warning-foreground",
       },
       {
         variant: "filled",
         severity: "error",
-        className: "bg-red-600 text-white",
+        className: "bg-error text-error-foreground",
       },
       // Outlined variant with different severities
       {
         variant: "outlined",
         severity: "success",
-        className: "border-green-600 text-green-800",
+        className: "border-success/50  text-success",
       },
       {
         variant: "outlined",
         severity: "info",
-        className: "border-blue-600 text-blue-800",
+        className: "border-info/50  text-info",
       },
       {
         variant: "outlined",
         severity: "warning",
-        className: "border-amber-600 text-amber-800",
+        className: "border-warning/50  text-warning",
       },
       {
         variant: "outlined",
         severity: "error",
-        className: "border-red-600 text-red-800",
+        className: "border-error/50  text-error",
       },
     ],
     defaultVariants: {
@@ -96,10 +96,10 @@ export const alertIconVariants = cva("flex-shrink-0", {
       outlined: "",
     },
     severity: {
-      success: "text-green-600",
-      info: "text-blue-600",
-      warning: "text-amber-600",
-      error: "text-red-600",
+      success: "text-success",
+      info: "text-info",
+      warning: "text-warning",
+      error: "text-error",
     },
   },
   compoundVariants: [
@@ -115,35 +115,7 @@ export const alertIconVariants = cva("flex-shrink-0", {
   },
 });
 
-export const alertTitleVariants = cva(
-  "font-medium leading-none tracking-tight",
-  {
-    variants: {
-      variant: {
-        default: "",
-        filled: "text-white",
-        outlined: "",
-      },
-      severity: {
-        success: "text-green-800",
-        info: "text-blue-800",
-        warning: "text-amber-800",
-        error: "text-red-800",
-      },
-    },
-    compoundVariants: [
-      {
-        variant: "filled",
-        severity: ["success", "info", "warning", "error"],
-        className: "text-white",
-      },
-    ],
-    defaultVariants: {
-      variant: "default",
-      severity: "success",
-    },
-  },
-);
+export const alertTitleClasses = "font-medium text-base mb-1";
 
 export const alertActionVariants = cva("ml-auto flex-shrink-0", {
   variants: {

@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AlertSeverity, AlertVariant } from "./Alert.types";
-import { alertTitleVariants } from "./variants";
+import { alertTitleClasses } from "./variants";
 
 @Component({
   selector: "xui-alert-title",
@@ -24,11 +24,6 @@ export class AlertTitleComponent {
   }
 
   get titleClasses(): string {
-    return (
-      alertTitleVariants({
-        variant: this.variant,
-        severity: this.effectiveSeverity,
-      }) + " mb-1"
-    );
+    return alertTitleClasses;
   }
 }
