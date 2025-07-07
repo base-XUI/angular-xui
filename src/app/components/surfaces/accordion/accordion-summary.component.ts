@@ -9,7 +9,7 @@ import { CommonModule } from "@angular/common";
 import { LucideAngularModule, icons } from "lucide-angular";
 import { AccordionBaseProps } from "./accordion.types";
 @Component({
-  selector: "xui-accordion-summary",
+  selector: "app-accordion-summary",
   imports: [CommonModule, LucideAngularModule],
   template: `
     <ng-container *ngIf="Heading as headingTag">

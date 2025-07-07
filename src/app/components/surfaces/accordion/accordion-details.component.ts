@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 @Component({
-  selector: "xui-accordion-details",
+  selector: "app-accordion-details",
   standalone: true,
   imports: [],
   template: `

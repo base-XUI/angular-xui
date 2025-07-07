@@ -31,19 +31,19 @@ const getAccordionRender = (
         [expandIcon]="expandIcon !== undefined && index === 1 ? expandIcon : undefined"
         (changed)="changed($event)"
       >
-        <xui-accordion-summary
+        <app-accordion-summary
         [aria-controls]="('panel' + index)-content"
         [id]="('panel' + index)-summary"
         >
           Accordion {{index}}
-        </xui-accordion-summary>
-        <xui-accordion-details
+        </app-accordion-summary>
+        <app-accordion-details
         [role]="region"
         [id]="('panel' + index)-details"
         [aria-labelledby]="('panel' + index)-summary"
         >
           this is content of accordion {{index}}
-        </xui-accordion-details>
+        </app-accordion-details>
       </app-accordion>
     </div>
   `,
@@ -210,19 +210,19 @@ export const ExpandedIcon: Story = {
           [expandIcon]="index === 1 ? customExpandIcon : undefined"
           (changed)="changed($event)"
         >
-          <xui-accordion-summary
+          <app-accordion-summary
             [aria-controls]="('panel' + index)-content"
             [id]="('panel' + index)-summary"
           >
           Accordion {{index}}
-          </xui-accordion-summary>
-          <xui-accordion-details
+          </app-accordion-summary>
+          <app-accordion-details
             [role]="region"
             [id]="('panel' + index)-details"
             [aria-labelledby]="('panel' + index)-summary"
           >
             this is content of accordion {{index}}
-          </xui-accordion-details>
+          </app-accordion-details>
         </app-accordion>
       </div>
     `,
@@ -292,19 +292,19 @@ export const Controlled: Story = {
               (changed)="handleChange($event, 'panel' + index)"
               [classes]="classes"
             >
-              <xui-accordion-summary
+              <app-accordion-summary
                 [aria-controls]="('panel' + index)-content"
                 [id]="('panel' + index)-summary"
                 >
                   Accordion {{index}}
-              </xui-accordion-summary>
-              <xui-accordion-details
+              </app-accordion-summary>
+              <app-accordion-details
                 [role]="region"
                 [id]="('panel' + index)-details"
                 [aria-labelledby]="('panel' + index)-summary"
               >
                 this is content of accordion {{index}}
-              </xui-accordion-details>
+              </app-accordion-details>
             </app-accordion>
           </div>
       `,
@@ -374,19 +374,19 @@ export const Customization: Story = {
             (changed)="handleChange($event, 'panel' + index)"
             [classes]="classes"
           >
-            <xui-accordion-summary
+            <app-accordion-summary
             [aria-controls]="('panel' + index)-content"
             [id]="('panel' + index)-summary"
             >
               Accordion {{index}}
-            </xui-accordion-summary>
-            <xui-accordion-details
+            </app-accordion-summary>
+            <app-accordion-details
             [role]="region"
             [id]="('panel' + index)-details"
             [aria-labelledby]="('panel' + index)-summary"
             >
               this is content of accordion {{index}}
-            </xui-accordion-details>
+            </app-accordion-details>
           </app-accordion>
         </div>
       `,
