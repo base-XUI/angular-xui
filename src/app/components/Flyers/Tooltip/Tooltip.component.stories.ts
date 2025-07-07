@@ -8,7 +8,7 @@ const placementOptions = Object.keys(tooltipVariantsConfig.variants.placement);
 const colorOptions = Object.keys(tooltipVariantsConfig.variants.color);
 
 const meta: Meta<TooltipComponent> = {
-  title: "Inputs/Tooltip",
+  title: "Flyers/Tooltip",
   component: TooltipComponent,
   decorators: [
     moduleMetadata({
