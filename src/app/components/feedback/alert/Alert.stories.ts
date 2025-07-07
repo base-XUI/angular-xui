@@ -91,7 +91,6 @@ const meta: Meta<AlertComponent> = {
 export default meta;
 type Story = StoryObj<AlertComponent>;
 
-// Severity Stories
 export const Severity: Story = {
   args: {
     severity: "success",
@@ -108,7 +107,6 @@ export const Severity: Story = {
   }),
 };
 
-// Variant Stories
 export const FilledVariants: Story = {
   render: () => ({
     template: `
@@ -135,7 +133,6 @@ export const OutlinedVariants: Story = {
   }),
 };
 
-// Color Story
 export const ColorOverride: Story = {
   args: {
     severity: "success",
@@ -149,7 +146,6 @@ export const ColorOverride: Story = {
   }),
 };
 
-// Actions Story
 export const Actions: Story = {
   render: () => ({
     props: {
@@ -172,7 +168,6 @@ export const Actions: Story = {
   }),
 };
 
-// Icons Story
 export const Icons: Story = {
   render: () => ({
     template: `
@@ -202,7 +197,6 @@ export const Icons: Story = {
   }),
 };
 
-// Titles Story
 export const Titles: Story = {
   render: () => ({
     template: `

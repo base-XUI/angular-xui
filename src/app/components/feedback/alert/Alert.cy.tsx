@@ -46,7 +46,7 @@ describe("AlertComponent", () => {
     cy.mount(TestComponent);
     cy.get("xui-alert").should("exist");
     cy.get("xui-alert").should("contain.text", "Alert content");
-    cy.get("check-circle").should("exist"); // Default success icon
+    cy.get("check-circle").should("exist");
   });
 
   it("should render with different severity levels", () => {
@@ -55,21 +55,21 @@ describe("AlertComponent", () => {
         severity: "info",
       },
     });
-    cy.get("alert-circle").should("exist"); // Info icon
+    cy.get("alert-circle").should("exist");
 
     cy.mount(TestComponent, {
       componentProperties: {
         severity: "warning",
       },
     });
-    cy.get("alert-triangle").should("exist"); // Warning icon
+    cy.get("alert-triangle").should("exist");
 
     cy.mount(TestComponent, {
       componentProperties: {
         severity: "error",
       },
     });
-    cy.get("x-circle").should("exist"); // Error icon
+    cy.get("x-circle").should("exist");
   });
 
   it("should render with filled variant", () => {
@@ -97,7 +97,6 @@ describe("AlertComponent", () => {
         color: "warning",
       },
     });
-    // Should have warning icon despite success severity
     cy.get("alert-triangle").should("exist");
   });
 

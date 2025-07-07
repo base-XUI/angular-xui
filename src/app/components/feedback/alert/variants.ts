@@ -17,7 +17,6 @@ export const alertVariants = cva(
       },
     },
     compoundVariants: [
-      // Default variant with different severities
       {
         variant: "default",
         severity: "success",
@@ -38,7 +37,6 @@ export const alertVariants = cva(
         severity: "error",
         className: "bg-error/5 text-error",
       },
-      // Filled variant with different severities
       {
         variant: "filled",
         severity: "success",
@@ -59,7 +57,6 @@ export const alertVariants = cva(
         severity: "error",
         className: "bg-error text-error-foreground",
       },
-      // Outlined variant with different severities
       {
         variant: "outlined",
         severity: "success",
