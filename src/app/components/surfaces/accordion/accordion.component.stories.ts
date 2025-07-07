@@ -269,6 +269,18 @@ export const Controlled: Story = {
         },
       },
       template: `
+              <!-- 
+          Component State Management Implementation:
+          
+          In component.ts we have:
+          - currentExpanded: string | null = null;
+          - handleChange function to manage the accordion state
+          
+          handleChange(data: { event: Event; expanded: boolean }, panelId: string) {
+            // Custom logic for handling accordion expansion
+            this.currentExpanded = data.expanded ? panelId : null;
+          }
+        -->
           <div *ngFor="let index of accordionList" class="max-w-xs mx-auto">
             <app-accordion
               [expanded]="currentExpanded === ('panel' + index)"
