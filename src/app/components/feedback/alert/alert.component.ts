@@ -47,6 +47,14 @@ export class AlertComponent implements AlertProps {
 
   @ContentChild(TemplateRef) customIcon?: TemplateRef<unknown>;
 
+  // Add a getter to get the icon template for the current severity if provided
+  get severityIconTemplate(): TemplateRef<unknown> | null {
+    if (this.iconMapping && this.effectiveSeverity in this.iconMapping) {
+      return this.iconMapping[this.effectiveSeverity]!;
+    }
+    return null;
+  }
+
   get effectiveSeverity(): AlertSeverity {
     return this.color || this.severity;
   }

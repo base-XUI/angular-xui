@@ -61,6 +61,7 @@
     "@angular/router": "^19.1.0",
     "@changesets/changelog-github": "^0.5.1",
     "class-variance-authority": "^0.7.1",
+    "lucide-angular": "^0.525.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

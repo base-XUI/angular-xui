@@ -4,30 +4,35 @@
       <ng-container *ngTemplateOutlet="customIcon"></ng-container>
     </ng-container>
     <ng-template #defaultIcon>
-      <span [class]="iconClasses">
-        <ng-container [ngSwitch]="effectiveSeverity">
-          <lucide-angular
-            [img]="CheckCircle"
-            *ngSwitchCase="'success'"
-            class="mt-0.5 h-5 w-5"
-          ></lucide-angular>
-          <lucide-angular
-            [img]="AlertCircle"
-            *ngSwitchCase="'info'"
-            class="mt-0.5 h-5 w-5"
-          ></lucide-angular>
-          <lucide-angular
-            [img]="AlertTriangle"
-            *ngSwitchCase="'warning'"
-            class="mt-0.5 h-5 w-5"
-          ></lucide-angular>
-          <lucide-angular
-            [img]="XCircle"
-            *ngSwitchCase="'error'"
-            class="mt-0.5 h-5 w-5"
-          ></lucide-angular>
-        </ng-container>
-      </span>
+      <ng-container *ngIf="severityIconTemplate; else standardIcons">
+        <ng-container *ngTemplateOutlet="severityIconTemplate"></ng-container>
+      </ng-container>
+      <ng-template #standardIcons>
+        <span [class]="iconClasses">
+          <ng-container [ngSwitch]="effectiveSeverity">
+            <lucide-angular
+              [img]="CheckCircle"
+              *ngSwitchCase="'success'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+            <lucide-angular
+              [img]="AlertCircle"
+              *ngSwitchCase="'info'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+            <lucide-angular
+              [img]="AlertTriangle"
+              *ngSwitchCase="'warning'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+            <lucide-angular
+              [img]="XCircle"
+              *ngSwitchCase="'error'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+          </ng-container>
+        </span>
+      </ng-template>
     </ng-template>
   </ng-container>
 

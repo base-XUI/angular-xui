@@ -176,19 +176,27 @@ export const Actions: Story = {
 export const Icons: Story = {
   render: () => ({
     template: `
-      <div class='flex w-[500px] m-auto flex-col gap-4'>
-        <xui-alert severity="success">
-          This is a success Alert with default icon.
-        </xui-alert>
-        <xui-alert severity="success" [icon]="false">
-          This is a success Alert with no icon.
-        </xui-alert>
-        <xui-alert severity="info">
+      <div class='flex w-[600px] m-auto flex-col gap-4'>
+       <xui-alert severity="info">
           This Alert uses a custom icon.
           <ng-template #icon>
             😎
           </ng-template>
         </xui-alert>
+        <xui-alert severity="success" [icon]="false">
+          This success Alert has no icon.
+        </xui-alert>
+        <ng-template #customSuccessIcon>
+          🤖
+        </ng-template>
+
+      <xui-alert
+        severity="success"
+        [iconMapping]="{ success: customSuccessIcon }"
+      >
+        This success Alert uses <code>iconMapping</code> to override the default icon.
+      </xui-alert>
+       
       </div>
     `,
   }),
@@ -236,8 +244,8 @@ export const ShadeCNLike: Story = {
 
         <xui-alert severity="error" variant='outlined'>
           <xui-alert-title>Unable to process your payment.</xui-alert-title>
-            <p className="mt-4">Please verify your billing information and try again.</p>
-            <ul className="mt-2 list-inside list-disc text-sm">
+            <p class="mt-2">Please verify your billing information and try again.</p>
+            <ul class="mt-2 list-inside list-disc text-sm">
               <li>Check your card details</li>
               <li>Ensure sufficient funds</li>
               <li>Verify billing address</li>

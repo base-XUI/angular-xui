@@ -3,13 +3,7 @@ import { AlertComponent } from "./alert.component";
 import { AlertTitleComponent } from "./alert-title.component";
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import {
-  CheckCircle,
-  AlertCircle,
-  AlertTriangle,
-  XCircle,
-  X,
-} from "lucide-angular";
+import { CheckCircle } from "lucide-angular";
 
 @Component({
   selector: "test-wrapper",
