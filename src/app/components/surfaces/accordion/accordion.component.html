@@ -1,0 +1,23 @@
+<ng-container>
+  <div [class]="rootClass">
+    <app-accordion-summary
+      [expanded]="isOpen"
+      [expandIcon]="expandIcon"
+      [disabled]="disabled"
+      [slots]="slots"
+      [id]="id"
+      [classes]="classes"
+      (toggle)="handleExpansion($event)"
+    >
+      Accordion {{ index }}
+    </app-accordion-summary>
+    <app-accordion-details
+      [expanded]="isOpen"
+      [role]="role"
+      [classes]="classes"
+      [id]="id"
+    >
+      this is content of accordion {{ index }}
+    </app-accordion-details>
+  </div>
+</ng-container>

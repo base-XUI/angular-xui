@@ -39,6 +39,8 @@
   --info-foreground: 355 100% 100%;
   --warning: 32 95% 44%;
   --warning-foreground: 355 100% 100%;
+   --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
 /* Update dark mode to use class-based selection */
@@ -77,4 +79,20 @@
   --info-foreground: 355 100% 100%;
   --warning: 32 95% 50%;
   --warning-foreground: 355 100% 100%;
+    @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }

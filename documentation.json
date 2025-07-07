@@ -43,6 +43,116 @@
       "rawdescription": "\n\nProperties that can be passed to an element\n",
       "methods": [],
       "extends": []
+    },
+    {
+      "name": "SnackbarAnchorOrigin",
+      "id": "interface-SnackbarAnchorOrigin-b53b3ce92042e5dbcd587f27aa4844c5345d01ea84ab6ba86536186c34a7bfa5db81518be532fe812927d83aaa1559176ca401bc7997584d96ec71c9529f585c",
+      "file": "src/app/components/feedback/snackbar/snackbar.types.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { TemplateRef } from \"@angular/core\";\r\n\r\nexport type SnackbarVerticalPosition = \"top\" | \"bottom\";\r\nexport type SnackbarHorizontalPosition = \"left\" | \"center\" | \"right\";\r\n\r\nexport interface SnackbarAnchorOrigin {\r\n  vertical: SnackbarVerticalPosition;\r\n  horizontal: SnackbarHorizontalPosition;\r\n}\r\n\r\nexport interface SnackbarOptions {\r\n  message?: string;\r\n  action?: TemplateRef<unknown>;\r\n  autoHideDuration?: number;\r\n  anchorOrigin?: SnackbarAnchorOrigin;\r\n  closeHandle?: () => void;\r\n  open?: boolean;\r\n}\r\n",
+      "properties": [
+        {
+          "name": "horizontal",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "SnackbarHorizontalPosition",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 8
+        },
+        {
+          "name": "vertical",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "SnackbarVerticalPosition",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 7
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
+      "name": "SnackbarOptions",
+      "id": "interface-SnackbarOptions-b53b3ce92042e5dbcd587f27aa4844c5345d01ea84ab6ba86536186c34a7bfa5db81518be532fe812927d83aaa1559176ca401bc7997584d96ec71c9529f585c",
+      "file": "src/app/components/feedback/snackbar/snackbar.types.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { TemplateRef } from \"@angular/core\";\r\n\r\nexport type SnackbarVerticalPosition = \"top\" | \"bottom\";\r\nexport type SnackbarHorizontalPosition = \"left\" | \"center\" | \"right\";\r\n\r\nexport interface SnackbarAnchorOrigin {\r\n  vertical: SnackbarVerticalPosition;\r\n  horizontal: SnackbarHorizontalPosition;\r\n}\r\n\r\nexport interface SnackbarOptions {\r\n  message?: string;\r\n  action?: TemplateRef<unknown>;\r\n  autoHideDuration?: number;\r\n  anchorOrigin?: SnackbarAnchorOrigin;\r\n  closeHandle?: () => void;\r\n  open?: boolean;\r\n}\r\n",
+      "properties": [
+        {
+          "name": "action",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<>",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 13
+        },
+        {
+          "name": "anchorOrigin",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "SnackbarAnchorOrigin",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 15
+        },
+        {
+          "name": "autoHideDuration",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 14
+        },
+        {
+          "name": "closeHandle",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "function",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 16
+        },
+        {
+          "name": "message",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 12
+        },
+        {
+          "name": "open",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 17
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
     }
   ],
   "injectables": [],
@@ -52,8 +162,493 @@
   "directives": [],
   "components": [
     {
+      "name": "AccordionComponent",
+      "id": "component-AccordionComponent-fc0621e3f32bd500844e0461e8b46d542d63c580364094f114bf2d08f119f9e0b52491a8b6a91ebdde45d72677286e4bd0188f92b438ada586b58121cdf1796d",
+      "file": "src/app/components/surfaces/accordion/accordion.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-accordion",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./accordion.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "classes",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 42,
+          "type": "literal type",
+          "decorators": []
+        },
+        {
+          "name": "component",
+          "defaultValue": "\"div\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 30,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "defaultExpanded",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 32,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "disabled",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 36,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "disableGutters",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 33,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "expanded",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 34,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "expandIcon",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 37,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "id",
+          "defaultValue": "uuidv4()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 29,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "index",
+          "defaultValue": "1",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 31,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "role",
+          "defaultValue": "\"region\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 38,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "slots",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 39,
+          "type": "literal type",
+          "decorators": []
+        },
+        {
+          "name": "square",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 35,
+          "type": "boolean",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "changed",
+          "defaultValue": "new EventEmitter<{ event: Event; expanded: boolean }>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 47,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "uncontrolledOpen",
+          "defaultValue": "this.defaultExpanded",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 49
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "handleExpansion",
+          "args": [
+            {
+              "name": "event",
+              "type": "Event",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 80,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "Event",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 53,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": false,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "LucideAngularModule",
+          "type": "module"
+        },
+        {
+          "name": "AccordionSummaryComponent",
+          "type": "component"
+        },
+        {
+          "name": "AccordionDetailsComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  TemplateRef,\r\n  Output,\r\n} from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { LucideAngularModule } from \"lucide-angular\";\r\nimport { AccordionBaseProps } from \"./accordion.types\";\r\nimport { v4 as uuidv4 } from \"uuid\";\r\nimport { AccordionSummaryComponent } from \"./accordion-summary.component\";\r\nimport { AccordionDetailsComponent } from \"./accordion-details.component\";\r\nimport { accordionVariants } from \"./variants\";\r\n\r\n@Component({\r\n  selector: \"app-accordion\",\r\n  imports: [\r\n    CommonModule,\r\n    LucideAngularModule,\r\n    AccordionSummaryComponent,\r\n    AccordionDetailsComponent,\r\n  ],\r\n  templateUrl: \"./accordion.component.html\",\r\n  styleUrl: \"./accordion.component.scss\",\r\n})\r\nexport class AccordionComponent implements AccordionBaseProps, OnInit {\r\n  @Input() id: string = uuidv4(); //generate id\r\n  @Input() component?: string = \"div\";\r\n  @Input() index: number = 1;\r\n  @Input() defaultExpanded!: boolean;\r\n  @Input() disableGutters!: boolean;\r\n  @Input() expanded!: boolean;\r\n  @Input() square?: boolean = false;\r\n  @Input() disabled!: boolean;\r\n  @Input() expandIcon!: TemplateRef<unknown>;\r\n  @Input() role: string = \"region\";\r\n  @Input() slots?: {\r\n    heading?: { component?: string };\r\n  };\r\n  @Input() classes?: {\r\n    root?: string;\r\n    summary?: { btn?: string; expandIcon?: string; content?: string };\r\n    details?: string;\r\n  };\r\n  @Output() changed = new EventEmitter<{ event: Event; expanded: boolean }>();\r\n  // Default uncontrolled state\r\n  uncontrolledOpen: boolean = this.defaultExpanded;\r\n  get isControlled(): boolean {\r\n    return this.expanded !== undefined;\r\n  }\r\n  ngOnInit(): void {\r\n    // uncontrolledOpen with defaultExpanded if it changes\r\n    this.uncontrolledOpen = this.defaultExpanded;\r\n  }\r\n\r\n  get rootClass(): string {\r\n    return [\r\n      \"max-w-xs mx-auto\",\r\n      !this.disableGutters && this.isOpen ? \"my-3\" : \"my-0\",\r\n      this.square && \"rounded-none shadow\",\r\n      this.classes?.root,\r\n      accordionVariants({\r\n        square: this.square,\r\n        disableGutters: this.disableGutters,\r\n        disabled: this.disabled,\r\n      }),\r\n    ].join(\" \");\r\n  }\r\n\r\n  get isOpen(): boolean {\r\n    if (this.isControlled) {\r\n      return this.expanded;\r\n    } else {\r\n      return this.uncontrolledOpen;\r\n    }\r\n  }\r\n  //handle expansion\r\n  handleExpansion(event: Event): void {\r\n    if (this.disabled) return;\r\n    if (this.isControlled) {\r\n      // For controlled mode, emit the opposite of current expanded state\r\n      this.changed.emit({ event, expanded: !this.expanded });\r\n    } else {\r\n      // For uncontrolled mode, update internal state and emit\r\n      this.uncontrolledOpen = !this.uncontrolledOpen;\r\n      this.changed.emit({ event, expanded: this.uncontrolledOpen });\r\n    }\r\n  }\r\n}\r\n",
+      "styleUrl": "./accordion.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "implements": ["AccordionBaseProps", "OnInit"],
+      "accessors": {
+        "isControlled": {
+          "name": "isControlled",
+          "getSignature": {
+            "name": "isControlled",
+            "type": "boolean",
+            "returnType": "boolean",
+            "line": 50
+          }
+        },
+        "rootClass": {
+          "name": "rootClass",
+          "getSignature": {
+            "name": "rootClass",
+            "type": "string",
+            "returnType": "string",
+            "line": 58
+          }
+        },
+        "isOpen": {
+          "name": "isOpen",
+          "getSignature": {
+            "name": "isOpen",
+            "type": "boolean",
+            "returnType": "boolean",
+            "line": 72
+          }
+        }
+      },
+      "templateData": "<ng-container>\r\n  <div [class]=\"rootClass\">\r\n    <app-accordion-summary\r\n      [expanded]=\"isOpen\"\r\n      [expandIcon]=\"expandIcon\"\r\n      [disabled]=\"disabled\"\r\n      [slots]=\"slots\"\r\n      [id]=\"id\"\r\n      [classes]=\"classes\"\r\n      (toggle)=\"handleExpansion($event)\"\r\n    >\r\n      Accordion {{ index }}\r\n    </app-accordion-summary>\r\n    <app-accordion-details\r\n      [expanded]=\"isOpen\"\r\n      [role]=\"role\"\r\n      [classes]=\"classes\"\r\n      [id]=\"id\"\r\n    >\r\n      this is content of accordion {{ index }}\r\n    </app-accordion-details>\r\n  </div>\r\n</ng-container>\r\n"
+    },
+    {
+      "name": "AccordionDetailsComponent",
+      "id": "component-AccordionDetailsComponent-3c4a85ace20d9c5b9ce4d75f9b6945e65b65fa3b02c6f0f714beb4816c75c25628eea4773725f9d759b4726b6e21f122637de30b9b54b435699c87a8be692305",
+      "file": "src/app/components/surfaces/accordion/accordion-details.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-accordion-details",
+      "styleUrls": ["./accordion.component.scss"],
+      "styles": [],
+      "template": "<div\n  [attr.role]=\"role\"\n  [attr.aria-labelledby]=\"id + '-summary'\"\n  [id]=\"id + '-details'\"\n  [attr.aria-expanded]=\"expanded\"\n  [class]=\"detailsClass\"\n>\n  <ng-content></ng-content>\n</div>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "classes",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 23,
+          "type": "literal type",
+          "decorators": []
+        },
+        {
+          "name": "expanded",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 22,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "id",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 20,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "role",
+          "defaultValue": "\"region\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 21,
+          "type": "string",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { Component, Input } from \"@angular/core\";\r\n@Component({\r\n  selector: \"app-accordion-details\",\r\n  standalone: true,\r\n  imports: [],\r\n  template: `\r\n    <div\r\n      [attr.role]=\"role\"\r\n      [attr.aria-labelledby]=\"id + '-summary'\"\r\n      [id]=\"id + '-details'\"\r\n      [attr.aria-expanded]=\"expanded\"\r\n      [class]=\"detailsClass\"\r\n    >\r\n      <ng-content></ng-content>\r\n    </div>\r\n  `,\r\n  styleUrls: [\"./accordion.component.scss\"],\r\n})\r\nexport class AccordionDetailsComponent {\r\n  @Input() id?: string;\r\n  @Input() role: string = \"region\";\r\n  @Input() expanded!: boolean;\r\n  @Input() classes?: {\r\n    root?: string;\r\n    summary?: { btn?: string; expandIcon?: string; content?: string };\r\n    details?: string;\r\n  };\r\n\r\n  get detailsClass(): string {\r\n    return [\r\n      \"px-1 py-2\",\r\n      this.expanded ? \"accordion\" : \"accordion-up\",\r\n      this.classes?.details,\r\n    ].join(\" \");\r\n  }\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": [
+        {
+          "data": ".accordion {\r\n  display: block;\r\n  animation: accordion-down;\r\n}\r\n.accordion-up {\r\n  display: none;\r\n  animation: accordion-up;\r\n}\r\n",
+          "styleUrl": "./accordion.component.scss"
+        }
+      ],
+      "stylesData": "",
+      "extends": [],
+      "accessors": {
+        "detailsClass": {
+          "name": "detailsClass",
+          "getSignature": {
+            "name": "detailsClass",
+            "type": "string",
+            "returnType": "string",
+            "line": 29
+          }
+        }
+      }
+    },
+    {
+      "name": "AccordionSummaryComponent",
+      "id": "component-AccordionSummaryComponent-5a41976098a3f05460963f81bb8c638aba55195eb4706a8235986384dcab5c95c2a208ad6a19b1fff9ff1f1365345fe3063172fc7fa916f5cd18526d4ac9bf47",
+      "file": "src/app/components/surfaces/accordion/accordion-summary.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-accordion-summary",
+      "styleUrls": ["./accordion.component.scss"],
+      "styles": [],
+      "template": "<ng-container *ngIf=\"Heading as headingTag\">\n  <ng-container [ngSwitch]=\"headingTag\">\n    <h1 *ngSwitchCase=\"'h1'\" [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </h1>\n    <h2 *ngSwitchCase=\"'h2'\" [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </h2>\n    <h3 *ngSwitchCase=\"'h3'\" [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </h3>\n    <h4 *ngSwitchCase=\"'h4'\" [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </h4>\n    <h5 *ngSwitchCase=\"'h5'\" [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </h5>\n    <h6 *ngSwitchCase=\"'h6'\" [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </h6>\n    <div *ngSwitchDefault [attr.id]=\"id + '-heading'\">\n      <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\n    </div>\n  </ng-container>\n\n  <ng-template #buttonTpl>\n    <button\n      type=\"button\"\n      [class]=\"summaryClass\"\n      [attr.aria-expanded]=\"expanded\"\n      [attr.aria-controls]=\"id + '-details'\"\n      [id]=\"id + '-summary'\"\n      [disabled]=\"disabled\"\n      (click)=\"toggle.emit($event)\"\n    >\n      <span [class]=\"contentClasses\">\n        <ng-content></ng-content>\n      </span>\n      <span [class]=\"expandIconClasses\" [class.rotate-180]=\"expanded\">\n        <ng-container *ngIf=\"expandIcon; else defaultIcon\">\n          <ng-container *ngTemplateOutlet=\"expandIcon\"></ng-container>\n        </ng-container>\n        <ng-template #defaultIcon>\n          <lucide-angular\n            [img]=\"icons.ChevronDown\"\n            class=\"stroke-muted-foreground\"\n            [size]=\"18\"\n          ></lucide-angular>\n        </ng-template>\n      </span>\n    </button>\n  </ng-template>\n</ng-container>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "classes",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 77,
+          "type": "literal type",
+          "decorators": []
+        },
+        {
+          "name": "disabled",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 74,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "expanded",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 73,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "expandIcon",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 75,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "icons",
+          "defaultValue": "icons",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 82,
+          "type": "any",
+          "decorators": []
+        },
+        {
+          "name": "id",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 72,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "slots",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 76,
+          "type": "literal type",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "toggle",
+          "defaultValue": "new EventEmitter<Event>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 83,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": false,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "LucideAngularModule",
+          "type": "module"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  Output,\r\n  TemplateRef,\r\n} from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { LucideAngularModule, icons } from \"lucide-angular\";\r\nimport { AccordionBaseProps } from \"./accordion.types\";\r\n@Component({\r\n  selector: \"app-accordion-summary\",\r\n  imports: [CommonModule, LucideAngularModule],\r\n  template: `\r\n    <ng-container *ngIf=\"Heading as headingTag\">\r\n      <ng-container [ngSwitch]=\"headingTag\">\r\n        <h1 *ngSwitchCase=\"'h1'\" [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </h1>\r\n        <h2 *ngSwitchCase=\"'h2'\" [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </h2>\r\n        <h3 *ngSwitchCase=\"'h3'\" [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </h3>\r\n        <h4 *ngSwitchCase=\"'h4'\" [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </h4>\r\n        <h5 *ngSwitchCase=\"'h5'\" [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </h5>\r\n        <h6 *ngSwitchCase=\"'h6'\" [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </h6>\r\n        <div *ngSwitchDefault [attr.id]=\"id + '-heading'\">\r\n          <ng-container *ngTemplateOutlet=\"buttonTpl\"></ng-container>\r\n        </div>\r\n      </ng-container>\r\n\r\n      <ng-template #buttonTpl>\r\n        <button\r\n          type=\"button\"\r\n          [class]=\"summaryClass\"\r\n          [attr.aria-expanded]=\"expanded\"\r\n          [attr.aria-controls]=\"id + '-details'\"\r\n          [id]=\"id + '-summary'\"\r\n          [disabled]=\"disabled\"\r\n          (click)=\"toggle.emit($event)\"\r\n        >\r\n          <span [class]=\"contentClasses\">\r\n            <ng-content></ng-content>\r\n          </span>\r\n          <span [class]=\"expandIconClasses\" [class.rotate-180]=\"expanded\">\r\n            <ng-container *ngIf=\"expandIcon; else defaultIcon\">\r\n              <ng-container *ngTemplateOutlet=\"expandIcon\"></ng-container>\r\n            </ng-container>\r\n            <ng-template #defaultIcon>\r\n              <lucide-angular\r\n                [img]=\"icons.ChevronDown\"\r\n                class=\"stroke-muted-foreground\"\r\n                [size]=\"18\"\r\n              ></lucide-angular>\r\n            </ng-template>\r\n          </span>\r\n        </button>\r\n      </ng-template>\r\n    </ng-container>\r\n  `,\r\n  styleUrls: [\"./accordion.component.scss\"],\r\n})\r\nexport class AccordionSummaryComponent implements AccordionBaseProps {\r\n  @Input() id!: string;\r\n  @Input() expanded!: boolean;\r\n  @Input() disabled!: boolean;\r\n  @Input() expandIcon?: TemplateRef<unknown>;\r\n  @Input() slots?: { heading?: { component?: string } };\r\n  @Input() classes?: {\r\n    root?: string;\r\n    summary?: { btn?: string; expandIcon?: string; content?: string };\r\n    details?: string;\r\n  };\r\n  @Input() icons: any = icons; // eslint-disable-line @typescript-eslint/no-explicit-any\r\n  @Output() toggle = new EventEmitter<Event>();\r\n\r\n  get Heading(): string {\r\n    return this.slots?.heading?.component || \"h3\";\r\n  }\r\n\r\n  get summaryClass(): string {\r\n    return [\r\n      \"flex items-center w-full px-1 py-3 text-left text-sm font-semibold transition-all \",\r\n      this.disabled ? \"cursor-default opacity-50\" : \"cursor-pointer\",\r\n      this.classes?.summary?.btn || \"\",\r\n    ].join(\" \");\r\n  }\r\n\r\n  get expandIconClasses(): string {\r\n    return [\r\n      \"transition-transform\",\r\n      this.classes?.summary?.expandIcon || \"\",\r\n    ].join(\" \");\r\n  }\r\n  get contentClasses(): string {\r\n    return [\"flex-1\", this.classes?.summary?.content || \"\"].join(\" \");\r\n  }\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": [
+        {
+          "data": ".accordion {\r\n  display: block;\r\n  animation: accordion-down;\r\n}\r\n.accordion-up {\r\n  display: none;\r\n  animation: accordion-up;\r\n}\r\n",
+          "styleUrl": "./accordion.component.scss"
+        }
+      ],
+      "stylesData": "",
+      "extends": [],
+      "implements": ["AccordionBaseProps"],
+      "accessors": {
+        "Heading": {
+          "name": "Heading",
+          "getSignature": {
+            "name": "Heading",
+            "type": "string",
+            "returnType": "string",
+            "line": 85
+          }
+        },
+        "summaryClass": {
+          "name": "summaryClass",
+          "getSignature": {
+            "name": "summaryClass",
+            "type": "string",
+            "returnType": "string",
+            "line": 89
+          }
+        },
+        "expandIconClasses": {
+          "name": "expandIconClasses",
+          "getSignature": {
+            "name": "expandIconClasses",
+            "type": "string",
+            "returnType": "string",
+            "line": 97
+          }
+        },
+        "contentClasses": {
+          "name": "contentClasses",
+          "getSignature": {
+            "name": "contentClasses",
+            "type": "string",
+            "returnType": "string",
+            "line": 103
+          }
+        }
+      }
+    },
+    {
       "name": "AppComponent",
-      "id": "component-AppComponent-00a97ab753175d661ea543d7f93d445364b513e6e90272bfb0810279281d9c195329ab127f46eec8793579cbde0a3e0ab04ce7e030111c11c1bd446aca122921",
+      "id": "component-AppComponent-6d9de0b8fcac36bd321b5b96ef546f9f7ac1c6da69264bf9fbdb9cdcefd2b5881c058adf10d9edddbb2acfc4c0725194c6cfc92f965eb492dc4a7b639ff8aa63",
       "file": "src/app/app.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -78,7 +673,7 @@
           "indexKey": "",
           "optional": false,
           "description": "",
-          "line": 11
+          "line": 12
         }
       ],
       "methodsClass": [],
@@ -90,12 +685,16 @@
       "imports": [
         {
           "name": "RouterOutlet"
+        },
+        {
+          "name": "LucideAngularModule",
+          "type": "module"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from \"@angular/core\";\r\nimport { RouterOutlet } from \"@angular/router\";\r\n\r\n@Component({\r\n  selector: \"app-root\",\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  templateUrl: \"./app.component.html\",\r\n})\r\nexport class AppComponent {\r\n  title = \"angular-xui\";\r\n}\r\n",
+      "sourceCode": "import { Component } from \"@angular/core\";\r\nimport { RouterOutlet } from \"@angular/router\";\r\nimport { LucideAngularModule } from \"lucide-angular\";\r\n\r\n@Component({\r\n  selector: \"app-root\",\r\n  standalone: true,\r\n  imports: [RouterOutlet, LucideAngularModule],\r\n  templateUrl: \"./app.component.html\",\r\n})\r\nexport class AppComponent {\r\n  title = \"angular-xui\";\r\n}\r\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -104,7 +703,7 @@
     },
     {
       "name": "ButtonComponent",
-      "id": "component-ButtonComponent-8c5847efc70ed0b26a88543ff6437e8f103dbab924f5879dad5b4bbac5a10d52e6e38e0096fe97ddaeb0ca2401d8eaaa272b3e890c646b5225b36ad6a6bbdf12",
+      "id": "component-ButtonComponent-e819f1c27419f23daca23c676ea4cd08db407f01ff9b75819ab45338b6e0f9c02de7d24fac71b40c5867ba7fe627c4b5848393d014008c936dcb15f392f4169a",
       "file": "src/app/components/inputs/button/button.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -295,7 +894,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  TemplateRef,\n  ChangeDetectionStrategy,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { buttonVariants } from \"./variants\";\nimport { ButtonBaseProps } from \"./button.types\";\n\n@Component({\n  selector: \"xui-button\",\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  templateUrl: \"./button.component.html\",\n  styleUrls: [],\n})\nexport class ButtonComponent implements ButtonBaseProps {\n  @Input() variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\n  @Input() color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  @Input() size: \"small\" | \"medium\" | \"large\" = \"medium\";\n  @Input() disabled: boolean = false;\n  @Input() loading: boolean = false;\n  @Input() loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\n  @Input() fullWidth: boolean = false;\n  @Input() disableElevation: boolean = false;\n  @Input() component: string = \"button\";\n  @Input() type: \"button\" | \"submit\" | \"reset\" = \"button\";\n  @Input() href?: string;\n  @Input() target?: string;\n  @Input() role?: string;\n  @Input() startIcon?: TemplateRef<unknown>;\n  @Input() endIcon?: TemplateRef<unknown>;\n  @Input() customLoadingIndicator?: TemplateRef<unknown>;\n  @Output() clicked = new EventEmitter<void>();\n\n  get isDisabled(): boolean {\n    return this.disabled || this.loading;\n  }\n\n  get buttonClasses(): string {\n    return buttonVariants({\n      variant: this.variant,\n      color: this.color,\n      size: this.size,\n      fullWidth: this.fullWidth,\n      disableElevation: this.disableElevation,\n    });\n  }\n\n  handleClick() {\n    if (!this.isDisabled) {\n      this.clicked.emit();\n    }\n  }\n}\n",
+      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  TemplateRef,\r\n  ChangeDetectionStrategy,\r\n} from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { buttonVariants } from \"./variants\";\r\nimport { ButtonBaseProps } from \"./button.types\";\r\n\r\n@Component({\r\n  selector: \"xui-button\",\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  templateUrl: \"./button.component.html\",\r\n  styleUrls: [],\r\n})\r\nexport class ButtonComponent implements ButtonBaseProps {\r\n  @Input() variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\r\n  @Input() color:\r\n    | \"inherit\"\r\n    | \"primary\"\r\n    | \"secondary\"\r\n    | \"success\"\r\n    | \"error\"\r\n    | \"info\"\r\n    | \"warning\" = \"primary\";\r\n  @Input() size: \"small\" | \"medium\" | \"large\" = \"medium\";\r\n  @Input() disabled: boolean = false;\r\n  @Input() loading: boolean = false;\r\n  @Input() loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\r\n  @Input() fullWidth: boolean = false;\r\n  @Input() disableElevation: boolean = false;\r\n  @Input() component: string = \"button\";\r\n  @Input() type: \"button\" | \"submit\" | \"reset\" = \"button\";\r\n  @Input() href?: string;\r\n  @Input() target?: string;\r\n  @Input() role?: string;\r\n  @Input() startIcon?: TemplateRef<unknown>;\r\n  @Input() endIcon?: TemplateRef<unknown>;\r\n  @Input() customLoadingIndicator?: TemplateRef<unknown>;\r\n  @Output() clicked = new EventEmitter<void>();\r\n\r\n  get isDisabled(): boolean {\r\n    return this.disabled || this.loading;\r\n  }\r\n\r\n  get buttonClasses(): string {\r\n    return buttonVariants({\r\n      variant: this.variant,\r\n      color: this.color,\r\n      size: this.size,\r\n      fullWidth: this.fullWidth,\r\n      disableElevation: this.disableElevation,\r\n    });\r\n  }\r\n\r\n  handleClick() {\r\n    if (!this.isDisabled) {\r\n      this.clicked.emit();\r\n    }\r\n  }\r\n}\r\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -325,7 +924,7 @@
     },
     {
       "name": "LinkComponent",
-      "id": "component-LinkComponent-86102b38a19f84c0078fe4c47b5e2329fda86d315ec9d57c97d80949e75e9b93dd38095e39254aa547c28aaabe5469933feffc82a5e7cb2fdcac197e3a9131a9",
+      "id": "component-LinkComponent-1e1be3d4fe47e2d52ca32c41cd8c900dc06dd99a3980b9f3993013a65f38234e14ac6234e561a854879bf0a97db218f3b353c72caedaca19052ac71783e5b1c5",
       "file": "src/app/components/navigations/Link/link.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -442,7 +1041,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  TemplateRef,\n} from \"@angular/core\";\nimport { CommonModule } from \"@angular/common\";\nimport { LinkBaseProps } from \"./link.types\";\nimport { LinkVariants } from \"./variants\";\n\n@Component({\n  selector: \"app-link\",\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  templateUrl: \"./link.component.html\",\n  styleUrls: [],\n})\nexport class LinkComponent implements LinkBaseProps {\n  @Input() color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  @Input() className?: string;\n  @Input() variant:\n    | \"inherit\"\n    | \"h1\"\n    | \"h2\"\n    | \"h3\"\n    | \"h4\"\n    | \"h5\"\n    | \"h6\"\n    | \"subtitle1\"\n    | \"subtitle2\"\n    | \"body1\"\n    | \"body2\"\n    | \"body3\"\n    | \"caption\" = \"inherit\";\n  @Input() component: string = \"a\";\n  @Input() href?: string;\n  @Input() target?: string;\n  @Input() rel?: \"noopener\" | \"noreferrer\" | undefined;\n  @Input() role?: string;\n  @Input() underline: \"none\" | \"hover\" | \"always\" = \"hover\";\n  @Input() children?: string | TemplateRef<unknown>;\n  //get class of link\n  get linkClasses(): string {\n    return LinkVariants({\n      variant: this.variant,\n      color: this.color,\n      underline: this.underline,\n    });\n  }\n}\n",
+      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  ChangeDetectionStrategy,\r\n  TemplateRef,\r\n} from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { LinkBaseProps } from \"./link.types\";\r\nimport { LinkVariants } from \"./variants\";\r\n\r\n@Component({\r\n  selector: \"app-link\",\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  templateUrl: \"./link.component.html\",\r\n  styleUrls: [],\r\n})\r\nexport class LinkComponent implements LinkBaseProps {\r\n  @Input() color:\r\n    | \"inherit\"\r\n    | \"primary\"\r\n    | \"secondary\"\r\n    | \"success\"\r\n    | \"error\"\r\n    | \"info\"\r\n    | \"warning\" = \"primary\";\r\n  @Input() className?: string;\r\n  @Input() variant:\r\n    | \"inherit\"\r\n    | \"h1\"\r\n    | \"h2\"\r\n    | \"h3\"\r\n    | \"h4\"\r\n    | \"h5\"\r\n    | \"h6\"\r\n    | \"subtitle1\"\r\n    | \"subtitle2\"\r\n    | \"body1\"\r\n    | \"body2\"\r\n    | \"body3\"\r\n    | \"caption\" = \"inherit\";\r\n  @Input() component: string = \"a\";\r\n  @Input() href?: string;\r\n  @Input() target?: string;\r\n  @Input() rel?: \"noopener\" | \"noreferrer\" | undefined;\r\n  @Input() role?: string;\r\n  @Input() underline: \"none\" | \"hover\" | \"always\" = \"hover\";\r\n  @Input() children?: string | TemplateRef<unknown>;\r\n  //get class of link\r\n  get linkClasses(): string {\r\n    return LinkVariants({\r\n      variant: this.variant,\r\n      color: this.color,\r\n      underline: this.underline,\r\n    });\r\n  }\r\n}\r\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -462,8 +1061,390 @@
       "templateData": "<ng-container *ngIf=\"component === 'a' || !component; else customElement\">\r\n <a \r\n [class]=\"linkClasses\"\r\n  *ngIf=\"true\"    \r\n    [href]=\"href || '#'\">\r\n    <ng-content></ng-content>\r\n  </a>\r\n \r\n</ng-container>\r\n\r\n<ng-template #customElement>\r\n  <ng-container [ngSwitch]=\"component\">\r\n    <a *ngSwitchCase=\"'button'\"  [class]=\"linkClasses\"\r\n    [attr.role]=\"role || 'a'\">\r\n    Link Button\r\n    </a>\r\n  </ng-container>\r\n</ng-template>\r\n"
     },
     {
+      "name": "SnackbarComponent",
+      "id": "component-SnackbarComponent-9de52dace5f7d1c801ee5562cbe8ab33109a66c03fb8868b8347b33619731daefc654f28a017202b97f58f2d4bfded1b5fced126b11430c3c1844e8c20bce98c",
+      "file": "src/app/components/feedback/snackbar/snackbar.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-snackbar",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./snackbar.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "action",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 81,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "anchorOrigin",
+          "defaultValue": "{\r\n    vertical: \"bottom\",\r\n    horizontal: \"left\",\r\n  }",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 83,
+          "type": "SnackbarAnchorOrigin",
+          "decorators": []
+        },
+        {
+          "name": "autoHideDuration",
+          "defaultValue": "5000",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 82,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "message",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 80,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "open",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 78,
+          "type": "boolean",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "closeHandle",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 88,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "animationTrigger",
+          "defaultValue": "\"\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 94
+        },
+        {
+          "name": "autoHideTimeoutId",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 92
+        },
+        {
+          "name": "closeButtonClass",
+          "defaultValue": "\"\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 91
+        },
+        {
+          "name": "containerClass",
+          "defaultValue": "\"\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 90
+        },
+        {
+          "name": "isVisible",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 93
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "clearAutoHideTimeout",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 166,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        },
+        {
+          "name": "handleClose",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 173,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnChanges",
+          "args": [
+            {
+              "name": "changes",
+              "type": "SimpleChanges",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 108,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "changes",
+              "type": "SimpleChanges",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ngOnDestroy",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 119,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 101,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "onAnimationDone",
+          "args": [
+            {
+              "name": "event",
+              "type": "AnimationEvent",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 178,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "AnimationEvent",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setupAutoHide",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 152,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        },
+        {
+          "name": "updateAnimation",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 130,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        },
+        {
+          "name": "updateStyles",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 123,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "SnackbarContentComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  OnDestroy,\r\n  OnChanges,\r\n  SimpleChanges,\r\n  TemplateRef,\r\n  NgZone,\r\n} from \"@angular/core\";\r\nimport { DomSanitizer } from \"@angular/platform-browser\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n  AnimationEvent,\r\n} from \"@angular/animations\";\r\nimport { SnackbarAnchorOrigin } from \"./snackbar.types\";\r\nimport { getPositionStyles } from \"./variants\";\r\nimport { SnackbarContentComponent } from \"./snackbar-content.component\";\r\n\r\n@Component({\r\n  selector: \"app-snackbar\",\r\n  templateUrl: \"./snackbar.component.html\",\r\n  standalone: true,\r\n  imports: [CommonModule, SnackbarContentComponent],\r\n  animations: [\r\n    // Top-Left\r\n    trigger(\"slideFromTopLeft\", [\r\n      state(\"void\", style({ transform: \"translateY(-100%)\", opacity: 0 })),\r\n      state(\"in\", style({ transform: \"translateY(0)\", opacity: 1 })),\r\n      transition(\"void => in\", [animate(\"300ms ease-out\")]),\r\n      transition(\"in => void\", [animate(\"250ms ease-in\")]),\r\n    ]),\r\n    // Top-Center\r\n    trigger(\"slideFromTopCenter\", [\r\n      state(\"void\", style({ transform: \"translate(-50%, -100%)\", opacity: 0 })),\r\n      state(\"in\", style({ transform: \"translateX(-50%)\", opacity: 1 })),\r\n      transition(\"void => in\", [animate(\"300ms ease-out\")]),\r\n      transition(\"in => void\", [animate(\"250ms ease-in\")]),\r\n    ]),\r\n    // Top-Right\r\n    trigger(\"slideFromTopRight\", [\r\n      state(\"void\", style({ transform: \"translateY(-100%)\", opacity: 0 })),\r\n      state(\"in\", style({ transform: \"translateY(0)\", opacity: 1 })),\r\n      transition(\"void => in\", [animate(\"300ms ease-out\")]),\r\n      transition(\"in => void\", [animate(\"250ms ease-in\")]),\r\n    ]),\r\n    // Bottom-Left\r\n    trigger(\"slideFromBottomLeft\", [\r\n      state(\"void\", style({ transform: \"translateY(100%)\", opacity: 0 })),\r\n      state(\"in\", style({ transform: \"translateY(0)\", opacity: 1 })),\r\n      transition(\"void => in\", [animate(\"300ms ease-out\")]),\r\n      transition(\"in => void\", [animate(\"250ms ease-in\")]),\r\n    ]),\r\n    // Bottom-Center\r\n    trigger(\"slideFromBottomCenter\", [\r\n      state(\"void\", style({ transform: \"translate(-50%, 100%)\", opacity: 0 })),\r\n      state(\"in\", style({ transform: \"translateX(-50%)\", opacity: 1 })),\r\n      transition(\"void => in\", [animate(\"300ms ease-out\")]),\r\n      transition(\"in => void\", [animate(\"250ms ease-in\")]),\r\n    ]),\r\n    // Bottom-Right\r\n    trigger(\"slideFromBottomRight\", [\r\n      state(\"void\", style({ transform: \"translateY(100%)\", opacity: 0 })),\r\n      state(\"in\", style({ transform: \"translateY(0)\", opacity: 1 })),\r\n      transition(\"void => in\", [animate(\"300ms ease-out\")]),\r\n      transition(\"in => void\", [animate(\"250ms ease-in\")]),\r\n    ]),\r\n  ],\r\n})\r\nexport class SnackbarComponent implements OnInit, OnDestroy, OnChanges {\r\n  @Input() open: boolean = false;\r\n\r\n  @Input() message?: string;\r\n  @Input() action?: TemplateRef<unknown>;\r\n  @Input() autoHideDuration: number = 5000;\r\n  @Input() anchorOrigin: SnackbarAnchorOrigin = {\r\n    vertical: \"bottom\",\r\n    horizontal: \"left\",\r\n  };\r\n\r\n  @Output() closeHandle = new EventEmitter<void>();\r\n\r\n  containerClass: string = \"\";\r\n  closeButtonClass: string = \"\";\r\n  autoHideTimeoutId?: number;\r\n  isVisible: boolean = false;\r\n  animationTrigger: string = \"\";\r\n\r\n  constructor(\r\n    private ngZone: NgZone,\r\n    private sanitizer: DomSanitizer,\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.isVisible = this.open;\r\n    this.updateStyles();\r\n    this.updateAnimation();\r\n    this.setupAutoHide();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (changes[\"open\"] || changes[\"anchorOrigin\"]) {\r\n      if (changes[\"open\"]) {\r\n        this.isVisible = this.open;\r\n      }\r\n      this.updateAnimation();\r\n      this.updateStyles();\r\n      this.setupAutoHide();\r\n    }\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.clearAutoHideTimeout();\r\n  }\r\n\r\n  private updateStyles(): void {\r\n    const baseStyles =\r\n      \"fixed z-50 flex max-w-md min-w-[356px] items-center rounded-md bg-white text-black\";\r\n    const positionStyle = getPositionStyles(this.anchorOrigin);\r\n    this.containerClass = `${baseStyles} ${positionStyle}`;\r\n  }\r\n\r\n  private updateAnimation(): void {\r\n    const { vertical, horizontal } = this.anchorOrigin;\r\n\r\n    if (vertical === \"top\") {\r\n      if (horizontal === \"left\") {\r\n        this.animationTrigger = \"slideFromTopLeft\";\r\n      } else if (horizontal === \"center\") {\r\n        this.animationTrigger = \"slideFromTopCenter\";\r\n      } else {\r\n        this.animationTrigger = \"slideFromTopRight\";\r\n      }\r\n    } else {\r\n      if (horizontal === \"left\") {\r\n        this.animationTrigger = \"slideFromBottomLeft\";\r\n      } else if (horizontal === \"center\") {\r\n        this.animationTrigger = \"slideFromBottomCenter\";\r\n      } else {\r\n        this.animationTrigger = \"slideFromBottomRight\";\r\n      }\r\n    }\r\n  }\r\n\r\n  private setupAutoHide(): void {\r\n    this.clearAutoHideTimeout();\r\n\r\n    if (this.open && this.autoHideDuration > 0) {\r\n      this.ngZone.runOutsideAngular(() => {\r\n        this.autoHideTimeoutId = window.setTimeout(() => {\r\n          this.ngZone.run(() => {\r\n            this.handleClose();\r\n          });\r\n        }, this.autoHideDuration);\r\n      });\r\n    }\r\n  }\r\n\r\n  private clearAutoHideTimeout(): void {\r\n    if (this.autoHideTimeoutId !== undefined) {\r\n      clearTimeout(this.autoHideTimeoutId);\r\n      this.autoHideTimeoutId = undefined;\r\n    }\r\n  }\r\n\r\n  handleClose(): void {\r\n    this.clearAutoHideTimeout();\r\n    this.isVisible = false;\r\n  }\r\n\r\n  onAnimationDone(event: AnimationEvent): void {\r\n    if (event.toState === \"void\" && !this.open) {\r\n      this.closeHandle.emit();\r\n    }\r\n  }\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [
+          {
+            "name": "ngZone",
+            "type": "NgZone",
+            "deprecated": false,
+            "deprecationMessage": ""
+          },
+          {
+            "name": "sanitizer",
+            "type": "DomSanitizer",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "line": 94,
+        "jsdoctags": [
+          {
+            "name": "ngZone",
+            "type": "NgZone",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          },
+          {
+            "name": "sanitizer",
+            "type": "DomSanitizer",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
+      "extends": [],
+      "implements": ["OnInit", "OnDestroy", "OnChanges"],
+      "templateData": "<div\r\n  *ngIf=\"isVisible\"\r\n  [ngClass]=\"containerClass\"\r\n  [@slideFromTopLeft]=\"animationTrigger === 'slideFromTopLeft' && (open ? 'in' : 'void')\"\r\n  [@slideFromTopCenter]=\"animationTrigger === 'slideFromTopCenter' && (open ? 'in' : 'void')\"\r\n  [@slideFromTopRight]=\"animationTrigger === 'slideFromTopRight' && (open ? 'in' : 'void')\"\r\n  [@slideFromBottomLeft]=\"animationTrigger === 'slideFromBottomLeft' && (open ? 'in' : 'void')\"\r\n  [@slideFromBottomCenter]=\"animationTrigger === 'slideFromBottomCenter' && (open ? 'in' : 'void')\"\r\n  [@slideFromBottomRight]=\"animationTrigger === 'slideFromBottomRight' && (open ? 'in' : 'void')\"\r\n  (@slideFromTopLeft.done)=\"onAnimationDone($event)\"\r\n  (@slideFromTopCenter.done)=\"onAnimationDone($event)\"\r\n  (@slideFromTopRight.done)=\"onAnimationDone($event)\"\r\n  (@slideFromBottomLeft.done)=\"onAnimationDone($event)\"\r\n  (@slideFromBottomCenter.done)=\"onAnimationDone($event)\"\r\n  (@slideFromBottomRight.done)=\"onAnimationDone($event)\"\r\n  role=\"alert\"\r\n  aria-live=\"assertive\"\r\n  class=\"min-w-[356px] max-w-md\"\r\n>\r\n  <app-snackbar-content\r\n    class=\"m-auto flex w-full\"\r\n    [message]=\"message\"\r\n    [action]=\"action\"\r\n  >\r\n    <ng-content></ng-content>\r\n  </app-snackbar-content>\r\n</div>\r\n"
+    },
+    {
+      "name": "SnackbarContentComponent",
+      "id": "component-SnackbarContentComponent-5ea1999a3a33d2852af2086b2d81c75361140d502429acd1b67a831fd3f5cf74d089d5575f3096ff080bbb0751bec74159b74e6d716c1db69487660baa8b5dd1",
+      "file": "src/app/components/feedback/snackbar/snackbar-content.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-snackbar-content",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<div\n  class=\"m-auto flex min-w-[356px] max-w-lg items-center rounded-md p-4 shadow-lg\"\n>\n  <div class=\"flex-grow text-sm font-medium\">\n    <ng-container *ngIf=\"message; else contentTpl\">{{\n      message\n    }}</ng-container>\n    <ng-template #contentTpl>\n      <ng-content></ng-content>\n    </ng-template>\n  </div>\n\n  <div *ngIf=\"action\" class=\"ml-auto pl-3\">\n    <ng-container *ngTemplateOutlet=\"action\"></ng-container>\n  </div>\n</div>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "action",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 29,
+          "type": "TemplateRef<>",
+          "decorators": []
+        },
+        {
+          "name": "message",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 28,
+          "type": "string",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { Component, Input, TemplateRef } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\n\r\n@Component({\r\n  selector: \"app-snackbar-content\",\r\n  template: `\r\n    <div\r\n      class=\"m-auto flex min-w-[356px] max-w-lg items-center rounded-md p-4 shadow-lg\"\r\n    >\r\n      <div class=\"flex-grow text-sm font-medium\">\r\n        <ng-container *ngIf=\"message; else contentTpl\">{{\r\n          message\r\n        }}</ng-container>\r\n        <ng-template #contentTpl>\r\n          <ng-content></ng-content>\r\n        </ng-template>\r\n      </div>\r\n\r\n      <div *ngIf=\"action\" class=\"ml-auto pl-3\">\r\n        <ng-container *ngTemplateOutlet=\"action\"></ng-container>\r\n      </div>\r\n    </div>\r\n  `,\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class SnackbarContentComponent {\r\n  @Input() message?: string;\r\n  @Input() action?: TemplateRef<unknown>;\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    },
+    {
       "name": "TestButtonHostComponent",
-      "id": "component-TestButtonHostComponent-0ba46062f14e0f93d3fb2aad34f7599e7a529ab8905c7c95fb4f76d49d7290d886574ac1f518030f1f2fcc9ee687f9150afff69cbcf5c8ea35e1cfe89cf3ed22",
+      "id": "component-TestButtonHostComponent-ee02a28768eccc507a0353722de584f6ab510d79720f4e5d421e66f982e7a857cfa1fe2ebbbdc51b6c7d40a7eadb37203fedd08c554a25b65d574e39e4437dd4",
       "file": "src/app/components/inputs/button/button.component.cy.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -746,7 +1727,261 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ButtonComponent } from \"./button.component\";\nimport { CommonModule } from \"@angular/common\";\nimport { Component, TemplateRef, ViewChild } from \"@angular/core\";\n\n// Helper component to provide template refs for testing\n@Component({\n  selector: \"test-button-host\",\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `\n    <ng-template #startIconTpl>\n      <span data-testid=\"start-icon\">→</span>\n    </ng-template>\n\n    <ng-template #endIconTpl>\n      <span data-testid=\"end-icon\">←</span>\n    </ng-template>\n\n    <ng-template #customLoaderTpl>\n      <span data-testid=\"custom-loader\">Loading...</span>\n    </ng-template>\n\n    <xui-button\n      [variant]=\"variant\"\n      [color]=\"color\"\n      [size]=\"size\"\n      [disabled]=\"disabled\"\n      [loading]=\"loading\"\n      [loadingPosition]=\"loadingPosition\"\n      [fullWidth]=\"fullWidth\"\n      [disableElevation]=\"disableElevation\"\n      [component]=\"component\"\n      [href]=\"href\"\n      [target]=\"target\"\n      [type]=\"type\"\n      [role]=\"role\"\n      [startIcon]=\"startIcon ? startIconTpl : null\"\n      [endIcon]=\"endIcon ? endIconTpl : null\"\n      [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\n      (clicked)=\"onClick()\"\n    >\n      {{ content }}\n    </xui-button>\n  `,\n})\nclass TestButtonHostComponent {\n  @ViewChild(\"startIconTpl\") startIconTpl!: TemplateRef<unknown>;\n  @ViewChild(\"endIconTpl\") endIconTpl!: TemplateRef<unknown>;\n  @ViewChild(\"customLoaderTpl\") customLoaderTpl!: TemplateRef<unknown>;\n\n  variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\n  color:\n    | \"inherit\"\n    | \"primary\"\n    | \"secondary\"\n    | \"success\"\n    | \"error\"\n    | \"info\"\n    | \"warning\" = \"primary\";\n  size: \"small\" | \"medium\" | \"large\" = \"medium\";\n  disabled: boolean = false;\n  loading: boolean = false;\n  loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\n  fullWidth: boolean = false;\n  disableElevation: boolean = false;\n  component: string = \"button\";\n  href?: string;\n  target?: string;\n  type: \"button\" | \"submit\" | \"reset\" = \"button\";\n  role?: string;\n  content: string = \"Button Text\";\n  startIcon: boolean = false;\n  endIcon: boolean = false;\n  customLoadingIndicator: boolean = false;\n\n  onClick = cy.stub().as(\"onClickStub\");\n}\n\ndescribe(\"Button Component\", () => {\n  it(\"renders default button correctly\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        content: \"Click me\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\").and(\"contain.text\", \"Click me\");\n  });\n\n  it(\"renders with different variants\", () => {\n    // Test outlined variant\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        variant: \"outlined\",\n        content: \"Outlined\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"border\");\n\n    // Test text variant with explicitly setting color to inherit\n    // to avoid color settings overriding variant styling\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        variant: \"text\",\n        color: \"inherit\",\n        content: \"Text Button\",\n      },\n    });\n    cy.get(\"button\")\n      .should(\"not.have.class\", \"bg-primary\")\n      .and(\"have.class\", \"bg-transparent\");\n  });\n\n  it(\"renders with different colors\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        color: \"primary\",\n        content: \"Primary\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        color: \"secondary\",\n        content: \"Secondary\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        color: \"error\",\n        content: \"Error\",\n      },\n    });\n    cy.get(\"button\").should(\"exist\");\n  });\n\n  it(\"renders with different sizes\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        size: \"small\",\n        content: \"Small\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"h-8\").and(\"have.class\", \"px-3\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        size: \"large\",\n        content: \"Large\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"h-12\").and(\"have.class\", \"px-6\");\n  });\n\n  it(\"renders as a full width button\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        fullWidth: true,\n        content: \"Full Width\",\n      },\n    });\n    cy.get(\"button\").should(\"have.class\", \"w-full\");\n  });\n\n  it(\"disables the button when disabled prop is true\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        disabled: true,\n        content: \"Disabled\",\n      },\n    });\n    cy.get(\"button\").should(\"be.disabled\");\n  });\n\n  it(\"shows loading state\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        content: \"Loading\",\n        loadingPosition: \"center\",\n      },\n    });\n    // Check for the loading spinner character\n    cy.get(\"button\").find(\".animate-spin\").should(\"exist\");\n\n    // Button should be disabled during loading state\n    cy.get(\"button\").should(\"be.disabled\");\n\n    // Button should still be visible\n    cy.get(\"button\").should(\"be.visible\");\n  });\n\n  it(\"renders with loading at different positions\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        loadingPosition: \"start\",\n        content: \"Start\",\n      },\n    });\n    cy.get(\"button .mr-2\").should(\"exist\");\n\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        loadingPosition: \"end\",\n        content: \"End\",\n      },\n    });\n    cy.get(\"button .ml-2\").should(\"exist\");\n  });\n\n  it(\"renders with custom loading indicator\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        customLoadingIndicator: true,\n        content: \"Custom Loader\",\n      },\n    });\n    cy.get('[data-testid=\"custom-loader\"]').should(\"exist\");\n  });\n\n  it(\"renders with start icon\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        startIcon: true,\n        content: \"With Start Icon\",\n      },\n    });\n    cy.get('[data-testid=\"start-icon\"]').should(\"exist\");\n    cy.get(\"button\").contains(\"With Start Icon\");\n  });\n\n  it(\"renders with end icon\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        endIcon: true,\n        content: \"With End Icon\",\n      },\n    });\n    cy.get('[data-testid=\"end-icon\"]').should(\"exist\");\n    cy.get(\"button\").contains(\"With End Icon\");\n  });\n\n  it(\"renders as a custom element type\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        component: \"a\",\n        href: \"#test\",\n        content: \"Link Button\",\n      },\n    });\n    cy.get(\"a\")\n      .should(\"have.attr\", \"href\", \"#test\")\n      .and(\"contain.text\", \"Link Button\");\n  });\n\n  it(\"emits clicked event when clicked\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        content: \"Clickable Button\",\n      },\n    });\n    cy.get(\"button\").click();\n    cy.get(\"@onClickStub\").should(\"have.been.calledOnce\");\n  });\n\n  it(\"does not emit clicked event when disabled\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        disabled: true,\n        content: \"Disabled Button\",\n      },\n    });\n    cy.get(\"button\").click({ force: true });\n    cy.get(\"@onClickStub\").should(\"not.have.been.called\");\n  });\n\n  it(\"does not emit clicked event when loading\", () => {\n    cy.mount(TestButtonHostComponent, {\n      componentProperties: {\n        loading: true,\n        content: \"Loading Button\",\n      },\n    });\n    cy.get(\"button\").click({ force: true });\n    cy.get(\"@onClickStub\").should(\"not.have.been.called\");\n  });\n});\n",
+      "sourceCode": "import { ButtonComponent } from \"./button.component\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { Component, TemplateRef, ViewChild } from \"@angular/core\";\r\n\r\n// Helper component to provide template refs for testing\r\n@Component({\r\n  selector: \"test-button-host\",\r\n  standalone: true,\r\n  imports: [CommonModule, ButtonComponent],\r\n  template: `\r\n    <ng-template #startIconTpl>\r\n      <span data-testid=\"start-icon\">→</span>\r\n    </ng-template>\r\n\r\n    <ng-template #endIconTpl>\r\n      <span data-testid=\"end-icon\">←</span>\r\n    </ng-template>\r\n\r\n    <ng-template #customLoaderTpl>\r\n      <span data-testid=\"custom-loader\">Loading...</span>\r\n    </ng-template>\r\n\r\n    <xui-button\r\n      [variant]=\"variant\"\r\n      [color]=\"color\"\r\n      [size]=\"size\"\r\n      [disabled]=\"disabled\"\r\n      [loading]=\"loading\"\r\n      [loadingPosition]=\"loadingPosition\"\r\n      [fullWidth]=\"fullWidth\"\r\n      [disableElevation]=\"disableElevation\"\r\n      [component]=\"component\"\r\n      [href]=\"href\"\r\n      [target]=\"target\"\r\n      [type]=\"type\"\r\n      [role]=\"role\"\r\n      [startIcon]=\"startIcon ? startIconTpl : null\"\r\n      [endIcon]=\"endIcon ? endIconTpl : null\"\r\n      [customLoadingIndicator]=\"customLoadingIndicator ? customLoaderTpl : null\"\r\n      (clicked)=\"onClick()\"\r\n    >\r\n      {{ content }}\r\n    </xui-button>\r\n  `,\r\n})\r\nclass TestButtonHostComponent {\r\n  @ViewChild(\"startIconTpl\") startIconTpl!: TemplateRef<unknown>;\r\n  @ViewChild(\"endIconTpl\") endIconTpl!: TemplateRef<unknown>;\r\n  @ViewChild(\"customLoaderTpl\") customLoaderTpl!: TemplateRef<unknown>;\r\n\r\n  variant: \"text\" | \"contained\" | \"outlined\" = \"contained\";\r\n  color:\r\n    | \"inherit\"\r\n    | \"primary\"\r\n    | \"secondary\"\r\n    | \"success\"\r\n    | \"error\"\r\n    | \"info\"\r\n    | \"warning\" = \"primary\";\r\n  size: \"small\" | \"medium\" | \"large\" = \"medium\";\r\n  disabled: boolean = false;\r\n  loading: boolean = false;\r\n  loadingPosition: \"start\" | \"center\" | \"end\" = \"center\";\r\n  fullWidth: boolean = false;\r\n  disableElevation: boolean = false;\r\n  component: string = \"button\";\r\n  href?: string;\r\n  target?: string;\r\n  type: \"button\" | \"submit\" | \"reset\" = \"button\";\r\n  role?: string;\r\n  content: string = \"Button Text\";\r\n  startIcon: boolean = false;\r\n  endIcon: boolean = false;\r\n  customLoadingIndicator: boolean = false;\r\n\r\n  onClick = cy.stub().as(\"onClickStub\");\r\n}\r\n\r\ndescribe(\"Button Component\", () => {\r\n  it(\"renders default button correctly\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        content: \"Click me\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"exist\").and(\"contain.text\", \"Click me\");\r\n  });\r\n\r\n  it(\"renders with different variants\", () => {\r\n    // Test outlined variant\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        variant: \"outlined\",\r\n        content: \"Outlined\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"have.class\", \"border\");\r\n\r\n    // Test text variant with explicitly setting color to inherit\r\n    // to avoid color settings overriding variant styling\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        variant: \"text\",\r\n        color: \"inherit\",\r\n        content: \"Text Button\",\r\n      },\r\n    });\r\n    cy.get(\"button\")\r\n      .should(\"not.have.class\", \"bg-primary\")\r\n      .and(\"have.class\", \"bg-transparent\");\r\n  });\r\n\r\n  it(\"renders with different colors\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        color: \"primary\",\r\n        content: \"Primary\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"exist\");\r\n\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        color: \"secondary\",\r\n        content: \"Secondary\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"exist\");\r\n\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        color: \"error\",\r\n        content: \"Error\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"exist\");\r\n  });\r\n\r\n  it(\"renders with different sizes\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        size: \"small\",\r\n        content: \"Small\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"have.class\", \"h-8\").and(\"have.class\", \"px-3\");\r\n\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        size: \"large\",\r\n        content: \"Large\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"have.class\", \"h-12\").and(\"have.class\", \"px-6\");\r\n  });\r\n\r\n  it(\"renders as a full width button\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        fullWidth: true,\r\n        content: \"Full Width\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"have.class\", \"w-full\");\r\n  });\r\n\r\n  it(\"disables the button when disabled prop is true\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        disabled: true,\r\n        content: \"Disabled\",\r\n      },\r\n    });\r\n    cy.get(\"button\").should(\"be.disabled\");\r\n  });\r\n\r\n  it(\"shows loading state\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        loading: true,\r\n        content: \"Loading\",\r\n        loadingPosition: \"center\",\r\n      },\r\n    });\r\n    // Check for the loading spinner character\r\n    cy.get(\"button\").find(\".animate-spin\").should(\"exist\");\r\n\r\n    // Button should be disabled during loading state\r\n    cy.get(\"button\").should(\"be.disabled\");\r\n\r\n    // Button should still be visible\r\n    cy.get(\"button\").should(\"be.visible\");\r\n  });\r\n\r\n  it(\"renders with loading at different positions\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        loading: true,\r\n        loadingPosition: \"start\",\r\n        content: \"Start\",\r\n      },\r\n    });\r\n    cy.get(\"button .mr-2\").should(\"exist\");\r\n\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        loading: true,\r\n        loadingPosition: \"end\",\r\n        content: \"End\",\r\n      },\r\n    });\r\n    cy.get(\"button .ml-2\").should(\"exist\");\r\n  });\r\n\r\n  it(\"renders with custom loading indicator\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        loading: true,\r\n        customLoadingIndicator: true,\r\n        content: \"Custom Loader\",\r\n      },\r\n    });\r\n    cy.get('[data-testid=\"custom-loader\"]').should(\"exist\");\r\n  });\r\n\r\n  it(\"renders with start icon\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        startIcon: true,\r\n        content: \"With Start Icon\",\r\n      },\r\n    });\r\n    cy.get('[data-testid=\"start-icon\"]').should(\"exist\");\r\n    cy.get(\"button\").contains(\"With Start Icon\");\r\n  });\r\n\r\n  it(\"renders with end icon\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        endIcon: true,\r\n        content: \"With End Icon\",\r\n      },\r\n    });\r\n    cy.get('[data-testid=\"end-icon\"]').should(\"exist\");\r\n    cy.get(\"button\").contains(\"With End Icon\");\r\n  });\r\n\r\n  it(\"renders as a custom element type\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        component: \"a\",\r\n        href: \"#test\",\r\n        content: \"Link Button\",\r\n      },\r\n    });\r\n    cy.get(\"a\")\r\n      .should(\"have.attr\", \"href\", \"#test\")\r\n      .and(\"contain.text\", \"Link Button\");\r\n  });\r\n\r\n  it(\"emits clicked event when clicked\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        content: \"Clickable Button\",\r\n      },\r\n    });\r\n    cy.get(\"button\").click();\r\n    cy.get(\"@onClickStub\").should(\"have.been.calledOnce\");\r\n  });\r\n\r\n  it(\"does not emit clicked event when disabled\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        disabled: true,\r\n        content: \"Disabled Button\",\r\n      },\r\n    });\r\n    cy.get(\"button\").click({ force: true });\r\n    cy.get(\"@onClickStub\").should(\"not.have.been.called\");\r\n  });\r\n\r\n  it(\"does not emit clicked event when loading\", () => {\r\n    cy.mount(TestButtonHostComponent, {\r\n      componentProperties: {\r\n        loading: true,\r\n        content: \"Loading Button\",\r\n      },\r\n    });\r\n    cy.get(\"button\").click({ force: true });\r\n    cy.get(\"@onClickStub\").should(\"not.have.been.called\");\r\n  });\r\n});\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    },
+    {
+      "name": "TestHostComponent",
+      "id": "component-TestHostComponent-08948e7d85486e638c68755469e124ad69d2c3dc584e75b6cceefe1444fda82d6abefdb9ceb644236eaf002c2a14980b51f1bf97354d538564fe19b588bb471e",
+      "file": "src/app/components/feedback/snackbar/snackbar.component.cy.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "test-host",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<app-snackbar\n  [open]=\"open\"\n  [message]=\"message\"\n  [autoHideDuration]=\"autoHideDuration\"\n  [anchorOrigin]=\"anchorOrigin\"\n  [withCloseIcon]=\"withCloseIcon\"\n  (closeHandle)=\"handleClose()\"\n>\n</app-snackbar>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "anchorOrigin",
+          "defaultValue": "{ vertical: \"bottom\", horizontal: \"left\" }",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 26
+        },
+        {
+          "name": "autoHideDuration",
+          "defaultValue": "5000",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 25
+        },
+        {
+          "name": "message",
+          "defaultValue": "\"Test message\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 24
+        },
+        {
+          "name": "open",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 23
+        },
+        {
+          "name": "withCloseIcon",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 28
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "handleClose",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 30,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "SnackbarComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { SnackbarComponent } from \"./snackbar.component\";\r\nimport { Component } from \"@angular/core\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { provideAnimations } from \"@angular/platform-browser/animations\";\r\n\r\n@Component({\r\n  selector: \"test-host\",\r\n  standalone: true,\r\n  imports: [CommonModule, SnackbarComponent],\r\n  template: `\r\n    <app-snackbar\r\n      [open]=\"open\"\r\n      [message]=\"message\"\r\n      [autoHideDuration]=\"autoHideDuration\"\r\n      [anchorOrigin]=\"anchorOrigin\"\r\n      [withCloseIcon]=\"withCloseIcon\"\r\n      (closeHandle)=\"handleClose()\"\r\n    >\r\n    </app-snackbar>\r\n  `,\r\n})\r\nclass TestHostComponent {\r\n  open = true;\r\n  message = \"Test message\";\r\n  autoHideDuration = 5000;\r\n  anchorOrigin = { vertical: \"bottom\", horizontal: \"left\" };\r\n\r\n  withCloseIcon = true;\r\n\r\n  handleClose() {\r\n    this.open = false;\r\n  }\r\n}\r\n\r\ndescribe(\"SnackbarComponent\", () => {\r\n  const mountComponent = (props = {}) => {\r\n    return cy.mount(TestHostComponent, {\r\n      componentProperties: props,\r\n      providers: [provideAnimations()],\r\n    });\r\n  };\r\n\r\n  describe(\"Basic Rendering\", () => {\r\n    it(\"should render with default props\", () => {\r\n      mountComponent();\r\n\r\n      cy.get(\"app-snackbar\").should(\"exist\");\r\n\r\n      cy.get(\"app-snackbar\")\r\n        .find('div[role=\"alert\"]', { timeout: 5000 })\r\n        .should(\"be.visible\");\r\n      cy.get('app-snackbar div[role=\"alert\"]').should(\r\n        \"contain.text\",\r\n        \"Test message\",\r\n      );\r\n    });\r\n  });\r\n\r\n  describe(\"Positioning\", () => {\r\n    it(\"should render at top-right position\", () => {\r\n      mountComponent({\r\n        anchorOrigin: { vertical: \"top\", horizontal: \"right\" },\r\n      });\r\n\r\n      cy.get(\"app-snackbar\")\r\n        .find('div[role=\"alert\"]', { timeout: 5000 })\r\n        .should(\"be.visible\");\r\n    });\r\n  });\r\n\r\n  describe(\"UI Elements\", () => {\r\n    it(\"should render without close icon when withCloseIcon is false\", () => {\r\n      mountComponent({ withCloseIcon: false });\r\n\r\n      cy.get(\"app-snackbar button\").should(\"not.exist\");\r\n    });\r\n  });\r\n\r\n  describe(\"Content Projection\", () => {\r\n    it(\"should render custom content when no message is provided\", () => {\r\n      @Component({\r\n        selector: \"test-custom-content-host\",\r\n        standalone: true,\r\n        imports: [CommonModule, SnackbarComponent],\r\n        template: `\r\n          <app-snackbar\r\n            [open]=\"true\"\r\n            [autoHideDuration]=\"5000\"\r\n            [withCloseIcon]=\"true\"\r\n          >\r\n            <div data-testid=\"custom-content\">Custom projected content</div>\r\n          </app-snackbar>\r\n        `,\r\n      })\r\n      class TestCustomContentHostComponent {}\r\n\r\n      cy.mount(TestCustomContentHostComponent, {\r\n        providers: [provideAnimations()],\r\n      });\r\n\r\n      cy.get(\"app-snackbar\")\r\n        .find('[data-testid=\"custom-content\"]', { timeout: 5000 })\r\n        .should(\"be.visible\");\r\n      cy.get('[data-testid=\"custom-content\"]').should(\r\n        \"contain.text\",\r\n        \"Custom projected content\",\r\n      );\r\n    });\r\n  });\r\n});\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": []
+    },
+    {
+      "name": "TestLinkHostComponent",
+      "id": "component-TestLinkHostComponent-8dcc745d31959194d5248b97698ded1cb020e04a0002a6552db434cd8413a92028b49e733c9dd4223f4b31f6169ccce97f1943fb049139e61308e85bd2c51d19",
+      "file": "src/app/components/navigations/Link/link.component.cy.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "test-link-host",
+      "styleUrls": [],
+      "styles": [],
+      "template": "<app-link\n  [className]=\"className\"\n  [variant]=\"variant\"\n  [color]=\"color\"\n  [underline]=\"underline\"\n  [component]=\"component\"\n  [href]=\"href\"\n  [target]=\"target\"\n  [role]=\"role\"\n>\n  {{ content }}\n</app-link>\n",
+      "templateUrl": [],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "className",
+          "defaultValue": "\"link-class\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 51
+        },
+        {
+          "name": "color",
+          "defaultValue": "\"primary\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 39
+        },
+        {
+          "name": "component",
+          "defaultValue": "\"a\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 52
+        },
+        {
+          "name": "content",
+          "defaultValue": "\"Link\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 50
+        },
+        {
+          "name": "href",
+          "defaultValue": "\"#\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 47
+        },
+        {
+          "name": "role",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": true,
+          "description": "",
+          "line": 49
+        },
+        {
+          "name": "target",
+          "defaultValue": "\"_self\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 48
+        },
+        {
+          "name": "underline",
+          "defaultValue": "\"hover\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"none\" | \"hover\" | \"always\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 38
+        },
+        {
+          "name": "variant",
+          "defaultValue": "\"inherit\"",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "\"inherit\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"subtitle1\" | \"subtitle2\" | \"body1\" | \"body2\" | \"caption\"",
+          "indexKey": "",
+          "optional": false,
+          "description": "",
+          "line": 25
+        }
+      ],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "LinkComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { LinkComponent } from \"./link.component\";\r\nimport { CommonModule } from \"@angular/common\";\r\nimport { Component } from \"@angular/core\";\r\n\r\n@Component({\r\n  selector: \"test-link-host\",\r\n  standalone: true,\r\n  imports: [CommonModule, LinkComponent],\r\n  template: `\r\n    <app-link\r\n      [className]=\"className\"\r\n      [variant]=\"variant\"\r\n      [color]=\"color\"\r\n      [underline]=\"underline\"\r\n      [component]=\"component\"\r\n      [href]=\"href\"\r\n      [target]=\"target\"\r\n      [role]=\"role\"\r\n    >\r\n      {{ content }}\r\n    </app-link>\r\n  `,\r\n})\r\nclass TestLinkHostComponent {\r\n  variant:\r\n    | \"inherit\"\r\n    | \"h1\"\r\n    | \"h2\"\r\n    | \"h3\"\r\n    | \"h4\"\r\n    | \"h5\"\r\n    | \"h6\"\r\n    | \"subtitle1\"\r\n    | \"subtitle2\"\r\n    | \"body1\"\r\n    | \"body2\"\r\n    | \"caption\" = \"inherit\";\r\n  underline: \"none\" | \"hover\" | \"always\" = \"hover\";\r\n  color:\r\n    | \"inherit\"\r\n    | \"primary\"\r\n    | \"secondary\"\r\n    | \"success\"\r\n    | \"error\"\r\n    | \"info\"\r\n    | \"warning\" = \"primary\";\r\n  href: string = \"#\";\r\n  target: string = \"_self\";\r\n  role?: string;\r\n  content: string = \"Link\";\r\n  className: string = \"link-class\";\r\n  component: string = \"a\"; // Default to anchor tag\r\n}\r\n\r\ndescribe(\"Link Component\", () => {\r\n  it(\"renders default link correctly\", () => {\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        content: \"Default Link\",\r\n      },\r\n    });\r\n    cy.get(\"a\")\r\n      .should(\"exist\")\r\n      .and(\"have.attr\", \"href\", \"#\")\r\n      .and(\"contain.text\", \"Default Link\");\r\n  });\r\n  // Test with text decoration class\r\n  it(\"renders with different text decorations\", () => {\r\n    // Test always underline\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        underline: \"always\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"have.class\", \"underline\");\r\n    // Test hover underline\r\n\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        underline: \"hover\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"have.class\", \"hover:underline\");\r\n    // Test non underline\r\n\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        underline: \"none\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"have.class\", \"no-underline\");\r\n  });\r\n  // Test color of link\r\n  it(\"renders with different colors\", () => {\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        color: \"inherit\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"exist\");\r\n\r\n    //primary color\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        color: \"primary\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"exist\");\r\n\r\n    //secondary color\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        color: \"secondary\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"exist\");\r\n    //warning color\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        color: \"warning\",\r\n      },\r\n    });\r\n    cy.get(\"a\").should(\"exist\");\r\n  });\r\n  //test render as custom component\r\n  it(\"renders as a custom component\", () => {\r\n    cy.mount(TestLinkHostComponent, {\r\n      componentProperties: {\r\n        component: \"button\",\r\n        role: \"button\",\r\n        content: \"Link\",\r\n      },\r\n    });\r\n    cy.get(\"a\")\r\n      .should(\"exist\")\r\n      .and(\"not.have.attr\", \"href\", \"#\")\r\n      .and(\"have.attr\", \"role\", \"button\")\r\n      .and(\"contain.text\", \"Link\");\r\n  });\r\n});\r\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -827,6 +2062,26 @@
   "miscellaneous": {
     "variables": [
       {
+        "name": "accordionVariants",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/components/surfaces/accordion/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "cva(\r\n  \"bg-white text-black border-b border-gray-200\",\r\n  {\r\n    variants: accordionVariantsConfig.variants,\r\n    defaultVariants: {\r\n      disabled: false,\r\n      defaultExpanded: false,\r\n      disableGutters: false,\r\n      square: false,\r\n      expanded: false,\r\n    },\r\n  },\r\n)"
+      },
+      {
+        "name": "accordionVariantsConfig",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/components/surfaces/accordion/variants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\r\n  variants: {\r\n    disabled: { true: \"cursor-default opacity-50 bg-gray-200\" },\r\n    disableGutters: {\r\n      true: \"mb-0\",\r\n    },\r\n    square: { true: \"rounded-none shadow px-1\" },\r\n    defaultExpanded: { true: \"expanded\" },\r\n    expanded: { true: \"expanded\" },\r\n  },\r\n  defaultVariants: {\r\n    defaultExpanded: false,\r\n    expanded: false,\r\n    disabled: false,\r\n    disableGutters: false,\r\n  },\r\n}"
+      },
+      {
         "name": "appConfig",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -834,7 +2089,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "ApplicationConfig",
-        "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n  ],\r\n}"
+        "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    importProvidersFrom(LucideAngularModule.pick(icons)),\r\n    provideRouter(routes),\r\n  ],\r\n}"
       },
       {
         "name": "buttonVariants",
@@ -874,7 +2129,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "cva(\n  \"inline-flex items-center justify-center font-medium transition-colors cursor-pointer\",\n  {\n    variants: linkVariantsConfig.variants,\n    defaultVariants: {\n      color: \"primary\" as LinkColor,\n      underline: \"always\" as LinkUnderline,\n      variant: \"inherit\",\n    },\n  },\n)"
+        "defaultValue": "cva(\r\n  \"inline-flex items-center justify-center font-medium transition-colors cursor-pointer\",\r\n  {\r\n    variants: linkVariantsConfig.variants,\r\n    defaultVariants: {\r\n      color: \"primary\" as LinkColor,\r\n      underline: \"always\" as LinkUnderline,\r\n      variant: \"inherit\",\r\n    },\r\n  },\r\n)"
       },
       {
         "name": "linkVariantsConfig",
@@ -884,7 +2139,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "{\n  variants: {\n    variant: {\n      inherit: \"inherit\",\n      h1: \"text-7xl font-bold\",\n      h2: \"text-6xl font-bold\",\n      h3: \"text-5xl font-bold\",\n      h4: \"text-4xl font-bold\",\n      h5: \"text-2xl font-bold\",\n      h6: \"text-2xl font-bold\",\n      subtitle1: \"text-xl font-semibold\",\n      subtitle2: \"text-lg font-semibold\",\n      body1: \"text-xl font-normal\",\n      body2: \"text-lg font-normal\",\n      body3: \"text-base font-normal\",\n      caption: \"text-xs font-normal\",\n    },\n    underline: {\n      always: \"underline\",\n      hover: \"hover:underline\",\n      none: \"no-underline\",\n    },\n    color: {\n      inherit: \"inherit\",\n      primary: \"text-primary decoration-primary/40 hover:decoration-primary\",\n      secondary:\n        \"text-secondary decoration-secondary/40 hover:decoration-secondary\",\n      success: \"text-success decoration-success/40  hover:decoration-success\",\n      error: \"text-error decoration-error/40 hover:decoration-error\",\n      info: \"text-info decoration-info/40 hover:decoration-info\",\n      warning: \"text-warning decoration-warning/40 hover:decoration-warning\",\n    },\n  },\n  defaultVariants: {\n    variant: \"inherit\",\n    color: \"primary\",\n    underline: \"always\",\n  },\n} as const"
+        "defaultValue": "{\r\n  variants: {\r\n    variant: {\r\n      inherit: \"inherit\",\r\n      h1: \"text-7xl font-bold\",\r\n      h2: \"text-6xl font-bold\",\r\n      h3: \"text-5xl font-bold\",\r\n      h4: \"text-4xl font-bold\",\r\n      h5: \"text-2xl font-bold\",\r\n      h6: \"text-2xl font-bold\",\r\n      subtitle1: \"text-xl font-semibold\",\r\n      subtitle2: \"text-lg font-semibold\",\r\n      body1: \"text-xl font-normal\",\r\n      body2: \"text-lg font-normal\",\r\n      body3: \"text-base font-normal\",\r\n      caption: \"text-xs font-normal\",\r\n    },\r\n    underline: {\r\n      always: \"underline\",\r\n      hover: \"hover:underline\",\r\n      none: \"no-underline\",\r\n    },\r\n    color: {\r\n      inherit: \"inherit\",\r\n      primary: \"text-primary decoration-primary/40 hover:decoration-primary\",\r\n      secondary:\r\n        \"text-secondary decoration-secondary/40 hover:decoration-secondary\",\r\n      success: \"text-success decoration-success/40  hover:decoration-success\",\r\n      error: \"text-error decoration-error/40 hover:decoration-error\",\r\n      info: \"text-info decoration-info/40 hover:decoration-info\",\r\n      warning: \"text-warning decoration-warning/40 hover:decoration-warning\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"inherit\",\r\n    color: \"primary\",\r\n    underline: \"always\",\r\n  },\r\n} as const"
       }
     ],
     "functions": [
@@ -973,9 +2228,78 @@
             "comment": "<p>The adapted props with appropriate accessibility attributes</p>\n"
           }
         ]
+      },
+      {
+        "name": "getPositionStyles",
+        "file": "src/app/components/feedback/snackbar/variants.ts",
+        "ctype": "miscellaneous",
+        "subtype": "function",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "args": [
+          {
+            "name": "anchorOrigin",
+            "type": "SnackbarAnchorOrigin",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "returnType": "string",
+        "jsdoctags": [
+          {
+            "name": "anchorOrigin",
+            "type": "SnackbarAnchorOrigin",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
+      {
+        "name": "getVisibilityStyles",
+        "file": "src/app/components/feedback/snackbar/variants.ts",
+        "ctype": "miscellaneous",
+        "subtype": "function",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "args": [
+          {
+            "name": "open",
+            "type": "boolean",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "returnType": "string",
+        "jsdoctags": [
+          {
+            "name": "open",
+            "type": "boolean",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
       }
     ],
     "typealiases": [
+      {
+        "name": "AccordionBaseProps",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "",
+        "file": "src/app/components/surfaces/accordion/accordion.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "<p>Base props for the Accordion component</p>\n",
+        "kind": 193
+      },
       {
         "name": "ButtonBaseProps",
         "ctype": "miscellaneous",
@@ -1052,10 +2376,54 @@
         "deprecationMessage": "",
         "description": "",
         "kind": 192
+      },
+      {
+        "name": "SnackbarHorizontalPosition",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"left\" | \"center\" | \"right\"",
+        "file": "src/app/components/feedback/snackbar/snackbar.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
+      },
+      {
+        "name": "SnackbarVerticalPosition",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"top\" | \"bottom\"",
+        "file": "src/app/components/feedback/snackbar/snackbar.types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
       }
     ],
     "enumerations": [],
     "groupedVariables": {
+      "src/app/components/surfaces/accordion/variants.ts": [
+        {
+          "name": "accordionVariants",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/components/surfaces/accordion/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "cva(\r\n  \"bg-white text-black border-b border-gray-200\",\r\n  {\r\n    variants: accordionVariantsConfig.variants,\r\n    defaultVariants: {\r\n      disabled: false,\r\n      defaultExpanded: false,\r\n      disableGutters: false,\r\n      square: false,\r\n      expanded: false,\r\n    },\r\n  },\r\n)"
+        },
+        {
+          "name": "accordionVariantsConfig",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/components/surfaces/accordion/variants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\r\n  variants: {\r\n    disabled: { true: \"cursor-default opacity-50 bg-gray-200\" },\r\n    disableGutters: {\r\n      true: \"mb-0\",\r\n    },\r\n    square: { true: \"rounded-none shadow px-1\" },\r\n    defaultExpanded: { true: \"expanded\" },\r\n    expanded: { true: \"expanded\" },\r\n  },\r\n  defaultVariants: {\r\n    defaultExpanded: false,\r\n    expanded: false,\r\n    disabled: false,\r\n    disableGutters: false,\r\n  },\r\n}"
+        }
+      ],
       "src/app/app.config.ts": [
         {
           "name": "appConfig",
@@ -1065,7 +2433,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "ApplicationConfig",
-          "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    provideRouter(routes),\r\n  ],\r\n}"
+          "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({ eventCoalescing: true }),\r\n    importProvidersFrom(LucideAngularModule.pick(icons)),\r\n    provideRouter(routes),\r\n  ],\r\n}"
         }
       ],
       "src/app/components/inputs/button/variants.ts": [
@@ -1111,7 +2479,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "cva(\n  \"inline-flex items-center justify-center font-medium transition-colors cursor-pointer\",\n  {\n    variants: linkVariantsConfig.variants,\n    defaultVariants: {\n      color: \"primary\" as LinkColor,\n      underline: \"always\" as LinkUnderline,\n      variant: \"inherit\",\n    },\n  },\n)"
+          "defaultValue": "cva(\r\n  \"inline-flex items-center justify-center font-medium transition-colors cursor-pointer\",\r\n  {\r\n    variants: linkVariantsConfig.variants,\r\n    defaultVariants: {\r\n      color: \"primary\" as LinkColor,\r\n      underline: \"always\" as LinkUnderline,\r\n      variant: \"inherit\",\r\n    },\r\n  },\r\n)"
         },
         {
           "name": "linkVariantsConfig",
@@ -1121,7 +2489,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "{\n  variants: {\n    variant: {\n      inherit: \"inherit\",\n      h1: \"text-7xl font-bold\",\n      h2: \"text-6xl font-bold\",\n      h3: \"text-5xl font-bold\",\n      h4: \"text-4xl font-bold\",\n      h5: \"text-2xl font-bold\",\n      h6: \"text-2xl font-bold\",\n      subtitle1: \"text-xl font-semibold\",\n      subtitle2: \"text-lg font-semibold\",\n      body1: \"text-xl font-normal\",\n      body2: \"text-lg font-normal\",\n      body3: \"text-base font-normal\",\n      caption: \"text-xs font-normal\",\n    },\n    underline: {\n      always: \"underline\",\n      hover: \"hover:underline\",\n      none: \"no-underline\",\n    },\n    color: {\n      inherit: \"inherit\",\n      primary: \"text-primary decoration-primary/40 hover:decoration-primary\",\n      secondary:\n        \"text-secondary decoration-secondary/40 hover:decoration-secondary\",\n      success: \"text-success decoration-success/40  hover:decoration-success\",\n      error: \"text-error decoration-error/40 hover:decoration-error\",\n      info: \"text-info decoration-info/40 hover:decoration-info\",\n      warning: \"text-warning decoration-warning/40 hover:decoration-warning\",\n    },\n  },\n  defaultVariants: {\n    variant: \"inherit\",\n    color: \"primary\",\n    underline: \"always\",\n  },\n} as const"
+          "defaultValue": "{\r\n  variants: {\r\n    variant: {\r\n      inherit: \"inherit\",\r\n      h1: \"text-7xl font-bold\",\r\n      h2: \"text-6xl font-bold\",\r\n      h3: \"text-5xl font-bold\",\r\n      h4: \"text-4xl font-bold\",\r\n      h5: \"text-2xl font-bold\",\r\n      h6: \"text-2xl font-bold\",\r\n      subtitle1: \"text-xl font-semibold\",\r\n      subtitle2: \"text-lg font-semibold\",\r\n      body1: \"text-xl font-normal\",\r\n      body2: \"text-lg font-normal\",\r\n      body3: \"text-base font-normal\",\r\n      caption: \"text-xs font-normal\",\r\n    },\r\n    underline: {\r\n      always: \"underline\",\r\n      hover: \"hover:underline\",\r\n      none: \"no-underline\",\r\n    },\r\n    color: {\r\n      inherit: \"inherit\",\r\n      primary: \"text-primary decoration-primary/40 hover:decoration-primary\",\r\n      secondary:\r\n        \"text-secondary decoration-secondary/40 hover:decoration-secondary\",\r\n      success: \"text-success decoration-success/40  hover:decoration-success\",\r\n      error: \"text-error decoration-error/40 hover:decoration-error\",\r\n      info: \"text-info decoration-info/40 hover:decoration-info\",\r\n      warning: \"text-warning decoration-warning/40 hover:decoration-warning\",\r\n    },\r\n  },\r\n  defaultVariants: {\r\n    variant: \"inherit\",\r\n    color: \"primary\",\r\n    underline: \"always\",\r\n  },\r\n} as const"
         }
       ]
     },
@@ -1213,10 +2581,83 @@
             }
           ]
         }
+      ],
+      "src/app/components/feedback/snackbar/variants.ts": [
+        {
+          "name": "getPositionStyles",
+          "file": "src/app/components/feedback/snackbar/variants.ts",
+          "ctype": "miscellaneous",
+          "subtype": "function",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "args": [
+            {
+              "name": "anchorOrigin",
+              "type": "SnackbarAnchorOrigin",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "string",
+          "jsdoctags": [
+            {
+              "name": "anchorOrigin",
+              "type": "SnackbarAnchorOrigin",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "getVisibilityStyles",
+          "file": "src/app/components/feedback/snackbar/variants.ts",
+          "ctype": "miscellaneous",
+          "subtype": "function",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "args": [
+            {
+              "name": "open",
+              "type": "boolean",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "string",
+          "jsdoctags": [
+            {
+              "name": "open",
+              "type": "boolean",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
       ]
     },
     "groupedEnumerations": {},
     "groupedTypeAliases": {
+      "src/app/components/surfaces/accordion/accordion.types.ts": [
+        {
+          "name": "AccordionBaseProps",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "",
+          "file": "src/app/components/surfaces/accordion/accordion.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "<p>Base props for the Accordion component</p>\n",
+          "kind": 193
+        }
+      ],
       "src/app/components/inputs/button/button.types.ts": [
         {
           "name": "ButtonBaseProps",
@@ -1301,12 +2742,36 @@
           "description": "",
           "kind": 192
         }
+      ],
+      "src/app/components/feedback/snackbar/snackbar.types.ts": [
+        {
+          "name": "SnackbarHorizontalPosition",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"left\" | \"center\" | \"right\"",
+          "file": "src/app/components/feedback/snackbar/snackbar.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        },
+        {
+          "name": "SnackbarVerticalPosition",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"top\" | \"bottom\"",
+          "file": "src/app/components/feedback/snackbar/snackbar.types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        }
       ]
     }
   },
   "routes": [],
   "coverage": {
-    "count": 16,
+    "count": 12,
     "status": "low",
     "files": [
       {
@@ -1324,6 +2789,91 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "appConfig",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar-content.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "SnackbarContentComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/3",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar.component.cy.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "TestHostComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/7",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "SnackbarComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/22",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar.types.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "SnackbarAnchorOrigin",
+        "coveragePercent": 0,
+        "coverageCount": "0/3",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar.types.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "SnackbarOptions",
+        "coveragePercent": 0,
+        "coverageCount": "0/7",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "SnackbarHorizontalPosition",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/snackbar.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "SnackbarVerticalPosition",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/variants.ts",
+        "type": "function",
+        "linktype": "miscellaneous",
+        "linksubtype": "function",
+        "name": "getPositionStyles",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/feedback/snackbar/variants.ts",
+        "type": "function",
+        "linktype": "miscellaneous",
+        "linksubtype": "function",
+        "name": "getVisibilityStyles",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -1470,6 +3020,63 @@
         "linktype": "miscellaneous",
         "linksubtype": "typealias",
         "name": "LinkUnderline",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/surfaces/accordion/accordion-details.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "AccordionDetailsComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/5",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/surfaces/accordion/accordion-summary.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "AccordionSummaryComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/9",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/surfaces/accordion/accordion.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "AccordionComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/17",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/surfaces/accordion/accordion.types.ts",
+        "type": "type alias",
+        "linktype": "miscellaneous",
+        "linksubtype": "typealias",
+        "name": "AccordionBaseProps",
+        "coveragePercent": 100,
+        "coverageCount": "1/1",
+        "status": "very-good"
+      },
+      {
+        "filePath": "src/app/components/surfaces/accordion/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "accordionVariants",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/components/surfaces/accordion/variants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "accordionVariantsConfig",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
