@@ -1,0 +1,61 @@
+<div [class]="alertClasses" role="alert" [attr.tabindex]="action ? '0' : null">
+  <ng-container *ngIf="showIcon">
+    <ng-container *ngIf="customIcon; else defaultIcon">
+      <ng-container *ngTemplateOutlet="customIcon"></ng-container>
+    </ng-container>
+    <ng-template #defaultIcon>
+      <ng-container *ngIf="severityIconTemplate; else standardIcons">
+        <ng-container *ngTemplateOutlet="severityIconTemplate"></ng-container>
+      </ng-container>
+      <ng-template #standardIcons>
+        <span [class]="iconClasses">
+          <ng-container [ngSwitch]="effectiveSeverity">
+            <lucide-angular
+              [img]="CheckCircle"
+              *ngSwitchCase="'success'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+            <lucide-angular
+              [img]="AlertCircle"
+              *ngSwitchCase="'info'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+            <lucide-angular
+              [img]="AlertTriangle"
+              *ngSwitchCase="'warning'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+            <lucide-angular
+              [img]="XCircle"
+              *ngSwitchCase="'error'"
+              class="mt-0.5 h-5 w-5"
+            ></lucide-angular>
+          </ng-container>
+        </span>
+      </ng-template>
+    </ng-template>
+  </ng-container>
+
+  <div class="flex-1">
+    <ng-content></ng-content>
+  </div>
+
+  <div [class]="actionClasses" class="flex">
+    <!-- Action button on the left side -->
+    <ng-container *ngIf="action">
+      <ng-container *ngTemplateOutlet="action"></ng-container>
+    </ng-container>
+
+    <!-- Close button only if closeHandle exists and no action -->
+    <button
+      *ngIf="closeHandle.observers.length > 0 && !action"
+      type="button"
+      class="ml-auto inline-flex h-6 w-6 items-center justify-center rounded-full p-1 hover:cursor-pointer hover:bg-black/5"
+      (click)="handleClose()"
+      aria-label="Close"
+    >
+      <lucide-angular [img]="X" class="h-4 w-4"></lucide-angular>
+      <span class="sr-only">Close</span>
+    </button>
+  </div>
+</div>
