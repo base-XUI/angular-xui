@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/angular";
-import { CardComponent } from "./card";
-import { CardHeaderComponent } from "./card-header";
-import { CardContentComponent } from "./card-content";
-import { CardMediaComponent } from "./card-media";
-import { CardActionsComponent } from "./card-actions";
-import { CardActionAreaComponent } from "./card-action-area";
+import {
+  CardActionAreaComponent,
+  CardActionsComponent,
+  CardComponent,
+  CardContentComponent,
+  CardHeaderComponent,
+  CardMediaComponent,
+} from "./index";
 import { ButtonComponent } from "../../inputs/button/button.component";
 import { moduleMetadata } from "@storybook/angular";
 import { NgClass, NgStyle } from "@angular/common";

@@ -11,8 +11,8 @@ export interface CardProps {
 export interface CardHeaderProps {
   title?: string;
   subheader?: string;
-  avatar?: TemplateRef<any>;
-  action?: TemplateRef<any>;
+  avatar?: TemplateRef<unknown>;
+  action?: TemplateRef<unknown>;
   titleProps?: { className?: string };
   subheaderProps?: { className?: string };
   avatarProps?: { className?: string };
