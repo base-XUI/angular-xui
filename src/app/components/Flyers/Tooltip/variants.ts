@@ -1,9 +1,6 @@
 import { cva } from "class-variance-authority";
 
 export type TooltipPlacement =
-  | "auto-end"
-  | "auto-start"
-  | "auto"
   | "bottom-end"
   | "bottom-start"
   | "bottom"
@@ -38,24 +35,21 @@ export const tooltipVariantsConfig = {
       info: "bg-info text-info-foreground",
     },
     placement: {
-      auto: "",
-      "auto-start": "",
-      "auto-end": "",
       top: "-top-3 -translate-y-full left-1/2 -translate-x-1/2",
-      bottom: "top-full mt-2 left-1/2 -translate-x-1/2",
+      bottom: "bottom-3 mt-2 left-1/2 -translate-x-1/2",
       left: "-left-2 -translate-x-full top-1/2 -translate-y-1/2",
       right: "left-full ml-2 top-1/2 -translate-y-1/2",
       "top-start": "-top-3 -translate-y-full left-0",
       "top-end": "-top-3 -translate-y-full right-0",
-      "bottom-start": "top-full mt-2 left-0",
-      "bottom-end": "top-full mt-2 right-0",
+      "bottom-start": "bottom-3 mt-2 left-0",
+      "bottom-end": "bottom-3 mt-2 right-0",
       "left-start": "-left-2 -translate-x-full top-0",
       "left-end": "-left-2 -translate-x-full bottom-0",
       "right-start": "left-full ml-2 top-0",
       "right-end": "left-full ml-2 bottom-0",
     },
     arrow: {
-      true: "before:content-[''] before:absolute before:w-2 before:h-2 before:rotate-45 before:bg-inherit",
+      true: "before:content-[''] before:absolute before:w-3 before:h-3 before:rotate-45 before:bg-inherit",
       false: "",
     },
     disableInteractive: {
@@ -80,7 +74,7 @@ export const tooltipVariants = cva(
         arrow: true,
         placement: "top",
         className:
-          "before:bottom-[-4px] before:left-1/2 before:-translate-x-1/2",
+          "before:bottom-[-4px] before:left-1/2 before:-translate-x-1/2 ",
       },
       {
         arrow: true,
@@ -91,6 +85,11 @@ export const tooltipVariants = cva(
         arrow: true,
         placement: "left",
         className: "before:right-[-4px] before:top-1/2 before:-translate-y-1/2",
+      },
+      {
+        arrow: true,
+        placement: "left-start",
+        className: "before:right-[-4px] before:bottom-4",
       },
       {
         arrow: true,
@@ -119,23 +118,18 @@ export const tooltipVariants = cva(
       },
       {
         arrow: true,
-        placement: "left-start",
+        placement: "left-end",
         className: "before:right-[-4px] before:top-4",
       },
       {
         arrow: true,
-        placement: "left-end",
-        className: "before:right-[-4px] before:bottom-4",
-      },
-      {
-        arrow: true,
         placement: "right-start",
-        className: "before:left-[-4px] before:top-4",
+        className: "before:left-[-4px] before:bottom-4",
       },
       {
         arrow: true,
         placement: "right-end",
-        className: "before:left-[-4px] before:bottom-4",
+        className: "before:left-[-4px] before:top-4 ",
       },
     ],
   },

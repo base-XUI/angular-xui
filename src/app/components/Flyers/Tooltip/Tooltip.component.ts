@@ -6,10 +6,6 @@ import {
   signal,
   computed,
   effect,
-  DestroyRef,
-  inject,
-  ElementRef,
-  Renderer2,
   OnInit,
 } from "@angular/core";
 
@@ -24,10 +20,6 @@ import { tooltipVariants, TooltipColor, TooltipPlacement } from "./variants";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipComponent implements OnInit {
-  private destroyRef = inject(DestroyRef);
-  private elementRef = inject(ElementRef);
-  private renderer = inject(Renderer2);
-
   title = input<string>();
   arrow = input(true);
   disabled = input(false);
