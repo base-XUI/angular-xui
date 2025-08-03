@@ -35,21 +35,21 @@ export const tooltipVariantsConfig = {
       info: "bg-info text-info-foreground",
     },
     placement: {
-      top: "-top-3 -translate-y-full left-1/2 -translate-x-1/2",
-      bottom: "bottom-3 mt-2 left-1/2 -translate-x-1/2",
+      top: "-top-3 left-1/2 -translate-x-1/2 -translate-y-full   ",
+      bottom: "mt-3 left-1/2 -translate-x-1/2",
       left: "-left-2 -translate-x-full top-1/2 -translate-y-1/2",
       right: "left-full ml-2 top-1/2 -translate-y-1/2",
       "top-start": "-top-3 -translate-y-full left-0",
       "top-end": "-top-3 -translate-y-full right-0",
-      "bottom-start": "bottom-3 mt-2 left-0",
-      "bottom-end": "bottom-3 mt-2 right-0",
-      "left-start": "-left-2 -translate-x-full top-0",
-      "left-end": "-left-2 -translate-x-full bottom-0",
-      "right-start": "left-full ml-2 top-0",
-      "right-end": "left-full ml-2 bottom-0",
+      "bottom-start": "mt-2 left-0",
+      "bottom-end": " mt-2 right-0",
+      "left-start": "-left-2 -translate-x-full bottom-0 ",
+      "left-end": "-left-2 -translate-x-full top-1",
+      "right-start": "left-full translate-x-2 bottom-0",
+      "right-end": "left-full translate-x-2 top-1 ",
     },
     arrow: {
-      true: "before:content-[''] before:absolute before:w-3 before:h-3 before:rotate-45 before:bg-inherit",
+      true: "before:content-[''] before:absolute before:w-2 before:h-2 before:rotate-45 before:bg-inherit ",
       false: "",
     },
     disableInteractive: {
@@ -66,7 +66,7 @@ export const tooltipVariantsConfig = {
 };
 
 export const tooltipVariants = cva(
-  "z-50 px-2 text-sm rounded shadow-md absolute transition-opacity duration-200",
+  "z-50 px-2 py-2 text-sm rounded shadow-md absolute transition-opacity duration-200 w-max max-h-[calc(50vh-2rem)] max-w-[calc(100vw-2rem)] break-words whitespace-normal ",
   {
     ...tooltipVariantsConfig,
     compoundVariants: [
@@ -74,7 +74,7 @@ export const tooltipVariants = cva(
         arrow: true,
         placement: "top",
         className:
-          "before:bottom-[-4px] before:left-1/2 before:-translate-x-1/2 ",
+          "before:bottom-[-4px] before:left-1/2 before:-translate-x-1/2",
       },
       {
         arrow: true,
@@ -85,11 +85,6 @@ export const tooltipVariants = cva(
         arrow: true,
         placement: "left",
         className: "before:right-[-4px] before:top-1/2 before:-translate-y-1/2",
-      },
-      {
-        arrow: true,
-        placement: "left-start",
-        className: "before:right-[-4px] before:bottom-4",
       },
       {
         arrow: true,
@@ -118,8 +113,13 @@ export const tooltipVariants = cva(
       },
       {
         arrow: true,
+        placement: "left-start",
+        className: "before:right-[-4px] before:bottom-4",
+      },
+      {
+        arrow: true,
         placement: "left-end",
-        className: "before:right-[-4px] before:top-4",
+        className: "before:right-[-4px] before:top-3",
       },
       {
         arrow: true,
@@ -129,7 +129,7 @@ export const tooltipVariants = cva(
       {
         arrow: true,
         placement: "right-end",
-        className: "before:left-[-4px] before:top-4 ",
+        className: "before:left-[-4px] before:top-4",
       },
     ],
   },
