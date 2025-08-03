@@ -1,0 +1,29 @@
+<span
+  class="relative text-center "
+  [attr.aria-describedby]="tooltipId()"
+  (mouseenter)="handleHover(true, $event)"
+  (mouseleave)="handleHover(false, $event)"
+  (focus)="handleFocus(true, $event)"
+  (blur)="handleFocus(false, $event)"
+  (touchstart)="handleTouchStart($event)"
+  (touchend)="handleTouchEnd($event)"
+  (touchcancel)="handleTouchEnd($event)"
+  (mousemove)="handleMouseMove($event)"
+>
+  <ng-content></ng-content>
+
+  @if (isOpen() && title()) {
+    <div
+      role="tooltip"
+      [attr.id]="tooltipId()"
+      [attr.data-arrow]="arrow() ? 'true' : null"
+      [attr.data-color]="color()"
+      [attr.data-placement]="placement()"
+      [attr.aria-live]="interactive() ? 'polite' : null"
+      [ngClass]="tooltipClasses()"
+      [ngStyle]="tooltipStyles()"
+    >
+      {{ title() }}
+    </div>
+  }
+</span>
