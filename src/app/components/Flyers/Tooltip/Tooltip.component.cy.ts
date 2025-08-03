@@ -90,18 +90,6 @@ const mountTestTooltipHostComponent = (
 };
 
 describe("TooltipComponent (Non-Faulty Tests)", () => {
-  // Original failing test: "shows tooltip on focus"
-  // This test was failing because the tooltip element was not found after focus.
-  // It has been commented out/removed as requested.
-
-  // Original failing test: "does not show tooltip on hover when disableHoverListener is true"
-  // This test also had a problem where the tooltip element was not found on focus.
-  // It has been commented out/removed as requested.
-
-  // Original failing test: "has correct accessibility attributes"
-  // This test was failing because aria-describedby was not found.
-  // It has been commented out/removed as requested.
-
   it("should show tooltip on hover and hide on mouse leave", () => {
     mountTestTooltipHostComponent({
       title: "Hover Test Tooltip",

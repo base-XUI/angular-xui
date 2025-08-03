@@ -31,7 +31,6 @@ export class TooltipComponent implements OnInit {
   disableHoverListener = input(false);
   disableTouchListener = input(false);
 
-  // Changed from input(100) to input(0) for immediate tooltip appearance
   enterDelay = input(0);
   enterNextDelay = input(0);
   leaveDelay = input(0);
@@ -47,7 +46,6 @@ export class TooltipComponent implements OnInit {
   private cursorPos = signal<{ x: number; y: number } | null>(null);
   private lastOpenTimestamp = signal(0);
 
-  // Fixed tooltip ID generation - now stable
   private _tooltipId = signal<string>("");
 
   private enterTimer: ReturnType<typeof setTimeout> | null = null;
@@ -55,7 +53,6 @@ export class TooltipComponent implements OnInit {
   private touchEnterTimer: ReturnType<typeof setTimeout> | null = null;
   private touchLeaveTimer: ReturnType<typeof setTimeout> | null = null;
 
-  // Now uses stable ID from signal
   tooltipId = computed(() => this._tooltipId());
 
   tooltipClasses = computed(() =>
@@ -87,7 +84,6 @@ export class TooltipComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Generate stable tooltip ID once
     const generatedId =
       this.id() ?? `tooltip-${Math.random().toString(36).slice(2, 8)}`;
     this._tooltipId.set(generatedId);
@@ -110,7 +106,6 @@ export class TooltipComponent implements OnInit {
   }
 
   private openTooltip(event: Event): void {
-    // Added check for empty/undefined title
     if (this.disabled() || !this.title()?.trim()) return;
 
     this.clearTimers();
