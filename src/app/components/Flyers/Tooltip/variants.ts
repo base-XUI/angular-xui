@@ -66,7 +66,7 @@ export const tooltipVariantsConfig = {
 };
 
 export const tooltipVariants = cva(
-  "z-50 px-2 py-2 text-sm rounded shadow-md absolute transition-opacity duration-200 w-max max-h-[calc(100vh-2rem)] max-w-[calc(100vw-2rem)] break-words whitespace-normal ",
+  "z-50 px-2 py-2 text-sm rounded shadow-md absolute transition-opacity duration-200 w-max max-h-[calc(50vh-2rem)] max-w-[calc(100vw-2rem)] break-words whitespace-normal ",
   {
     ...tooltipVariantsConfig,
     compoundVariants: [
